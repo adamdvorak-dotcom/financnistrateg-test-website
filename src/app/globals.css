@@ -142,9 +142,18 @@ nav {
   .hero-title { font-size: 32px; }
   .hero-sub { font-size: 15px; max-width: 100%; margin-bottom: 24px; }
   .hero-actions { justify-content: center; }
-  .hero-photo-wrap { width: 100%; }
-  .hero-photo-frame { aspect-ratio: 4/5; border-radius: 0; border-left: none; border-right: none; box-shadow: none; }
-  .hero-photo-frame img { object-fit: cover; object-position: center top; }
+  /* negative margin = full-bleed foto přes celou šíři */
+  .hero-photo-wrap { margin: 0 -20px; width: calc(100% + 40px); }
+  .hero-photo-frame {
+    aspect-ratio: auto;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: none;
+  }
+  /* height: auto + object-fit: unset = žádné ořezávání, fotka celá */
+  .hero-photo-frame img { width: 100%; height: auto; object-fit: unset; object-position: unset; }
 }
 @media (max-width: 768px) {
   .nav-links, .btn-nav { display: none; }
