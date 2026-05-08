@@ -145,15 +145,15 @@ nav {
   /* negative margin = full-bleed foto přes celou šíři */
   .hero-photo-wrap { margin: 0 -20px; width: calc(100% + 40px); }
   .hero-photo-frame {
-    aspect-ratio: auto;
+    aspect-ratio: 834/1128;
     border-radius: 0;
     border-left: none;
     border-right: none;
     border-bottom: none;
     box-shadow: none;
   }
-  /* height: auto + object-fit: unset = žádné ořezávání, fotka celá */
-  .hero-photo-frame img { width: 100%; height: auto; object-fit: unset; object-position: unset; }
+  /* rám má stejný poměr jako fotka → cover ji zobrazí celou bez ořezu */
+  .hero-photo-frame img { object-fit: cover; object-position: center top; }
 }
 @media (max-width: 768px) {
   .nav-links, .btn-nav { display: none; }
