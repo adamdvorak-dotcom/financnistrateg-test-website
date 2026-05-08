@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasazení Support Agenta — Adam Dvořák</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #141210;
+      --bg-1:         #1c1a18;
+      --bg-2:         #252320;
+      --bg-3:         #2e2c29;
+      --border:       rgba(255,255,255,0.07);
+      --border-med:   rgba(255,255,255,0.12);
+      --text-1:       #f0f0f0;
+      --text-2:       #a0a0a0;
+      --text-3:       #555555;
+      --accent:       #C9A260;
+      --accent-dim:   rgba(201,162,96,0.10);
+      --accent-glow:  rgba(201,162,96,0.20);
+      --green:        #22c55e;
+      --green-dim:    rgba(34,197,94,0.12);
+      --r-sm:         6px;
+      --r-md:         12px;
+      --r-lg:         20px;
+      --r-xl:         28px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      background: var(--bg);
+      color: var(--text-1);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.018;
+      mix-blend-mode: screen;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      backdrop-filter: blur(24px);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; padding: 0 28px; max-width: 860px; margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px; font-weight: 600; letter-spacing: -0.03em;
+      color: var(--text-1); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--text-2); text-decoration: none;
+      padding: 6px 12px; border-radius: var(--r-sm);
+      border: 1px solid var(--border); background: var(--bg-1);
+      transition: all 0.15s;
+    }
+    .nav-back:hover { color: var(--text-1); border-color: var(--border-med); }
+
+    /* ── Hero ── */
+    .page-hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 50% 60% at 80% 40%, rgba(201,162,96,0.06) 0%, transparent 70%);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .hero-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+    .page-title {
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 700; color: var(--text-1); margin-bottom: 16px;
+    }
+    .page-sub {
+      font-size: 16px; color: var(--text-2); max-width: 560px;
+      line-height: 1.7; margin-bottom: 32px;
+    }
+    .prereqs {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .prereq-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 20px;
+      border: 1px solid var(--border-med); background: var(--bg-1);
+      font-size: 12px; font-weight: 500; color: var(--text-2);
+    }
+    .prereq-tag svg { color: var(--accent); }
+
+    /* ── Steps ── */
+    .steps { padding: 64px 0; }
+
+    .step-group { margin-bottom: 60px; }
+    .step-group:last-child { margin-bottom: 0; }
+
+    .step-label {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+      background: var(--accent-dim); border: 1px solid var(--accent-glow);
+      color: var(--accent); font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 600; color: var(--text-1);
+    }
+
+    .step-card {
+      background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .step-card-body { padding: 24px 28px; }
+    .step-desc {
+      font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 20px;
+    }
+    .step-desc:last-child { margin-bottom: 0; }
+    .step-desc a { color: var(--accent); text-decoration: none; }
+    .step-desc a:hover { text-decoration: underline; }
+
+    /* Code block */
+    .code-block {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--r-md); overflow: hidden; margin-bottom: 12px;
+    }
+    .code-block:last-child { margin-bottom: 0; }
+    .code-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 14px; border-bottom: 1px solid var(--border);
+      background: var(--bg-3);
+    }
+    .code-label { font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
+    .copy-btn {
+      display: flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: var(--r-sm);
+      border: 1px solid var(--border); background: var(--bg-2);
+      color: var(--text-3); font-size: 11px; font-weight: 500; cursor: pointer;
+      transition: all 0.15s; font-family: inherit;
+    }
+    .copy-btn:hover { color: var(--text-1); border-color: var(--border-med); }
+    .copy-btn.copied { color: var(--green); border-color: rgba(34,197,94,0.3); background: var(--green-dim); }
+    .code-body {
+      padding: 16px 18px; font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 13px; line-height: 1.7; color: var(--text-1); overflow-x: auto;
+      white-space: pre;
+    }
+    .code-body .comment { color: var(--text-3); }
+    .code-body .cmd { color: #7dd3fc; }
+    .code-body .str { color: #86efac; }
+    .code-body .key { color: var(--accent); }
+
+    /* Env table */
+    .env-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .env-table th {
+      text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3);
+      border-bottom: 1px solid var(--border);
+    }
+    .env-table td {
+      padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .env-table tr:last-child td { border-bottom: none; }
+    .env-table .env-key {
+      font-family: 'SF Mono', Consolas, monospace; font-size: 12.5px; color: var(--accent);
+    }
+    .env-table .env-req {
+      display: inline-block; padding: 2px 7px; border-radius: 4px;
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+    }
+    .env-table .req { background: rgba(201,162,96,0.12); color: var(--accent); }
+    .env-table .opt { background: var(--bg-3); color: var(--text-3); }
+    .env-table .env-desc { color: var(--text-2); font-size: 13px; }
+    .env-table .env-link a { color: var(--accent); font-size: 12px; }
+
+    /* Divider */
+    .step-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 0 28px; padding: 14px 0; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-3);
+    }
+
+    /* Info box */
+    .info-box {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 18px; border-radius: var(--r-md);
+      border: 1px solid var(--border); background: var(--bg-2);
+      margin-bottom: 12px;
+    }
+    .info-box.warn { border-color: rgba(201,162,96,0.25); background: var(--accent-dim); }
+    .info-box.ok { border-color: rgba(34,197,94,0.2); background: var(--green-dim); }
+    .info-icon { flex-shrink: 0; margin-top: 1px; }
+    .info-text { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .info-text strong { color: var(--text-1); }
+    .info-text a { color: var(--accent); text-decoration: none; }
+
+    /* Done card */
+    .done-card {
+      background: var(--accent-dim); border: 1px solid var(--accent-glow);
+      border-radius: var(--r-xl); padding: 40px; text-align: center;
+      margin-top: 64px;
+    }
+    .done-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent); color: #000;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 24px;
+    }
+    .done-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; color: var(--text-1); margin-bottom: 10px;
+    }
+    .done-sub { font-size: 14px; color: var(--text-2); max-width: 400px; margin: 0 auto 24px; line-height: 1.6; }
+    .done-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 22px; border-radius: var(--r-md);
+      background: var(--accent); color: #000;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .done-link:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0; margin-top: 80px;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 12.5px; color: var(--text-3);
+      max-width: 860px; margin: 0 auto; padding: 0 28px;
+    }
+    .footer-inner a { color: var(--text-3); text-decoration: none; }
+    .footer-inner a:hover { color: var(--text-2); }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .page-hero { padding: 48px 0 40px; }
+      .step-card-body { padding: 18px 20px; }
+      .code-body { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      Adam Dvořák
+    </a>
+    <a href="/" class="nav-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Zpět na web
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="container">
+    <div class="hero-eyebrow">Průvodce nasazením</div>
+    <h1 class="page-title">Jak zprovoznit<br>Support Agenta</h1>
+    <p class="page-sub">
+      AI asistent zodpovídá otázky návštěvníků o vašich službách a eskaluje nevyřešené dotazy e-mailem.
+      Nasazení trvá přibližně 10 minut.
+    </p>
+    <div class="prereqs">
+      <div class="prereq-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Node.js 18+
+      </div>
+      <div class="prereq-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Účet na 21st.dev
+      </div>
+      <div class="prereq-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Účet na Resend (pro e-mail)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<div class="steps">
+  <div class="container">
+
+    <!-- Step 1 -->
+    <div class="step-group">
+      <div class="step-label">
+        <div class="step-num">1</div>
+        <div class="step-title">Nasaďte agenta na 21st.dev</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-body">
+          <p class="step-desc">
+            Přejděte do složky agenta, nainstalujte závislosti a přihlaste se ke svému 21st.dev účtu pomocí API klíče.
+            Klíč najdete v <a href="https://21st.dev/settings" target="_blank">21st.dev → Settings</a> (začíná <code style="color:var(--accent)">an_sk_</code>).
+          </p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Terminál</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body"><span class="comment"># Přejděte do složky agenta</span>
+cd agents/support-agent
+
+<span class="comment"># Nainstalujte závislosti</span>
+npm install
+
+<span class="comment"># Přihlaste se (vloží se API klíč ze 21st.dev)</span>
+npx @21st-sdk/cli login</div>
+          </div>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Nasazení</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body">npx @21st-sdk/cli deploy</div>
+          </div>
+
+          <div class="info-box ok" style="margin-top:16px">
+            <span class="info-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="info-text">Po úspěšném nasazení uvidíte <strong>slug agenta: support-agent</strong>. Uložte si ho — budete ho potřebovat v dalším kroku.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-group">
+      <div class="step-label">
+        <div class="step-num">2</div>
+        <div class="step-title">Nastavte proměnné prostředí agenta</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-body">
+          <p class="step-desc">
+            Agent potřebuje vědět, odkud stáhnout dokumentaci webu (<code style="color:var(--accent)">DOCS_URL</code>),
+            a mít přístup k Resend pro odesílání e-mailů.
+          </p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Proměnné agenta na 21st.dev</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body"><span class="comment"># URL vašeho webu (kde jsou llms.txt a llms-full.txt)</span>
+npx @21st-sdk/cli env set support-agent <span class="key">DOCS_URL</span> <span class="str">https://financnistrateg.com</span>
+
+<span class="comment"># API klíč z resend.com (začíná re_)</span>
+npx @21st-sdk/cli env set support-agent <span class="key">RESEND_API_KEY</span> <span class="str">re_váš_klíč</span>
+
+<span class="comment"># E-mail, kam se posílají eskalované dotazy</span>
+npx @21st-sdk/cli env set support-agent <span class="key">SUPPORT_EMAIL</span> <span class="str">adamdvorak@financnistrateg.com</span>
+
+<span class="comment"># (Volitelné) odesílatel e-mailů</span>
+npx @21st-sdk/cli env set support-agent <span class="key">RESEND_FROM_EMAIL</span> <span class="str">"Asistent &lt;asistent@financnistrateg.com&gt;"</span></div>
+          </div>
+
+          <div class="code-block" style="margin-top:12px">
+            <div class="code-header">
+              <span class="code-label">Znovu nasadit po nastavení proměnných</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body">npx @21st-sdk/cli deploy</div>
+          </div>
+
+          <div class="info-box warn" style="margin-top:16px">
+            <span class="info-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </span>
+            <span class="info-text">
+              Resend API klíč získáte zdarma na <a href="https://resend.com" target="_blank">resend.com</a>.
+              Bezplatný plán umožňuje 100 e-mailů denně — pro osobní web zcela dostačující.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-group">
+      <div class="step-label">
+        <div class="step-num">3</div>
+        <div class="step-title">Vyplňte <code style="font-family:inherit;font-size:inherit">.env.local</code> na serveru</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-body">
+          <p class="step-desc">
+            Soubor <code style="color:var(--accent)">.env.local</code> v kořeni projektu obsahuje API klíč pro server (<code style="color:var(--accent)">serve.mjs</code>),
+            který zajišťuje výměnu tokenů mezi prohlížečem a 21st.dev.
+            Klíč <strong>nikdy neposílejte do Gitu</strong> — soubor je v <code style="color:var(--accent)">.gitignore</code>.
+          </p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">.env.local</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body"><span class="comment"># API klíč ze 21st.dev → Settings (an_sk_...)</span>
+<span class="key">API_KEY_21ST</span>=an_sk_váš_klíč
+
+<span class="comment"># Resend API klíč (re_...)</span>
+<span class="key">RESEND_API_KEY</span>=re_váš_klíč
+
+<span class="comment"># E-mail pro eskalaci dotazů</span>
+<span class="key">SUPPORT_EMAIL</span>=adamdvorak@financnistrateg.com
+
+<span class="comment"># URL webu pro stažení llms.txt agentem</span>
+<span class="key">DOCS_URL</span>=https://financnistrateg.com</div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <p class="step-desc" style="margin-bottom: 14px;">Přehled všech proměnných:</p>
+            <table class="env-table">
+              <thead>
+                <tr>
+                  <th>Proměnná</th>
+                  <th>Kde</th>
+                  <th>Popis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="env-key">API_KEY_21ST</span></td>
+                  <td><span class="env-req req">Povinné</span></td>
+                  <td class="env-desc">API klíč z <a href="https://21st.dev/settings" target="_blank" style="color:var(--accent)">21st.dev/settings</a></td>
+                </tr>
+                <tr>
+                  <td><span class="env-key">RESEND_API_KEY</span></td>
+                  <td><span class="env-req req">Povinné</span></td>
+                  <td class="env-desc">API klíč z <a href="https://resend.com/api-keys" target="_blank" style="color:var(--accent)">resend.com</a> pro odesílání e-mailů</td>
+                </tr>
+                <tr>
+                  <td><span class="env-key">SUPPORT_EMAIL</span></td>
+                  <td><span class="env-req req">Povinné</span></td>
+                  <td class="env-desc">E-mail, kam agent posílá eskalované dotazy</td>
+                </tr>
+                <tr>
+                  <td><span class="env-key">DOCS_URL</span></td>
+                  <td><span class="env-req req">Povinné</span></td>
+                  <td class="env-desc">URL webu, odkud agent stahuje <code style="color:var(--text-2)">llms.txt</code></td>
+                </tr>
+                <tr>
+                  <td><span class="env-key">RESEND_FROM_EMAIL</span></td>
+                  <td><span class="env-req opt">Volitelné</span></td>
+                  <td class="env-desc">Odesílatel e-mailů (výchozí: <code style="color:var(--text-3)">onboarding@resend.dev</code>)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-group">
+      <div class="step-label">
+        <div class="step-num">4</div>
+        <div class="step-title">Spusťte server a otestujte</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-body">
+          <p class="step-desc">Spusťte lokální server a otevřete web — v pravém dolním rohu uvidíte zlaté chat tlačítko.</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Spuštění (z kořene projektu)</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body">node serve.mjs</div>
+          </div>
+
+          <p class="step-desc" style="margin-top: 16px; margin-bottom: 14px;">Ověřte, že token endpoint funguje:</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Test tokenu (curl)</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body">curl -X POST http://localhost:3000/api/agent/token</div>
+          </div>
+
+          <div class="info-box ok" style="margin-top:16px">
+            <span class="info-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="info-text">
+              Úspěšná odpověď vypadá takto:<br>
+              <code style="color:var(--text-1);font-size:12px">{"token":"sk-...","expiresAt":"2026-05-08T..."}</code>
+            </span>
+          </div>
+
+          <div class="info-box" style="margin-top:10px">
+            <span class="info-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </span>
+            <span class="info-text">
+              Chyba <strong>"API_KEY_21ST not configured"</strong>? Zkontrolujte, že <code>.env.local</code> existuje a obsahuje správný klíč. Server je potřeba restartovat po každé změně <code>.env.local</code>.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 (production) -->
+    <div class="step-group">
+      <div class="step-label">
+        <div class="step-num">5</div>
+        <div class="step-title">Nasazení do produkce</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-body">
+          <p class="step-desc">
+            Pro produkci nahraďte <code style="color:var(--accent)">serve.mjs</code> libovolným Node.js serverem nebo nasaďte na platformu jako
+            <a href="https://railway.app" target="_blank">Railway</a>, <a href="https://render.com" target="_blank">Render</a> nebo VPS.
+            Proměnné prostředí nastavte přímo v platformě (nepoužívejte <code>.env.local</code> v produkci).
+          </p>
+
+          <p class="step-desc">
+            Ujistěte se, že soubory <code style="color:var(--accent)">llms.txt</code> a <code style="color:var(--accent)">llms-full.txt</code>
+            jsou dostupné na URL nastavené v <code style="color:var(--accent)">DOCS_URL</code>.
+            Agent je stahuje při startu každé session.
+          </p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-label">Ověření dostupnosti dokumentace</span>
+              <button class="copy-btn" onclick="copyCode(this)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Kopírovat
+              </button>
+            </div>
+            <div class="code-body">curl https://financnistrateg.com/llms.txt
+curl https://financnistrateg.com/llms-full.txt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Done -->
+    <div class="done-card">
+      <div class="done-icon">✦</div>
+      <div class="done-title">Asistent je připraven</div>
+      <div class="done-sub">
+        Zlaté chat tlačítko je nyní aktivní na webu. Návštěvníci se mohou ptát a dostávat odpovědi z dokumentace. Nevyřešené dotazy přijdou e-mailem.
+      </div>
+      <a href="/" class="done-link">
+        Zpět na web
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Adam Dvořák · <a href="/">financnistrateg.com</a></div>
+    <div>Support agent powered by <a href="https://21st.dev" target="_blank">21st.dev</a></div>
+  </div>
+</footer>
+
+<script>
+function copyCode(btn) {
+  const block = btn.closest('.code-block').querySelector('.code-body');
+  const text = block.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Zkopírováno`;
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopírovat`;
+    }, 2200);
+  });
+}
+</script>
+</body>
+</html>
