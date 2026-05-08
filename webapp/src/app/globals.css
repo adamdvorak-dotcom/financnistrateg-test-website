@@ -131,22 +131,23 @@ nav {
 @media (max-width: 900px) {
   .hero-inner {
     display: flex; flex-direction: column;
-    gap: 40px;
+    text-align: center; gap: 40px;
   }
-  .hero-photo-wrap { width: 100%; max-width: 400px; margin: 0 auto; flex-shrink: 0; }
-  .hero-photo-frame { width: 100%; }
+  .hero-photo-wrap { display: none; }
+  .hero-actions { justify-content: center; }
+  .hero-badge { margin: 0 auto 28px; }
 }
 @media (max-width: 560px) {
   #hero { min-height: auto; padding: 0; }
-  .hero-inner { gap: 0; }
+  .hero-inner { gap: 0; padding: 0; }
   .hero-text {
     min-height: 100svh;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 80px 0 48px;
+    padding: 80px 24px 48px;
+    text-align: center;
   }
   .hero-title { font-size: 34px; }
-  .hero-sub { margin-bottom: 24px; }
-  .hero-photo-wrap { display: none; }
+  .hero-sub { max-width: 100%; margin-bottom: 24px; }
 }
 @media (max-width: 768px) {
   .nav-links, .btn-nav { display: none; }
