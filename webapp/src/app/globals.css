@@ -144,7 +144,7 @@ nav {
   .hero-text {
     min-height: 100svh;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 80px 28px 48px;
+    padding: 80px 0 48px;
   }
   .hero-title { font-size: 34px; }
   .hero-sub { margin-bottom: 24px; }
