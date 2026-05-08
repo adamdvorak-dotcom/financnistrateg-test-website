@@ -131,6 +131,7 @@ nav {
 @media (max-width: 900px) {
   .hero-inner {
     display: flex; flex-direction: column;
+    align-items: stretch;
     text-align: center; gap: 40px;
   }
   .hero-photo-wrap { display: none; }
