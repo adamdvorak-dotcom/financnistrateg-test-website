@@ -140,7 +140,7 @@ nav {
   .hero-sub { font-size: 14px; max-width: 100%; margin-bottom: 20px; }
   .hero-badge { margin-bottom: 16px; }
   .hero-photo-frame { aspect-ratio: 2/3; }
-  .hero-photo-frame img { object-fit: cover; object-position: center top; }
+  .hero-photo-frame img { object-fit: cover; object-position: left top; }
 }
 @media (max-width: 768px) {
   .nav-links, .btn-nav { display: none; }
