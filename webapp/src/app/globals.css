@@ -131,21 +131,26 @@ nav {
 @media (max-width: 900px) {
   .hero-inner {
     display: flex; flex-direction: column;
-    text-align: center; gap: 32px;
+    text-align: center; gap: 40px;
   }
-  .hero-photo-wrap { width: 100%; flex-shrink: 0; }
+  .hero-photo-wrap { width: 100%; max-width: 400px; margin: 0 auto; flex-shrink: 0; }
   .hero-photo-frame { width: 100%; }
   .hero-actions { justify-content: center; }
   .hero-badge { margin: 0 auto 28px; }
 }
 @media (max-width: 560px) {
-  #hero { min-height: auto; padding: 80px 0 0; }
-  .hero-inner { gap: 24px; }
+  #hero { min-height: auto; padding: 0; }
+  .hero-inner { gap: 0; }
+  .hero-text {
+    min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 28px 48px;
+  }
   .hero-title { font-size: 34px; }
   .hero-sub { margin-bottom: 24px; }
   .hero-photo-wrap {
-    margin-left: -28px;
-    margin-right: -28px;
+    max-width: none;
+    margin-left: -28px; margin-right: -28px;
     width: calc(100% + 56px);
   }
   .hero-photo-frame {
