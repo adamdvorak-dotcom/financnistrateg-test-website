@@ -129,29 +129,18 @@ nav {
 .hamburger { display: none; align-items: center; justify-content: center; width: 34px; height: 34px; cursor: pointer; flex-direction: column; gap: 4px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--bg-1); }
 .hamburger span { width: 16px; height: 1.5px; background: var(--text-2); border-radius: 2px; transition: all 0.2s; }
 @media (max-width: 900px) {
-  #hero { padding: 80px 0 0; min-height: auto; }
+  #hero { padding: 80px 0 48px; min-height: 100svh; }
   .hero-inner {
-    display: block;
-    padding: 0 24px;
-    text-align: center;
+    grid-template-columns: 1fr 130px;
+    gap: 16px;
+    padding: 0 16px;
+    align-items: center;
   }
-  .hero-title { font-size: 34px; }
-  .hero-sub { max-width: 100%; margin-bottom: 28px; }
-  .hero-actions { justify-content: center; }
-  .hero-badge { margin: 0 auto 24px; }
-  .hero-photo-wrap {
-    margin: 36px -24px 0;
-    width: calc(100% + 48px);
-  }
-  .hero-photo-frame {
-    aspect-ratio: 3/4;
-    border-radius: var(--r-lg) var(--r-lg) 0 0;
-  }
-  .hero-photo-frame img {
-    object-fit: contain;
-    object-position: center bottom;
-    background: var(--bg-1);
-  }
+  .hero-title { font-size: 28px; }
+  .hero-sub { font-size: 14px; max-width: 100%; margin-bottom: 20px; }
+  .hero-badge { margin-bottom: 16px; }
+  .hero-photo-frame { aspect-ratio: 2/3; }
+  .hero-photo-frame img { object-fit: cover; object-position: center top; }
 }
 @media (max-width: 768px) {
   .nav-links, .btn-nav { display: none; }
