@@ -302,7 +302,7 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .stats-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
 }
 .stat-cell {
   padding: 40px 28px;
@@ -316,18 +316,11 @@ nav {
 }
 .stat-num span { color: var(--accent); }
 .stat-desc { font-size: 13px; color: var(--text-3); font-weight: 500; }
-@media (max-width: 900px) {
-  .stats-grid { grid-template-columns: repeat(3, 1fr); }
-  .stat-cell:nth-child(3) { border-right: none; }
-  .stat-cell:nth-child(4) { border-top: 1px solid var(--border); }
-  .stat-cell:nth-child(5) { border-top: 1px solid var(--border); border-right: none; }
-}
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-cell:nth-child(2) { border-right: none; }
   .stat-cell:nth-child(3) { border-top: 1px solid var(--border); }
   .stat-cell:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-  .stat-cell:nth-child(5) { border-top: 1px solid var(--border); border-right: none; }
 }
 
 /* ── Services bento ── */
@@ -615,6 +608,12 @@ input[type="range"]::-moz-range-thumb {
   font-size: 12px; font-weight: 500; color: var(--accent);
 }
 .about-text { font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 14px; }
+.about-text-strong { color: var(--text-1); font-weight: 600; font-style: italic; }
+
+.section-sub {
+  font-size: 16px; color: var(--text-2); line-height: 1.65;
+  margin-top: 10px; max-width: 680px;
+}
 
 /* ── Blog ── */
 #blog { padding: 0 0 80px; }

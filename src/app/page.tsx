@@ -1,27 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 
 /* ── Translations ── */
 const T = {
   cs: {
     navAbout: "O mně", navServices: "Služby", navCalc: "Kalkulačky", navBlog: "Blog", navContact: "Kontakt", navCta: "Konzultace zdarma",
-    heroBadge: "Dostupný pro nové klienty · Praha & online",
-    heroSub: "Nezávislý finanční poradce. Pomáhám jednotlivcům a rodinám budovat finanční jistotu — od investic po hypotéky a přípravu na důchod.",
+    heroBadge: "Pro podnikatele a rodiny · Praha & online",
+    heroSub: "Systém, který chrání rodinu, drží majetek pohromadě a dává člověku svobodu rozhodovat. Pracuji s podnikateli a rodinami, pro které peníze už dávno neřeší jen výnos, ale to, co po nich zůstane.",
     heroCta: "Sjednat konzultaci",
-    statYears: "let", statExp: "zkušeností v oboru", statClients: "spokojených klientů", statAum: "mil. ve správě", statFinanced: "mil. zafinancováno", statRecommend: "klientů doporučí dál",
-    servicesTitle: "Co pro vás mohu udělat.",
-    s1Tag: "Investice", s1Title: "Investiční poradenství", s1Desc: "Sestavení portfolia na míru — ETF, podílové fondy, dluhopisy i alternativní aktiva. Pravidelný rebalancing a reporting.",
-    s1Items: ["ETF & podílové fondy", "Dluhopisy & alternativa", "Pravidelný rebalancing", "Investiční reporting"],
-    s2Tag: "Nemovitosti", s2Title: "Hypotéky & nemovitosti", s2Desc: "Výběr nejlepší hypotéky, srovnání bank, optimalizace a refinancování.",
-    s2Items: ["Srovnání bank", "Optimalizace sazby", "Refinancování"],
-    s3Tag: "Plánování", s3Title: "Finanční plánování", s3Desc: "Komplexní analýza, pojistná ochrana, tvorba rezervy, daňová optimalizace.",
-    s3Items: ["Pojistná ochrana", "Finanční rezerva", "Daňová optimalizace"],
-    s4Tag: "Důchod", s4Title: "Příprava na důchod", s4Desc: "Třetí pilíř, soukromé penzijní připojištění, investiční program. Analýza odpracovaných let, doplnění chybějících dob, optimalizace důchodu a výpočet důchodových dávek.",
-    s4Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet důchodu", "Doplnění chybějících dob"],
-    s5Tag: "Majetek", s5Title: "Správa a předání rodinného majetku", s5Desc: "Pomáhám rodinám a podnikatelům se strukturováním, ochranou a mezigeneračním předáváním majetku. Každý případ je jiný — pracuji diskrétně a na míru.",
-    s5Items: ["Dědictví & mezigenerační předání", "Rodinná rada", "Svěřenské fondy", "Krizový plán", "Prodej podniku & exit strategie", "Zahraniční struktury & Švýcarsko", "Family office poradenství", "Daňová optimalizace majetku"],
+    servicesTitle: "Pět oblastí. Jeden systém.",
+    servicesSub: "Nepracuji jako specialista na jednu věc. Pracuji jako jeden člověk, který drží celý obraz — od denního cashflow po to, co se stane, když se zítra nevrátíte domů.",
+    s1Tag: "Rodinný majetek", s1Title: "Správa a předání rodinného majetku", s1Desc: "Strukturování, ochrana a mezigenerační předání majetku. Pracuji s rodinami a podnikateli tam, kde už nejde o produkty, ale o architekturu — jak majetek držet pohromadě napříč generacemi, jurisdikcemi a životními situacemi, na které se nikdo neptá, dokud nepřijdou. Každý případ je jiný. Pracuji diskrétně a vždy s konkrétním rodinným kontextem — ne podle šablon.",
+    s1Items: ["Krizový a nástupnický plán", "Svěřenské fondy", "Rodinná rada", "Prodej firmy & exit", "Zahraniční struktury (Švýcarsko)", "Family office poradenství", "Daňová optimalizace majetku"],
+    s2Tag: "Investice", s2Title: "Investice bez iluzí", s2Desc: "Sestavuji portfolia, která dávají smysl ve vztahu k vašemu zbytku života — ne k tabulce s historickými výnosy. Žádná „investiční příležitost roku“, žádné produkty, které neumím obhájit za pět let. Diverzifikace přes třídy aktiv, jurisdikce a měny, s pravidelnou revizí.",
+    s2Items: ["ETF & podílové fondy", "Dluhopisy & alternativní aktiva", "Private equity", "Zahraniční bankovní vztahy", "Rebalancing & reporting"],
+    s3Tag: "Strategie", s3Title: "Komplexní finanční strategie", s3Desc: "Tři vrstvy v jednom plánu: finanční (cashflow, rezervy, daně), investiční (kam s přebytky) a krizová (co když). Není to tabulka v Excelu — je to dokument, který se v rodině používá. Aktualizujeme ho průběžně, ne jednou za pět let.",
+    s3Items: ["Cashflow & rozpočet", "Pojistná ochrana", "Likvidní rezerva", "Daňová optimalizace", "Krizový scénář"],
+    s4Tag: "Financování", s4Title: "Hypotéky & financování nemovitostí", s4Desc: "Hypotéka není komodita — je to dlouhodobý kontrakt, který ovlivňuje cashflow, daně i to, co si můžete v příštích deseti letech dovolit jinde. Pomáhám hypotéku navrhnout jako součást celkové architektury, ne jako oddělenou položku.",
+    s4Items: ["Srovnání bank", "Strategie fixace", "Refinancování", "Investiční nemovitosti", "Optimalizace ve vztahu k celku"],
+    s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho — a vědět, který z nich v který rok aktivovat. Analýza odpracovaných let, doplnění chybějících dob, kombinace státního důchodu, investičního programu a dalších zdrojů.",
+    s5Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
     processEye: "Přístup", processTitle: "Jak spolupráce probíhá.",
     step1Num: "Krok 01", step1Title: "Bezplatná konzultace", step1Desc: "Setkáme se osobně nebo online. Představím se, zjistím vaše životní cíle a očekávání. Bez závazků, bez prodeje.",
     step2Num: "Krok 02", step2Title: "Analýza & strategie", step2Desc: "Provedu hloubkovou analýzu příjmů, výdajů, majetku i závazků a na jejím základě navrhnu strategii přímo na míru.",
@@ -35,8 +35,12 @@ const T = {
     mtgAmt: "Výše hypotéky", mtgRate: "Úroková sazba", mtgTerm: "Délka splatnosti",
     mtgResultLabel: "Měsíční splátka", mtgTotal: "Celkem zaplatíte", mtgInt: "Úroky celkem", mtgPct: "Podíl úroků",
     aboutEye: "O mně",
-    aboutP1: "Jsem Adam Dvořák, EFA — nezávislý finanční poradce s více než 8 lety zkušeností. Pracuji individuálně s každým klientem — bez tlaku na produkty, bez skrytých provizí.",
-    aboutP2: "Věřím, že dobrý finanční plán nevznikne z katalogu. Vzniká ze skutečného porozumění vašim cílům a hodnotám. Spolupracuji s klienty osobně v Praze i online po celé ČR.",
+    aboutP1: "Adam Dvořák, EFA. Osmým rokem v oboru, držitel evropské finanční kvalifikace European Financial Advisor a člen Asociace finančních poradců ČR. Pracuji s úzkým okruhem podnikatelů a rodin — typicky tam, kde už nejde o produkty, ale o architekturu.",
+    aboutP2: "Většina finančního poradenství v Česku funguje jako prodej. Někdo zavolá, něco doporučí, vy něco podepíšete, on dostane provizi. Tak já nepracuji.",
+    aboutP3: "Inspirací je mi švýcarské privátní bankovnictví: diskrétnost, dlouhodobost, jeden člověk, který drží celý obraz — od denního cashflow přes investiční strategii až po to, co se stane, když se zítra nevrátíte domů. Žádné call centrum. Žádný „tým specialistů“. Jeden vztah, jeden plán, jeden telefon.",
+    aboutP4: "Pro klienta to znamená pomalý začátek a dlouhý vztah. První schůzka není o produktech — je o tom, jestli si rozumíme. Pak přichází analýza, plán, realizace. A pak roky práce, kdy plán dotahujeme podle toho, jak se mění váš život a svět kolem.",
+    aboutP5: "Pracuji s lidmi, ne s portfolii. Své klienty znám jménem, jejich děti taky, někdy i jejich účetní. Když mi v neděli večer někdo napíše, že prodává firmu nebo že lékař přinesl zprávu, kterou nečekal, ozvu se.",
+    aboutP6: "To je celý rozdíl.",
     tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag3: "Nezávislý", tag4: "Investiční specialista", tag5: "Hypoteční expert",
     refEye: "Reference", refTitle: "Co říkají klienti.",
     contactSub: "První konzultace je vždy zdarma a bez závazků. Napište mi nebo rovnou zavolejte.",
@@ -50,21 +54,21 @@ const T = {
   },
   en: {
     navAbout: "About", navServices: "Services", navCalc: "Calculators", navBlog: "Blog", navContact: "Contact", navCta: "Free Consultation",
-    heroBadge: "Available for new clients · Prague & online",
-    heroSub: "Independent financial advisor. I help individuals and families build financial security — from investments to mortgages and retirement planning.",
+    heroBadge: "For entrepreneurs & families · Prague & online",
+    heroSub: "A system that protects the family, keeps wealth together and gives people the freedom to decide. I work with entrepreneurs and families for whom money is no longer just about returns, but about what remains.",
     heroCta: "Book a Consultation",
-    statYears: "years", statExp: "of industry experience", statClients: "satisfied clients", statAum: "mil. under management", statFinanced: "mil. financed", statRecommend: "clients recommend",
-    servicesTitle: "What I can do for you.",
-    s1Tag: "Investments", s1Title: "Investment Advisory", s1Desc: "Building a tailor-made portfolio — ETFs, mutual funds, bonds and alternative assets. Regular rebalancing and reporting.",
-    s1Items: ["ETFs & mutual funds", "Bonds & alternatives", "Regular rebalancing", "Investment reporting"],
-    s2Tag: "Real Estate", s2Title: "Mortgages & Real Estate", s2Desc: "Finding the best mortgage, comparing banks, optimisation and refinancing.",
-    s2Items: ["Bank comparison", "Rate optimisation", "Refinancing"],
-    s3Tag: "Planning", s3Title: "Financial Planning", s3Desc: "Comprehensive analysis, insurance coverage, emergency fund, tax optimisation.",
-    s3Items: ["Insurance coverage", "Emergency fund", "Tax optimisation"],
-    s4Tag: "Retirement", s4Title: "Retirement Planning", s4Desc: "Third pillar, private pension, investment programme. Analysis of years worked, filling missing contribution periods, pension optimisation and calculation of retirement benefits.",
-    s4Items: ["Third pillar", "Contribution analysis", "Pension calculation", "Gap periods"],
-    s5Tag: "Wealth", s5Title: "Family Wealth Management & Transfer", s5Desc: "I help families and entrepreneurs structure, protect and transfer wealth across generations. Every case is different — I work discreetly and tailor every solution.",
-    s5Items: ["Inheritance & generational transfer", "Family council", "Trust funds", "Crisis plan", "Business sale & exit strategy", "Foreign structures & Switzerland", "Family office advisory", "Wealth tax optimisation"],
+    servicesTitle: "Five areas. One system.",
+    servicesSub: "I do not work as a specialist in one thing. I work as one person who holds the entire picture — from daily cashflow to what happens if you do not come home tomorrow.",
+    s1Tag: "Family Wealth", s1Title: "Family Wealth Management & Transfer", s1Desc: "Structuring, protecting and transferring wealth across generations. I work with families and entrepreneurs where it is no longer about products but about architecture — how to keep wealth together across generations, jurisdictions and life situations nobody asks about until they arrive. Every case is different. I work discreetly and always with the specific family context in mind — not from templates.",
+    s1Items: ["Crisis & succession plan", "Trust funds", "Family council", "Business sale & exit", "Foreign structures (Switzerland)", "Family office advisory", "Wealth tax optimisation"],
+    s2Tag: "Investments", s2Title: "Investments without illusions", s2Desc: "I build portfolios that make sense in relation to the rest of your life — not to a table of historical returns. No “investment opportunity of the year”, no products I cannot justify in five years. Diversification across asset classes, jurisdictions and currencies, with regular review.",
+    s2Items: ["ETFs & mutual funds", "Bonds & alternative assets", "Private equity", "International banking relationships", "Rebalancing & reporting"],
+    s3Tag: "Strategy", s3Title: "Comprehensive financial strategy", s3Desc: "Three layers in one plan: financial (cashflow, reserves, taxes), investment (where to put surpluses) and crisis (what if). It is not a spreadsheet — it is a document the family actually uses. We update it continuously, not once every five years.",
+    s3Items: ["Cashflow & budgeting", "Insurance cover", "Liquid reserve", "Tax optimisation", "Crisis scenario"],
+    s4Tag: "Financing", s4Title: "Mortgages & property financing", s4Desc: "A mortgage is not a commodity — it is a long-term contract that affects cashflow, taxes and what you can afford elsewhere in the next ten years. I help design the mortgage as part of the overall architecture, not as a separate item.",
+    s4Items: ["Bank comparison", "Fix-rate strategy", "Refinancing", "Investment properties", "Optimisation in relation to the whole"],
+    s5Tag: "Retirement", s5Title: "Retirement planning", s5Desc: "Retirement is not about the third pillar. It is about having three income sources at 65 instead of one — and knowing which one to activate in which year. Analysis of years worked, filling missing contribution periods, combining the state pension, investment programme and other sources.",
+    s5Items: ["Third pillar", "Contribution period analysis", "State pension calculation", "Filling missing periods", "Investment programme"],
     processEye: "Process", processTitle: "How we work together.",
     step1Num: "Step 01", step1Title: "Free Consultation", step1Desc: "We meet in person or online. I introduce myself and learn about your goals and expectations. No commitment, no sales.",
     step2Num: "Step 02", step2Title: "Analysis & Strategy", step2Desc: "An in-depth analysis of your income, expenses, assets and liabilities — from which I design a strategy tailored specifically to you.",
@@ -78,8 +82,12 @@ const T = {
     mtgAmt: "Mortgage Amount", mtgRate: "Interest Rate", mtgTerm: "Loan Term",
     mtgResultLabel: "Monthly Payment", mtgTotal: "Total Payment", mtgInt: "Total Interest", mtgPct: "Interest Share",
     aboutEye: "About Me",
-    aboutP1: "I am Adam Dvořák, EFA — an independent financial advisor with over 8 years of experience. I work individually with every client — no product pressure, no hidden commissions.",
-    aboutP2: "I believe a good financial plan does not come from a catalogue. It comes from a genuine understanding of your goals and values. I work with clients in person in Prague and online across the Czech Republic.",
+    aboutP1: "Adam Dvořák, EFA. Eight years in the field, holder of the European Financial Advisor qualification and a member of the Association of Financial Advisors of the Czech Republic. I work with a select group of entrepreneurs and families — typically where it is no longer about products, but about architecture.",
+    aboutP2: "Most financial advice in the Czech Republic works like sales. Someone calls, recommends something, you sign something, they get a commission. That is not how I work.",
+    aboutP3: "My inspiration is Swiss private banking: discretion, long-term thinking, one person who holds the entire picture — from daily cashflow through investment strategy to what happens if you do not come home tomorrow. No call centre. No “team of specialists”. One relationship, one plan, one phone number.",
+    aboutP4: "For the client this means a slow start and a long relationship. The first meeting is not about products — it is about whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
+    aboutP5: "I work with people, not portfolios. I know my clients by name, their children too, sometimes their accountant as well. When someone writes to me on a Sunday evening that they are selling their company or that a doctor has delivered news they did not expect, I respond.",
+    aboutP6: "That is the whole difference.",
     tag1: "Certified Advisor", tag2: "CNB Registered", tag3: "Independent", tag4: "Investment Specialist", tag5: "Mortgage Expert",
     refEye: "Testimonials", refTitle: "What clients say.",
     contactSub: "The first consultation is always free and without obligation. Write to me or call directly.",
@@ -117,6 +125,13 @@ export default function Page() {
   const [mtgRate, setMtgRate] = useState(4.5);
   const [mtgYrs, setMtgYrs] = useState(30);
 
+  /* Stats count-up */
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [statsAnimated, setStatsAnimated] = useState(false);
+  const [statAum, setStatAum] = useState(0);
+  const [statFin, setStatFin] = useState(0);
+  const [statYrs, setStatYrs] = useState(0);
+
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [nlState, setNlState] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -138,6 +153,34 @@ export default function Page() {
     html.className = theme;
     html.lang = lang;
   }, [theme, lang]);
+
+  /* Stats count-up animation */
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !statsAnimated) {
+          setStatsAnimated(true);
+          obs.disconnect();
+          const start = performance.now();
+          const duration = 1400;
+          const animate = (now: number) => {
+            const p = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            setStatAum(Math.round(165 * ease));
+            setStatFin(Math.round(400 * ease));
+            setStatYrs(Math.round(8 * ease));
+            if (p < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [statsAnimated]);
 
   /* Scroll reveal */
   useEffect(() => {
@@ -339,9 +382,9 @@ export default function Page() {
             </a>
             <h1 className="hero-title">
               {lang === "cs" ? (
-                <>Váš finanční plán<br /><span className="dim">pro každou</span><br /><span className="accent">životní etapu.</span></>
+                <>Finance nejsou sbírka produktů.<br /><span className="accent">Jsou to systém.</span></>
               ) : (
-                <>Your financial plan<br /><span className="dim">for every</span><br /><span className="accent">stage of life.</span></>
+                <>Finance is not a collection of products.<br /><span className="accent">It&apos;s a system.</span></>
               )}
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
@@ -366,28 +409,24 @@ export default function Page() {
       </section>
 
       {/* ── Stats ── */}
-      <div id="stats">
+      <div id="stats" ref={statsRef}>
         <div className="container">
           <div className="stats-grid">
             <div className="stat-cell reveal">
-              <div className="stat-num"><span>8</span>+ <span>{t.statYears}</span></div>
-              <div className="stat-desc">{t.statExp}</div>
+              <div className="stat-num"><span>{statAum}</span>+ mil.</div>
+              <div className="stat-desc">{lang === "cs" ? "ve správě" : "under management"}</div>
             </div>
             <div className="stat-cell reveal delay-1">
-              <div className="stat-num"><span>120</span>+</div>
-              <div className="stat-desc">{t.statClients}</div>
+              <div className="stat-num"><span>{statFin}</span>+ mil.</div>
+              <div className="stat-desc">{lang === "cs" ? "zafinancováno" : "financed"}</div>
             </div>
             <div className="stat-cell reveal delay-2">
-              <div className="stat-num"><span>165</span>+ mil.</div>
-              <div className="stat-desc">{t.statAum}</div>
+              <div className="stat-num"><span>{statYrs}</span>+ {lang === "cs" ? "let" : "yrs"}</div>
+              <div className="stat-desc">{lang === "cs" ? "v oboru" : "of experience"}</div>
             </div>
             <div className="stat-cell reveal delay-3">
-              <div className="stat-num"><span>400</span>+ mil.</div>
-              <div className="stat-desc">{t.statFinanced}</div>
-            </div>
-            <div className="stat-cell reveal delay-4">
-              <div className="stat-num"><span>98</span> %</div>
-              <div className="stat-desc">{t.statRecommend}</div>
+              <div className="stat-num"><span>EFA</span></div>
+              <div className="stat-desc">{lang === "cs" ? "evropská kvalifikace" : "European qualification"}</div>
             </div>
           </div>
         </div>
@@ -399,9 +438,10 @@ export default function Page() {
           <div className="section-header reveal">
             <div className="section-eyebrow">{t.navServices}</div>
             <h2 className="section-title-lg">{t.servicesTitle}</h2>
+            <p className="section-sub">{t.servicesSub}</p>
           </div>
           <div className="bento">
-            <div className="bento-card wide reveal" style={{ justifyContent: "flex-start" }}>
+            <div className="bento-card full reveal" style={{ justifyContent: "flex-start" }}>
               <div className="card-tag">{t.s1Tag}</div>
               <div className="card-title">{t.s1Title}</div>
               <div className="card-desc">{t.s1Desc}</div>
@@ -410,7 +450,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bento-card narrow reveal delay-1">
+            <div className="bento-card wide reveal">
               <div className="card-tag">{t.s2Tag}</div>
               <div className="card-title">{t.s2Title}</div>
               <div className="card-desc">{t.s2Desc}</div>
@@ -419,7 +459,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bento-card narrow reveal">
+            <div className="bento-card narrow reveal delay-1">
               <div className="card-tag">{t.s3Tag}</div>
               <div className="card-title">{t.s3Title}</div>
               <div className="card-desc">{t.s3Desc}</div>
@@ -428,7 +468,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bento-card wide reveal delay-1" style={{ justifyContent: "flex-start" }}>
+            <div className="bento-card narrow reveal">
               <div className="card-tag">{t.s4Tag}</div>
               <div className="card-title">{t.s4Title}</div>
               <div className="card-desc">{t.s4Desc}</div>
@@ -437,14 +477,12 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bento-card full reveal">
+            <div className="bento-card wide reveal delay-1" style={{ justifyContent: "flex-start" }}>
               <div className="card-tag">{t.s5Tag}</div>
               <div className="card-title">{t.s5Title}</div>
               <div className="card-desc">{t.s5Desc}</div>
               <div className="wealth-tags">
-                {t.s5Items.map((item: string) => (
-                  <span key={item} className="wealth-tag">{item}</span>
-                ))}
+                {t.s5Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
               </div>
             </div>
           </div>
@@ -644,6 +682,10 @@ export default function Page() {
               </h2>
               <p className="about-text">{t.aboutP1}</p>
               <p className="about-text">{t.aboutP2}</p>
+              <p className="about-text">{t.aboutP3}</p>
+              <p className="about-text">{t.aboutP4}</p>
+              <p className="about-text">{t.aboutP5}</p>
+              <p className="about-text about-text-strong">{t.aboutP6}</p>
               <div className="about-tags">
                 {[t.tag1, t.tag2, t.tag3, t.tag4, t.tag5].map((tag) => (
                   <span key={tag} className="about-tag">{tag}</span>
