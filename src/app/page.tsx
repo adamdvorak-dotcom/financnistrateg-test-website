@@ -6,7 +6,7 @@ import Script from "next/script";
 /* ── Translations ── */
 const T = {
   cs: {
-    navAbout: "O mně", navServices: "Služby", navCalc: "Kalkulačky", navBlog: "Blog", navContact: "Kontakt", navCta: "Konzultace zdarma",
+    navAbout: "O mně", navServices: "Služby", navCalc: "Kalkulačky", navBlog: "Blog", navContact: "Kontakt", navCta: "Domluvit setkání",
     heroBadge: "Pro podnikatele a rodiny · Praha & online",
     heroSub: "Systém, který chrání rodinu, drží majetek pohromadě a dává člověku svobodu rozhodovat. Pracuji s podnikateli a rodinami, pro které peníze už dávno neřeší jen výnos, ale to, co po nich zůstane.",
     heroCta: "Sjednat konzultaci",
