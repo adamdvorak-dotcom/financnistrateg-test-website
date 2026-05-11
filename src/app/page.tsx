@@ -157,24 +157,26 @@ export default function Page() {
   useEffect(() => {
     const el = statsRef.current;
     if (!el) return;
+    let fired = false;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !fired) {
+          fired = true;
           obs.disconnect();
+          const duration = 1400;
           const start = performance.now();
-          const duration = 1200;
-          const animate = (now: number) => {
+          const tick = (now: number) => {
             const p = Math.min((now - start) / duration, 1);
             const ease = 1 - Math.pow(1 - p, 3);
             setStatAum(Math.round(165 * ease));
             setStatFin(Math.round(400 * ease));
             setStatYrs(Math.round(8 * ease));
-            if (p < 1) requestAnimationFrame(animate);
+            if (p < 1) requestAnimationFrame(tick);
           };
-          requestAnimationFrame(animate);
+          requestAnimationFrame(tick);
         }
       },
-      { threshold: 0 }
+      { threshold: 0.15 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -410,19 +412,19 @@ export default function Page() {
       <div id="stats" ref={statsRef}>
         <div className="container">
           <div className="stats-grid">
-            <div className="stat-cell reveal">
+            <div className="stat-cell">
               <div className="stat-num"><span>{statAum}</span>+ mil.</div>
               <div className="stat-desc">{lang === "cs" ? "ve správě" : "under management"}</div>
             </div>
-            <div className="stat-cell reveal delay-1">
+            <div className="stat-cell">
               <div className="stat-num"><span>{statFin}</span>+ mil.</div>
               <div className="stat-desc">{lang === "cs" ? "zafinancováno" : "financed"}</div>
             </div>
-            <div className="stat-cell reveal delay-2">
+            <div className="stat-cell">
               <div className="stat-num"><span>{statYrs}</span>+ {lang === "cs" ? "let" : "yrs"}</div>
               <div className="stat-desc">{lang === "cs" ? "v oboru" : "of experience"}</div>
             </div>
-            <div className="stat-cell reveal delay-3">
+            <div className="stat-cell">
               <div className="stat-num"><span>EFA</span></div>
               <div className="stat-desc">{lang === "cs" ? "evropská kvalifikace" : "European qualification"}</div>
             </div>
