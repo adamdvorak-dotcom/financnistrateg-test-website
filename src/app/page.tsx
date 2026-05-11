@@ -127,7 +127,6 @@ export default function Page() {
 
   /* Stats count-up */
   const statsRef = useRef<HTMLDivElement>(null);
-  const [statsAnimated, setStatsAnimated] = useState(false);
   const [statAum, setStatAum] = useState(0);
   const [statFin, setStatFin] = useState(0);
   const [statYrs, setStatYrs] = useState(0);
@@ -160,11 +159,10 @@ export default function Page() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !statsAnimated) {
-          setStatsAnimated(true);
+        if (entry.isIntersecting) {
           obs.disconnect();
           const start = performance.now();
-          const duration = 1400;
+          const duration = 1200;
           const animate = (now: number) => {
             const p = Math.min((now - start) / duration, 1);
             const ease = 1 - Math.pow(1 - p, 3);
@@ -176,11 +174,11 @@ export default function Page() {
           requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0 }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [statsAnimated]);
+  }, []);
 
   /* Scroll reveal */
   useEffect(() => {
