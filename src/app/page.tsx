@@ -734,6 +734,11 @@ export default function Page() {
               <p className="ref-text">Pan Dvořák je velmi ochotný a vstřícný poradce ve všech směrech. Vždy dokáže dobře nastavit můj finanční plán podle mých finančních potřeb a vývoje na trhu. Má skvělý přehled.</p>
               <div className="ref-author"><div className="ref-author-dot" /><span>Tomáš</span></div>
             </div>
+            <div className="ref-card reveal">
+              <div className="ref-quote">"</div>
+              <p className="ref-text">K panu Dvořákovi mě přivedla zvědavost na sociální síti. Už po první komunikaci s plánem do budoucna nám se ženou spadl kámen ze srdce, že se můžeme mít dobře. Začali jsme žít.</p>
+              <div className="ref-author"><div className="ref-author-dot" /><span>Miroslav</span></div>
+            </div>
           </div>
         </div>
       </section>
