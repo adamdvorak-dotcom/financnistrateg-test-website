@@ -388,6 +388,11 @@ export default function Page() {
               )}
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
+            <p className="hero-minimum">
+              {lang === "cs"
+                ? "Pracuji s klienty od 1 mil. Kč jednorázově nebo 10 000 Kč měsíčně."
+                : "I work with clients from CZK 1M lump sum or CZK 10,000 monthly."}
+            </p>
             <div className="hero-actions">
               <a href="#booking" className="btn-primary">
                 <span>{t.heroCta}</span>
