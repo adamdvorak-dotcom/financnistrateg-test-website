@@ -388,11 +388,6 @@ export default function Page() {
               )}
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
-            <p className="hero-minimum">
-              {lang === "cs"
-                ? "Pracuji s klienty od 1 mil. Kč jednorázově nebo 10 000 Kč měsíčně."
-                : "I work with clients from CZK 1M lump sum or CZK 10,000 monthly."}
-            </p>
             <div className="hero-actions">
               <a href="#booking" className="btn-primary">
                 <span>{t.heroCta}</span>
@@ -455,10 +450,15 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bento-card wide reveal">
+            <div className="bento-card wide reveal" style={{ justifyContent: "flex-start" }}>
               <div className="card-tag">{t.s2Tag}</div>
               <div className="card-title">{t.s2Title}</div>
               <div className="card-desc">{t.s2Desc}</div>
+              <p className="card-minimum">
+                {lang === "cs"
+                  ? "Pracuji s klienty od 1 mil. Kč jednorázově nebo 10 000 Kč měsíčně."
+                  : "I work with clients from CZK 1M lump sum or CZK 10,000 monthly."}
+              </p>
               <div className="wealth-tags">
                 {t.s2Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
               </div>
