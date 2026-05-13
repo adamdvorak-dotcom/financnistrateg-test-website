@@ -3,8 +3,21 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles, getArticle } from "../articles";
 
+const CATEGORY_LABELS: Record<string, string> = {
+  "rodinny-majetek": "Rodinný majetek",
+  "investice": "Investice",
+  "strategie": "Strategie",
+  "financovani": "Financování",
+  "duchod": "Důchod",
+};
+
+const CATEGORY_IDS = Object.keys(CATEGORY_LABELS);
+
 export function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+  return [
+    ...articles.map((a) => ({ slug: a.slug })),
+    ...CATEGORY_IDS.map((id) => ({ slug: id })),
+  ];
 }
 
 export async function generateMetadata({
@@ -13,6 +26,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  if (CATEGORY_LABELS[slug]) {
+    return { title: `${CATEGORY_LABELS[slug]} — Blog — Adam Dvořák` };
+  }
   const article = getArticle(slug);
   if (!article) return {};
   return {
@@ -355,6 +371,77 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  if (CATEGORY_LABELS[slug]) {
+    const catArticles = articles.filter((a) => a.category === slug);
+    const label = CATEGORY_LABELS[slug];
+    return (
+      <>
+        <nav>
+          <div className="container nav-inner">
+            <Link href="/" className="nav-logo">
+              <span className="nav-logo-name">Adam Dvořák</span><span className="nav-logo-efa">, EFA</span>
+            </Link>
+            <div className="nav-right" style={{ gap: 10 }}>
+              <Link href="/blog" className="btn-ghost" style={{ fontSize: 14 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                <span>Všechny kategorie</span>
+              </Link>
+              <Link href="/" className="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span>Zpět na web</span>
+              </Link>
+            </div>
+          </div>
+        </nav>
+        <section style={{ padding: "80px 0 48px" }}>
+          <div className="container">
+            <div className="section-eyebrow">Blog</div>
+            <h1 className="section-title-lg" style={{ marginTop: 12, marginBottom: 0 }}>
+              {label}
+            </h1>
+          </div>
+        </section>
+        <main style={{ paddingBottom: 80 }}>
+          <div className="container">
+            {catArticles.length === 0 ? (
+              <p style={{ color: "var(--text-3)", fontSize: 15, borderTop: "1px solid var(--border)", paddingTop: 28 }}>
+                Články připravuji — sledujte mě brzy.
+              </p>
+            ) : (
+              <div className="blog-listing">
+                {catArticles.map((article) => (
+                  <Link key={article.slug} href={`/blog/${article.slug}`} className="blog-listing-card">
+                    <div className="blog-listing-left">
+                      <div className="blog-card-tag">{article.tag}</div>
+                      <h2 className="blog-listing-title">{article.title}</h2>
+                      <p className="blog-listing-desc">{article.desc}</p>
+                    </div>
+                    <div className="blog-listing-right">
+                      <span className="blog-card-date">{article.date}</span>
+                      <span className="blog-listing-arrow">→</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </main>
+        <footer>
+          <div className="container footer-inner">
+            <div className="footer-logo">Adam <span>Dvořák</span> · <span>Finanční Stratég</span></div>
+            <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>Registrován u ČNB.</span></div>
+            <div className="footer-links">
+              <Link href="/">Hlavní stránka</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/#contact">Kontakt</Link>
+            </div>
+          </div>
+        </footer>
+      </>
+    );
+  }
+
   const article = getArticle(slug);
   if (!article) notFound();
 
