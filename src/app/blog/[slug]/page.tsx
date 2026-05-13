@@ -313,6 +313,415 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "jak-investovat-do-etf") {
+    return (
+      <div className="article-body">
+        <p>
+          Výběr jednotlivých akcií je hra, ve které prohrává přes 80 % profesionálních správců fondů.
+          Ne proto, že jsou hloupí — ale proto, že trh je efektivní a informace se rychle promítají
+          do cen. Existuje jednodušší cesta: koupit celý trh najednou prostřednictvím ETF
+          a nechat složený úrok pracovat za vás.
+        </p>
+
+        <h2>Co je ETF a proč funguje</h2>
+        <p>
+          ETF (Exchange Traded Fund) je fond obchodovaný na burze, který kopíruje vývoj indexu.
+          Jeden nákup VWCE — ETF od Vanguardu — znamená podíl ve více než 3 700 firmách z celého
+          světa. Roční poplatek: 0,22 %. Srovnejte to s aktivně spravovanými podílovými fondy,
+          kde bývá poplatek 1,5–2,5 % ročně — a kde výkonnost přesto zaostává.
+        </p>
+        <p>
+          Matematika je neúprosná: investujte-li 5 000 Kč měsíčně po dobu 30 let s průměrným
+          výnosem 7 % p.a., rozdíl mezi poplatkem 0,22 % a 2 % je přes 1 500 000 Kč. To nejsou
+          procenta — to jsou peníze.
+        </p>
+
+        <h2>Daňové výhody v Česku — a klíčová změna od roku 2026</h2>
+        <p>
+          Česká daňová pravidla pro ETF jsou jedny z nejpříznivějších v Evropě, pokud víte,
+          jak je využít. Základní nástroj je <strong>časový test tří let</strong>: prodáte-li ETF
+          nejdříve tři roky po nákupu, zisk z prodeje je zcela osvobozen od daně z příjmů.
+        </p>
+        <p>
+          Do konce roku 2025 platil roční limit 100 000 Kč — příjmy z prodeje nad tuto hranici
+          se musely zdanit i po třech letech. <strong>Od 1. 1. 2026 je tento limit zrušen.</strong>
+          Prodáte-li ETF v hodnotě 3 000 000 Kč po třech letech, daň je nulová. Bez omezení,
+          bez složitých výpočtů.
+        </p>
+        <p>
+          Dividendy jsou zdaněny 15 % srážkovou daní bez ohledu na dobu držení. Proto
+          preferujte <strong>akumulační varianty ETF</strong> (označení „Acc") — ty dividendy
+          reinvestují automaticky uvnitř fondu, čímž zdanění odložíte a necháte prostředky
+          dál pracovat.
+        </p>
+
+        <h2>Kde ETF koupit</h2>
+        <p>
+          <strong>XTB</strong> — nákup ETF bez poplatků do 100 000 EUR měsíčně, úrok 3,8–4,8 % p.a.
+          na nevyužité hotovosti v CZK. Česká zákaznická podpora, regulován ČNB. Dobrá volba
+          pro pravidelné investování.
+        </p>
+        <p>
+          <strong>DEGIRO</strong> — nízké poplatky (přibližně 2 EUR za transakci), jeden ETF
+          ze seznamu zdarma měsíčně, obrovský výběr instrumentů. Regulován DNB (Nizozemsko),
+          pojištění do 20 000 EUR. Vhodné pro zkušenější investory.
+        </p>
+        <p>
+          <strong>Portu / Fondee</strong> — české robo-advisory platformy, které za vás portfolio
+          sestaví a rebalancují. Platíte poplatek okolo 0,6–1 % ročně navíc, ale dostanete
+          hotové řešení bez nutnosti rozhodovat. Ideální pro ty, kteří nechtějí přemýšlet
+          nad výběrem ETF.
+        </p>
+
+        <h2>Které ETF vybrat</h2>
+        <p>
+          Pro jádro portfolia vybírejte globálně diverzifikované fondy. Tři nejčastěji
+          doporučované:
+        </p>
+        <ul>
+          <li><strong>VWCE</strong> (Vanguard FTSE All-World Acc) — ~3 700 akcií, TER 0,22 %</li>
+          <li><strong>IWDA</strong> (iShares Core MSCI World Acc) — vyspělé trhy, TER 0,20 %</li>
+          <li><strong>CSPX</strong> (iShares Core S&amp;P 500 Acc) — 500 největších amerických firem, TER 0,07 %</li>
+        </ul>
+        <p>
+          Vyhněte se tematickým ETF zaměřeným na AI, krypto nebo konkrétní odvětví — jako jádro
+          portfolia jsou příliš koncentrované. Mohou tvořit nejvýše 10–15 % jako satelitní složka.
+        </p>
+
+        <h2>Jak začít — a co nezdělávat</h2>
+        <p>
+          Otevřete účet u brokera (online, 10–20 minut), nastavte pravidelný nákup stejné
+          částky každý měsíc. <strong>Průměrování nákladů</strong> eliminuje riziko špatného
+          načasování — kupujete více podílů, když jsou ceny nízko, méně když jsou vysoko.
+        </p>
+        <p>
+          Tři chyby, které investory nejvíce stojí: prodávat při poklesu trhu (pokles je
+          sleva, ne varování), nakoupit příliš mnoho různých ETF (5 globálních ETF není
+          diverzifikace, je to chaos), a čekat na „správný moment" pro vstup. Nejlepší čas
+          byl před deseti lety. Druhý nejlepší je teď.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "dip-dlouhodoby-investicni-produkt") {
+    return (
+      <div className="article-body">
+        <p>
+          Stát od roku 2024 nabízí daňový odpočet na investování do akcií a ETF. Nejde o
+          produkt s garantovaným výnosem 2 % jako penzijní spoření — jde o plnohodnotný
+          investiční účet, kde sami rozhodujete, co koupíte. A kde vám stát ročně vrátí
+          až 7 200 Kč na daních.
+        </p>
+
+        <h2>Co přesně DIP je</h2>
+        <p>
+          Dlouhodobý investiční produkt (DIP) je regulovaný investiční účet zavedený od
+          1. 1. 2024. Funguje podobně jako britský ISA nebo německý Depot — investujete
+          do akcií, ETF nebo podílových fondů, přičemž příspěvky si odečítáte z daňového
+          základu. Na rozdíl od penzijního spoření nejste omezeni konzervativními fondy
+          s nízkými výnosy.
+        </p>
+
+        <h2>Kolik ušetříte na daních</h2>
+        <p>
+          Roční limit daňového odpočtu je <strong>48 000 Kč</strong> (tj. 4 000 Kč měsíčně).
+          Daňová úspora závisí na vaší sazbě daně z příjmů:
+        </p>
+        <ul>
+          <li>15% sazba (příjmy do 1 762 812 Kč/rok): úspora <strong>7 200 Kč ročně</strong></li>
+          <li>23% sazba (příjmy nad 1 762 812 Kč/rok): úspora <strong>11 040 Kč ročně</strong></li>
+        </ul>
+        <p>
+          Pozor: limit 48 000 Kč je sdílený s penzijním spořením a životním pojištěním.
+          Pokud příspíváte 2 000 Kč měsíčně do penzijka (24 000 Kč/rok), zbývá vám
+          24 000 Kč prostoru pro DIP.
+        </p>
+
+        <h2>Příspěvek zaměstnavatele — přehlížená výhoda</h2>
+        <p>
+          Zaměstnavatel může přispívat do DIP až <strong>50 000 Kč ročně</strong> a tento
+          příspěvek je zcela osvobozen od daně z příjmů, sociálního i zdravotního pojištění —
+          jak na straně zaměstnavatele, tak zaměstnance. Jde o jednu z mála legálních cest,
+          jak dostat benefity bez odvodů.
+        </p>
+        <p>
+          Pokud vám zaměstnavatel přispívá do penzijního spoření, stojí za to iniciovat
+          rozhovor o přesunu (nebo přidání) příspěvku do DIP — potenciální výnosy jsou
+          historicky výrazně vyšší.
+        </p>
+
+        <h2>Pravidlo 120/60 — podmínky pro zachování výhod</h2>
+        <p>
+          Aby jste o daňový odpočet nepřišli, musí být splněny dvě podmínky zároveň:
+          produkt musí trvat minimálně <strong>10 let</strong> (120 měsíců) a výběr
+          nesmí proběhnout před dosažením věku <strong>60 let</strong>. Porušení
+          kterékoliv podmínky znamená vrácení všech uplatněných odpočtů navýšených
+          o úrok z prodlení.
+        </p>
+        <p>
+          Od 1. 1. 2025 platí, že přenesete-li DIP k jinému poskytovateli, původní
+          lhůta se zachovává — nejste tedy „uvězněni" u jedné instituce.
+        </p>
+
+        <h2>Co v DIP koupit</h2>
+        <p>
+          Dostupné instrumenty: akcie, ETF, podílové fondy — bez konzervativních omezení.
+          Doporučuji globální akumulační ETF (VWCE nebo IWDA), které reinvestují dividendy
+          a maximálně využívají složený úrok v dlouhém horizontu. Neplaťte poplatky za
+          aktivní správu, pokud to nepotřebujete.
+        </p>
+
+        <h2>DIP vs. penzijní spoření: kdo vyhraje?</h2>
+        <p>
+          Penzijní spoření má státní příspěvek (až 340 Kč/měsíc při vkladu 1 700 Kč)
+          a je bezpečnější — garantovaný nezáporný výnos. DIP nemá státní příspěvek,
+          ale historicky výrazně vyšší výnos: globální akcie průměrně 7–10 % p.a. oproti
+          2–4 % u penzijních fondů. Ideální kombinace pro většinu lidí: penzijní spoření
+          do 1 700 Kč/měsíc (pro státní příspěvek), zbytek do DIP.
+        </p>
+
+        <h2>Kde DIP otevřít</h2>
+        <p>
+          V současné době nabízejí DIP mimo jiné Raiffeisenbank, MONETA Bank, Patria Finance
+          a iFund.cz. Nabídka se rozrůstá. Před výběrem porovnejte: roční poplatky za správu
+          účtu, dostupné instrumenty a minimální výši příspěvku. Podmínky se liší.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "financni-poduska-jak-ji-spravne-nastavit") {
+    return (
+      <div className="article-body">
+        <p>
+          „Mějte tří měsíční rezervu." Tuto radu slýcháte všude — ale málokdo dodá,
+          kde přesně ji mít. Přitom na tom záleží. Peníze na běžném účtu s nulovým
+          úrokem při inflaci 3 % reálně každý rok ztrácejí hodnotu. Zároveň mít
+          vše v investicích bez likvidní rezervy je recept na prodávání akcií ve
+          špatnou chvíli.
+        </p>
+
+        <h2>Třívrstvý systém — každá vrstva slouží jinému účelu</h2>
+        <p>
+          <strong>Vrstva 1 — Okamžitá likvidita (1 měsíc výdajů):</strong> Běžný účet,
+          dostupný okamžitě. Slouží na nečekané faktury, krátkodobé výpadky příjmu
+          nebo drobné opravy. Zde nehledáte výnos — hledáte dostupnost.
+        </p>
+        <p>
+          <strong>Vrstva 2 — Krátkodobá rezerva (2–3 měsíce výdajů):</strong> Spořicí
+          účet nebo spořicí stavební spoření s výnosem 3,5–4,3 % p.a. V roce 2026 takové
+          sazby nabízí Fio banka, Air Bank, MONETA a další. Peníze jsou dostupné
+          do 7 dnů. Tato vrstva pokryje ztrátu zaměstnání, větší opravu auta nebo
+          zdravotní výdaje.
+        </p>
+        <p>
+          <strong>Vrstva 3 — Střednědobá rezerva (volitelná, 1–3 měsíce navíc):</strong>
+          Peněžní fond nebo krátký dluhopisový ETF. Výnos okolo 4–4,5 % p.a., dostupné
+          do 2–3 týdnů. Vhodné pro OSVČ, podnikatele s nepravidelnými příjmy nebo
+          jednorodičovské domácnosti, kde výpadek jednoho příjmu zasáhne celý provoz.
+        </p>
+
+        <h2>Jak velká má být vaše rezerva</h2>
+        <p>
+          Počítejte výdaje, ne příjmy. Kolik skutečně potřebujete měsíčně na bydlení,
+          jídlo, splátky, energie a základní provoz?
+        </p>
+        <ul>
+          <li>Zaměstnanec na stabilní pozici: <strong>3 měsíce</strong> výdajů</li>
+          <li>Zaměstnanec ve zkušební době nebo s variabilní složkou: <strong>4–5 měsíců</strong></li>
+          <li>OSVČ, podnikatelé, jednorodičovské domácnosti: <strong>6 měsíců</strong></li>
+          <li>Domácnost s hypotékou a jedním příjmem: <strong>6 měsíců</strong> minimum</li>
+        </ul>
+
+        <h2>Dvě chyby, které lidi nejvíce stojí</h2>
+        <p>
+          <strong>Příliš málo rezervy:</strong> Bez polštáře budete nuceni prodávat investice
+          v nejhorší možnou chvíli — při poklesu trhu. Průměrný medvědí trh znamená pokles
+          o 30–50 %. Prodat tehdy neznamená jen ztrátu v danou chvíli — přijdete o celé
+          budoucí zhodnocení těch peněz.
+        </p>
+        <p>
+          <strong>Příliš mnoho rezervy:</strong> 12 měsíčních výdajů na spořicím účtu
+          je zbytečné. Rozdíl mezi 3 a 9 měsíci rezervy — řekněme 300 000 Kč navíc —
+          investovaných po dobu 20 let při 7 % p.a. představuje více než 1 160 000 Kč
+          rozdíl ve výsledném portfoliu.
+        </p>
+
+        <h2>Kde konkrétně rezervu uložit (2026)</h2>
+        <p>
+          Pro vrstvu 2 hledejte spořicí účty s výnosem nad 3,5 % bez povinných podmínek.
+          Srovnávejte na bankovních srovnávačích nebo přímo na webech bank — sazby se
+          mění a to, co bylo nejlepší loni, nemusí platit dnes.
+        </p>
+        <p>
+          Pro vrstvu 3 jsou vhodné peněžní fondy (Conseq, ČS Fondy, Raiffeisen) nebo
+          krátké dluhopisové ETF. Vyhněte se stavebnímu spoření jako rezervě — šestileté
+          výpovědní lhůty jsou pro nouzový fond nevhodné.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "danove-optimalizace-pro-osvc-a-jednatele") {
+    return (
+      <div className="article-body">
+        <p>
+          Zaměstnanec dostane výplatní pásku a daně jsou vyřešeny. OSVČ a jednatelé mají
+          situaci složitější — ale zároveň výrazně více možností. Správnou kombinací nástrojů
+          lze legálně ušetřit desítky až stovky tisíc korun ročně. Podmínkou je plánovat
+          předem, ne v dubnu.
+        </p>
+
+        <h2>Pro OSVČ: paušální výdaje nebo skutečné?</h2>
+        <p>
+          Paušální výdaje nevyžadují doklady ani vedení účetnictví — automaticky snižují
+          základ daně o pevné procento z příjmů. Sazby v roce 2026:
+        </p>
+        <ul>
+          <li><strong>80 %</strong> — řemeslníci a živnostníci (max. 1 600 000 Kč výdajů)</li>
+          <li><strong>60 %</strong> — ostatní živnosti a většina služeb (max. 1 200 000 Kč)</li>
+          <li><strong>40 %</strong> — autoři, lékaři bez praxe, svobodná povolání (max. 800 000 Kč)</li>
+          <li><strong>30 %</strong> — příjmy z nájmu (max. 600 000 Kč)</li>
+        </ul>
+        <p>
+          Paušální výdaje se nevyplatí, máte-li reálné výdaje výrazně vyšší — firemní auto,
+          zaměstnance, pronájem kanceláře, licence. V takovém případě vedete daňovou evidenci
+          a uplatňujete skutečné výdaje.
+        </p>
+
+        <h2>Paušální daň: jedna platba místo tří</h2>
+        <p>
+          Paušální daň kombinuje daň z příjmů, sociální a zdravotní pojištění do jediné
+          měsíční platby. Bez daňového přiznání, bez ročního vyúčtování, bez přeplatků.
+          Pásma pro rok 2026:
+        </p>
+        <ul>
+          <li>Pásmo 1 (příjmy do 1 000 000 Kč): <strong>9 984 Kč/měsíc</strong></li>
+          <li>Pásmo 2 (příjmy do 1 500 000 Kč): <strong>16 745 Kč/měsíc</strong></li>
+          <li>Pásmo 3 (příjmy do 2 000 000 Kč): <strong>27 139 Kč/měsíc</strong></li>
+        </ul>
+        <p>
+          Zásadní omezení: v paušálním režimu <strong>nelze uplatňovat daňové odpočty</strong> —
+          DIP, penzijní spoření, slevy na děti ani úroky z hypotéky. Pokud tyto odpočty
+          máte, spočítejte si, co je výhodnější. Přihláška vždy do <strong>12. ledna</strong>
+          daného roku — letos je termín pryč, přemýšlejte o změně od roku 2027.
+        </p>
+
+        <h2>Klíčové odpočty ze základu daně</h2>
+        <p>
+          Pro ty, kteří nejsou v paušálním režimu, jsou dostupné tyto odpočty:
+        </p>
+        <ul>
+          <li><strong>DIP</strong> (Dlouhodobý investiční produkt): až 48 000 Kč/rok → úspora 7 200 Kč (nebo 11 040 Kč ve 23% pásmu)</li>
+          <li><strong>Penzijní spoření a životní pojištění</strong>: sdílený limit 48 000 Kč/rok s DIP</li>
+          <li><strong>Úroky z hypotéky</strong>: až 150 000 Kč/rok, ale pouze u smluv sjednaných do 31. 12. 2020</li>
+          <li><strong>Dary</strong>: do výše 15 % ze základu daně</li>
+        </ul>
+
+        <h2>Jednatelé s.r.o.: plat nebo dividendy?</h2>
+        <p>
+          Dividendy ze s.r.o. se daní 15 % srážkovou daní — bez sociálního a zdravotního
+          pojištění. Hrubý plat naopak podléhá dani z příjmů a celkovým odvodům okolo 48 %
+          hrubé mzdy (zaměstnanec + zaměstnavatel dohromady). Z pohledu celkového zdanění
+          jsou dividendy výrazně výhodnější.
+        </p>
+        <p>
+          Optimální nastavení: minimální plat ve výši, která splňuje odvodové povinnosti
+          a prokazuje reálný výkon manažerské práce — zbytek jako dividendy. Příliš nízký
+          plat bez reálného zdůvodnění je riziko doměření ze strany finančního úřadu.
+          S.r.o. se vyplatí při ročních příjmech zpravidla od 1–1,5 milionu Kč výše.
+        </p>
+
+        <h2>Klíčové datum: 31. prosinec</h2>
+        <p>
+          Daňové odpočty uplatníte za rok, ve kterém jste příspěvky zaplatili. DIP,
+          penzijní spoření, dary — vše musí být zaplaceno do 31. 12., aby snížilo základ
+          daně za daný rok. Přechod na paušální daň nebo změna výdajového režimu platí
+          od 1. 1. — rozhodnutí musíte udělat v listopadu nebo prosinci, ne v dubnu.
+          Daňová optimalizace není práce pro březen, je to práce pro celý rok.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "mimoradna-splatka-hypoteky") {
+    return (
+      <div className="article-body">
+        <p>
+          Mimořádná splátka hypotéky vyvolává silnou emoci: dluh mizí, úroky klesají,
+          a člověk spí klidněji. Matematika ale ne vždy souhlasí s emocí. Než pošlete
+          bance extra peníze, stojí za to počítat.
+        </p>
+
+        <h2>Základní matematika rozhodnutí</h2>
+        <p>
+          Mimořádná splátka hypotéky přináší <strong>zaručený výnos rovný výši vaší
+          úrokové sazby</strong>. Při sazbě 4,5 % p.a. je to garantovaných 4,5 % —
+          bez rizika, bez volatility. Otázka pak zní: dokážete najít investici
+          s vyšším výnosem? Historický průměrný výnos globálních akciových indexů
+          je 7–10 % p.a. (před inflací). Ve velmi dlouhém horizontu — a s ochotou
+          přijmout krátkodobé výkyvy — odpověď zní: zpravidla ano.
+        </p>
+        <p>
+          Pravidlo: pokud je vaše hypoteční sazba nižší než očekávaný výnos
+          z investic, matematicky vychází lépe investovat. Pokud je sazba vyšší
+          (typicky nad 6–7 %), je extra splátka smysluplnější.
+        </p>
+
+        <h2>Kdy extra splátka rozhodně dává smysl</h2>
+        <ul>
+          <li><strong>Blížíte se konci fixace nebo splatnosti</strong> — zbývají-li 3–5 let,
+            efekt složeného úroku z investic je omezený. Splátka jistiny sníží zbývající
+            úroky efektivněji.</li>
+          <li><strong>Máte averzi k dluhu</strong> — psychologická hodnota „vlastnit bydlení
+            bez dluhů" je legitimní a má svou cenu. Není potřeba ji ignorovat.</li>
+          <li><strong>Refinancujete</strong> — nižší jistina při refinancování zlepší vaši
+            pozici vůči bance a může přinést lepší sazbu.</li>
+          <li><strong>Dostali jste jednorázový příjem</strong> (dědictví, bonus, prodej aktiv) —
+            lepší než nechat peníze ladem.</li>
+        </ul>
+
+        <h2>Pravidla pro mimořádné splátky bez sankce (2026)</h2>
+        <p>
+          Zákon umožňuje každý rok splatit mimořádně až <strong>25 % jistiny bez poplatku</strong>,
+          ale pouze v okně <strong>1 měsíc před výročím</strong> uzavření smlouvy. Mimo toto
+          okno si banka může účtovat administrativní poplatek — od roku 2025 se tato pravidla
+          zpřísnila, konkrétní podmínky si ověřte ve své smlouvě.
+        </p>
+        <p>
+          Zdarma a bez omezení: <strong>konec fixačního období</strong> — tehdy můžete splatit
+          libovolnou výši. Toto je ideální moment pro velkou splátku, pokud ji plánujete.
+          Dále jsou bez sankcí povoleny splátky při tzv. „životních událostech": rozvod, smrt
+          dlužníka, ztráta zaměstnání nebo vážná nemoc.
+        </p>
+
+        <h2>Pozor: úroky z hypotéky nejsou daňově odečitatelné</h2>
+        <p>
+          Na rozdíl od mnoha zemí EU platí v Česku, že úroky z hypotéky na primární bydlení
+          <strong> nejsou daňově odečitatelné</strong> — s výjimkou smluv sjednaných do
+          31. 12. 2020, kde odpočet až 150 000 Kč ročně stále platí. Máte-li starší
+          hypotéku s tímto odpočtem, vaše efektivní úroková sazba je nižší — kalkulujte
+          s ní, ne s nominální sazbou.
+        </p>
+
+        <h2>Kombinovaná strategie: splácet i investovat</h2>
+        <p>
+          Nejlepší výsledky přináší kombinace obou přístupů. Příklad: při sazbě 4,5 %
+          a disponibilních 10 000 Kč/měsíc nad rámec povinné splátky — investujte 7 000 Kč
+          do ETF, 3 000 Kč pošlete jako mimořádnou splátku. Poměr upravujte podle aktuální
+          výše sazeb a vývoje portfolia.
+        </p>
+        <p>
+          Klíčový princip: <strong>nepřerušujte investice kvůli hypotéce</strong>. Čas
+          strávený na trhu je nejdůležitější proměnná složeného úroku. Deset let bez
+          investování ve prospěch „splacení hypotéky nejdříve" může stát více, než kolik
+          ušetříte na úrocích.
+        </p>
+      </div>
+    );
+  }
+
   if (slug === "penzijni-sporeni-vs-investice") {
     return (
       <div className="article-body">
