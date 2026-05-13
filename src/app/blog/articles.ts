@@ -1,5 +1,8 @@
+export type ArticleCategory = "rodinny-majetek" | "investice" | "strategie" | "financovani" | "duchod";
+
 export type Article = {
   slug: string;
+  category: ArticleCategory;
   tag: string;
   tagEn: string;
   title: string;
@@ -16,6 +19,7 @@ export type Article = {
 export const articles: Article[] = [
   {
     slug: "jak-efektivne-spravovat-sverenske-fondy",
+    category: "rodinny-majetek",
     tag: "Správa majetku",
     tagEn: "Wealth Management",
     title: "Jak efektivně spravovat svěřenské fondy",
@@ -30,6 +34,7 @@ export const articles: Article[] = [
   },
   {
     slug: "fixace-hypoteky-jak-se-rozhodnout",
+    category: "financovani",
     tag: "Hypotéky",
     tagEn: "Mortgages",
     title: "Fixace hypotéky: 3, 5 nebo 10 let? Jak se rozhodnout",
@@ -42,6 +47,7 @@ export const articles: Article[] = [
   },
   {
     slug: "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele",
+    category: "rodinny-majetek",
     tag: "Správa majetku",
     tagEn: "Wealth Management",
     title: "Nejnovější trendy v wealth managementu pro podnikatele",
@@ -56,6 +62,7 @@ export const articles: Article[] = [
   },
   {
     slug: "jak-se-pocita-duchod-v-cr",
+    category: "duchod",
     tag: "Důchod",
     tagEn: "Retirement",
     title: "Jak se počítá důchod v Česku — a jak ho legálně ovlivnit",
@@ -68,6 +75,7 @@ export const articles: Article[] = [
   },
   {
     slug: "penzijni-sporeni-vs-investice",
+    category: "duchod",
     tag: "Důchod",
     tagEn: "Retirement",
     title: "Penzijní spoření vs. investice: co se více vyplatí?",

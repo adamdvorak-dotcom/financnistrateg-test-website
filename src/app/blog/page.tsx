@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { articles } from "./articles";
+import { articles, type ArticleCategory } from "./articles";
 
 export const metadata: Metadata = {
   title: "Blog — Adam Dvořák, Finanční Stratég",
   description:
     "Články o investicích, hypotékách, penzijním spoření a správě majetku. Srozumitelně, bez zbytečného žargonu.",
 };
+
+const categories: { id: ArticleCategory; label: string; icon: string }[] = [
+  { id: "rodinny-majetek", label: "Rodinný majetek", icon: "🏛" },
+  { id: "investice",       label: "Investice",       icon: "📈" },
+  { id: "strategie",       label: "Strategie",        icon: "♟" },
+  { id: "financovani",     label: "Financování",      icon: "🏦" },
+  { id: "duchod",          label: "Důchod",           icon: "🌅" },
+];
 
 export default function BlogPage() {
   return (
@@ -39,27 +47,46 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* ── Articles ── */}
+      {/* ── Articles by category ── */}
       <main style={{ paddingBottom: 80 }}>
         <div className="container">
-          <div className="blog-listing">
-            {articles.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/blog/${article.slug}`}
-                className="blog-listing-card"
-              >
-                <div className="blog-listing-left">
-                  <div className="blog-card-tag">{article.tag}</div>
-                  <h2 className="blog-listing-title">{article.title}</h2>
-                  <p className="blog-listing-desc">{article.desc}</p>
+          <div className="blog-categories">
+            {categories.map((cat) => {
+              const catArticles = articles.filter((a) => a.category === cat.id);
+              return (
+                <div key={cat.id} className="blog-category-block">
+                  <div className="blog-category-header">
+                    <span className="blog-category-icon">{cat.icon}</span>
+                    <h2 className="blog-category-title">{cat.label}</h2>
+                  </div>
+                  {catArticles.length === 0 ? (
+                    <div className="blog-category-empty">
+                      Články připravuji — sledujte mě brzy.
+                    </div>
+                  ) : (
+                    <div className="blog-listing">
+                      {catArticles.map((article) => (
+                        <Link
+                          key={article.slug}
+                          href={`/blog/${article.slug}`}
+                          className="blog-listing-card"
+                        >
+                          <div className="blog-listing-left">
+                            <div className="blog-card-tag">{article.tag}</div>
+                            <h3 className="blog-listing-title">{article.title}</h3>
+                            <p className="blog-listing-desc">{article.desc}</p>
+                          </div>
+                          <div className="blog-listing-right">
+                            <span className="blog-card-date">{article.date}</span>
+                            <span className="blog-listing-arrow">→</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="blog-listing-right">
-                  <span className="blog-card-date">{article.date}</span>
-                  <span className="blog-listing-arrow">→</span>
-                </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </main>
