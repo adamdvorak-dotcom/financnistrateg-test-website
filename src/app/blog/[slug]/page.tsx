@@ -325,80 +325,77 @@ function ArticleContent({ slug }: { slug: string }) {
 
         <h2>Co je ETF a proč funguje</h2>
         <p>
-          ETF (Exchange Traded Fund) je fond obchodovaný na burze, který kopíruje vývoj indexu.
-          Jeden nákup VWCE — ETF od Vanguardu — znamená podíl ve více než 3 700 firmách z celého
-          světa. Roční poplatek: 0,22 %. Srovnejte to s aktivně spravovanými podílovými fondy,
-          kde bývá poplatek 1,5–2,5 % ročně — a kde výkonnost přesto zaostává.
+          ETF (Exchange Traded Fund) je fond obchodovaný na burze, který kopíruje vývoj indexu —
+          například globálního akciového indexu zahrnujícího tisíce firem z celého světa najednou.
+          Roční správcovský poplatek globálních indexových ETF se typicky pohybuje okolo 0,07–0,22 %.
+          Srovnejte to s aktivně spravovanými podílovými fondy, kde bývá poplatek 1,5–2,5 %
+          ročně — přičemž výkonnost přesto ve většině případů zaostává za trhem.
         </p>
         <p>
-          Matematika je neúprosná: investujte-li 5 000 Kč měsíčně po dobu 30 let s průměrným
-          výnosem 7 % p.a., rozdíl mezi poplatkem 0,22 % a 2 % je přes 1 500 000 Kč. To nejsou
-          procenta — to jsou peníze.
+          Matematika je neúprosná: investujete-li 5 000 Kč měsíčně po dobu 30 let s průměrným
+          výnosem 7 % p.a., rozdíl mezi poplatkem 0,20 % a 2 % představuje více než 1 500 000 Kč.
+          To nejsou procenta — to jsou peníze.
         </p>
 
-        <h2>Daňové výhody v Česku — a klíčová změna od roku 2026</h2>
+        <h2>Daňové výhody v Česku</h2>
         <p>
           Česká daňová pravidla pro ETF jsou jedny z nejpříznivějších v Evropě, pokud víte,
-          jak je využít. Základní nástroj je <strong>časový test tří let</strong>: prodáte-li ETF
-          nejdříve tři roky po nákupu, zisk z prodeje je zcela osvobozen od daně z příjmů.
-        </p>
-        <p>
-          Do konce roku 2025 platil roční limit 100 000 Kč — příjmy z prodeje nad tuto hranici
-          se musely zdanit i po třech letech. <strong>Od 1. 1. 2026 je tento limit zrušen.</strong>
-          Prodáte-li ETF v hodnotě 3 000 000 Kč po třech letech, daň je nulová. Bez omezení,
-          bez složitých výpočtů.
-        </p>
-        <p>
-          Dividendy jsou zdaněny 15 % srážkovou daní bez ohledu na dobu držení. Proto
-          preferujte <strong>akumulační varianty ETF</strong> (označení „Acc") — ty dividendy
-          reinvestují automaticky uvnitř fondu, čímž zdanění odložíte a necháte prostředky
-          dál pracovat.
+          jak je využít. Základní nástroj je <strong>časový test tří let</strong>: prodáte-li
+          investici nejdříve tři roky po nákupu, zisk z prodeje je osvobozen od daně z příjmů.
+          Přesná aplikace závisí na vaší situaci a doporučuji ji konzultovat s daňovým poradcem —
+          pravidla se mění a detaily záleží.
         </p>
 
-        <h2>Kde ETF koupit</h2>
+        <h2>Než začnete: horizont a plán jsou základ</h2>
         <p>
-          <strong>XTB</strong> — nákup ETF bez poplatků do 100 000 EUR měsíčně, úrok 3,8–4,8 % p.a.
-          na nevyužité hotovosti v CZK. Česká zákaznická podpora, regulován ČNB. Dobrá volba
-          pro pravidelné investování.
+          ETF investování není loterie ani rychlé zbohatnutí. Je to nástroj vhodný pro lidi,
+          kteří <strong>vědí, kdy peníze budou potřebovat</strong> — a jsou připraveni, že do té
+          doby mohou být dočasně v minusu.
         </p>
         <p>
-          <strong>DEGIRO</strong> — nízké poplatky (přibližně 2 EUR za transakci), jeden ETF
-          ze seznamu zdarma měsíčně, obrovský výběr instrumentů. Regulován DNB (Nizozemsko),
-          pojištění do 20 000 EUR. Vhodné pro zkušenější investory.
+          Trhy klesají. Někdy o 20 %, někdy o 40 %. Kdo investuje peníze, které potřebuje
+          za rok, riskuje, že bude nucen prodávat se ztrátou. Kdo investuje s horizontem
+          10–20 let a má pokryté krátkodobé výdaje jinde, může propady přečkat a nechat
+          portfolio se zotavit. Investiční horizont není doporučení — je to nutná podmínka.
         </p>
         <p>
-          <strong>Portu / Fondee</strong> — české robo-advisory platformy, které za vás portfolio
-          sestaví a rebalancují. Platíte poplatek okolo 0,6–1 % ročně navíc, ale dostanete
-          hotové řešení bez nutnosti rozhodovat. Ideální pro ty, kteří nechtějí přemýšlet
-          nad výběrem ETF.
-        </p>
-
-        <h2>Které ETF vybrat</h2>
-        <p>
-          Pro jádro portfolia vybírejte globálně diverzifikované fondy. Tři nejčastěji
-          doporučované:
-        </p>
-        <ul>
-          <li><strong>VWCE</strong> (Vanguard FTSE All-World Acc) — ~3 700 akcií, TER 0,22 %</li>
-          <li><strong>IWDA</strong> (iShares Core MSCI World Acc) — vyspělé trhy, TER 0,20 %</li>
-          <li><strong>CSPX</strong> (iShares Core S&amp;P 500 Acc) — 500 největších amerických firem, TER 0,07 %</li>
-        </ul>
-        <p>
-          Vyhněte se tematickým ETF zaměřeným na AI, krypto nebo konkrétní odvětví — jako jádro
-          portfolia jsou příliš koncentrované. Mohou tvořit nejvýše 10–15 % jako satelitní složka.
+          Tento článek je vzdělávací a nepředstavuje investiční doporučení. Konkrétní
+          rozhodnutí — jaké ETF, u jakého brokera, v jaké výši a v jakém poměru — závisí
+          na vaší osobní situaci, toleranci rizika a finančním plánu. Pokud si nejste jisti,
+          obraťte se na regulovaného investičního poradce.
         </p>
 
-        <h2>Jak začít — a co nezdělávat</h2>
+        <h2>Jak funguje pravidelné investování</h2>
         <p>
-          Otevřete účet u brokera (online, 10–20 minut), nastavte pravidelný nákup stejné
-          částky každý měsíc. <strong>Průměrování nákladů</strong> eliminuje riziko špatného
-          načasování — kupujete více podílů, když jsou ceny nízko, méně když jsou vysoko.
+          Nejúčinnějším přístupem pro většinu investorů je <strong>pravidelný nákup
+          stejné částky</strong> v pevném intervalu — například měsíčně. Tento přístup
+          se nazývá průměrování nákladů (cost averaging): kupujete více podílů,
+          když jsou ceny nízké, méně když jsou vysoké. Výsledná průměrná nákupní cena
+          je nižší než průměrná cena za sledované období.
         </p>
         <p>
-          Tři chyby, které investory nejvíce stojí: prodávat při poklesu trhu (pokles je
-          sleva, ne varování), nakoupit příliš mnoho různých ETF (5 globálních ETF není
-          diverzifikace, je to chaos), a čekat na „správný moment" pro vstup. Nejlepší čas
-          byl před deseti lety. Druhý nejlepší je teď.
+          Efektem je eliminace rizika špatného načasování — největší paralýzy, kterou
+          investoři zažívají. „Teď je příliš draho." „Počkám na propad." „Až bude
+          situace jasnější." Pravidelný plán tyto mentální pasti obchází automaticky.
+        </p>
+
+        <h2>Tři chyby, které investory nejvíce stojí</h2>
+        <p>
+          <strong>Prodávat při poklesu trhu.</strong> Pokles není varování — je to sleva.
+          Kdo prodá v propadu a počká na „lepší časy", nejčastěji nakoupí zpět výše,
+          než kde prodával. Historicky se trhy vždy zotavily — ale kdo vyskočil, ten
+          zotavení nestihl.
+        </p>
+        <p>
+          <strong>Přehnaná diverzifikace.</strong> Deset různých ETF z podobných indexů
+          není diverzifikace — je to zbytečná složitost a vyšší administrativní zátěž.
+          Diverzifikace znamená různé třídy aktiv a geografie, ne množství produktů.
+        </p>
+        <p>
+          <strong>Čekat na správný moment.</strong> Nejlepší čas začít investovat byl
+          před deseti lety. Druhý nejlepší je dnes — ale pouze tehdy, kdy máte
+          pokrytou likvidní rezervu, jasný horizont a plán, který dokážete dodržet
+          i když trh klesne o třetinu.
         </p>
       </div>
     );
