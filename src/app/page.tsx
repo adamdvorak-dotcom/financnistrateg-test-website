@@ -34,6 +34,13 @@ const T = {
     invResultLabel: "Celková hodnota portfolia", currency: "Kč", invDep: "Celkové vklady", invProfit: "Výnos", invMult: "Násobek vkladů",
     mtgAmt: "Výše hypotéky", mtgRate: "Úroková sazba", mtgTerm: "Délka splatnosti",
     mtgResultLabel: "Měsíční splátka", mtgTotal: "Celkem zaplatíte", mtgInt: "Úroky celkem", mtgPct: "Podíl úroků",
+    tabRetirement: "Důchodová kalkulačka",
+    retAgeLabel: "Váš věk", retMissingYrsLabel: "Chybějící roky pojištění", retCurrentSavLabel: "Současné úspory", retMonthlySavLabel: "Měsíční spoření", retDesiredLabel: "Požadovaná renta v důchodu",
+    retStatePensionLabel: "Průměrný státní důchod", retMissingEffectLabel: "Vliv chybějících let", retYourPensionLabel: "Váš státní důchod",
+    retPortfolioValLabel: "Hodnota portfolia při důchodu", retPortfolioIncLabel: "Příjem z portfolia / měs.",
+    retTotalLabel: "Celkový příjem v důchodu", retGapLabel: "Rozdíl od požadované renty", retExtraLabel: "Doporučené extra spoření / měs.",
+    retYrsToRet: "let do důchodu",
+    retDisclaimer: "Pouze ilustrativní výpočet. Pracujeme s průměrným důchodem dle ČSSZ (21 840 Kč), průměrným zhodnocením 6 % p.a. a čerpáním portfolia po dobu 20 let.",
     aboutEye: "O mně",
     aboutP1: "Adam Dvořák, EFA. Osmým rokem v oboru, držitel evropské finanční kvalifikace European Financial Advisor a člen Asociace finančních poradců ČR. Pracuji s úzkým okruhem podnikatelů a rodin — typicky tam, kde už nejde o produkty, ale o architekturu.",
     aboutP2: "Většina finančního poradenství v Česku funguje jako prodej. Někdo zavolá, něco doporučí, vy něco podepíšete, on dostane provizi. Tak já nepracuji.",
@@ -81,6 +88,13 @@ const T = {
     invResultLabel: "Total Portfolio Value", currency: "CZK", invDep: "Total Deposits", invProfit: "Return", invMult: "Return Multiplier",
     mtgAmt: "Mortgage Amount", mtgRate: "Interest Rate", mtgTerm: "Loan Term",
     mtgResultLabel: "Monthly Payment", mtgTotal: "Total Payment", mtgInt: "Total Interest", mtgPct: "Interest Share",
+    tabRetirement: "Retirement Calculator",
+    retAgeLabel: "Your age", retMissingYrsLabel: "Missing insurance years", retCurrentSavLabel: "Current savings", retMonthlySavLabel: "Monthly savings", retDesiredLabel: "Desired monthly pension",
+    retStatePensionLabel: "Average state pension", retMissingEffectLabel: "Effect of missing years", retYourPensionLabel: "Your state pension",
+    retPortfolioValLabel: "Portfolio value at retirement", retPortfolioIncLabel: "Portfolio income / month",
+    retTotalLabel: "Total retirement income", retGapLabel: "Difference from target", retExtraLabel: "Recommended extra savings / month",
+    retYrsToRet: "years to retirement",
+    retDisclaimer: "Illustrative calculation only. We use the average Czech state pension per ČSSZ (CZK 21,840), average 6% p.a. return and 20-year portfolio drawdown.",
     aboutEye: "About Me",
     aboutP1: "Adam Dvořák, EFA. Eight years in the field, holder of the European Financial Advisor qualification and a member of the Association of Financial Advisors of the Czech Republic. I work with a select group of entrepreneurs and families — typically where it is no longer about products, but about architecture.",
     aboutP2: "Most financial advice in the Czech Republic works like sales. Someone calls, recommends something, you sign something, they get a commission. That is not how I work.",
@@ -112,7 +126,7 @@ export default function Page() {
   const [lang, setLang] = useState<Lang>("cs");
   const [theme, setTheme] = useState<Theme>("dark");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [calcTab, setCalcTab] = useState<"invest" | "mortgage">("invest");
+  const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -124,6 +138,13 @@ export default function Page() {
   const [mtgAmt, setMtgAmt] = useState(4000000);
   const [mtgRate, setMtgRate] = useState(4.5);
   const [mtgYrs, setMtgYrs] = useState(30);
+
+  /* Retirement calc */
+  const [retAge, setRetAge] = useState(35);
+  const [retMissingYears, setRetMissingYears] = useState(0);
+  const [retCurrentSavings, setRetCurrentSavings] = useState(0);
+  const [retMonthlySavings, setRetMonthlySavings] = useState(3000);
+  const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
   /* Stats count-up */
   const statsRef = useRef<HTMLDivElement>(null);
@@ -236,6 +257,24 @@ export default function Page() {
   const mInt = Math.max(0, mTotal - mtgAmt);
   const mPct = mtgAmt > 0 ? (mInt / mTotal) * 100 : 50;
   const mBarColor = mPct > 55 ? "var(--red)" : mPct > 35 ? "#f97316" : "var(--green)";
+
+  /* ── Retirement calculator ── */
+  const retYears = Math.max(1, 65 - retAge);
+  const retN = retYears * 12;
+  const retR = 0.06 / 12;
+  const retStatePension = Math.max(0, 21840 - retMissingYears * 480);
+  const retPortfolioFV =
+    retCurrentSavings * Math.pow(1 + retR, retN) +
+    retMonthlySavings * ((Math.pow(1 + retR, retN) - 1) / retR) * (1 + retR);
+  const retPortfolioMonthly = retPortfolioFV / 240;
+  const retTotalMonthly = retStatePension + retPortfolioMonthly;
+  const retGap = retTotalMonthly - retDesiredPension;
+  const retDesiredFromPortfolio = Math.max(0, retDesiredPension - retStatePension);
+  const retFVFromCurrent = retCurrentSavings * Math.pow(1 + retR, retN);
+  const retAdditionalFV = Math.max(0, retDesiredFromPortfolio * 240 - retFVFromCurrent);
+  const retExtraMonthly = Math.max(0,
+    retAdditionalFV * retR / ((Math.pow(1 + retR, retN) - 1) * (1 + retR)) - retMonthlySavings
+  );
 
   /* ── Form handlers ── */
   const handleFormSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
@@ -543,6 +582,7 @@ export default function Page() {
               <div className="calc-tabs">
                 <button className={`calc-tab${calcTab === "invest" ? " active" : ""}`} onClick={() => setCalcTab("invest")}>{t.tabInvest}</button>
                 <button className={`calc-tab${calcTab === "mortgage" ? " active" : ""}`} onClick={() => setCalcTab("mortgage")}>{t.tabMortgage}</button>
+                <button className={`calc-tab${calcTab === "retirement" ? " active" : ""}`} onClick={() => setCalcTab("retirement")}>{t.tabRetirement}</button>
               </div>
             </div>
             <div className="calc-body">
@@ -661,6 +701,102 @@ export default function Page() {
                   <div className="progress-track"><div className="progress-fill" style={{ width: Math.min(100, mPct) + "%", background: mBarColor }} /></div>
                 </div>
               </div>
+              {/* Retirement panel */}
+              <div className={`calc-panel${calcTab === "retirement" ? " active" : ""}`}>
+                <div className="calc-inputs">
+                  <div>
+                    <label className="field-label">{t.retAgeLabel}</label>
+                    <div className="field-input-wrap">
+                      <input type="number" className="field-input" value={retAge} min={20} max={64} onChange={(e) => setRetAge(Math.min(64, Math.max(20, +e.target.value || 35)))} />
+                      <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
+                    </div>
+                    <input type="range" min={20} max={64} step={1} value={retAge} onChange={(e) => setRetAge(+e.target.value)} />
+                    <div className="range-meta"><span>20</span><span>64 — {retYears} {t.retYrsToRet}</span></div>
+                  </div>
+                  <div>
+                    <label className="field-label">{t.retMissingYrsLabel}</label>
+                    <div className="field-input-wrap">
+                      <input type="number" className="field-input" value={retMissingYears} min={0} max={15} onChange={(e) => setRetMissingYears(Math.min(15, Math.max(0, +e.target.value || 0)))} />
+                      <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
+                    </div>
+                    <input type="range" min={0} max={15} step={1} value={retMissingYears} onChange={(e) => setRetMissingYears(+e.target.value)} />
+                    <div className="range-meta"><span>0</span><span>15 let (−{fmt(15 * 480, lang)} Kč/měs.)</span></div>
+                  </div>
+                  <div>
+                    <label className="field-label">{t.retCurrentSavLabel}</label>
+                    <div className="field-input-wrap">
+                      <input type="text" inputMode="numeric" className="field-input" value={retCurrentSavings > 0 ? retCurrentSavings.toLocaleString("cs-CZ") : ""} placeholder="0" onChange={(e) => setRetCurrentSavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">Kč</span>
+                    </div>
+                    <input type="range" min={0} max={5000000} step={50000} value={retCurrentSavings} onChange={(e) => setRetCurrentSavings(+e.target.value)} />
+                    <div className="range-meta"><span>0</span><span>5 mil.</span></div>
+                  </div>
+                  <div>
+                    <label className="field-label">{t.retMonthlySavLabel}</label>
+                    <div className="field-input-wrap">
+                      <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString("cs-CZ")} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">Kč</span>
+                    </div>
+                    <input type="range" min={0} max={50000} step={500} value={retMonthlySavings} onChange={(e) => setRetMonthlySavings(+e.target.value)} />
+                    <div className="range-meta"><span>0</span><span>50 000 Kč</span></div>
+                  </div>
+                  <div>
+                    <label className="field-label">{t.retDesiredLabel}</label>
+                    <div className="field-input-wrap">
+                      <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString("cs-CZ")} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">Kč</span>
+                    </div>
+                    <input type="range" min={15000} max={150000} step={1000} value={retDesiredPension} onChange={(e) => setRetDesiredPension(+e.target.value)} />
+                    <div className="range-meta"><span>15 000</span><span>150 000 Kč</span></div>
+                  </div>
+                </div>
+                <div className="calc-result">
+                  <div className="result-label">{t.retTotalLabel}</div>
+                  <div className="result-big" style={retGap >= 0 ? { color: "var(--green)" } : { color: "var(--red)" }}>
+                    <span>{t.currency}</span> {fmt(retTotalMonthly, lang)}
+                  </div>
+                  <div className="result-divider" />
+                  <div className="result-row">
+                    <span className="result-row-k">{t.retStatePensionLabel}</span>
+                    <span className="result-row-v">{fmt(21840, lang)} {t.currency}</span>
+                  </div>
+                  {retMissingYears > 0 && (
+                    <div className="result-row">
+                      <span className="result-row-k">{t.retMissingEffectLabel} ({retMissingYears} {lang === "cs" ? "let" : "yrs"})</span>
+                      <span className="result-row-v neg">−{fmt(retMissingYears * 480, lang)} {t.currency}</span>
+                    </div>
+                  )}
+                  <div className="result-row">
+                    <span className="result-row-k">{t.retYourPensionLabel}</span>
+                    <span className="result-row-v">{fmt(retStatePension, lang)} {t.currency}</span>
+                  </div>
+                  <div className="result-divider" />
+                  <div className="result-row">
+                    <span className="result-row-k">{t.retPortfolioValLabel}</span>
+                    <span className="result-row-v">{fmt(retPortfolioFV, lang)} {t.currency}</span>
+                  </div>
+                  <div className="result-row">
+                    <span className="result-row-k">{t.retPortfolioIncLabel}</span>
+                    <span className="result-row-v">{fmt(retPortfolioMonthly, lang)} {t.currency}</span>
+                  </div>
+                  <div className="result-divider" />
+                  <div className="result-row">
+                    <span className="result-row-k">{t.retGapLabel}</span>
+                    <span className={`result-row-v ${retGap >= 0 ? "pos" : "neg"}`}>{retGap >= 0 ? "+" : "−"}{fmt(Math.abs(retGap), lang)} {t.currency}</span>
+                  </div>
+                  {retGap < 0 && retExtraMonthly > 0 && (
+                    <div className="result-row">
+                      <span className="result-row-k">{t.retExtraLabel}</span>
+                      <span className="result-row-v neg">+{fmt(retExtraMonthly, lang)} {t.currency}</span>
+                    </div>
+                  )}
+                  <div className="progress-track">
+                    <div className="progress-fill" style={{ width: Math.min(100, (retTotalMonthly / Math.max(1, retDesiredPension)) * 100) + "%", background: retGap >= 0 ? "var(--green)" : "var(--red)" }} />
+                  </div>
+                  <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 16, lineHeight: 1.55 }}>{t.retDisclaimer}</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
