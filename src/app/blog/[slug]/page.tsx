@@ -177,6 +177,126 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "jak-se-pocita-duchod-v-cr") {
+    return (
+      <div className="article-body">
+        <p>
+          Většina lidí tuší, že důchod nějak závisí na tom, kolik let pracovali a kolik vydělávali.
+          Málokdo ale ví přesně, jak ten výpočet funguje — a co se dá ještě udělat, aby výsledek
+          byl lepší. Přitom stačí znát pár čísel a vědět, kde se podívat.
+        </p>
+        <p>
+          Tohle není akademický rozbor zákona. Je to praktický přehled pro každého, kdo se
+          blíží padesátce nebo koho prostě zajímá, na co reálně může počítat.
+        </p>
+
+        <h2>Jak je důchod složen</h2>
+        <p>
+          Starobní důchod v Česku tvoří dvě složky. První je <strong>základní výměra</strong> — pevná částka
+          4 900 Kč, kterou dostane každý bez ohledu na to, kolik vydělával. Druhá je
+          <strong> procentní výměra</strong>, která se počítá individuálně a tvoří hlavní část důchodu.
+        </p>
+        <p>
+          Procentní výměra závisí na třech věcech: na výši vašich příjmů za celou kariéru,
+          na počtu odpracovaných let a na redukčních hranicích, které ČSSZ každý rok upravuje.
+        </p>
+
+        <h2>Osobní vyměřovací základ: co to je a proč na něm záleží</h2>
+        <p>
+          Základem výpočtu je tzv. <strong>osobní vyměřovací základ (OVZ)</strong> — zjednodušeně řečeno průměr
+          vašich hrubých příjmů od roku 1986, přepočtených na dnešní hodnotu pomocí koeficientů.
+          Čím vyšší byl váš příjem v produktivních letech, tím vyšší bude OVZ — a tím vyšší důchod.
+        </p>
+        <p>
+          Jenže systém není lineární. Platí redukční hranice, které vyšší příjmy
+          znevýhodňují. V roce 2026 to vypadá takto:
+        </p>
+        <p>
+          Do 21 546 Kč se do výpočtu počítá 99 % příjmu. Mezi 21 546 Kč a 195 868 Kč
+          jen 26 %. Nad tuto hranici se příjem do důchodu nepočítá vůbec.
+        </p>
+        <p>
+          Prakticky to znamená, že manažer s platem 150 000 Kč měsíčně nebude mít
+          důchod šestkrát vyšší než člověk s platem 25 000 Kč. Bude ho mít vyšší, ale
+          rozdíl bude překvapivě malý.
+        </p>
+
+        <h2>Kolik přidá každý rok práce</h2>
+        <p>
+          Za každý odpracovaný rok se důchod zvyšuje o <strong>1,495 % OVZ</strong>. Kdo pracoval
+          40 let, má zásluhovou složku 40 × 1,495 % = přibližně 59,8 % svého OVZ.
+          Kdo pracoval jen 30 let, má o 10 × 1,495 % méně — v absolutních číslech to
+          může být v průměrných příjmech klidně 2–4 tisíce korun měsíčně.
+        </p>
+        <p>
+          A to je přesně ta suma, která v kalkulačce důchodu vychází: každý chybějící
+          rok pojištění ubere z výsledného důchodu průměrně kolem 480 Kč měsíčně.
+          Za celý důchod — při průměrné délce dožití — jde o statisíce korun.
+        </p>
+
+        <h2>Co se do odpracovaných let počítá a co ne</h2>
+        <p>
+          Do doby pojištění se kromě zaměstnání počítají i tzv. <strong>náhradní doby</strong> —
+          péče o dítě do 4 let věku, evidence na úřadu práce (do určité délky),
+          pobírání invalidního důchodu, vojenská služba nebo dlouhodobá nemoc.
+          Tyto doby se ale nepočítají plně — jen z části, nebo vůbec nezakládají
+          nárok na zásluhovou složku.
+        </p>
+        <p>
+          Co se do důchodu naopak <strong>nepočítá vůbec</strong>: brigády na DPP bez odvodu
+          pojistného. Od roku 2026 platí nové limity pro dohody o provedení práce.
+          Pokud jste část kariéry pracovali jen na DPP pod limit pro odvod pojistného,
+          tato období ve výpočtu důchodu jednoduše neexistují.
+        </p>
+
+        <h2>Jak legálně svůj důchod zvýšit</h2>
+        <p>
+          Nejdříve si ověřte, co ČSSZ o vás skutečně ví. Na ePortálu ČSSZ
+          (eportal.cssz.cz) si bezplatně stáhnete výpis odpracovaných let
+          a evidovaných příjmů. Chyby se stávají — zaměstnavatel zapomněl podat
+          přehled, firma zanikla bez předání dokladů, evidence je neúplná.
+          Každá taková chyba se dá zpětně opravit, ale čím déle čekáte, tím
+          obtížněji se prokazuje.
+        </p>
+        <p>
+          Druhá věc: <strong>přesluhování</strong>. Pokud pracujete i po dosažení
+          důchodového věku a důchod si zatím nevyberete, za každých 90 dní
+          navíc se zásluhová složka zvýší o 1,5 %. Kdo přeslouží dva roky,
+          získá navíc 12 % OVZ — to mohou být tisíce korun měsíčně až do konce života.
+        </p>
+        <p>
+          Třetí cesta vede přes <strong>DIP — Dlouhodobý investiční produkt</strong>.
+          Jde o nástroj, který od roku 2024 umožňuje odečíst si z daňového
+          základu až 48 000 Kč ročně za investice do akcií nebo ETF fondů
+          v rámci regulovaného účtu. Oproti penzijnímu spoření máte výrazně
+          větší svobodu v tom, do čeho investujete.
+        </p>
+
+        <h2>Proč státní důchod nestačí jako plán</h2>
+        <p>
+          Průměrný důchod v Česku je dnes 21 840 Kč měsíčně. Pro většinu lidí
+          to představuje výrazný pokles oproti příjmům v produktivním věku.
+          Systém je navíc průběžný — dnešní pracující platí dnešním důchodcům.
+          Při demografickém vývoji v Česku je zřejmé, že poměr přispívajících
+          ku příjemcům se bude dál zhoršovat.
+        </p>
+        <p>
+          Státní důchod je záchranná síť. Není to plán.
+        </p>
+        <p>
+          Plán je vědět, kolik budete mít ze státu, kolik z vlastních úspor
+          a z čeho budete čerpat jako první — a v jakém pořadí. To je přesně
+          to, co v rámci přípravy na důchod s klienty stavíme.
+        </p>
+        <p>
+          Pokud chcete vědět, jak na tom reálně jste, začněte naší kalkulačkou
+          důchodu na hlavní stránce. A pokud výsledek vypadá jinak, než jste
+          čekali — ozvěte se.
+        </p>
+      </div>
+    );
+  }
+
   if (slug === "penzijni-sporeni-vs-investice") {
     return (
       <div className="article-body">

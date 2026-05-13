@@ -55,6 +55,18 @@ export const articles: Article[] = [
     author: "Adam Dvořák, EFA",
   },
   {
+    slug: "jak-se-pocita-duchod-v-cr",
+    tag: "Důchod",
+    tagEn: "Retirement",
+    title: "Jak se počítá důchod v Česku — a jak ho legálně ovlivnit",
+    titleEn: "How the Czech state pension is calculated — and how to legally influence it",
+    desc: "Státní důchod není náhoda. Je to výpočet, do kterého vstupují vaše příjmy za celou kariéru, odpracovaná léta a několik čísel, která ČSSZ každý rok mění. Rozebírám, jak to funguje a co s tím jde dělat.",
+    descEn: "Your state pension is not random — it is a formula driven by your lifetime earnings, years worked and a set of figures the ČSSZ updates each year. Here is how it works and what you can do about it.",
+    date: "13. května 2026",
+    dateEn: "May 13, 2026",
+    author: "Adam Dvořák, EFA",
+  },
+  {
     slug: "penzijni-sporeni-vs-investice",
     tag: "Důchod",
     tagEn: "Retirement",
