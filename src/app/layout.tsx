@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
+import TrackingScripts from "@/components/TrackingScripts";
 
 export const metadata: Metadata = {
   title: "Adam Dvořák, EFA — Finanční Stratég",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body>
         {children}
         <CookieBanner />
+        <TrackingScripts />
       </body>
     </html>
   );
