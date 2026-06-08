@@ -840,7 +840,7 @@ export default async function ArticlePage({
             <div className="footer-links">
               <Link href="/">Hlavní stránka</Link>
               <Link href="/blog">Blog</Link>
-              <Link href="/#contact">Kontakt</Link>
+              <Link href="/konzultace">Kontakt</Link>
             </div>
           </div>
         </footer>
@@ -899,7 +899,7 @@ export default async function ArticlePage({
                 <div className="section-eyebrow" style={{ marginBottom: 8 }}>Konzultace</div>
                 <p>Chcete toto téma probrat osobně? První konzultace je zdarma a bez závazků.</p>
               </div>
-              <Link href="/#contact" className="btn-primary">
+              <Link href="/konzultace" className="btn-primary">
                 <span>Sjednat konzultaci</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </Link>
@@ -916,7 +916,7 @@ export default async function ArticlePage({
           <div className="footer-links">
             <Link href="/">Hlavní stránka</Link>
             <Link href="/blog">Blog</Link>
-            <Link href="/#contact">Kontakt</Link>
+            <Link href="/konzultace">Kontakt</Link>
           </div>
         </div>
       </footer>

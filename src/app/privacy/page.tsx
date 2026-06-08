@@ -128,7 +128,7 @@ export default function PrivacyPage() {
           <div className="footer-links">
             <Link href="/">Hlavní stránka</Link>
             <Link href="/terms">Podmínky užití</Link>
-            <Link href="/#contact">Kontakt</Link>
+            <Link href="/konzultace">Kontakt</Link>
           </div>
         </div>
       </footer>

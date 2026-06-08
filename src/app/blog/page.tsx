@@ -109,7 +109,7 @@ export default function BlogPage() {
           </div>
           <div className="footer-links">
             <Link href="/">Hlavní stránka</Link>
-            <Link href="/#contact">Kontakt</Link>
+            <Link href="/konzultace">Kontakt</Link>
           </div>
         </div>
       </footer>

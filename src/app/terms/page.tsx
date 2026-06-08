@@ -118,7 +118,7 @@ export default function TermsPage() {
           <div className="footer-links">
             <Link href="/">Hlavní stránka</Link>
             <Link href="/privacy">Ochrana osobních údajů</Link>
-            <Link href="/#contact">Kontakt</Link>
+            <Link href="/konzultace">Kontakt</Link>
           </div>
         </div>
       </footer>
