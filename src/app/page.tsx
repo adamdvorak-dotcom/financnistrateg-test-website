@@ -402,7 +402,7 @@ export default function Page() {
                 </svg>
               )}
             </button>
-            <a href="#booking" className="btn-nav">{t.navCta}</a>
+            <a href="/konzultace" className="btn-nav">{t.navCta}</a>
             <div className="hamburger" onClick={() => setMobileOpen(true)}>
               <span /><span /><span />
             </div>
@@ -415,7 +415,7 @@ export default function Page() {
         <div className="hero-glow" />
         <div className="hero-inner">
           <div className="hero-text">
-            <a href="#booking" className="hero-badge">
+            <a href="/konzultace" className="hero-badge">
               <div className="hero-badge-dot" />
               <span>{t.heroBadge}</span>
             </a>
@@ -428,7 +428,7 @@ export default function Page() {
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
             <div className="hero-actions">
-              <a href="#booking" className="btn-primary">
+              <a href="/konzultace" className="btn-primary">
                 <span>{t.heroCta}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
