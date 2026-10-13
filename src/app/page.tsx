@@ -215,6 +215,27 @@ export default function Page() {
     return () => clearInterval(timer);
   }, [lang]);
 
+  /* Cursor glow — lerp follow */
+  useEffect(() => {
+    const el = document.getElementById("cursor-glow");
+    if (!el) return;
+    let tx = window.innerWidth / 2;
+    let ty = window.innerHeight / 2;
+    let cx = tx;
+    let cy = ty;
+    let rafId: number;
+    const onMove = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY; };
+    const loop = () => {
+      cx += (tx - cx) * 0.07;
+      cy += (ty - cy) * 0.07;
+      el.style.transform = `translate(${cx - 350}px, ${cy - 350}px)`;
+      rafId = requestAnimationFrame(loop);
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    rafId = requestAnimationFrame(loop);
+    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(rafId); };
+  }, []);
+
   const toggleLang = () => {
     const next: Lang = lang === "cs" ? "en" : "cs";
     setLang(next);
@@ -341,6 +362,7 @@ export default function Page() {
 
   return (
     <>
+      <div id="cursor-glow" aria-hidden="true" />
       {/* ── Mobile menu overlay ── */}
       {mobileOpen && (
         <div
@@ -963,26 +985,34 @@ export default function Page() {
               <h2 className="section-title-lg">
                 {lang === "cs" ? "Vyberte si termín." : "Pick your slot."}
               </h2>
-              <p className="booking-sub">
-                {lang === "cs"
-                  ? "První konzultace je vždy zdarma a bez závazků. Povídáme si — neprodáváme."
-                  : "The first consultation is always free, no commitment. We talk — we don't sell."}
-              </p>
-              <ul className="booking-features">
-                {(lang === "cs"
-                  ? ["30 minut, online nebo v Praze", "Zdarma, bez závazků", "Povídáme si. Neprodáváme."]
-                  : ["30 minutes, online or in Prague", "Free, no commitment", "We talk. We don't sell."]
-                ).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
             </div>
-            <div className="booking-widget reveal delay-1">
-              <div
-                className="calendly-inline-widget"
-                data-url="https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1&background_color=F0EBE0&text_color=1A1511&primary_color=C9A260"
-                style={{ minWidth: 280, height: 660 }}
-              />
+            <div className="booking-card reveal delay-1">
+              <div className="bk-slot">
+                <span className="bk-duration">30 min</span>
+                <span className="bk-type">{lang === "cs" ? "Online / Praha" : "Online / Prague"}</span>
+              </div>
+              <div className="bk-heading">
+                {lang === "cs" ? "Bezplatná konzultace" : "Free consultation"}
+              </div>
+              <p className="bk-desc">
+                {lang === "cs"
+                  ? "První setkání je zdarma. Řeknete mi, kde jste, já vám řeknu, jak to vidím."
+                  : "The first meeting is free. Tell me where you are, I'll tell you how I see it."}
+              </p>
+              <button
+                className="btn-primary bk-btn"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (window as any).Calendly?.initPopupWidget({
+                      url: "https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1&primary_color=C9A260&text_color=1A1511&background_color=F0EBE0",
+                    });
+                  }
+                }}
+              >
+                <span>{lang === "cs" ? "Vybrat termín" : "Pick a slot"}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
             </div>
           </div>
         </div>

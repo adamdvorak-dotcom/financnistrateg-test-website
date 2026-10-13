@@ -1470,6 +1470,82 @@ html.light {
   .booking-sub { max-width: 100%; }
 }
 
+/* ── Cursor glow ── */
+#cursor-glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 162, 96, 0.11) 0%, rgba(201, 162, 96, 0.04) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 9997;
+  will-change: transform;
+  mix-blend-mode: multiply;
+}
+@media (hover: none) {
+  #cursor-glow { display: none; }
+}
+
+/* ── Booking card ── */
+.booking-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: clamp(40px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.booking-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent) 0%, rgba(201, 162, 96, 0.25) 55%, transparent 100%);
+}
+.bk-slot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.bk-duration {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201, 162, 96, 0.5);
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+.bk-type {
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.bk-heading {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.15;
+}
+.bk-desc {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 400px;
+}
+.bk-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
 /* ── Background animations ── */
 
 /* Hero ambient glow — two radial blobs drift slowly across the hero */
