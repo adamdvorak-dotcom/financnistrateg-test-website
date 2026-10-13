@@ -276,46 +276,6 @@ export default function Page() {
     return () => { c1(); c2(); e1(); e2(); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* Magnetic buttons — lerp attract */
-  useEffect(() => {
-    const btns = Array.from(document.querySelectorAll<HTMLElement>(".btn-primary, .btn-ghost, .bk-btn"));
-    const RADIUS = 88;
-    const STRENGTH = 0.38;
-    type S = { tx: number; ty: number; cx: number; cy: number };
-    const states: S[] = btns.map(() => ({ tx: 0, ty: 0, cx: 0, cy: 0 }));
-    let mx = 0;
-    let my = 0;
-    let rafId: number;
-    const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
-    const loop = () => {
-      btns.forEach((btn, i) => {
-        const r = btn.getBoundingClientRect();
-        const bx = r.left + r.width / 2;
-        const by = r.top + r.height / 2;
-        const dx = mx - bx;
-        const dy = my - by;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const s = states[i];
-        if (dist < RADIUS) {
-          const f = (1 - dist / RADIUS) * STRENGTH;
-          s.tx = dx * f; s.ty = dy * f;
-        } else {
-          s.tx = 0; s.ty = 0;
-        }
-        s.cx += (s.tx - s.cx) * 0.16;
-        s.cy += (s.ty - s.cy) * 0.16;
-        btn.style.transform = `translate(${s.cx}px, ${s.cy}px)`;
-      });
-      rafId = requestAnimationFrame(loop);
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    rafId = requestAnimationFrame(loop);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(rafId);
-      btns.forEach(b => { b.style.transform = ""; });
-    };
-  }, []);
 
   const toggleLang = () => {
     const next: Lang = lang === "cs" ? "en" : "cs";
@@ -444,7 +404,6 @@ export default function Page() {
   return (
     <>
       <div id="cursor-glow" aria-hidden="true" />
-      <div id="scan-line" aria-hidden="true" />
       {/* ── Mobile menu overlay ── */}
       {mobileOpen && (
         <div
