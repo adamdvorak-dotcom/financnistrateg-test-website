@@ -3,16 +3,6 @@
 import { useState, useEffect } from "react";
 import Script from "next/script";
 
-/* ── Floating particles config ── */
-const PARTICLES = Array.from({ length: 16 }, (_, i) => ({
-  id: i,
-  left: (6 + i * 5.9) % 91,
-  size: 1 + (i % 3),
-  delay: -(i * 1.05),
-  duration: 17 + (i % 7) * 2.3,
-  drift: -18 + (i % 5) * 9,
-}));
-
 /* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
   cs: [
@@ -231,25 +221,6 @@ export default function Page() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  /* Scroll spotlight — lerp vertical follow */
-  useEffect(() => {
-    const el = document.getElementById("scroll-spotlight");
-    if (!el) return;
-    let target = 0, current = 0, rafId: number;
-    const onScroll = () => {
-      const pct = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      target = pct * (window.innerHeight * 0.75);
-    };
-    const loop = () => {
-      current += (target - current) * 0.04;
-      el.style.transform = `translate(-50%, ${current | 0}px)`;
-      rafId = requestAnimationFrame(loop);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    rafId = requestAnimationFrame(loop);
-    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(rafId); };
-  }, []);
-
   /* Cursor glow — lerp follow */
   useEffect(() => {
     const el = document.getElementById("cursor-glow");
@@ -433,24 +404,6 @@ export default function Page() {
   return (
     <>
       <div id="cursor-glow" aria-hidden="true" />
-      <div id="scroll-spotlight" aria-hidden="true" />
-      <div id="bg-blob" aria-hidden="true" />
-      <div id="particles-layer" aria-hidden="true">
-        {PARTICLES.map(p => (
-          <div
-            key={p.id}
-            className="particle"
-            style={{
-              left: `${p.left}%`,
-              width: `${p.size}px`,
-              height: `${p.size}px`,
-              animationDelay: `${p.delay}s`,
-              animationDuration: `${p.duration}s`,
-              ['--drift' as string]: `${p.drift}px`,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
       {/* ── Mobile menu overlay ── */}
       {mobileOpen && (
         <div
@@ -502,15 +455,13 @@ export default function Page() {
       <section id="hero">
         <div className="hero-inner">
           <div className="hero-text">
-            <div className="hero-title-wrap">
-              <h1 className="hero-title">
-                {lang === "cs" ? (
-                  <>{h1Cs1}<br /><em>{h1Cs2}</em></>
-                ) : (
-                  <>{h1En1}<br /><em>{h1En2}</em></>
-                )}
-              </h1>
-            </div>
+            <h1 className="hero-title">
+              {lang === "cs" ? (
+                <>{h1Cs1}<br /><em>{h1Cs2}</em></>
+              ) : (
+                <>{h1En1}<br /><em>{h1En2}</em></>
+              )}
+            </h1>
             <p className="hero-sub">{t.heroSub}</p>
             <div className="hero-actions">
               <a href="/konzultace" className="btn-primary">
