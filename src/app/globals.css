@@ -49,7 +49,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
@@ -81,7 +81,7 @@ nav {
 }
 .nav-logo {
   display: flex; align-items: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 16px; font-weight: 700; letter-spacing: -0.03em;
   text-decoration: none;
 }
@@ -635,7 +635,7 @@ input[type="range"]::-moz-range-thumb {
   text-transform: uppercase; color: var(--accent);
 }
 .blog-card-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 18px; font-weight: 700; color: var(--text-1);
   line-height: 1.3; letter-spacing: -0.02em;
 }
@@ -784,7 +784,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .ref-card:hover { border-color: var(--border-med); transform: translateY(-2px); }
 .ref-quote {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 64px; line-height: 0.6;
   color: var(--accent); opacity: 0.6;
   font-weight: 700; user-select: none;
@@ -822,7 +822,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .blog-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
 .blog-tile-label {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 21px; font-weight: 700; color: var(--text-1);
   letter-spacing: -0.02em; margin-bottom: 12px;
 }
@@ -850,7 +850,7 @@ input[type="range"]::-moz-range-thumb {
 .blog-listing-card:hover { opacity: 0.75; }
 .blog-listing-left { flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .blog-listing-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 20px; font-weight: 700; color: var(--text-1);
   letter-spacing: -0.02em; line-height: 1.25;
 }
@@ -873,7 +873,7 @@ input[type="range"]::-moz-range-thumb {
   text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
 }
 .article-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: clamp(28px, 4vw, 48px); font-weight: 700;
   letter-spacing: -0.03em; line-height: 1.15;
   color: var(--text-1); margin-bottom: 16px;
@@ -887,7 +887,7 @@ input[type="range"]::-moz-range-thumb {
 .article-body { color: var(--text-2); font-size: 16px; line-height: 1.8; }
 .article-body p { margin-bottom: 20px; }
 .article-body h2 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 22px; font-weight: 700; color: var(--text-1);
   letter-spacing: -0.02em; margin: 40px 0 12px;
 }
@@ -1091,7 +1091,7 @@ footer {
   --verdigris:     #7EAAB0;
   --verdigris-dim: rgba(126,170,176,0.12);
   --mono-font:     'DM Mono', 'Courier New', monospace;
-  --display-font:  'Cormorant Garamond', Georgia, serif;
+  --display-font:  'Lora', Georgia, serif;
   --bg-1: #1E1B17;
   --bg-2: #27211B;
   --bg-3: #322B23;
@@ -1179,19 +1179,19 @@ html.light {
   flex-shrink: 0;
 }
 
-/* Hero title: large Cormorant light with italic contrast */
+/* Hero title */
 .hero-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(44px, 6.5vw, 88px);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(38px, 5.5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   color: var(--text-1);
   margin-bottom: 24px;
 }
 .hero-title em {
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--accent);
 }
 
@@ -1207,8 +1207,8 @@ html.light {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-weight: 300;
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic; font-weight: 400;
   font-size: 10px; letter-spacing: 0.09em;
   color: rgba(194,163,90,0.55);
   white-space: nowrap;
@@ -1263,9 +1263,9 @@ html.light {
 }
 .service-row:hover::before { opacity: 1; }
 .service-row-name {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: clamp(22px, 2.8vw, 36px);
-  font-weight: 300; letter-spacing: -0.02em;
+  font-weight: 500; letter-spacing: -0.01em;
   color: var(--text-1); line-height: 1.2;
   padding-top: 2px; position: relative; z-index: 1;
   align-self: start;
@@ -1299,16 +1299,16 @@ html.light {
 }
 .ref-editorial-card:last-child { border-right: none; }
 .ref-guillemet {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 80px; font-weight: 300;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 80px; font-weight: 400;
   color: var(--accent); opacity: 0.45;
   line-height: 0.7; margin-bottom: 20px;
   display: block; user-select: none;
 }
 .ref-editorial-text {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: clamp(15px, 1.4vw, 19px);
-  font-style: italic; font-weight: 300;
+  font-style: italic; font-weight: 400;
   color: var(--text-1); line-height: 1.65;
   flex: 1; margin-bottom: 24px;
 }
@@ -1326,9 +1326,9 @@ html.light {
 
 /* ── Contact: section heading ── */
 .contact-heading {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: clamp(32px, 4vw, 52px);
-  font-weight: 300; letter-spacing: -0.02em;
+  font-weight: 500; letter-spacing: -0.01em;
   color: var(--text-1); margin-bottom: 12px;
   line-height: 1.1;
 }
@@ -1336,16 +1336,16 @@ html.light {
 
 /* ── Section title: bigger + lighter ── */
 .section-title-lg {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: clamp(30px, 4.5vw, 52px);
-  font-weight: 300; letter-spacing: -0.03em;
+  font-weight: 500; letter-spacing: -0.015em;
 }
 
 /* ── About: updated heading size ── */
 .about-text { font-size: 15.5px; line-height: 1.8; }
 
 /* ── Nav logo: Cormorant ── */
-.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; }
+.nav-logo { font-family: 'Lora', Georgia, serif; font-size: 17px; font-weight: 500; }
 
 /* Rebrand reduced motion */
 @media (prefers-reduced-motion: reduce) {
