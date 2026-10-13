@@ -1642,3 +1642,130 @@ body::after {
   #hero::before { animation: none; }
   body::after { animation: none; }
 }
+
+/* ════════════════════════════════════════════
+   Dynamic decorative effects
+   ════════════════════════════════════════════ */
+
+/* ── Scroll spotlight ── */
+#scroll-spotlight {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  width: 72vw;
+  height: 55vh;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201,162,96,0.062) 0%, rgba(201,162,96,0.018) 42%, transparent 70%);
+  pointer-events: none;
+  z-index: 9993;
+  mix-blend-mode: multiply;
+  will-change: transform;
+  transform: translate(-50%, 0);
+}
+@media (hover: none) { #scroll-spotlight { display: none; } }
+
+/* ── Hero title shimmer — single sweep on load ── */
+.hero-title-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.hero-title-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(
+    108deg,
+    transparent 26%,
+    rgba(255, 252, 230, 0.52) 47%,
+    rgba(201, 162, 96, 0.28) 52%,
+    transparent 72%
+  );
+  transform: translateX(-170%);
+  animation: shimmerOnce 1.15s cubic-bezier(0.4, 0, 0.2, 1) 1.7s 1 both;
+  pointer-events: none;
+}
+@keyframes shimmerOnce {
+  0%   { transform: translateX(-170%); }
+  100% { transform: translateX(270%); }
+}
+
+/* ── Background blob ── */
+#bg-blob {
+  position: fixed;
+  width: 62vmax;
+  height: 62vmax;
+  top: -18vmax;
+  left: 8vmax;
+  border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+  background: radial-gradient(circle at 38% 38%, rgba(126,170,176,0.11) 0%, rgba(126,170,176,0.03) 52%, transparent 72%);
+  pointer-events: none;
+  z-index: 9995;
+  mix-blend-mode: multiply;
+  will-change: border-radius, transform;
+  animation: blobMorph 30s ease-in-out infinite, blobDrift 50s ease-in-out infinite;
+}
+@keyframes blobMorph {
+  0%   { border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; }
+  25%  { border-radius: 55% 45% 42% 58% / 60% 55% 45% 40%; }
+  50%  { border-radius: 60% 40% 60% 40% / 42% 60% 40% 58%; }
+  75%  { border-radius: 46% 54% 50% 50% / 55% 44% 56% 45%; }
+  100% { border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; }
+}
+@keyframes blobDrift {
+  0%   { transform: translate(0,    0);    }
+  25%  { transform: translate(9vw,  18vh); }
+  50%  { transform: translate(17vw, 44vh); }
+  75%  { transform: translate(-4vw, 30vh); }
+  100% { transform: translate(0,    0);    }
+}
+
+/* ── Floating particles ── */
+#particles-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9994;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  bottom: -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: particleRise linear infinite;
+}
+@keyframes particleRise {
+  0%   { transform: translate(0, 0);                           opacity: 0;    }
+  9%   {                                                        opacity: 0.13; }
+  88%  {                                                        opacity: 0.06; }
+  100% { transform: translate(var(--drift, 18px), -108vh);     opacity: 0;    }
+}
+
+/* ── Breathing ring on hero CTA ── */
+.hero-actions .btn-primary {
+  position: relative;
+}
+.hero-actions .btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: calc(var(--r-md) + 5px);
+  border: 1px solid rgba(201, 162, 96, 0.32);
+  animation: breatheRing 2.7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes breatheRing {
+  0%, 100% { transform: scale(1);    opacity: 0.32; }
+  50%       { transform: scale(1.13); opacity: 0;    }
+}
+
+/* Dynamic effects — reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-wrap::after { animation: none; }
+  #bg-blob { animation: none; }
+  .particle { animation: none; opacity: 0; }
+  .hero-actions .btn-primary::before { animation: none; opacity: 0; }
+  #scroll-spotlight { display: none; }
+}
