@@ -216,7 +216,7 @@ export default function Page() {
       },
       { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
     );
-    document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
 
@@ -441,7 +441,7 @@ export default function Page() {
           <div className="hero-photo-wrap">
             <div className="hero-photo-frame">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/adam-dvorak-hero.png" alt="Adam Dvořák — Finanční stratég" loading="eager" />
+              <img src="/adam-dvorak-hero.jpg" alt="Adam Dvořák — Finanční stratég" loading="eager" />
             </div>
           </div>
         </div>
@@ -479,6 +479,19 @@ export default function Page() {
             <h2 className="section-title-lg">{t.servicesTitle}</h2>
             <p className="section-sub">{t.servicesSub}</p>
           </div>
+          {/* ── Scrolling services marquee ── */}
+          <div className="marquee-strip" aria-hidden="true">
+            <div className="marquee-inner">
+              {[...Array(2)].flatMap((_, i) =>
+                ["Rodinný majetek", "Investice", "Strategie", "Financování", "Důchod",
+                 "ETF", "Hypotéky", "DIP", "Cashflow", "Finanční plán",
+                 "Svěřenské fondy", "Private equity", "Penzijní spoření", "Daňová optimalizace"].map((item) => (
+                  <span key={`${i}-${item}`} className="marquee-item">{item}</span>
+                ))
+              )}
+            </div>
+          </div>
+
           <div className="bento">
             <div className="bento-card full reveal" style={{ justifyContent: "flex-start" }}>
               <div className="card-tag">{t.s1Tag}</div>
@@ -806,13 +819,13 @@ export default function Page() {
       <section id="about">
         <div className="container">
           <div className="about-wrap">
-            <div className="about-photo reveal">
+            <div className="about-photo reveal-scale">
               <div className="about-photo-frame">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/adam-dvorak-about-full.png" alt="Adam Dvořák" />
+                <img src="/adam-dvorak-about.jpg" alt="Adam Dvořák" />
               </div>
             </div>
-            <div className="reveal delay-1">
+            <div className="reveal-right">
               <div className="section-eyebrow">{t.aboutEye}</div>
               <h2 className="section-title-lg" style={{ marginBottom: 20 }}>
                 {lang === "cs" ? (
