@@ -3,14 +3,34 @@
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 
+/* ── Aphorisms (The Margin) ── */
+const APHORISMS: Record<string, string[]> = {
+  cs: [
+    "Peníze, které nepracují, pomalu umírají.",
+    "Bohatství se nebuduje rychle. Buduje se vytrvale.",
+    "Nejdražší poradce je ten špatný.",
+    "Čas je jediné, co penězi nekoupíte.",
+    "Plán není luxus. Je to záchranné lano.",
+    "Kdo neví, kam jde, nikam nedojde.",
+  ],
+  en: [
+    "Money that doesn't work slowly dies.",
+    "Wealth is built slowly, not quickly.",
+    "The most expensive advisor is the wrong one.",
+    "Time is the only thing money cannot buy.",
+    "A plan is not a luxury. It is a lifeline.",
+    "If you don't know where you're going, you'll never arrive.",
+  ],
+};
+
 /* ── Translations ── */
 const T = {
   cs: {
     navAbout: "O mně", navServices: "Služby", navCalc: "Kalkulačky", navBlog: "Blog", navContact: "Kontakt", navCta: "Chci být klientem",
     heroBadge: "Pro podnikatele a rodiny · Praha & online",
-    heroSub: "Systém, který chrání rodinu, drží majetek pohromadě a dává člověku svobodu rozhodovat. Pracuji s podnikateli a rodinami, pro které peníze už dávno neřeší jen výnos, ale to, co po nich zůstane.",
-    heroCta: "Sjednat konzultaci",
-    servicesTitle: "Pět oblastí. Jeden systém.",
+    heroSub: "Nepracuji na provizích, takže doporučuji to, co vám skutečně sedí. Za osm let jsem spravoval přes 165 milionů korun pro lidi, kteří chtějí vědět, kde jsou jejich peníze.",
+    heroCta: "Zahájit rozhovor",
+    servicesTitle: "Co pro vás dělám",
     servicesSub: "Nepracuji jako specialista na jednu věc. Pracuji jako jeden člověk, který drží celý obraz — od denního cashflow po to, co se stane, když se zítra nevrátíte domů.",
     s1Tag: "Rodinný majetek", s1Title: "Správa a předání rodinného majetku", s1Desc: "Strukturování, ochrana a mezigenerační předání majetku. Pracuji s rodinami a podnikateli tam, kde už nejde o produkty, ale o architekturu — jak majetek držet pohromadě napříč generacemi, jurisdikcemi a životními situacemi, na které se nikdo neptá, dokud nepřijdou. Každý případ je jiný. Pracuji diskrétně a vždy s konkrétním rodinným kontextem — ne podle šablon.",
     s1Items: ["Krizový a nástupnický plán", "Svěřenské fondy", "Rodinná rada", "Prodej firmy & exit", "Zahraniční struktury (Švýcarsko)", "Family office poradenství", "Daňová optimalizace majetku"],
@@ -62,9 +82,9 @@ const T = {
   en: {
     navAbout: "About", navServices: "Services", navCalc: "Calculators", navBlog: "Blog", navContact: "Contact", navCta: "Free Consultation",
     heroBadge: "For entrepreneurs & families · Prague & online",
-    heroSub: "A system that protects the family, keeps wealth together and gives people the freedom to decide. I work with entrepreneurs and families for whom money is no longer just about returns, but about what remains.",
-    heroCta: "Book a Consultation",
-    servicesTitle: "Five areas. One system.",
+    heroSub: "I don't work on commission, so I recommend what actually suits you. Over eight years I've managed over CZK 165 million for people who want to know exactly where their money is.",
+    heroCta: "Start a conversation",
+    servicesTitle: "What I do for you",
     servicesSub: "I do not work as a specialist in one thing. I work as one person who holds the entire picture — from daily cashflow to what happens if you do not come home tomorrow.",
     s1Tag: "Family Wealth", s1Title: "Family Wealth Management & Transfer", s1Desc: "Structuring, protecting and transferring wealth across generations. I work with families and entrepreneurs where it is no longer about products but about architecture — how to keep wealth together across generations, jurisdictions and life situations nobody asks about until they arrive. Every case is different. I work discreetly and always with the specific family context in mind — not from templates.",
     s1Items: ["Crisis & succession plan", "Trust funds", "Family council", "Business sale & exit", "Foreign structures (Switzerland)", "Family office advisory", "Wealth tax optimisation"],
@@ -157,6 +177,10 @@ export default function Page() {
   const [nlState, setNlState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [nlEmail, setNlEmail] = useState("");
 
+  /* Aphorism cycling */
+  const [aphoIdx, setAphoIdx] = useState(0);
+  const [aphoVis, setAphoVis] = useState(true);
+
   const t = T[lang];
 
   /* Load saved lang/theme from localStorage */
@@ -219,6 +243,18 @@ export default function Page() {
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
+
+  /* Aphorism cycle */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAphoVis(false);
+      setTimeout(() => {
+        setAphoIdx((i) => (i + 1) % APHORISMS[lang].length);
+        setAphoVis(true);
+      }, 700);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [lang]);
 
   const toggleLang = () => {
     const next: Lang = lang === "cs" ? "en" : "cs";
@@ -412,18 +448,17 @@ export default function Page() {
 
       {/* ── Hero ── */}
       <section id="hero">
-        <div className="hero-glow" />
         <div className="hero-inner">
           <div className="hero-text">
-            <a href="/konzultace" className="hero-badge">
-              <div className="hero-badge-dot" />
+            <div className="hero-eyebrow-strip">
+              <span className="hero-eyebrow-dot" aria-hidden="true" />
               <span>{t.heroBadge}</span>
-            </a>
+            </div>
             <h1 className="hero-title">
               {lang === "cs" ? (
-                <>Finance nejsou sbírka produktů.<br /><span className="accent">Jsou to systém.</span></>
+                <>Jeden člověk.<br /><em>Celý váš obraz.</em></>
               ) : (
-                <>Finance is not a collection of products.<br /><span className="accent">It&apos;s a system.</span></>
+                <>One advisor.<br /><em>The complete picture.</em></>
               )}
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
@@ -442,6 +477,11 @@ export default function Page() {
             <div className="hero-photo-frame">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/adam-dvorak-hero.jpg" alt="Adam Dvořák — Finanční stratég" loading="eager" />
+            </div>
+            <div className="hero-margin" aria-hidden="true">
+              <span className={`hero-margin-text${aphoVis ? " vis" : ""}`}>
+                {APHORISMS[lang][aphoIdx]}
+              </span>
             </div>
           </div>
         </div>
@@ -479,69 +519,28 @@ export default function Page() {
             <h2 className="section-title-lg">{t.servicesTitle}</h2>
             <p className="section-sub">{t.servicesSub}</p>
           </div>
-          {/* ── Scrolling services marquee ── */}
-          <div className="marquee-strip" aria-hidden="true">
-            <div className="marquee-inner">
-              {[...Array(2)].flatMap((_, i) =>
-                ["Rodinný majetek", "Investice", "Strategie", "Financování", "Důchod",
-                 "ETF", "Hypotéky", "DIP", "Cashflow", "Finanční plán",
-                 "Svěřenské fondy", "Private equity", "Penzijní spoření", "Daňová optimalizace"].map((item) => (
-                  <span key={`${i}-${item}`} className="marquee-item">{item}</span>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div className="bento">
-            <div className="bento-card full reveal" style={{ justifyContent: "flex-start" }}>
-              <div className="card-tag">{t.s1Tag}</div>
-              <div className="card-title">{t.s1Title}</div>
-              <div className="card-desc">{t.s1Desc}</div>
-              <div className="wealth-tags">
-                {t.s1Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
+          <div className="services-list">
+            {[
+              { tag: t.s1Tag, title: t.s1Title, desc: t.s1Desc, items: t.s1Items },
+              { tag: t.s2Tag, title: t.s2Title, desc: t.s2Desc, items: t.s2Items },
+              { tag: t.s3Tag, title: t.s3Title, desc: t.s3Desc, items: t.s3Items },
+              { tag: t.s4Tag, title: t.s4Title, desc: t.s4Desc, items: t.s4Items },
+              { tag: t.s5Tag, title: t.s5Title, desc: t.s5Desc, items: t.s5Items },
+            ].map((svc, i) => (
+              <div key={i} className="service-row reveal">
+                <div className="service-row-name">{svc.title}</div>
+                <div className="service-row-rule" aria-hidden="true" />
+                <div className="service-row-content">
+                  <div className="service-row-tag">{svc.tag}</div>
+                  <p className="service-row-desc">{svc.desc}</p>
+                  <div className="wealth-tags">
+                    {svc.items.map((item: string) => (
+                      <span key={item} className="wealth-tag">{item}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div className="bento-card wide reveal" style={{ justifyContent: "flex-start" }}>
-              <div className="card-tag">{t.s2Tag}</div>
-              <div className="card-title">{t.s2Title}</div>
-              <div className="card-desc">{t.s2Desc}</div>
-              <p className="card-minimum">
-                {lang === "cs"
-                  ? "Pracuji s klienty od 1 mil. Kč jednorázově nebo 10 000 Kč měsíčně."
-                  : "I work with clients from CZK 1M lump sum or CZK 10,000 monthly."}
-              </p>
-              <div className="wealth-tags">
-                {t.s2Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
-              </div>
-            </div>
-
-            <div className="bento-card narrow reveal delay-1">
-              <div className="card-tag">{t.s3Tag}</div>
-              <div className="card-title">{t.s3Title}</div>
-              <div className="card-desc">{t.s3Desc}</div>
-              <div className="wealth-tags">
-                {t.s3Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
-              </div>
-            </div>
-
-            <div className="bento-card narrow reveal">
-              <div className="card-tag">{t.s4Tag}</div>
-              <div className="card-title">{t.s4Title}</div>
-              <div className="card-desc">{t.s4Desc}</div>
-              <div className="wealth-tags">
-                {t.s4Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
-              </div>
-            </div>
-
-            <div className="bento-card wide reveal delay-1" style={{ justifyContent: "flex-start" }}>
-              <div className="card-tag">{t.s5Tag}</div>
-              <div className="card-title">{t.s5Title}</div>
-              <div className="card-desc">{t.s5Desc}</div>
-              <div className="wealth-tags">
-                {t.s5Items.map((item: string) => <span key={item} className="wealth-tag">{item}</span>)}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -829,9 +828,9 @@ export default function Page() {
               <div className="section-eyebrow">{t.aboutEye}</div>
               <h2 className="section-title-lg" style={{ marginBottom: 20 }}>
                 {lang === "cs" ? (
-                  <>Za každým číslem<br />je lidský příběh.</>
+                  <>Proč jsem nešel<br />do banky.</>
                 ) : (
-                  <>Behind every number<br />is a human story.</>
+                  <>Why I chose<br />independence.</>
                 )}
               </h2>
               <p className="about-text">{t.aboutP1}</p>
@@ -857,41 +856,21 @@ export default function Page() {
             <div className="section-eyebrow">{t.refEye}</div>
             <h2 className="section-title-lg">{t.refTitle}</h2>
           </div>
-          <div className="ref-grid">
-            <div className="ref-card reveal">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">Spolupráci hodnotíme oba velmi pozitivně, na základě upřímné a otevřené komunikace, která je pro nás zásadní. Velmi oceňujeme rychlý zásah a řešení jednotlivých situací.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Vanessa a Josef</span></div>
+          <div className="ref-editorial">
+            <div className="ref-editorial-card reveal">
+              <span className="ref-guillemet">«</span>
+              <p className="ref-editorial-text">Naši dosavadní spolupráci hodnotíme velmi pozitivně. Oceňujeme vysokou profesionalitu, rychlost, flexibilitu a schopnost přizpůsobit řešení našim individuálním požadavkům. Přístup je precizní a zaměřený na detail.</p>
+              <div className="ref-editorial-author">Denisa a Dalibor</div>
             </div>
-            <div className="ref-card reveal delay-1">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">Naši dosavadní spolupráci hodnotíme velmi pozitivně. Oceňujeme vysokou profesionalitu, rychlost, flexibilitu a schopnost přizpůsobit řešení našim individuálním požadavkům. Přístup je precizní a zaměřený na detail, což vytváří pevný základ pro naši budoucí spolupráci. Věříme, že díky proaktivnímu a odbornému přístupu bude naše spolupráce dlouhodobě přínosná.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Denisa a Dalibor</span></div>
+            <div className="ref-editorial-card reveal delay-1">
+              <span className="ref-guillemet">«</span>
+              <p className="ref-editorial-text">Jsem rád za osobní přístup. Vím kam směřuji a není mi nic nucené ani prodávané.</p>
+              <div className="ref-editorial-author">Radek</div>
             </div>
-            <div className="ref-card reveal delay-2">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">Jsem rád za osobní přístup. Vím kam směřuji a není mi nic nucené ani prodávané.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Radek</span></div>
-            </div>
-            <div className="ref-card reveal">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">Plánování jako takové je mnohem příjemnější forma než samotný prodej produktů. Win win pro obě strany, protože nakonec jsem si produkty koupil, ale s nějakým určitým cílem.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Tomáš</span></div>
-            </div>
-            <div className="ref-card reveal delay-1">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">K osobnímu nebo online prodeji, kdy se mě někdo snaží přesvědčit o tom, že danou věc potřebuji, jsem apriori skeptická a je mi to nepříjemné. Finanční plánování vnímám jinak a proto to vítám.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Lucie</span></div>
-            </div>
-            <div className="ref-card reveal delay-2">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">Pan Dvořák je velmi ochotný a vstřícný poradce ve všech směrech. Vždy dokáže dobře nastavit můj finanční plán podle mých finančních potřeb a vývoje na trhu. Má skvělý přehled.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Tomáš</span></div>
-            </div>
-            <div className="ref-card reveal">
-              <div className="ref-quote">"</div>
-              <p className="ref-text">K panu Dvořákovi mě přivedla zvědavost na sociální síti. Už po první komunikaci s plánem do budoucna nám se ženou spadl kámen ze srdce, že se můžeme mít dobře. Začali jsme žít.</p>
-              <div className="ref-author"><div className="ref-author-dot" /><span>Miroslav</span></div>
+            <div className="ref-editorial-card reveal delay-2">
+              <span className="ref-guillemet">«</span>
+              <p className="ref-editorial-text">Už po první komunikaci s plánem do budoucna nám se ženou spadl kámen ze srdce, že se můžeme mít dobře. Začali jsme žít.</p>
+              <div className="ref-editorial-author">Miroslav</div>
             </div>
           </div>
         </div>
@@ -949,11 +928,11 @@ export default function Page() {
           <div className="contact-wrap reveal">
             <div className="contact-left">
               <div className="section-eyebrow" style={{ marginBottom: 16 }}>{t.navContact}</div>
-              <h2 className="contact-title">
+              <h2 className="contact-heading">
                 {lang === "cs" ? (
-                  <>Pojďme to probrat<br />společně.</>
+                  <>Nekoušu.<br /><em>Napište mi.</em></>
                 ) : (
-                  <>Let&apos;s talk it through<br />together.</>
+                  <>I don&apos;t bite.<br /><em>Write to me.</em></>
                 )}
               </h2>
               <p className="contact-sub">{t.contactSub}</p>
@@ -1070,38 +1049,6 @@ export default function Page() {
           />
         </div>
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
-      </section>
-
-      {/* ── Newsletter ── */}
-      <section id="newsletter">
-        <div className="container">
-          <div className="newsletter-wrap reveal">
-            <div className="newsletter-eyebrow">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <span>{t.nlEye}</span>
-            </div>
-            <h2 className="newsletter-title">{t.nlTitle}</h2>
-            <p className="newsletter-sub">{t.nlSub}</p>
-            <form className="newsletter-form" onSubmit={handleNlSubmit}>
-              <input type="email" className="newsletter-input" value={nlEmail} onChange={(e) => setNlEmail(e.target.value)} placeholder={t.nlPh} required />
-              <button
-                type="submit"
-                className="newsletter-btn"
-                disabled={nlState !== "idle"}
-                style={nlState === "done" ? { background: "#22c55e" } : nlState === "error" ? { background: "var(--red)" } : undefined}
-              >
-                {nlBtnText}
-              </button>
-            </form>
-            {nlState === "done" ? (
-              <p style={{ color: "#22c55e", fontSize: 14, fontWeight: 500, marginTop: 12 }}>
-                ✓ {lang === "cs" ? "Výborně, jste přihlášeni! Děkuji za zájem — první přehled dorazí brzy." : "You're in! Thank you — the first digest is on its way."}
-              </p>
-            ) : (
-              <p className="newsletter-note">{t.nlNote}</p>
-            )}
-          </div>
-        </div>
       </section>
 
       {/* ── Footer ── */}

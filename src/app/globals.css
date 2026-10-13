@@ -49,7 +49,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
@@ -81,7 +81,7 @@ nav {
 }
 .nav-logo {
   display: flex; align-items: center;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 16px; font-weight: 700; letter-spacing: -0.03em;
   text-decoration: none;
 }
@@ -635,7 +635,7 @@ input[type="range"]::-moz-range-thumb {
   text-transform: uppercase; color: var(--accent);
 }
 .blog-card-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 18px; font-weight: 700; color: var(--text-1);
   line-height: 1.3; letter-spacing: -0.02em;
 }
@@ -784,7 +784,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .ref-card:hover { border-color: var(--border-med); transform: translateY(-2px); }
 .ref-quote {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 64px; line-height: 0.6;
   color: var(--accent); opacity: 0.6;
   font-weight: 700; user-select: none;
@@ -822,7 +822,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .blog-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
 .blog-tile-label {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 21px; font-weight: 700; color: var(--text-1);
   letter-spacing: -0.02em; margin-bottom: 12px;
 }
@@ -850,7 +850,7 @@ input[type="range"]::-moz-range-thumb {
 .blog-listing-card:hover { opacity: 0.75; }
 .blog-listing-left { flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .blog-listing-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 20px; font-weight: 700; color: var(--text-1);
   letter-spacing: -0.02em; line-height: 1.25;
 }
@@ -873,7 +873,7 @@ input[type="range"]::-moz-range-thumb {
   text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
 }
 .article-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(28px, 4vw, 48px); font-weight: 700;
   letter-spacing: -0.03em; line-height: 1.15;
   color: var(--text-1); margin-bottom: 16px;
@@ -887,7 +887,7 @@ input[type="range"]::-moz-range-thumb {
 .article-body { color: var(--text-2); font-size: 16px; line-height: 1.8; }
 .article-body p { margin-bottom: 20px; }
 .article-body h2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 22px; font-weight: 700; color: var(--text-1);
   letter-spacing: -0.02em; margin: 40px 0 12px;
 }
@@ -1076,4 +1076,279 @@ footer {
   .hero-text, .hero-photo-wrap { animation: none; opacity: 1; }
   .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: none; }
   .marquee-inner { animation: none; }
+}
+
+/* ════════════════════════════════════════════
+   REBRAND — Continental Reserve
+   Design: architectural, editorial, premium
+   ════════════════════════════════════════════ */
+
+/* ── Evolved color tokens ── */
+:root {
+  --accent:        #C2A35A;
+  --accent-dim:    rgba(194,163,90,0.10);
+  --accent-glow:   rgba(194,163,90,0.20);
+  --verdigris:     #7EAAB0;
+  --verdigris-dim: rgba(126,170,176,0.12);
+  --mono-font:     'DM Mono', 'Courier New', monospace;
+  --display-font:  'Cormorant Garamond', Georgia, serif;
+  --bg-1: #1E1B17;
+  --bg-2: #27211B;
+  --bg-3: #322B23;
+}
+html.light {
+  --bg:   #F0EBE0;
+  --bg-1: #E8E0D4;
+  --bg-2: #DDD3C4;
+  --bg-3: #CFC2B0;
+  --text-1: #1A1511;
+  --text-2: #5A4F43;
+  --text-3: #9A8A78;
+  --accent: #7A5C35;
+  --verdigris: #3D7A80;
+}
+
+/* ── Hero: 50/50 full-bleed split ── */
+#hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+/* override old .hero-inner */
+.hero-inner { display: contents; }
+.hero-glow { display: none; }
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(88px, 9vw, 128px) clamp(28px, 5vw, 72px);
+  position: relative;
+  z-index: 1;
+  animation: heroSlideLeft 0.9s cubic-bezier(0.22,1,0.36,1) 0.05s both;
+}
+/* Gold vertical rule */
+.hero-text::after {
+  content: '';
+  position: absolute; right: 0; top: 12%; bottom: 12%; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+  opacity: 0.35;
+  animation: drawRuleV 1.4s cubic-bezier(0.22,1,0.36,1) 0.6s both;
+}
+@keyframes drawRuleV {
+  from { top: 50%; bottom: 50%; opacity: 0; }
+  to   { top: 12%; bottom: 12%; opacity: 0.35; }
+}
+
+.hero-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  animation: heroSlideRight 0.9s cubic-bezier(0.22,1,0.36,1) 0.22s both;
+}
+/* Full-bleed photo frame override */
+.hero-photo-frame {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  aspect-ratio: unset !important;
+}
+.hero-photo-frame img {
+  filter: grayscale(12%) sepia(8%) contrast(1.04);
+  object-position: center top;
+}
+.hero-photo-frame::after { display: none; }
+
+/* Hero eyebrow strip (replaces hero-badge) */
+.hero-eyebrow-strip {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 28px;
+}
+.hero-eyebrow-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(194,163,90,0.5);
+  animation: pulse 2.4s ease infinite;
+  flex-shrink: 0;
+}
+
+/* Hero title: large Cormorant light with italic contrast */
+.hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(44px, 6.5vw, 88px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--text-1);
+  margin-bottom: 24px;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+/* The Margin — aphorism strip on hero photo */
+.hero-margin {
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 260px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2; pointer-events: none;
+}
+.hero-margin-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 10px; letter-spacing: 0.09em;
+  color: rgba(194,163,90,0.55);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hero-margin-text.vis { opacity: 1; }
+
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-text { padding: 100px 24px 48px; order: 1; }
+  .hero-photo-wrap { order: 2; height: 75vw; }
+  .hero-photo-frame { position: relative !important; inset: auto !important; height: 100%; }
+  .hero-text::after, .hero-margin { display: none; }
+  .hero-title { font-size: clamp(36px, 8vw, 56px); }
+}
+
+/* ── Stats: DM Mono + verdigris ── */
+#stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.stat-num {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: var(--verdigris);
+  line-height: 1; margin-bottom: 8px;
+}
+.stat-num span { color: var(--verdigris); }
+.stat-desc {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── Services: editorial chapter-list ── */
+.services-list { border-top: 1px solid var(--border); }
+.service-row {
+  display: grid;
+  grid-template-columns: 36% 1px 1fr;
+  gap: 0 48px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative; cursor: default;
+  transition: background 0.25s;
+}
+.service-row::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--bg-1); opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.service-row:hover::before { opacity: 1; }
+.service-row-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 300; letter-spacing: -0.02em;
+  color: var(--text-1); line-height: 1.2;
+  padding-top: 2px; position: relative; z-index: 1;
+  align-self: start;
+}
+.service-row-rule {
+  background: linear-gradient(to bottom, transparent, var(--accent) 15%, var(--accent) 85%, transparent);
+  width: 1px; align-self: stretch; opacity: 0.3;
+  position: relative; z-index: 1;
+}
+.service-row-content { position: relative; z-index: 1; }
+.service-row-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+}
+.service-row-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; }
+@media (max-width: 768px) {
+  .service-row { grid-template-columns: 1fr; gap: 12px 0; padding: 28px 0; }
+  .service-row-rule { display: none; }
+  .service-row-name { font-size: 26px; }
+}
+
+/* ── Testimonials: editorial guillemet style ── */
+.ref-editorial {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+.ref-editorial-card {
+  padding: 40px 36px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.ref-editorial-card:last-child { border-right: none; }
+.ref-guillemet {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 80px; font-weight: 300;
+  color: var(--accent); opacity: 0.45;
+  line-height: 0.7; margin-bottom: 20px;
+  display: block; user-select: none;
+}
+.ref-editorial-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-style: italic; font-weight: 300;
+  color: var(--text-1); line-height: 1.65;
+  flex: 1; margin-bottom: 24px;
+}
+.ref-editorial-author {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3); padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 900px) {
+  .ref-editorial { grid-template-columns: 1fr; }
+  .ref-editorial-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .ref-editorial-card:last-child { border-bottom: none; }
+}
+
+/* ── Contact: section heading ── */
+.contact-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 300; letter-spacing: -0.02em;
+  color: var(--text-1); margin-bottom: 12px;
+  line-height: 1.1;
+}
+.contact-heading em { font-style: italic; color: var(--accent); }
+
+/* ── Section title: bigger + lighter ── */
+.section-title-lg {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 300; letter-spacing: -0.03em;
+}
+
+/* ── About: updated heading size ── */
+.about-text { font-size: 15.5px; line-height: 1.8; }
+
+/* ── Nav logo: Cormorant ── */
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; }
+
+/* Rebrand reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-text::after { animation: none; opacity: 0.35; top: 12%; bottom: 12%; }
+  .hero-margin-text { transition: none; }
 }
