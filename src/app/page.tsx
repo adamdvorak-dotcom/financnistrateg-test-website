@@ -170,6 +170,12 @@ export default function Page() {
   const [aphoIdx, setAphoIdx] = useState(0);
   const [aphoVis, setAphoVis] = useState(true);
 
+  /* Hero heading scramble */
+  const [h1Cs1, setH1Cs1] = useState("Jeden člověk.");
+  const [h1Cs2, setH1Cs2] = useState("Celý váš obraz.");
+  const [h1En1, setH1En1] = useState("One advisor.");
+  const [h1En2, setH1En2] = useState("The complete picture.");
+
   const t = T[lang];
 
   /* Load saved lang from localStorage */
@@ -234,6 +240,81 @@ export default function Page() {
     window.addEventListener("mousemove", onMove, { passive: true });
     rafId = requestAnimationFrame(loop);
     return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(rafId); };
+  }, []);
+
+  /* Hero heading scramble — runs once on mount */
+  useEffect(() => {
+    const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const run = (
+      target: string,
+      setter: React.Dispatch<React.SetStateAction<string>>,
+      startDelay: number
+    ) => {
+      let iid: ReturnType<typeof setInterval>;
+      const tid = setTimeout(() => {
+        let frame = 0;
+        const FRAMES = 22;
+        iid = setInterval(() => {
+          frame++;
+          if (frame >= FRAMES) { setter(target); clearInterval(iid); return; }
+          const pct = frame / FRAMES;
+          setter(
+            Array.from(target).map((char, i) => {
+              if (char.charCodeAt(0) > 127 || " .,!?".includes(char)) return char;
+              if (i / target.length < pct) return char;
+              return CHARS[Math.floor(Math.random() * CHARS.length)];
+            }).join("")
+          );
+        }, 42);
+      }, startDelay);
+      return () => { clearTimeout(tid); clearInterval(iid); };
+    };
+    const c1 = run("Jeden člověk.", setH1Cs1, 120);
+    const c2 = run("Celý váš obraz.", setH1Cs2, 300);
+    const e1 = run("One advisor.", setH1En1, 120);
+    const e2 = run("The complete picture.", setH1En2, 300);
+    return () => { c1(); c2(); e1(); e2(); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /* Magnetic buttons — lerp attract */
+  useEffect(() => {
+    const btns = Array.from(document.querySelectorAll<HTMLElement>(".btn-primary, .btn-ghost, .bk-btn"));
+    const RADIUS = 88;
+    const STRENGTH = 0.38;
+    type S = { tx: number; ty: number; cx: number; cy: number };
+    const states: S[] = btns.map(() => ({ tx: 0, ty: 0, cx: 0, cy: 0 }));
+    let mx = 0;
+    let my = 0;
+    let rafId: number;
+    const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
+    const loop = () => {
+      btns.forEach((btn, i) => {
+        const r = btn.getBoundingClientRect();
+        const bx = r.left + r.width / 2;
+        const by = r.top + r.height / 2;
+        const dx = mx - bx;
+        const dy = my - by;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const s = states[i];
+        if (dist < RADIUS) {
+          const f = (1 - dist / RADIUS) * STRENGTH;
+          s.tx = dx * f; s.ty = dy * f;
+        } else {
+          s.tx = 0; s.ty = 0;
+        }
+        s.cx += (s.tx - s.cx) * 0.16;
+        s.cy += (s.ty - s.cy) * 0.16;
+        btn.style.transform = `translate(${s.cx}px, ${s.cy}px)`;
+      });
+      rafId = requestAnimationFrame(loop);
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    rafId = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(rafId);
+      btns.forEach(b => { b.style.transform = ""; });
+    };
   }, []);
 
   const toggleLang = () => {
@@ -363,6 +444,7 @@ export default function Page() {
   return (
     <>
       <div id="cursor-glow" aria-hidden="true" />
+      <div id="scan-line" aria-hidden="true" />
       {/* ── Mobile menu overlay ── */}
       {mobileOpen && (
         <div
@@ -416,9 +498,9 @@ export default function Page() {
           <div className="hero-text">
             <h1 className="hero-title">
               {lang === "cs" ? (
-                <>Jeden člověk.<br /><em>Celý váš obraz.</em></>
+                <>{h1Cs1}<br /><em>{h1Cs2}</em></>
               ) : (
-                <>One advisor.<br /><em>The complete picture.</em></>
+                <>{h1En1}<br /><em>{h1En2}</em></>
               )}
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
