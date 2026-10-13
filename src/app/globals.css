@@ -1347,8 +1347,63 @@ html.light {
 /* ── Nav logo: Cormorant ── */
 .nav-logo { font-family: 'Lora', Georgia, serif; font-size: 17px; font-weight: 500; }
 
+/* ── Quote band ── */
+.quote-band {
+  background: var(--bg-1);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0 0;
+}
+.quote-band-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quote-band-text {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(18px, 2.4vw, 28px);
+  color: var(--text-1);
+  text-align: center;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.quote-band-text.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.quote-band-progress {
+  height: 2px;
+  background: var(--border);
+  margin-top: 36px;
+  overflow: hidden;
+}
+.quote-band-fill {
+  height: 100%;
+  background: var(--accent);
+  opacity: 0.4;
+  width: 0;
+  animation: quoteFill 5.7s linear forwards;
+}
+@keyframes quoteFill {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@media (max-width: 768px) {
+  .quote-band-inner { padding: 0 24px; }
+  .quote-band-text { font-size: clamp(16px, 4.5vw, 22px); }
+}
+
 /* Rebrand reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .hero-text::after { animation: none; opacity: 0.35; top: 12%; bottom: 12%; }
-  .hero-margin-text { transition: none; }
+  .quote-band-text { transition: none; }
+  .quote-band-fill { animation: none; width: 100%; }
 }

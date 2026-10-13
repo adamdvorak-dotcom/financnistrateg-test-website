@@ -3,23 +3,23 @@
 import { useState, useEffect } from "react";
 import Script from "next/script";
 
-/* ── Aphorisms (The Margin) ── */
+/* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
   cs: [
-    "Peníze, které nepracují, pomalu umírají.",
-    "Bohatství se nebuduje rychle. Buduje se vytrvale.",
+    "Firma má jeden úkol: živit vás. Ne vás přežít.",
+    "Cihla vám rohlíky nezaplatí.",
     "Nejdražší poradce je ten špatný.",
-    "Čas je jediné, co penězi nekoupíte.",
-    "Plán není luxus. Je to záchranné lano.",
-    "Kdo neví, kam jde, nikam nedojde.",
+    "Milionář na papíře. Nebo milionář v kapse. To není totéž.",
+    "Plán není luxus. Je to rozdíl mezi třemi zdroji příjmu a jedním.",
+    "Stavět důchod na exitu je jak stavět golfovou sezonu na hole in one.",
   ],
   en: [
-    "Money that doesn't work slowly dies.",
-    "Wealth is built slowly, not quickly.",
+    "A company has one job: to provide for you. Not to outlive you.",
+    "A brick won't pay your bills.",
     "The most expensive advisor is the wrong one.",
-    "Time is the only thing money cannot buy.",
-    "A plan is not a luxury. It is a lifeline.",
-    "If you don't know where you're going, you'll never arrive.",
+    "A millionaire on paper. Or a millionaire in the pocket. That's not the same.",
+    "A plan is not a luxury. It's the difference between three income streams and one.",
+    "Building your retirement on an exit is like building a golf season on a hole in one.",
   ],
 };
 
@@ -215,7 +215,7 @@ export default function Page() {
         setAphoIdx((i) => (i + 1) % APHORISMS[lang].length);
         setAphoVis(true);
       }, 700);
-    }, 7000);
+    }, 5700);
     return () => clearInterval(timer);
   }, [lang]);
 
@@ -424,14 +424,21 @@ export default function Page() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/adam-dvorak-hero.jpg" alt="Adam Dvořák — Finanční stratég" loading="eager" />
             </div>
-            <div className="hero-margin" aria-hidden="true">
-              <span className={`hero-margin-text${aphoVis ? " vis" : ""}`}>
-                {APHORISMS[lang][aphoIdx]}
-              </span>
-            </div>
           </div>
         </div>
       </section>
+
+      {/* ── Quote band ── */}
+      <div className="quote-band" aria-live="polite">
+        <div className="quote-band-inner">
+          <p className={`quote-band-text${aphoVis ? " vis" : ""}`}>
+            {APHORISMS[lang][aphoIdx]}
+          </p>
+        </div>
+        <div className="quote-band-progress" aria-hidden="true">
+          <div className="quote-band-fill" key={aphoIdx} />
+        </div>
+      </div>
 
       {/* ── Services bento ── */}
       <section id="services">
