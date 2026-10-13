@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Script from "next/script";
 
 /* ── Aphorisms (The Margin) ── */
@@ -164,10 +164,6 @@ export default function Page() {
   const [retMonthlySavings, setRetMonthlySavings] = useState(3000);
   const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
-  /* Stats count-up */
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [statAum, setStatAum] = useState(0);
-  const [statYrs, setStatYrs] = useState(0);
 
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -193,33 +189,6 @@ export default function Page() {
     html.lang = lang;
   }, [lang]);
 
-  /* Stats count-up animation */
-  useEffect(() => {
-    const el = statsRef.current;
-    if (!el) return;
-    let fired = false;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !fired) {
-          fired = true;
-          obs.disconnect();
-          const duration = 1400;
-          const start = performance.now();
-          const tick = (now: number) => {
-            const p = Math.min((now - start) / duration, 1);
-            const ease = 1 - Math.pow(1 - p, 3);
-            setStatAum(Math.round(165 * ease));
-            setStatYrs(Math.round(8 * ease));
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
 
   /* Scroll reveal */
   useEffect(() => {
@@ -463,26 +432,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      {/* ── Stats ── */}
-      <div id="stats" ref={statsRef}>
-        <div className="container">
-          <div className="stats-grid">
-            <div className="stat-cell">
-              <div className="stat-num"><span>{statAum}</span>+ mil.</div>
-              <div className="stat-desc">{lang === "cs" ? "ve správě" : "under management"}</div>
-            </div>
-            <div className="stat-cell">
-              <div className="stat-num"><span>{statYrs}</span>+ {lang === "cs" ? "let" : "yrs"}</div>
-              <div className="stat-desc">{lang === "cs" ? "v oboru" : "of experience"}</div>
-            </div>
-            <div className="stat-cell">
-              <div className="stat-num"><span>EFA</span></div>
-              <div className="stat-desc">{lang === "cs" ? "evropská kvalifikace" : "European qualification"}</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* ── Services bento ── */}
       <section id="services">
