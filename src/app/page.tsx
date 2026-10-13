@@ -6,16 +6,12 @@ import Script from "next/script";
 /* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
   cs: [
-    "Firma má jeden úkol: živit vás. Ne vás přežít.",
-    "Cihla vám rohlíky nezaplatí.",
     "Nejdražší poradce je ten špatný.",
     "Milionář na papíře. Nebo milionář v kapse. To není totéž.",
     "Plán není luxus. Je to rozdíl mezi třemi zdroji příjmu a jedním.",
     "Stavět důchod na exitu je jak stavět golfovou sezonu na hole in one.",
   ],
   en: [
-    "A company has one job: to provide for you. Not to outlive you.",
-    "A brick won't pay your bills.",
     "The most expensive advisor is the wrong one.",
     "A millionaire on paper. Or a millionaire in the pocket. That's not the same.",
     "A plan is not a luxury. It's the difference between three income streams and one.",
@@ -203,7 +199,7 @@ export default function Page() {
       },
       { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
     );
-    document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach((el) => obs.observe(el));
+    document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-bold").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
 
@@ -396,10 +392,6 @@ export default function Page() {
       <section id="hero">
         <div className="hero-inner">
           <div className="hero-text">
-            <div className="hero-eyebrow-strip">
-              <span className="hero-eyebrow-dot" aria-hidden="true" />
-              <span>{t.heroBadge}</span>
-            </div>
             <h1 className="hero-title">
               {lang === "cs" ? (
                 <>Jeden člověk.<br /><em>Celý váš obraz.</em></>
@@ -443,7 +435,7 @@ export default function Page() {
       {/* ── Services bento ── */}
       <section id="services">
         <div className="container">
-          <div className="section-header reveal">
+          <div className="section-header reveal-bold">
             <div className="section-eyebrow">{t.navServices}</div>
             <h2 className="section-title-lg">{t.servicesTitle}</h2>
             <p className="section-sub">{t.servicesSub}</p>
@@ -456,7 +448,7 @@ export default function Page() {
               { tag: t.s4Tag, title: t.s4Title, desc: t.s4Desc, items: t.s4Items },
               { tag: t.s5Tag, title: t.s5Title, desc: t.s5Desc, items: t.s5Items },
             ].map((svc, i) => (
-              <div key={i} className="service-row reveal">
+              <div key={i} className={`service-row reveal${i > 0 ? ` delay-${i}` : ""}`}>
                 <div className="service-row-name">{svc.title}</div>
                 <div className="service-row-rule" aria-hidden="true" />
                 <div className="service-row-content">
@@ -477,32 +469,32 @@ export default function Page() {
       {/* ── Process ── */}
       <section id="process">
         <div className="container">
-          <div className="section-header reveal">
+          <div className="section-header reveal-bold">
             <div className="section-eyebrow">{t.processEye}</div>
             <h2 className="section-title-lg">{t.processTitle}</h2>
           </div>
-          <div className="process-grid reveal">
-            <div className="process-step">
+          <div className="process-grid">
+            <div className="process-step reveal">
               <span className="step-num">{t.step1Num}</span>
               <div className="step-title">{t.step1Title}</div>
               <div className="step-desc">{t.step1Desc}</div>
             </div>
-            <div className="process-step">
+            <div className="process-step reveal delay-1">
               <span className="step-num">{t.step2Num}</span>
               <div className="step-title">{t.step2Title}</div>
               <div className="step-desc">{t.step2Desc}</div>
             </div>
-            <div className="process-step">
+            <div className="process-step reveal delay-2">
               <span className="step-num">{t.step3Num}</span>
               <div className="step-title">{t.step3Title}</div>
               <div className="step-desc">{t.step3Desc}</div>
             </div>
-            <div className="process-step">
+            <div className="process-step reveal delay-3">
               <span className="step-num">{t.step4Num}</span>
               <div className="step-title">{t.step4Title}</div>
               <div className="step-desc">{t.step4Desc}</div>
             </div>
-            <div className="process-step">
+            <div className="process-step reveal delay-4">
               <span className="step-num">{t.step5Num}</span>
               <div className="step-title">{t.step5Title}</div>
               <div className="step-desc">{t.step5Desc}</div>
@@ -514,7 +506,7 @@ export default function Page() {
       {/* ── Calculators ── */}
       <section id="calculators">
         <div className="container">
-          <div className="section-header reveal">
+          <div className="section-header reveal-bold">
             <div className="section-eyebrow">{t.navCalc}</div>
             <h2 className="section-title-lg">{t.calcTitle}</h2>
           </div>
@@ -781,7 +773,7 @@ export default function Page() {
       {/* ── References ── */}
       <section id="reference">
         <div className="container">
-          <div className="section-header reveal">
+          <div className="section-header reveal-bold">
             <div className="section-eyebrow">{t.refEye}</div>
             <h2 className="section-title-lg">{t.refTitle}</h2>
           </div>
@@ -801,6 +793,11 @@ export default function Page() {
               <p className="ref-editorial-text">Už po první komunikaci s plánem do budoucna nám se ženou spadl kámen ze srdce, že se můžeme mít dobře. Začali jsme žít.</p>
               <div className="ref-editorial-author">Miroslav</div>
             </div>
+            <div className="ref-editorial-card reveal delay-3">
+              <span className="ref-guillemet">«</span>
+              <p className="ref-editorial-text">Je to důvěra v mladého člověka, jehož služby budou moci v budoucnu využívat mí potomci. Investování vyžaduje hodně práce v získávání informací a rozvahu. A protože to momentálně není to, co mě naplňuje, rád tuto činnost přenechám odborníkům.</p>
+              <div className="ref-editorial-author">Daneš a rodina</div>
+            </div>
           </div>
         </div>
       </section>
@@ -808,7 +805,7 @@ export default function Page() {
       {/* ── Blog ── */}
       <section id="blog">
         <div className="container">
-          <div className="section-header reveal">
+          <div className="section-header reveal-bold">
             <div className="section-eyebrow">{t.blogEye}</div>
             <h2 className="section-title-lg">{t.blogTitle}</h2>
             <p className="blog-sub">{t.blogSub}</p>
@@ -960,22 +957,34 @@ export default function Page() {
       {/* ── Booking ── */}
       <section id="booking">
         <div className="container">
-          <div className="section-header reveal">
-            <div className="section-eyebrow">{lang === "cs" ? "Rezervace" : "Booking"}</div>
-            <h2 className="section-title-lg">
-              {lang === "cs" ? "Vyberte si termín." : "Pick your slot."}
-            </h2>
-            <p style={{ color: "var(--text-2)", fontSize: 16, maxWidth: 540, marginTop: 8 }}>
-              {lang === "cs"
-                ? "Zarezervujte si 30minutovou konzultaci přímo online. První setkání je vždy zdarma a bez závazků."
-                : "Book a 30-minute consultation directly online. The first meeting is always free and without obligation."}
-            </p>
+          <div className="booking-split">
+            <div className="booking-info reveal-bold">
+              <div className="section-eyebrow">{lang === "cs" ? "Rezervace" : "Booking"}</div>
+              <h2 className="section-title-lg">
+                {lang === "cs" ? "Vyberte si termín." : "Pick your slot."}
+              </h2>
+              <p className="booking-sub">
+                {lang === "cs"
+                  ? "První konzultace je vždy zdarma a bez závazků. Povídáme si — neprodáváme."
+                  : "The first consultation is always free, no commitment. We talk — we don't sell."}
+              </p>
+              <ul className="booking-features">
+                {(lang === "cs"
+                  ? ["30 minut, online nebo v Praze", "Zdarma, bez závazků", "Povídáme si. Neprodáváme."]
+                  : ["30 minutes, online or in Prague", "Free, no commitment", "We talk. We don't sell."]
+                ).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="booking-widget reveal delay-1">
+              <div
+                className="calendly-inline-widget"
+                data-url="https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1&background_color=F0EBE0&text_color=1A1511&primary_color=C9A260"
+                style={{ minWidth: 280, height: 660 }}
+              />
+            </div>
           </div>
-          <div
-            className="calendly-inline-widget"
-            data-url="https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1"
-            style={{ minWidth: 320, height: 700 }}
-          />
         </div>
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       </section>

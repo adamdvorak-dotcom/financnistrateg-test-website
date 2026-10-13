@@ -1289,15 +1289,17 @@ html.light {
 
 /* ── Testimonials: editorial guillemet style ── */
 .ref-editorial {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(2, 1fr);
   border-top: 1px solid var(--border); margin-top: 48px;
 }
 .ref-editorial-card {
   padding: 40px 36px;
   border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   display: flex; flex-direction: column;
 }
-.ref-editorial-card:last-child { border-right: none; }
+.ref-editorial-card:nth-child(even) { border-right: none; }
+.ref-editorial-card:nth-child(n+3) { border-bottom: none; }
 .ref-guillemet {
   font-family: 'Lora', Georgia, serif;
   font-size: 80px; font-weight: 400;
@@ -1318,10 +1320,10 @@ html.light {
   color: var(--text-3); padding-top: 16px;
   border-top: 1px solid var(--border);
 }
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .ref-editorial { grid-template-columns: 1fr; }
-  .ref-editorial-card { border-right: none; border-bottom: 1px solid var(--border); }
-  .ref-editorial-card:last-child { border-bottom: none; }
+  .ref-editorial-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+  .ref-editorial-card:last-child { border-bottom: none !important; }
 }
 
 /* ── Contact: section heading ── */
@@ -1401,9 +1403,77 @@ html.light {
   .quote-band-text { font-size: clamp(16px, 4.5vw, 22px); }
 }
 
+/* ── Bold reveal — for section headings ── */
+.reveal-bold {
+  opacity: 0;
+  transform: translateY(48px);
+  transition:
+    opacity 0.6s ease,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-bold.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Extend stagger delays to 5 levels */
+.delay-4 { transition-delay: 0.32s !important; }
+
+/* ── Booking split layout ── */
+.booking-split {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 72px;
+  align-items: start;
+}
+.booking-info { padding-top: 4px; }
+.booking-sub {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  max-width: 360px;
+}
+.booking-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.booking-features li {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--text-1);
+  padding-left: 24px;
+  position: relative;
+  line-height: 1.5;
+}
+.booking-features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+.booking-widget {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+@media (max-width: 860px) {
+  .booking-split { grid-template-columns: 1fr; gap: 40px; }
+  .booking-sub { max-width: 100%; }
+}
+
 /* Rebrand reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .hero-text::after { animation: none; opacity: 0.35; top: 12%; bottom: 12%; }
   .quote-band-text { transition: none; }
   .quote-band-fill { animation: none; width: 100%; }
+  .reveal-bold { transition: none; }
 }
