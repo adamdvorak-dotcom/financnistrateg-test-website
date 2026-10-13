@@ -768,6 +768,343 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "firma-a-osobni-majetek") {
+    return (
+      <div className="article-body">
+        <p>
+          Přišel za mnou klient. Firma s obratem kolem třiceti milionů, sedm zaměstnanců, osmý rok
+          v řadě roste. Ptám se na osobní majetek. Pauza. &quot;Máme barák, ještě splácíme. A spořák.&quot;
+        </p>
+        <p>
+          Kolik na tom spořáku? &quot;Tak dvakrát moje výplata.&quot;
+        </p>
+        <p>
+          Tohle není výjimka. Je to pravidlo.
+        </p>
+        <p>
+          Majitelé firem jsou na papíře nejbohatší vrstva v Česku. Ale devět z deseti má skoro vše
+          zamčené v té firmě. Auto na firmu, nemovitost přes s.r.o., přebytky nechávají v bilanci.
+          &quot;Bude se to hodit.&quot; Osobně? Prázdno.
+        </p>
+
+        <h2>Proč to dělají</h2>
+        <p>
+          Logika je jasná. Ve firmě jsou výdaje daňovým nákladem. Osobní majetek se buduje z čistého.
+          Účetní řekne: nechte to ve firmě, to se vyplatí. A krátkodobě má pravdu.
+        </p>
+        <p>
+          Problém nastane, když se ptám: co se stane, když ten business zítra zpomalí?
+        </p>
+        <p>
+          Ne katastrofa, jen obyčejná průšvihy. Přijdete o klíčového zákazníka, trh se otočí,
+          zdraví selže. Najednou ta firma přestane platit. A vy doma nemáte nic, na co sáhnout.
+        </p>
+
+        <h2>Firma není penzijní plán</h2>
+        <p>
+          Tenhle mýtus přežívá překvapivě dlouho. &quot;Prodám firmu a mám na důchod.&quot; Ale firma se prodá
+          za tolik, za kolik ji někdo koupí. Ne za tolik, za kolik ji oceňujete vy. A kupce, který
+          zaplatí dobrou cenu, hledáte minimálně tři roky, pokud vůbec přijde.
+        </p>
+        <p>
+          Stavět důchod na exitu je jak stavět golfovou sezonu na hole in one. Občas to přijde.
+          Naplánovat se to nedá.
+        </p>
+
+        <h2>Jak nastavit systém</h2>
+        <p>
+          Nejde o to vzít peníze z firmy a propálit je. Jde o to mít systém, který buduje osobní
+          majetek souběžně s tím, jak roste firma.
+        </p>
+        <p>
+          Kombinace, která funguje: přiměřená mzda (ne symbolická), maximální příspěvek firmy na DIP
+          a část přebytků každý rok vytáhnout dividendami nebo přes holding do osobního investičního
+          portfolia.
+        </p>
+        <p>
+          DIP sám o sobě umožňuje firmě přispívat jednateli až 50 000 Kč ročně bez jakýchkoliv odvodů.
+          To jsou prachy, které jinak zaplatíte na daních. A přitom rostou.
+        </p>
+
+        <h2>Kdy začít</h2>
+        <p>
+          Teď. Ne po dalším roce. Ne až se firma stabilizuje. Každý rok bez systému je rok, kdy
+          firmě rostou bilance a vám osobně ne.
+        </p>
+        <p>
+          První krok je jednoduchý: spočítat, kolik si dnes reálně vyplácíte versus kolik generujete.
+          A pak rozhodnout, co změnit.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "trhy-padaji-co-ted") {
+    return (
+      <div className="article-body">
+        <p>
+          V březnu 2020 mi jeden klient napsal: &quot;Mám prodat, dokud něco zbývá?&quot;
+        </p>
+        <p>
+          Trhy za tři týdny spadly o pětatřicet procent. Celý svět zavřený, žádný konec v nedohlednu.
+          Neměl prodat. Bylo to tehdy jedno z nejtěžších doporučení, které jsem kdy dával.
+        </p>
+
+        <h2>Proč nás trhy děsí</h2>
+        <p>
+          Mozek vnímá ztrátu zhruba dvakrát silněji než stejně velký zisk. Takže když portfolio
+          klesne o dvacet procent, bolí to asi tak jako by vám někdo vzal čtyřicet. Není to slabost,
+          je to biologie.
+        </p>
+        <p>
+          Problém nastane, když tenhle pocit přeložíte do akce. Prodáváte ve ztrátě, zamykáte ztrátu,
+          a pak sledujete, jak trh za rok je zpátky výše.
+        </p>
+
+        <h2>Co říkají čísla</h2>
+        <p>
+          Od roku 1928 zažily americké akcie průměrně jeden pokles o deset procent každý rok. Jednou
+          za tři roky pokles o dvacet. A jednou za deset let skutečnou krizi.
+        </p>
+        <p>
+          Každý z těch poklesů pak byl překonán. Ne vždy za rok, ne vždy elegantně. Ale překonán byl.
+        </p>
+        <p>
+          Kdo prodal v březnu 2020, realizoval ztrátu třicet pět procent. Kdo nic nedělal, byl do
+          konce roku na nule. Kdo v březnu přikoupil, vydělal přes padesát procent za devět měsíců.
+        </p>
+
+        <h2>Co říkám klientům při pádu trhů</h2>
+        <p>
+          Dvě věci.
+        </p>
+        <p>
+          Za prvé: kontext. Posílám čísla: jak vypadalo portfolio před rokem, jak vypadá teď,
+          jak by vypadalo historicky za rok od propadu. Ne sliby, jen data.
+        </p>
+        <p>
+          Za druhé: připomínám plán. Kolik měsíců výdajů mají jako hotovostní rezervu. Kolik let
+          do doby, kdy peníze reálně potřebují. Kdo má deset let do důchodu, toho propad v roce jedna
+          skoro nezajímá. Kdo plánuje vybírat za dva roky, pro toho jsme to od začátku nastavili jinak.
+        </p>
+
+        <h2>Plán funguje jen tehdy, když ho dodržíte</h2>
+        <p>
+          Největší nepřítel investic nejsou trhy. Jste to vy ve chvíli paniky.
+        </p>
+        <p>
+          Tohle nezní hezky, ale je to pravda. Proto má smysl mít plán napsaný, odsouhlasený
+          a připomínaný v klidu, ne ve chvíli, kdy Bloomberg píše o apokalypse.
+        </p>
+        <p>
+          Moje práce při každém propadu je připomenout vám ten plán. A případně přikoupit.
+          Proto je dobré mít část peněz připravenou přesně na ten okamžik.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "kolik-si-vyplacet-ze-sro") {
+    return (
+      <div className="article-body">
+        <p>
+          Tuhle otázku slyším pořád. Přichází obvykle takhle: &quot;Účetní říká tohle, kamarád dělá tamto,
+          nevím, co je správně.&quot;
+        </p>
+        <p>
+          Správně záleží na čtyřech věcech, které musejí do sebe zapadnout. Níže je rámec, který
+          používám se svými klienty.
+        </p>
+
+        <h2>Dvě základní možnosti: mzda nebo dividendy</h2>
+        <p>
+          Mzda ze s.r.o. snižuje základ daně firmy, protože je to náklad. Platíte z ní odvody
+          na sociální a zdravotní pojištění, celkem zhruba 45 % navíc k hrubé mzdě. Ale tím si
+          budujete sociální pojistku a důchodové nároky.
+        </p>
+        <p>
+          Dividendy nejsou nákladem, platí se ze zisku po dani. Zdanění je patnáct procent srážkovou
+          daní, žádné odvody. Nevýhoda: dividendy si nemůžete vyplácet průběžně, jen jednou ročně
+          po schválení účetní závěrky.
+        </p>
+
+        <h2>Kdy se vyplatí mzda</h2>
+        <p>
+          Pokud je s.r.o. váš primární zdroj příjmu a chcete mít dovolené, neschopenku a důchodové
+          nároky, mzda dává smysl. Zhruba do příjmu 150 tisíc měsíčně hrubého je kombinace odvodů
+          a daní snesitelná.
+        </p>
+        <p>
+          Nad tímhle prahem ale odvody přestávají přinášet odpovídající benefit. Platíte čím dál
+          větší podíl bez toho, aby se vám důchodové nároky stejně zvyšovaly.
+        </p>
+
+        <h2>Kdy se vyplatí dividendy</h2>
+        <p>
+          Pokud máte jiné příjmy, zaměstnání, jiná s.r.o. nebo příjmy z pronájmu, kde odvody
+          platíte odjinud, dividendy dávají smysl. Patnáct procent a hotovo.
+        </p>
+        <p>
+          Pozor na jednu věc: od roku 2025 se dividendy nad čtyři miliony ročně zdaňují
+          třiadvaceti procenty. Nad tuhle hranici se čísla mění.
+        </p>
+
+        <h2>DIP jako třetí páka</h2>
+        <p>
+          Od roku 2024 může firma přispívat jednateli na DIP investiční účet až 50 000 Kč ročně
+          bez jakýchkoliv odvodů a bez daně z příjmu. To je přibližně 22 000 Kč ušetřených ročně,
+          jen díky správnému nastavení.
+        </p>
+        <p>
+          Tohle je instrument, o kterém spousta účetních neví nebo ho zatím nepoužívá.
+        </p>
+
+        <h2>Jak to nastavit dohromady</h2>
+        <p>
+          Recept, který používám nejčastěji: přiměřená mzda (aby byl jednatel účasten sociálního
+          pojištění), maximální příspěvek firmy na DIP, a přebytky dividendami jednou ročně.
+        </p>
+        <p>
+          Přesná čísla záleží na výši příjmu a konkrétní situaci. Ale tohle jsou tři páky, které
+          se dají nastavit relativně rychle a ušetřit desítky tisíc ročně. A zároveň si budovat
+          osobní majetek mimo firmu.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "investicni-byt-napocitam-to") {
+    return (
+      <div className="article-body">
+        <p>
+          &quot;Pronájem mi pokryje splátku&quot; slyším jednou za čtrnáct dní. Pak si sednem a počítáme
+          doopravdy. Výsledek je vždycky trochu jiný, než člověk čekal.
+        </p>
+
+        <h2>Hrubý výnos vs. čistý výnos</h2>
+        <p>
+          Byt za čtyři miliony, pronájem 18 000 Kč měsíčně. Hrubý výnos je 5,4 %. Zní to dobře.
+        </p>
+        <p>
+          Teď od toho odečteme: správu bytu (6 až 8 % z nájmu, pokud to neděláte sami), opravy
+          a údržbu (odhadem 1 až 1,5 % z hodnoty bytu ročně), pojištění, daň z příjmu
+          z nájemného a průměrně jeden měsíc prázdno za rok.
+        </p>
+        <p>
+          Po všem tomhle jde čistý výnos na zhruba 3 až 3,5 %. U hypotéky za 4,5 % to je záporný
+          cashflow. Každý měsíc platíte z vlastní kapsy.
+        </p>
+
+        <h2>Ale majetek přece roste, ne?</h2>
+        <p>
+          Ano, nemovitosti v Česku historicky rostou. Průměrně kolem čtyř až pěti procent ročně,
+          v Praze více. Takže celkový výnos, renta plus apreciace, dává smysl.
+        </p>
+        <p>
+          Problém je likvidita. Nemovitost neprodáte za hodinu. Neprodáte ji za cenu, kterou
+          chcete. A v mezidobí platíte hypotéku, opravy a daně.
+        </p>
+        <p>
+          Porovnejte to s diverzifikovaným ETF portfoliem, které historicky vynáší sedm až osm
+          procent ročně, je likvidní a správa zabere pár minut měsíčně.
+        </p>
+
+        <h2>Kdy investiční byt smysl dává</h2>
+        <p>
+          Dává smysl, když máte dost vlastního kapitálu (alespoň třicet procent), kupujete v lokalitě
+          se silnou a trvalou poptávkou po nájmu a nepovažujete to za náhradu diverzifikovaného
+          portfolia, ale za jednu z vrstev.
+        </p>
+        <p>
+          Nemá smysl, když to kupujete proto, že &quot;nemovitosti jsou jistota&quot;, přitom nemáte žádné
+          jiné úspory. Nebo když celý váš plán na důchod zní: jednou prodám barák.
+        </p>
+
+        <h2>Co se vždy vyplatí</h2>
+        <p>
+          Nechat si celé číslo napočítat. Víc, než si myslíte, záleží na načasování nákupu,
+          výši vlastních zdrojů, sazbě hypotéky a lokalitě.
+        </p>
+        <p>
+          Přinesete mi čísla, já vám napočítám celý scénář, včetně srovnání s alternativním
+          investičním portfoliem.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "osvc-duchod-proc-jste-na-tom-hur") {
+    return (
+      <div className="article-body">
+        <p>
+          OSVČ platí sociální pojištění z vyměřovacího základu. Zákon říká, že základ musí být
+          alespoň polovina zisku. A minimem je zákonem stanovené minimum, které je v roce 2026
+          zhruba 105 000 Kč ročně.
+        </p>
+        <p>
+          Tenhle článek je pro ty, kteří platí zákonné minimum a ještě nepočítali, co z toho vyjde
+          za třicet let.
+        </p>
+
+        <h2>Jak se výše důchodu počítá</h2>
+        <p>
+          Zjednodušeně: čím více let odvádíte a čím vyšší jsou vaše evidované příjmy v systému ČSSZ,
+          tím vyšší důchod dostanete. Oba faktory hrají roli.
+        </p>
+        <p>
+          Pokud platíte minimální odvody pětadvacet let, vaše evidované příjmy jsou minimální.
+          Státní důchod bude odpovídající. Dnešní průměrný starobní důchod je kolem 22 000 Kč
+          měsíčně. OSVČ s minimálními odvody se pohybuje kolem čtrnácti, patnácti tisíc.
+        </p>
+
+        <h2>Proč to OSVČ dělají</h2>
+        <p>
+          Aby ušetřily dnes. Minimální odvody znamenají víc peněz v kapse teď. A je tu poctivý
+          argument: pokud ty ušetřené peníze investujete systematicky, sami si na důchod naberete
+          víc, než by vám dal stát.
+        </p>
+        <p>
+          To je pravda, ale pouze tehdy, když ty peníze opravdu investujete. Disciplinovaně,
+          každý měsíc, dlouhodobě.
+        </p>
+        <p>
+          Kdo to nedělá a jede na minimech, protože se zdá, že je čas, ten za dvacet let zjistí,
+          že má minimální státní důchod a nic jiného.
+        </p>
+
+        <h2>Co s tím</h2>
+        <p>
+          Tři věci, které dávají smysl dohromady.
+        </p>
+        <p>
+          Za prvé, DIP. Od roku 2024 si OSVČ může odepsat z daní až 48 000 Kč vložených do
+          investičního účtu. Na daních to reálně ušetří osm až jedenáct tisíc ročně v závislosti
+          na sazbě. A ty peníze rostou bez daně z výnosů.
+        </p>
+        <p>
+          Za druhé, investiční program vedle toho. Systematický vklad do diverzifikovaného ETF
+          portfolia každý měsíc bez ohledu na trhy. Z tisícikoruny měsíčně za pětadvacet let
+          při sedmiprocentním průměrném výnosu vyroste přes 800 000 Kč.
+        </p>
+        <p>
+          Za třetí, dobrovolné navýšení vyměřovacího základu. Nemusíte platit maximum, ale platit
+          trochu více než zákonné minimum. Každých 10 000 Kč ročně navíc na základu přidá do
+          důchodu zhruba 150 Kč měsíčně na celý život.
+        </p>
+
+        <h2>Kdy začít</h2>
+        <p>
+          Platí jedno jednoduché pravidlo: každý rok navíc je rok složeného úročení, o který
+          přicházíte. Kdo začne investovat tisícikorunu měsíčně ve třiceti, má za pětatřicet
+          let přibližně třikrát víc než ten, kdo začne ve čtyřiceti pěti.
+        </p>
+        <p>
+          Nejhorší odpověď je počkat na lepší dobu.
+        </p>
+      </div>
+    );
+  }
+
   return null;
 }
 
