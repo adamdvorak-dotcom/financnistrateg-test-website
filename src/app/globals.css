@@ -1160,7 +1160,7 @@ html.light {
 }
 .hero-photo-frame img {
   filter: grayscale(12%) sepia(8%) contrast(1.04);
-  object-position: center top;
+  object-position: 55% center;
 }
 .hero-photo-frame::after { display: none; }
 
