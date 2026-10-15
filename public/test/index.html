@@ -441,7 +441,7 @@ h1 {
         <span class="gdpr-text">Souhlasím se zpracováním jména a e-mailu správcem Adam Dvořák, EFA, za účelem zaslání výsledků testu a navázání kontaktu. <a href="https://www.financnistrateg.com/privacy" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>. Souhlas lze kdykoli odvolat.</span>
       </label>
       <p class="gate-err" id="gateErr" hidden></p>
-      <button type="submit" class="btn solid gate-submit">Zahájit test →</button>
+      <button type="button" id="gateBtn" class="btn solid gate-submit">Zahájit test →</button>
     </form>
   </div>
 
@@ -574,9 +574,8 @@ h1 {
     updateCount();
   });
 
-  // Gate form
-  document.getElementById("gateForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  // Gate button
+  document.getElementById("gateBtn").addEventListener("click", function () {
     var nameEl = document.getElementById("gateName");
     var emailEl = document.getElementById("gateEmail");
     var gdprEl = document.getElementById("gateGdpr");
@@ -588,7 +587,7 @@ h1 {
       return;
     }
     if (!gdprEl.checked) {
-      err.textContent = "Pro pokračování je nutný souhlas se zpracováním osobních údajů.";
+      err.textContent = "Zaškrtněte souhlas se zpracováním osobních údajů.";
       err.hidden = false;
       return;
     }
