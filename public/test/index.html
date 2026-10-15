@@ -429,15 +429,15 @@ h1 {
       <div class="gate-fields">
         <label class="gate-lbl">
           <span>Jméno a příjmení</span>
-          <input type="text" name="name" class="gate-input" required autocomplete="name" placeholder="Jan Novák">
+          <input type="text" id="gateName" name="name" class="gate-input" required autocomplete="name" placeholder="Jan Novák">
         </label>
         <label class="gate-lbl">
           <span>E-mail</span>
-          <input type="email" name="email" class="gate-input" required autocomplete="email" placeholder="jan@firma.cz">
+          <input type="email" id="gateEmail" name="email" class="gate-input" required autocomplete="email" placeholder="jan@firma.cz">
         </label>
       </div>
       <label class="gdpr-row">
-        <input type="checkbox" name="gdpr" required>
+        <input type="checkbox" id="gateGdpr" name="gdpr" required>
         <span class="gdpr-text">Souhlasím se zpracováním jména a e-mailu správcem Adam Dvořák, EFA, za účelem zaslání výsledků testu a navázání kontaktu. <a href="https://www.financnistrateg.com/privacy" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>. Souhlas lze kdykoli odvolat.</span>
       </label>
       <p class="gate-err" id="gateErr" hidden></p>
@@ -577,9 +577,9 @@ h1 {
   // Gate form
   document.getElementById("gateForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    var nameEl = e.target.elements.name;
-    var emailEl = e.target.elements.email;
-    var gdprEl = e.target.elements.gdpr;
+    var nameEl = document.getElementById("gateName");
+    var emailEl = document.getElementById("gateEmail");
+    var gdprEl = document.getElementById("gateGdpr");
     var err = document.getElementById("gateErr");
 
     if (!nameEl.value.trim() || !emailEl.value.trim()) {
