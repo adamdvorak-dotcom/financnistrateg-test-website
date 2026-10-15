@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Test připravenosti majitele firmy · Finanční Stratég</title>
+<meta name="description" content="Dvacet tvrzení v pěti oblastech. Za pět minut uvidíte, jak jsou firma a rodina připravené na den, kdy z firmy odejdete. Odpovědi zůstávají jen ve vašem prohlížeči.">
+<link rel="canonical" href="https://www.financnistrateg.com/test">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1524" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="Finanční Stratég">
+<meta property="og:url" content="https://www.financnistrateg.com/test">
+<meta property="og:title" content="Je vaše firma připravená na váš odchod?">
+<meta property="og:description" content="Test pro majitele firem. Dvacet tvrzení, pět minut a tři kroky, kterými začít.">
+<meta property="og:image" content="https://www.financnistrateg.com/test/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Je vaše firma připravená na váš odchod? Test pro majitele firem, Adam Dvořák, Finanční Stratég.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Je vaše firma připravená na váš odchod?">
+<meta name="twitter:description" content="Test pro majitele firem. Dvacet tvrzení, pět minut a tři kroky, kterými začít.">
+<meta name="twitter:image" content="https://www.financnistrateg.com/test/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@500;600;700&family=Jost:wght@400;500;600&display=swap">
+<style>
+/* Layout: technický revizní protokol. Vlevo položky 1.1 až 5.4, vpravo lepkavý „Výsledek revize" se segmentovými měřidly po oblastech. */
+:root {
+  --paper: #f4f5f7;
+  --sheet: #ffffff;
+  --ink: #142033;
+  --muted: #586274;
+  --rule: #d8dce3;
+  --navy: #1b2a44;
+  --gold: #8f6f27;
+  --gold-soft: rgba(143, 111, 39, 0.12);
+  --seg-off: #e3e6ec;
+  --good: #2f6b4f;
+  --warn: #8f6413;
+  --bad: #9b3b32;
+  --on-navy: #f3efe4;
+  --sel-bg: #1b2a44;
+  --sel-fg: #f3efe4;
+  --font-display: "Cormorant Garant", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Jost", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --radius: 6px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0c1524;
+    --sheet: #121d30;
+    --ink: #ece7da;
+    --muted: #a5adbb;
+    --rule: #26344c;
+    --navy: #1c2d4a;
+    --gold: #cda95c;
+    --gold-soft: rgba(205, 169, 92, 0.14);
+    --seg-off: #233149;
+    --good: #74c39a;
+    --warn: #dcae52;
+    --bad: #e2817a;
+    --on-navy: #f3efe4;
+    --sel-bg: #cda95c;
+    --sel-fg: #0c1524;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0c1524;
+  --sheet: #121d30;
+  --ink: #ece7da;
+  --muted: #a5adbb;
+  --rule: #26344c;
+  --navy: #1c2d4a;
+  --gold: #cda95c;
+  --gold-soft: rgba(205, 169, 92, 0.14);
+  --seg-off: #233149;
+  --good: #74c39a;
+  --warn: #dcae52;
+  --bad: #e2817a;
+  --on-navy: #f3efe4;
+  --sel-bg: #cda95c;
+  --sel-fg: #0c1524;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+/* Základ samostatné stránky */
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  padding-inline: 16px;
+  padding-block: 0 96px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; }
+
+/* Hlavička jako hlavička technického dokumentu */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: end;
+  padding-block: 40px 28px;
+  border-bottom: 2px solid var(--ink);
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 5.2vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.lead { margin: 0; max-width: 62ch; color: var(--muted); font-size: 17px; }
+.docmeta {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  background: var(--sheet);
+  font-variant-numeric: tabular-nums;
+}
+.docmeta dt { text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; padding-top: 2px; }
+.docmeta dd { margin: 0; color: var(--ink); font-weight: 500; }
+
+.sample {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius);
+  background: var(--gold-soft);
+  font-size: 15px;
+}
+.sample p { margin: 0; min-width: 0; }
+.btn {
+  appearance: none;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: 500 14px/1 var(--font-body);
+  letter-spacing: 0.04em;
+  padding: 11px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn:hover { background: var(--gold-soft); }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn.solid:hover { background: var(--gold); border-color: var(--gold); color: var(--paper); }
+.btn:focus-visible, .opt input:focus-visible + span, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* Hlavní dvojsloupec */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+  margin-top: 32px;
+}
+.section { margin-bottom: 36px; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+.section-no {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.15;
+}
+.section-head .pts { margin-left: auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  align-items: center;
+}
+.item-no { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.item-text { font-size: 16px; min-width: 0; }
+.opts { display: flex; gap: 6px; }
+.opt { position: relative; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opt span {
+  display: inline-block;
+  min-width: 78px;
+  text-align: center;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  font-size: 14px;
+  cursor: pointer;
+  background: var(--sheet);
+  color: var(--ink);
+  user-select: none;
+}
+.opt span:hover { border-color: var(--gold); }
+.opt input:checked + span { background: var(--sel-bg); border-color: var(--sel-bg); color: var(--sel-fg); }
+.opt.ano input:checked + span { box-shadow: inset 0 -3px 0 var(--good); }
+.opt.cast input:checked + span { box-shadow: inset 0 -3px 0 var(--warn); }
+.opt.ne input:checked + span { box-shadow: inset 0 -3px 0 var(--bad); }
+
+/* Výsledek revize */
+.result {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 20px);
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 22px 22px 24px;
+}
+.result h2 {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+.score .big { font-size: 68px; font-weight: 600; line-height: 0.95; }
+.score .of { font-size: 26px; color: var(--muted); }
+.answered { font-size: 13px; color: var(--muted); margin: 2px 0 14px; font-variant-numeric: tabular-nums; }
+.band { border-radius: var(--radius); padding: 10px 12px; margin-bottom: 18px; border-left: 3px solid var(--muted); background: var(--paper); }
+.band strong { display: block; font-size: 15px; }
+.band p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+.band.r { border-left-color: var(--bad); }
+.band.m { border-left-color: var(--warn); }
+.band.g { border-left-color: var(--good); }
+.meters { display: grid; gap: 10px; margin-bottom: 20px; }
+.meter-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; font-size: 13px; }
+.meter-row .lbl { min-width: 0; }
+.meter-row .val { color: var(--muted); font-variant-numeric: tabular-nums; }
+.segs { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(8, 1fr); gap: 3px; }
+.segs i { height: 8px; border-radius: 1px; background: var(--seg-off); display: block; }
+.segs i.on { background: var(--gold); }
+.prio h3 { font-family: var(--font-display); font-size: 21px; font-weight: 600; margin: 0 0 8px; }
+.prio ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; counter-reset: p; }
+.prio li { counter-increment: p; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; font-size: 14px; }
+.prio li::before {
+  content: counter(p);
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid var(--gold); color: var(--gold);
+  font-size: 12px; display: grid; place-items: center; margin-top: 1px;
+}
+.prio .ref { font-size: 12px; color: var(--muted); display: block; }
+.prio .empty { font-size: 14px; color: var(--muted); margin: 0; }
+
+.cta {
+  margin-top: 40px;
+  background: var(--navy);
+  color: var(--on-navy);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px 28px;
+  align-items: center;
+}
+.cta h2 { font-family: var(--font-display); font-weight: 600; font-size: 30px; margin: 0 0 6px; line-height: 1.1; text-wrap: balance; color: var(--on-navy); }
+.cta p { margin: 0; max-width: 60ch; color: var(--on-navy); opacity: 0.86; }
+.cta .btn { border-color: var(--gold); color: var(--on-navy); }
+.cta .btn:hover { background: var(--gold); color: var(--navy); }
+.cta .site { font-size: 13px; opacity: 0.75; margin-top: 8px; display: block; }
+.fine { font-size: 13px; color: var(--muted); margin-top: 22px; max-width: 80ch; }
+
+/* Spodní lišta na telefonu */
+.mobilebar {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: var(--navy);
+  color: var(--on-navy);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-variant-numeric: tabular-nums;
+  z-index: 5;
+}
+.mobilebar a { color: var(--on-navy); font-size: 14px; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .result { position: static; }
+  .mobilebar { display: flex; }
+}
+@media (max-width: 640px) {
+  .masthead { grid-template-columns: minmax(0, 1fr); padding-top: 28px; }
+  .docmeta { display: none; }
+  .item { grid-template-columns: 36px minmax(0, 1fr); }
+  .opts { grid-column: 1 / -1; }
+  .opt { flex: 1; }
+  .opt span { width: 100%; min-width: 0; }
+  .cta { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .segs i { transition: background-color 0.25s ease; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Finanční Stratég · Adam Dvořák</p>
+      <h1>Je vaše firma připravená na váš odchod?</h1>
+      <p class="lead">Dvacet tvrzení v pěti oblastech. Za pět minut uvidíte, kde je vaše firma a rodina připravená na den, kdy z firmy odejdete, a kde ne. Odpovědi zůstávají jen ve vašem prohlížeči.</p>
+    </div>
+    <dl class="docmeta" aria-label="Údaje o testu">
+      <dt>Dokument</dt><dd>Revizní protokol majitele</dd>
+      <dt>Oblasti</dt><dd>5</dd>
+      <dt>Položky</dt><dd>20</dd>
+      <dt>Body</dt><dd>0 až 40</dd>
+    </dl>
+  </header>
+
+  <div class="sample" id="sampleBanner">
+    <p id="sampleText"><strong>Ukázka.</strong> Odpovědi níže jsou vyplněné za typického majitele, aby bylo vidět, jak výsledek vypadá. Vlastní test začnete tlačítkem nebo první odpovědí.</p>
+    <button class="btn solid" id="startOwn" type="button">Začít vlastní test</button>
+  </div>
+
+  <div class="layout">
+    <form id="quiz" aria-label="Test připravenosti" novalidate></form>
+
+    <aside class="result" id="result" aria-live="polite">
+      <h2>Výsledek revize</h2>
+      <div class="score"><span class="big" id="score">0</span><span class="of">/ 40</span></div>
+      <p class="answered" id="answered">Odpovězeno 0 z 20</p>
+      <div class="band" id="band"><strong id="bandTitle">Výsledek</strong><p id="bandText"></p></div>
+      <div class="meters" id="meters"></div>
+      <div class="prio">
+        <h3>Tři kroky, kterými začít</h3>
+        <ol id="prio"></ol>
+        <p class="empty" id="prioEmpty" hidden>Zatím nic. Jakmile odpovíte „ne“ nebo „částečně“, objeví se tu, čím začít.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="cta" aria-labelledby="ctaTitle">
+    <div>
+      <h2 id="ctaTitle">Kdo to vyplnil poctivě, ví o své firmě víc než většina majitelů.</h2>
+      <p>Starám se o majetek majitelů firem a jejich rodin. Řešíme spolu, jak si z firmy vybírat peníze, co mají mimo firmu a jak firmu jednou prodat nebo předat. Daně a právo dělá daňový poradce a advokát, já hlídám, aby to celé dávalo smysl. Na úvodním rozhovoru se nic neprodává.</p>
+    </div>
+    <div>
+      <a class="btn" href="https://www.financnistrateg.com/konzultace">Domluvit úvodní rozhovor</a>
+      <span class="site">financnistrateg.com</span>
+    </div>
+  </section>
+
+  <p class="fine">Test je orientační. Nejde o daňové, právní ani investiční poradenství a výsledek nenahrazuje posouzení konkrétní situace. Daňové a právní kroky řešte s daňovým poradcem a advokátem. Odpovědi se nikam neodesílají.</p>
+</div>
+
+<div class="mobilebar" id="mobilebar">
+  <span id="mbScore">Skóre 0 / 40</span>
+  <a href="#result">Zobrazit výsledek</a>
+</div>
+
+<script>
+(function () {
+  var AREAS = [
+    { id: 1, name: "Firma bez majitele", items: [
+      { id: "1.1", t: "Firma vydrží čtyři týdny bez mého telefonu.", w: 7, tip: "Naplánujte si dva týdny pryč a sepište, co se během nich zaseklo. To je seznam úkolů pro druhou linii." },
+      { id: "1.2", t: "Velké zákazníky má na starosti i někdo jiný než já.", w: 5, tip: "U pěti největších zákazníků vezměte na příští schůzku člověka, který je jednou převezme." },
+      { id: "1.3", t: "Máme druhého jednatele nebo prokuristu.", w: 10, tip: "Rozhodněte, komu svěříte prokuru nebo funkci druhého jednatele. Zápis do rejstříku je otázka dnů." },
+      { id: "1.4", t: "Máme druhou linii vedení pro obchod, výrobu a finance.", w: 6, tip: "Pro každou oblast pojmenujte jednoho člověka a dejte mu rozhodovací pravomoc s jasným limitem." }
+    ]},
+    { id: 2, name: "Peníze mimo firmu", items: [
+      { id: "2.1", t: "Víc než čtvrtina mého majetku je mimo firmu.", w: 7, tip: "Nastavte pravidelný odběr části zisku a stavte majetek, který na firmě nezávisí." },
+      { id: "2.2", t: "Mám nastavenou výplatní politiku na víc let dopředu.", w: 5, tip: "S účetní a daňovým poradcem si spočítejte mzdu, dividendu a příspěvky na DIP na tři roky dopředu." },
+      { id: "2.3", t: "Za úvěry firmy osobně neručím, nebo přesně vím za co.", w: 8, tip: "Sepište všechna ručení, směnky a zástavy. U dalšího úvěru jednejte o limitu ručení." },
+      { id: "2.4", t: "Nemovitosti, ve kterých firma vyrábí, jsou oddělené od provozu, nebo to mám rozmyšlené.", w: 5, tip: "S daňovým poradcem rozhodněte, jestli a kdy oddělit nemovitosti od provozu. Čím dřív, tím líp." }
+    ]},
+    { id: 3, name: "Rodina a dokumenty", items: [
+      { id: "3.1", t: "Mám závěť se správcem pozůstalosti.", w: 9, tip: "Notářská závěť se jmenovaným správcem pozůstalosti zkrátí dobu, kdy firmu nemá kdo řídit." },
+      { id: "3.2", t: "Mám předběžné prohlášení.", w: 9, tip: "Notářským zápisem určete, kdo bude jednat za vás, když to nepůjde." },
+      { id: "3.3", t: "Partner nebo partnerka ví, co dělat a komu zavolat.", w: 8, tip: "Sepište jednu stránku: kontakty, kde leží dokumenty a co udělat první týden." },
+      { id: "3.4", t: "Vím, jestli je podíl ve společném jmění, a mám to vyřešené.", w: 6, tip: "Zjistěte, jestli podíl patří do společného jmění. Pokud ano, zvažte manželskou smlouvu." }
+    ]},
+    { id: 4, name: "Daně a struktura", items: [
+      { id: "4.1", t: "Vím, kdy mi doběhne časový test u podílu.", w: 6, tip: "Dohledejte, kdy a jak jste podíl nabyli. U podílu v s.r.o. je test pět let, u akcií tři roky." },
+      { id: "4.2", t: "Mám rozmyšlené, jestli dává smysl holding.", w: 4, tip: "Proberte holding s daňovým poradcem dřív, než budete prodávat. Změna struktury může znovu spustit časové testy." },
+      { id: "4.3", t: "Účetnictví je bez osobních nákladů a čísla za tři roky jsou čistá.", w: 5, tip: "Vyčistěte účetnictví od osobních nákladů. Kupec bude chtít tři roky čistých čísel." },
+      { id: "4.4", t: "Mám daňového poradce, který zná moje plány na odchod.", w: 4, tip: "Řekněte daňovému poradci, kdy zhruba chcete odejít. Změní to, co vám radí." }
+    ]},
+    { id: 5, name: "Plán odchodu", items: [
+      { id: "5.1", t: "Vím, jestli firmu prodám, předám dětem, nebo vedení.", w: 7, tip: "Vyslovte směr nahlas, i když není definitivní. Bez něj nejde nic dalšího naplánovat." },
+      { id: "5.2", t: "Děti vědí, co plánuji, a já vím, co chtějí ony.", w: 6, tip: "Domluvte si s dětmi samostatný čas jen na tohle téma. Ne u nedělního oběda." },
+      { id: "5.3", t: "Vím zhruba, kolik firma stojí a proč.", w: 4, tip: "Nechte si udělat orientační ocenění a pochopte, co cenu zvedá a co ji sráží." },
+      { id: "5.4", t: "Vím, z čeho budu žít a co budu dělat po odchodu.", w: 5, tip: "Spočítejte si, kolik potřebujete na život, a rozmyslete si první pondělí po prodeji." }
+    ]}
+  ];
+  var SAMPLE = { "1.1":1, "1.2":1, "1.3":0, "1.4":1, "2.1":0, "2.2":1, "2.3":0, "2.4":1, "3.1":0, "3.2":0, "3.3":1, "3.4":2, "4.1":2, "4.2":1, "4.3":1, "4.4":2, "5.1":1, "5.2":0, "5.3":1, "5.4":0 };
+  var OPTS = [ { v: 2, label: "Ano", cls: "ano" }, { v: 1, label: "Částečně", cls: "cast" }, { v: 0, label: "Ne", cls: "ne" } ];
+  var KEY = "fs-test-pripravenosti-v1";
+
+  var state = { answers: {}, sample: true };
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && saved.answers) { state = saved; }
+  } catch (e) {}
+  if (state.sample) { state.answers = JSON.parse(JSON.stringify(SAMPLE)); }
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var form = document.getElementById("quiz");
+  AREAS.forEach(function (a) {
+    var sec = document.createElement("section");
+    sec.className = "section";
+    sec.setAttribute("aria-labelledby", "area-" + a.id);
+    var head = document.createElement("div");
+    head.className = "section-head";
+    head.innerHTML = '<span class="section-no">' + a.id + '</span><h2 id="area-' + a.id + '">' + a.name + '</h2><span class="pts" id="pts-' + a.id + '">0 / 8 bodů</span>';
+    sec.appendChild(head);
+    a.items.forEach(function (it) {
+      var fs = document.createElement("div");
+      fs.className = "item";
+      var name = "q" + it.id.replace(".", "-");
+      fs.setAttribute("role", "radiogroup");
+      fs.setAttribute("aria-labelledby", "t-" + name);
+      var html = '<span class="item-no">' + it.id + '</span><span class="item-text" id="t-' + name + '">' + it.t + '</span><div class="opts">';
+      OPTS.forEach(function (o) {
+        var id = name + "-" + o.v;
+        html += '<label class="opt ' + o.cls + '" for="' + id + '"><input type="radio" id="' + id + '" name="' + name + '" value="' + o.v + '"><span>' + o.label + '</span></label>';
+      });
+      html += "</div>";
+      fs.innerHTML = html;
+      sec.appendChild(fs);
+    });
+    form.appendChild(sec);
+  });
+
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  form.addEventListener("change", function (e) {
+    var t = e.target;
+    if (!t || t.type !== "radio") return;
+    var id = t.name.slice(1).replace("-", ".");
+    if (state.sample) {
+      state = { answers: {}, sample: false };
+      syncInputs();
+      t.checked = true;
+    }
+    state.answers[id] = Number(t.value);
+    save();
+    render();
+  });
+
+  document.getElementById("startOwn").addEventListener("click", function () {
+    state = { answers: {}, sample: false };
+    save();
+    syncInputs();
+    render();
+    var first = document.getElementById("q1-1-2");
+    if (first) { first.focus(); }
+  });
+
+  function syncInputs() {
+    var inputs = form.querySelectorAll("input[type=radio]");
+    for (var i = 0; i < inputs.length; i++) {
+      var inp = inputs[i];
+      var id = inp.name.slice(1).replace("-", ".");
+      inp.checked = state.answers[id] === Number(inp.value);
+    }
+  }
+
+  function render() {
+    var total = 0, count = 0, cands = [];
+    var meters = document.getElementById("meters");
+    meters.innerHTML = "";
+    AREAS.forEach(function (a) {
+      var sub = 0;
+      a.items.forEach(function (it) {
+        var v = state.answers[it.id];
+        if (typeof v === "number") {
+          sub += v; total += v; count += 1;
+          if (v < 2) { cands.push({ it: it, v: v, area: a.name }); }
+        }
+      });
+      document.getElementById("pts-" + a.id).textContent = sub + " / 8 bodů";
+      var row = document.createElement("div");
+      row.className = "meter-row";
+      var segs = "";
+      for (var s = 0; s < 8; s++) { segs += '<i class="' + (s < sub ? "on" : "") + '"></i>'; }
+      row.innerHTML = '<span class="lbl">' + a.id + ". " + a.name + '</span><span class="val">' + sub + ' / 8</span><span class="segs" aria-hidden="true">' + segs + "</span>";
+      meters.appendChild(row);
+    });
+
+    document.getElementById("score").textContent = total;
+    document.getElementById("answered").textContent = "Odpovězeno " + count + " z 20" + (count < 20 && count > 0 ? ", skóre je zatím průběžné" : "");
+    document.getElementById("mbScore").textContent = "Skóre " + total + " / 40 · " + count + " z 20";
+
+    var band = document.getElementById("band"), bt = document.getElementById("bandTitle"), bx = document.getElementById("bandText");
+    band.className = "band";
+    if (count === 0) {
+      bt.textContent = "Zatím bez odpovědí";
+      bx.textContent = "Odpovězte na tvrzení vlevo. Ano znamená 2 body, částečně 1 bod, ne 0.";
+    } else if (total <= 15) {
+      band.classList.add("r");
+      bt.textContent = "Odchod by dnes byl rizikem";
+      bx.textContent = "Firma i rodina by váš odchod dnes těžko ustály. Většinu nejdůležitějších kroků ale jde udělat během pár měsíců.";
+    } else if (total <= 29) {
+      band.classList.add("m");
+      bt.textContent = "Příprava je rozjetá";
+      bx.textContent = "Základy máte, ale pár důležitých kroků chybí. Ty první jsou níže.";
+    } else {
+      band.classList.add("g");
+      bt.textContent = "Připravenost je vysoká";
+      bx.textContent = "Většinu práce máte hotovou. Zbývá doladit detaily a jednou ročně je zkontrolovat.";
+    }
+
+    cands.sort(function (x, y) { return (x.v - y.v) || (y.it.w - x.it.w); });
+    var top3 = cands.slice(0, 3);
+    var ol = document.getElementById("prio");
+    ol.innerHTML = "";
+    top3.forEach(function (c) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span><span class="ref">' + c.it.id + " · " + c.area + "</span>" + c.it.tip + "</span>";
+      ol.appendChild(li);
+    });
+    document.getElementById("prioEmpty").hidden = top3.length > 0;
+
+    var banner = document.getElementById("sampleBanner");
+    if (state.sample) {
+      banner.hidden = false;
+    } else {
+      banner.hidden = true;
+    }
+  }
+
+  syncInputs();
+  render();
+})();
+</script>
+</body>
+</html>
