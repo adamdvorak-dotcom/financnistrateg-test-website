@@ -337,6 +337,71 @@ h1 {
 @media (prefers-reduced-motion: no-preference) {
   .segs i { transition: background-color 0.25s ease; }
 }
+
+/* Gate — vstupní formulář */
+.gate-wrap { margin-top: 32px; }
+.gate-card {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 28px 32px 32px;
+  max-width: 520px;
+}
+.gate-card h2 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 8px 0 10px;
+  line-height: 1.1;
+}
+.gate-lead { margin: 0 0 24px; font-size: 16px; color: var(--muted); }
+.gate-fields { display: grid; gap: 14px; margin-bottom: 18px; }
+.gate-lbl { display: flex; flex-direction: column; gap: 6px; }
+.gate-lbl > span {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.gate-input {
+  padding: 10px 13px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  font: 16px/1.4 var(--font-body);
+  color: var(--ink);
+  width: 100%;
+}
+.gate-input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.gdpr-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.gdpr-row input { margin-top: 3px; accent-color: var(--gold); width: 18px; height: 18px; }
+.gdpr-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.gdpr-text a { color: var(--gold); }
+.gate-err { color: var(--bad); font-size: 14px; margin: 0 0 12px; }
+.gate-submit { width: 100%; justify-content: center; font-size: 15px; padding: 13px; }
+
+/* Oblast odeslání výsledků */
+.submit-wrap {
+  margin: 32px 0 0;
+  padding: 22px 24px;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 560px;
+}
+.submit-count { margin: 0; font-size: 14px; color: var(--muted); }
+.submit-btn { font-size: 15px; padding: 12px 20px; }
+.submit-msg { margin: 0; font-size: 14px; color: var(--bad); }
 </style>
 </head>
 <body>
@@ -345,7 +410,7 @@ h1 {
     <div>
       <p class="eyebrow">Finanční Stratég · Adam Dvořák</p>
       <h1>Je vaše firma připravená na váš odchod?</h1>
-      <p class="lead">Dvacet tvrzení v pěti oblastech. Za pět minut uvidíte, kde je vaše firma a rodina připravená na den, kdy z firmy odejdete, a kde ne. Odpovědi zůstávají jen ve vašem prohlížeči.</p>
+      <p class="lead">Dvacet tvrzení v pěti oblastech. Za pět minut uvidíte, kde je vaše firma a rodina připravená na den, kdy z firmy odejdete, a kde ne. Výsledky dostanete na e-mail.</p>
     </div>
     <dl class="docmeta" aria-label="Údaje o testu">
       <dt>Dokument</dt><dd>Revizní protokol majitele</dd>
@@ -355,10 +420,34 @@ h1 {
     </dl>
   </header>
 
-  <div class="layout">
+  <div id="gate" class="gate-wrap">
+    <form id="gateForm" class="gate-card" novalidate>
+      <p class="eyebrow">Krok 1 ze 2</p>
+      <h2>Zadejte kontakt pro výsledky</h2>
+      <p class="gate-lead">Výsledky testu vám pošlu na e-mail. Ozvu se do 24 hodin s komentářem k vašemu stavu.</p>
+      <div class="gate-fields">
+        <label class="gate-lbl">
+          <span>Jméno a příjmení</span>
+          <input type="text" name="name" class="gate-input" required autocomplete="name" placeholder="Jan Novák">
+        </label>
+        <label class="gate-lbl">
+          <span>E-mail</span>
+          <input type="email" name="email" class="gate-input" required autocomplete="email" placeholder="jan@firma.cz">
+        </label>
+      </div>
+      <label class="gdpr-row">
+        <input type="checkbox" name="gdpr" required>
+        <span class="gdpr-text">Souhlasím se zpracováním jména a e-mailu správcem Adam Dvořák, EFA, za účelem zaslání výsledků testu a navázání kontaktu. <a href="https://www.financnistrateg.com/privacy" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>. Souhlas lze kdykoli odvolat.</span>
+      </label>
+      <p class="gate-err" id="gateErr" hidden></p>
+      <button type="submit" class="btn solid gate-submit">Zahájit test →</button>
+    </form>
+  </div>
+
+  <div class="layout" id="testLayout" hidden>
     <form id="quiz" aria-label="Test připravenosti" novalidate></form>
 
-    <aside class="result" id="result" aria-live="polite">
+    <aside class="result" id="result" hidden aria-live="polite">
       <h2>Výsledek revize</h2>
       <div class="score"><span class="big" id="score">0</span><span class="of">/ 40</span></div>
       <p class="answered" id="answered">Odpovězeno 0 z 20</p>
@@ -372,6 +461,14 @@ h1 {
     </aside>
   </div>
 
+  <div id="submitArea" hidden>
+    <div class="submit-wrap">
+      <p class="submit-count" id="submitCount">Zodpovězeno 0 z 20 otázek.</p>
+      <button type="button" class="btn solid submit-btn" id="submitBtn">Odeslat výsledky a zobrazit výsledek</button>
+      <p class="submit-msg" id="submitMsg" hidden></p>
+    </div>
+  </div>
+
   <section class="cta" aria-labelledby="ctaTitle">
     <div>
       <h2 id="ctaTitle">Kdo to vyplnil poctivě, ví o své firmě víc než většina majitelů.</h2>
@@ -383,7 +480,7 @@ h1 {
     </div>
   </section>
 
-  <p class="fine">Test je orientační. Nejde o daňové, právní ani investiční poradenství a výsledek nenahrazuje posouzení konkrétní situace. Daňové a právní kroky řešte s daňovým poradcem a advokátem. Odpovědi se nikam neodesílají.</p>
+  <p class="fine">Test je orientační. Nejde o daňové, právní ani investiční poradenství a výsledek nenahrazuje posouzení konkrétní situace. Daňové a právní kroky řešte s daňovým poradcem a advokátem.</p>
 </div>
 
 <div class="mobilebar" id="mobilebar">
@@ -427,7 +524,9 @@ h1 {
   ];
   var OPTS = [ { v: 2, label: "Ano", cls: "ano" }, { v: 1, label: "Částečně", cls: "cast" }, { v: 0, label: "Ne", cls: "ne" } ];
   var KEY = "fs-test-pripravenosti-v1";
+  var LABEL = { "2": "Ano", "1": "Částečně", "0": "Ne" };
 
+  var lead = { name: "", email: "" };
   var state = { answers: {} };
   try {
     var saved = JSON.parse(localStorage.getItem(KEY) || "null");
@@ -436,6 +535,7 @@ h1 {
 
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
+  // Build quiz form
   var form = document.getElementById("quiz");
   AREAS.forEach(function (a) {
     var sec = document.createElement("section");
@@ -470,7 +570,98 @@ h1 {
     var id = t.name.slice(1).replace("-", ".");
     state.answers[id] = Number(t.value);
     save();
-    render();
+    updateCount();
+  });
+
+  // Gate form
+  document.getElementById("gateForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nameEl = e.target.elements.name;
+    var emailEl = e.target.elements.email;
+    var gdprEl = e.target.elements.gdpr;
+    var err = document.getElementById("gateErr");
+
+    if (!nameEl.value.trim() || !emailEl.value.trim()) {
+      err.textContent = "Vyplňte prosím jméno a e-mail.";
+      err.hidden = false;
+      return;
+    }
+    if (!gdprEl.checked) {
+      err.textContent = "Pro pokračování je nutný souhlas se zpracováním osobních údajů.";
+      err.hidden = false;
+      return;
+    }
+
+    lead.name = nameEl.value.trim();
+    lead.email = emailEl.value.trim();
+    err.hidden = true;
+
+    document.getElementById("gate").hidden = true;
+    document.getElementById("testLayout").hidden = false;
+    document.getElementById("submitArea").hidden = false;
+    syncInputs();
+    updateCount();
+  });
+
+  // Submit button
+  document.getElementById("submitBtn").addEventListener("click", function () {
+    var btn = this;
+    var msg = document.getElementById("submitMsg");
+
+    var areas = AREAS.map(function (a) {
+      var sub = 0;
+      a.items.forEach(function (it) {
+        var v = state.answers[it.id];
+        if (typeof v === "number") sub += v;
+      });
+      return { name: a.name, score: sub };
+    });
+
+    var total = areas.reduce(function (sum, a) { return sum + a.score; }, 0);
+    var answered = Object.keys(state.answers).length;
+    var bandStr = total <= 15 ? "Odchod by dnes byl rizikem" : total <= 29 ? "Příprava je rozjetá" : "Připravenost je vysoká";
+
+    var details = [];
+    AREAS.forEach(function (a) {
+      a.items.forEach(function (it) {
+        var v = state.answers[it.id];
+        details.push({
+          id: it.id, area: a.name, question: it.t,
+          value: typeof v === "number" ? v : -1,
+          label: typeof v === "number" ? LABEL[String(v)] : "—"
+        });
+      });
+    });
+
+    btn.disabled = true;
+    btn.textContent = "Odesílám…";
+    msg.hidden = true;
+
+    fetch("/api/test-result", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: lead.name, email: lead.email, score: total, band: bandStr, answered: answered, areas: areas, details: details })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.ok) {
+        document.getElementById("submitArea").hidden = true;
+        document.getElementById("result").hidden = false;
+        render();
+        document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Odeslat výsledky a zobrazit výsledek";
+        msg.textContent = "Odeslání se nezdařilo. Zkuste to znovu.";
+        msg.hidden = false;
+      }
+    })
+    .catch(function () {
+      btn.disabled = false;
+      btn.textContent = "Odeslat výsledky a zobrazit výsledek";
+      msg.textContent = "Odeslání se nezdařilo. Zkuste to znovu.";
+      msg.hidden = false;
+    });
   });
 
   function syncInputs() {
@@ -480,6 +671,13 @@ h1 {
       var id = inp.name.slice(1).replace("-", ".");
       inp.checked = state.answers[id] === Number(inp.value);
     }
+  }
+
+  function updateCount() {
+    var count = Object.keys(state.answers).length;
+    var sc = document.getElementById("submitCount");
+    if (sc) sc.textContent = count < 20 ? "Zodpovězeno " + count + " z 20 otázek." : "Všechny otázky zodpovězeny. Odešlete výsledky.";
+    document.getElementById("mbScore").textContent = "Zodpovězeno " + count + " z 20";
   }
 
   function render() {
@@ -505,15 +703,12 @@ h1 {
     });
 
     document.getElementById("score").textContent = total;
-    document.getElementById("answered").textContent = "Odpovězeno " + count + " z 20" + (count < 20 && count > 0 ? ", skóre je zatím průběžné" : "");
-    document.getElementById("mbScore").textContent = "Skóre " + total + " / 40 · " + count + " z 20";
+    document.getElementById("answered").textContent = "Odpovězeno " + count + " z 20";
+    document.getElementById("mbScore").textContent = "Zodpovězeno " + count + " z 20";
 
     var band = document.getElementById("band"), bt = document.getElementById("bandTitle"), bx = document.getElementById("bandText");
     band.className = "band";
-    if (count === 0) {
-      bt.textContent = "Zatím bez odpovědí";
-      bx.textContent = "Odpovězte na tvrzení vlevo. Ano znamená 2 body, částečně 1 bod, ne 0.";
-    } else if (total <= 15) {
+    if (total <= 15) {
       band.classList.add("r");
       bt.textContent = "Odchod by dnes byl rizikem";
       bx.textContent = "Firma i rodina by váš odchod dnes těžko ustály. Většinu nejdůležitějších kroků ale jde udělat během pár měsíců.";
@@ -538,9 +733,6 @@ h1 {
     });
     document.getElementById("prioEmpty").hidden = top3.length > 0;
   }
-
-  syncInputs();
-  render();
 })();
 </script>
 </body>
