@@ -421,31 +421,7 @@ h1 {
     </dl>
   </header>
 
-  <div id="gate" class="gate-wrap">
-    <form id="gateForm" class="gate-card" novalidate>
-      <p class="eyebrow">Krok 1 ze 2</p>
-      <h2>Zadejte kontakt pro výsledky</h2>
-      <p class="gate-lead">Výsledky testu vám pošlu na e-mail.</p>
-      <div class="gate-fields">
-        <label class="gate-lbl">
-          <span>Jméno a příjmení</span>
-          <input type="text" id="gateName" name="name" class="gate-input" required autocomplete="name" placeholder="Jan Novák">
-        </label>
-        <label class="gate-lbl">
-          <span>E-mail</span>
-          <input type="email" id="gateEmail" name="email" class="gate-input" required autocomplete="email" placeholder="jan@firma.cz">
-        </label>
-      </div>
-      <label class="gdpr-row">
-        <input type="checkbox" id="gateGdpr" name="gdpr" required>
-        <span class="gdpr-text">Souhlasím se zpracováním jména a e-mailu správcem Adam Dvořák, EFA, za účelem zaslání výsledků testu a navázání kontaktu. <a href="https://www.financnistrateg.com/privacy" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>. Souhlas lze kdykoli odvolat.</span>
-      </label>
-      <p class="gate-err" id="gateErr" hidden></p>
-      <button type="button" id="gateBtn" class="btn solid gate-submit">Zahájit test →</button>
-    </form>
-  </div>
-
-  <div class="layout" id="testLayout" hidden>
+  <div class="layout" id="testLayout">
     <form id="quiz" aria-label="Test připravenosti" novalidate></form>
 
     <aside class="result" id="result" hidden aria-live="polite">
@@ -462,11 +438,32 @@ h1 {
     </aside>
   </div>
 
-  <div id="submitArea" hidden>
+  <div id="submitArea">
     <div class="submit-wrap">
-      <p class="submit-count" id="submitCount">Zodpovězeno 0 z 20 otázek.</p>
-      <button type="button" class="btn solid submit-btn" id="submitBtn">Odeslat výsledky a zobrazit výsledek</button>
-      <p class="submit-msg" id="submitMsg" hidden></p>
+      <div id="preGateState">
+        <p class="submit-count" id="submitCount">Zodpovězeno 0 z 20 otázek.</p>
+        <button type="button" class="btn solid submit-btn" id="showResultsBtn">Zobrazit výsledky →</button>
+      </div>
+      <div id="gateState" hidden>
+        <p class="gate-lead" style="margin-bottom:18px;">Výsledky vám pošlu na e-mail.</p>
+        <div class="gate-fields">
+          <label class="gate-lbl">
+            <span>Jméno a příjmení</span>
+            <input type="text" id="gateName" class="gate-input" autocomplete="name" placeholder="Jan Novák">
+          </label>
+          <label class="gate-lbl">
+            <span>E-mail</span>
+            <input type="email" id="gateEmail" class="gate-input" autocomplete="email" placeholder="jan@firma.cz">
+          </label>
+        </div>
+        <label class="gdpr-row">
+          <input type="checkbox" id="gateGdpr">
+          <span class="gdpr-text">Souhlasím se zpracováním jména a e-mailu správcem Adam Dvořák, EFA, za účelem zaslání výsledků testu a navázání kontaktu. <a href="https://www.financnistrateg.com/privacy" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>. Souhlas lze kdykoli odvolat.</span>
+        </label>
+        <p class="gate-err" id="gateErr" hidden></p>
+        <button type="button" id="gateBtn" class="btn solid gate-submit">Odeslat a zobrazit výsledky →</button>
+        <p class="submit-msg" id="submitMsg" hidden></p>
+      </div>
     </div>
   </div>
 
@@ -574,7 +571,14 @@ h1 {
     updateCount();
   });
 
-  // Gate button
+  // "Zobrazit výsledky" → reveal contact gate
+  document.getElementById("showResultsBtn").addEventListener("click", function () {
+    document.getElementById("preGateState").hidden = true;
+    document.getElementById("gateState").hidden = false;
+    document.getElementById("gateState").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  // Submit contact + show results
   document.getElementById("gateBtn").addEventListener("click", function () {
     var nameEl = document.getElementById("gateName");
     var emailEl = document.getElementById("gateEmail");
@@ -596,15 +600,6 @@ h1 {
     lead.email = emailEl.value.trim();
     err.hidden = true;
 
-    document.getElementById("gate").hidden = true;
-    document.getElementById("testLayout").hidden = false;
-    document.getElementById("submitArea").hidden = false;
-    syncInputs();
-    updateCount();
-  });
-
-  // Submit button
-  document.getElementById("submitBtn").addEventListener("click", function () {
     var btn = this;
     var msg = document.getElementById("submitMsg");
 
@@ -651,14 +646,14 @@ h1 {
         document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
       } else {
         btn.disabled = false;
-        btn.textContent = "Odeslat výsledky a zobrazit výsledek";
+        btn.textContent = "Odeslat a zobrazit výsledky →";
         msg.textContent = "Odeslání se nezdařilo. Zkuste to znovu.";
         msg.hidden = false;
       }
     })
     .catch(function () {
       btn.disabled = false;
-      btn.textContent = "Odeslat výsledky a zobrazit výsledek";
+      btn.textContent = "Odeslat a zobrazit výsledky →";
       msg.textContent = "Odeslání se nezdařilo. Zkuste to znovu.";
       msg.hidden = false;
     });
@@ -735,10 +730,13 @@ h1 {
     pe.hidden = top3.length > 0;
     if (!top3.length) {
       pe.textContent = count === 20
-        ? "Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní."
-        : 'Zatím nic. Jakmile odpovíte „ne“ nebo „částečně“, objeví se tu, čím začít.';
+        ? “Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní.”
+        : 'Zatím nic. Jakmile odpovíte „ne” nebo „částečně”, objeví se tu, čím začít.';
     }
   }
+
+  syncInputs();
+  updateCount();
 })();
 </script>
 </body>
