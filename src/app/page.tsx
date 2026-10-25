@@ -276,70 +276,8 @@ export default function Page() {
     return () => { c1(); c2(); e1(); e2(); };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* ── Floating dust particles ── */
-  const dustRef = useRef<HTMLCanvasElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroInnerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const canvas = dustRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const N = 90;
-    const particles = Array.from({ length: N }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.32,
-      vy: (Math.random() - 0.5) * 0.32,
-      r: Math.random() * 2.4 + 0.9,
-      opacity: Math.random() * 0.55 + 0.18,
-      phase: Math.random() * Math.PI * 2,
-      pSpeed: Math.random() * 0.016 + 0.005,
-    }));
-
-    let raf: number;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.phase += p.pSpeed;
-        if (p.x < -12) p.x = canvas.width + 12;
-        if (p.x > canvas.width + 12) p.x = -12;
-        if (p.y < -12) p.y = canvas.height + 12;
-        if (p.y > canvas.height + 12) p.y = -12;
-
-        const pulse = 1 + Math.sin(p.phase) * 0.38;
-        const r = p.r * pulse * 5;
-        const alpha = p.opacity * (0.75 + Math.sin(p.phase + 1.1) * 0.25);
-
-        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
-        g.addColorStop(0,    `rgba(255, 245, 220, ${alpha})`);
-        g.addColorStop(0.32, `rgba(210, 170, 100, ${alpha * 0.55})`);
-        g.addColorStop(1,    `rgba(201, 162, 96,  0)`);
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = g;
-        ctx.fill();
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
 
   /* Hero parallax — content drifts up and fades on scroll */
   useEffect(() => {
@@ -491,7 +429,6 @@ export default function Page() {
 
   return (
     <>
-      <canvas ref={dustRef} className="dust-canvas" aria-hidden="true" />
       <div id="cursor-glow" aria-hidden="true" />
       {/* ── Mobile menu overlay ── */}
       {mobileOpen && (

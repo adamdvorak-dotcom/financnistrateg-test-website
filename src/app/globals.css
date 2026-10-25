@@ -1669,20 +1669,7 @@ html.light {
   .svc-grid { grid-template-columns: 1fr; gap: 14px; }
 }
 
-/* ── Floating dust particles canvas ── */
-.dust-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
 /* ── Rebrand reduced motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .dust-canvas { display: none; }
-}
 
 /* Rebrand reduced motion */
 @media (prefers-reduced-motion: reduce) {
