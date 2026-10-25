@@ -52,6 +52,7 @@ const html = `<!DOCTYPE html>
   --sel-bg: #cda95c; --sel-fg: #0c1524; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   background: var(--paper); color: var(--ink);
