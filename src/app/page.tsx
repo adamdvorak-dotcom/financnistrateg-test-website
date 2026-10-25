@@ -671,6 +671,22 @@ export default function Page() {
       <section id="hero" ref={heroRef}>
         <div className="hero-inner" ref={heroInnerRef}>
           <div className="hero-text">
+            <div className="hero-contour" aria-hidden="true">
+              <svg viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="rgba(180,130,48,0.22)" strokeWidth="0.9">
+                  <ellipse cx="300" cy="250" rx="40" ry="24"/>
+                  <ellipse cx="300" cy="250" rx="84" ry="50"/>
+                  <ellipse cx="300" cy="250" rx="128" ry="77"/>
+                  <ellipse cx="300" cy="250" rx="174" ry="104"/>
+                  <ellipse cx="300" cy="250" rx="222" ry="133"/>
+                  <ellipse cx="300" cy="250" rx="272" ry="163"/>
+                  <ellipse cx="300" cy="250" rx="326" ry="196"/>
+                  <ellipse cx="300" cy="250" rx="384" ry="230"/>
+                  <ellipse cx="300" cy="250" rx="446" ry="268"/>
+                  <ellipse cx="300" cy="250" rx="514" ry="308"/>
+                </g>
+              </svg>
+            </div>
             <h1 className="hero-title" data-reveal>
               <span className="line"><span className="line-inner">{lang === "cs" ? h1Cs1 : h1En1}</span></span>
               <span className="line"><span className="line-inner"><em>{lang === "cs" ? h1Cs2 : h1En2}</em></span></span>
