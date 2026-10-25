@@ -2033,14 +2033,9 @@ html.js [data-reveal].is-in .section-rule { width: 100%; }
 .acc-plus::before { width: 12px; height: 1px; }
 .acc-plus::after { width: 1px; height: 12px; }
 .svc-card.is-open .acc-plus::after { transform: translate(-50%, -50%) rotate(90deg); }
-.acc-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 400ms var(--ease-out);
-}
-.svc-card.is-open .acc-body { grid-template-rows: 1fr; }
-.acc-body > div { overflow: hidden; }
+.acc-body { display: none; }
+.svc-card.is-open .acc-body { display: block; }
 .acc-body .svc-card-items { margin-top: 0; border-top: none; padding-top: 14px; padding-bottom: 8px; }
 @media (prefers-reduced-motion: reduce) {
-  .acc-body, .acc-plus::after { transition: none; }
+  .acc-plus::after { transition: none; }
 }

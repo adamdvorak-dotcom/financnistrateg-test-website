@@ -162,8 +162,7 @@ export default function Page() {
   const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
 
-  /* Service card expand */
-  const [openCard, setOpenCard] = useState<number | null>(null);
+  /* Service card expand — handled imperatively to preserve reveal animation */
 
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -582,7 +581,7 @@ export default function Page() {
             ] as { icon: React.ReactNode; title: string; desc: string; items: string[] }[]).map((svc, i) => (
               <div
                 key={i}
-                className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}${openCard === i ? " is-open" : ""}`}
+                className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}`}
                 onPointerMove={(e) => {
                   const r = e.currentTarget.getBoundingClientRect();
                   e.currentTarget.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
@@ -599,8 +598,20 @@ export default function Page() {
                 <button
                   className="acc-head"
                   type="button"
-                  onClick={() => setOpenCard(openCard === i ? null : i)}
-                  aria-expanded={openCard === i}
+                  aria-expanded="false"
+                  onClick={(e) => {
+                    const card = e.currentTarget.closest('.svc-card') as HTMLElement;
+                    const isOpen = card.classList.contains('is-open');
+                    document.querySelectorAll<HTMLElement>('.svc-card.is-open').forEach(c => {
+                      c.classList.remove('is-open');
+                      const btn = c.querySelector('.acc-head');
+                      if (btn) btn.setAttribute('aria-expanded', 'false');
+                    });
+                    if (!isOpen) {
+                      card.classList.add('is-open');
+                      e.currentTarget.setAttribute('aria-expanded', 'true');
+                    }
+                  }}
                 >
                   <span>{lang === "cs" ? "Co zahrnuje" : "What's included"}</span>
                   <span className="acc-plus" aria-hidden="true" />
