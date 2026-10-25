@@ -1781,17 +1781,16 @@ html.light {
   margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid rgba(201,162,96,0.18);
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex; flex-wrap: wrap; gap: 6px;
 }
 .svc-card-items li {
-  font-size: 13px; color: #5A4F43; line-height: 1.5;
-  padding-left: 14px; position: relative;
-}
-.svc-card-items li::before {
-  content: '';
-  position: absolute; left: 0; top: 7px;
-  width: 6px; height: 1px;
-  background: #B8922A;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.03em;
+  color: var(--accent);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(201,162,96,0.25);
+  background: rgba(201,162,96,0.06);
+  line-height: 1.4;
 }
 
 @media (max-width: 960px) {
