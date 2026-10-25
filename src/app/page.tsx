@@ -26,17 +26,17 @@ const T = {
     heroBadge: "Pro podnikatele a rodiny · Praha & online",
     heroSub: "Devět z deseti majitelů firem má osobní majetek jen v baráku. Pracuju s podnikateli a rodinami, co chtějí tohle změnit. Osmý rok v oboru, přes 165 milionů pod správou.",
     heroCta: "Zahájit rozhovor",
-    servicesTitle: "Co pro vás dělám",
-    servicesSub: "Nepracuji jako specialista na jednu věc. Pracuji jako jeden člověk, který drží celý obraz — od denního cashflow po to, co se stane, když se zítra nevrátíte domů.",
-    s1Tag: "Rodinný majetek", s1Title: "Správa a předání rodinného majetku", s1Desc: "Kde už nejde o produkty, ale o to, jak majetek držet pohromadě napříč generacemi a životními situacemi, na které se nikdo neptá, dokud nepřijdou. Pracuju diskrétně, vždy s konkrétním rodinným kontextem, ne podle šablon.",
+    servicesTitle: "Od cashflow po den, kdy se nevrátíte domů.",
+    servicesSub: "Nepracuju jako specialista na jednu věc. Držím celý obraz: co vám zůstane z firmy, kam s přebytky a kdo bude vědět, kde co je.",
+    s1Tag: "Rodinný majetek", s1Title: "Rodinný majetek a jeho předání", s1Desc: "Krizový plán, svěřenský fond, rodinná rada, prodej firmy. Věci, na které se nikdo neptá, dokud nepřijdou.",
     s1Items: ["Krizový a nástupnický plán", "Svěřenské fondy", "Rodinná rada", "Prodej firmy & exit", "Zahraniční struktury (Švýcarsko)", "Family office poradenství", "Daňová optimalizace majetku"],
-    s2Tag: "Investice", s2Title: "Investice bez iluzí", s2Desc: "Sestavuji portfolia, která dávají smysl ve vztahu k vašemu zbytku života, ne k tabulce s historickými výnosy. Žádná „investiční příležitost roku“, žádné produkty, které neumím obhájit za pět let. Diverzifikace přes třídy aktiv, jurisdikce a měny, s pravidelnou revizí.",
+    s2Tag: "Investice", s2Title: "Investice bez iluzí", s2Desc: "Portfolio, které dává smysl ke zbytku vašeho života, ne k tabulce historických výnosů. Většinu nabídek, co mi lidi posílají, končím větou: tohle ne.",
     s2Items: ["ETF & podílové fondy", "Dluhopisy & alternativní aktiva", "Private equity", "Zahraniční bankovní vztahy", "Rebalancing & reporting"],
-    s3Tag: "Strategie", s3Title: "Komplexní finanční strategie", s3Desc: "Tři vrstvy v jednom plánu: finanční (cashflow, rezervy, daně), investiční (kam s přebytky) a krizová (co když). Není to tabulka v Excelu, je to dokument, který se v rodině používá. Aktualizujeme ho průběžně, ne jednou za pět let.",
+    s3Tag: "Strategie", s3Title: "Finanční strategie", s3Desc: "Cashflow, rezervy, daně, ochrana a hypotéka jako součást celku. Jeden dokument, který se v rodině používá, ne tabulka v Excelu.",
     s3Items: ["Cashflow & rozpočet", "Pojistná ochrana", "Likvidní rezerva", "Daňová optimalizace", "Krizový scénář"],
-    s4Tag: "Financování", s4Title: "Hypotéky & financování nemovitostí", s4Desc: "Hypotéka není komodita, je to dlouhodobý kontrakt, který ovlivňuje cashflow, daně i to, co si můžete v příštích deseti letech dovolit jinde. Pomáhám hypotéku navrhnout jako součást celkové architektury, ne jako oddělenou položku.",
-    s4Items: ["Srovnání bank", "Strategie fixace", "Refinancování", "Investiční nemovitosti", "Optimalizace ve vztahu k celku"],
-    s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho — a vědět, který z nich v který rok aktivovat. Analýza odpracovaných let, doplnění chybějících dob, kombinace státního důchodu, investičního programu a dalších zdrojů.",
+    s4Tag: "Důchod", s4Title: "Důchod ze tří zdrojů", s4Desc: "V 65 mít tři příjmy místo jednoho a vědět, který kdy zapnout. Cihla vám rohlíky nezaplatí.",
+    s4Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
+    s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho — a vědět, který z nich v který rok aktivovat.",
     s5Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
     processEye: "Přístup", processTitle: "Jak spolupráce probíhá.",
     step1Num: "Krok 01", step1Title: "Bezplatná konzultace", step1Desc: "Setkáme se osobně nebo online. Představím se, zjistím vaše životní cíle a očekávání. Bez závazků, bez prodeje.",
@@ -495,7 +495,7 @@ export default function Page() {
         </div>
       </div>
 
-      {/* ── Services bento ── */}
+      {/* ── Services card grid ── */}
       <section id="services">
         <div className="container">
           <div className="section-header reveal-bold">
@@ -503,26 +503,29 @@ export default function Page() {
             <h2 className="section-title-lg">{t.servicesTitle}</h2>
             <p className="section-sub">{t.servicesSub}</p>
           </div>
-          <div className="services-list">
-            {[
-              { tag: t.s1Tag, title: t.s1Title, desc: t.s1Desc, items: t.s1Items },
-              { tag: t.s2Tag, title: t.s2Title, desc: t.s2Desc, items: t.s2Items },
-              { tag: t.s3Tag, title: t.s3Title, desc: t.s3Desc, items: t.s3Items },
-              { tag: t.s4Tag, title: t.s4Title, desc: t.s4Desc, items: t.s4Items },
-              { tag: t.s5Tag, title: t.s5Title, desc: t.s5Desc, items: t.s5Items },
-            ].map((svc, i) => (
-              <div key={i} className={`service-row reveal${i > 0 ? ` delay-${i}` : ""}`}>
-                <div className="service-row-name">{svc.title}</div>
-                <div className="service-row-rule" aria-hidden="true" />
-                <div className="service-row-content">
-                  <div className="service-row-tag">{svc.tag}</div>
-                  <p className="service-row-desc">{svc.desc}</p>
-                  <div className="wealth-tags">
-                    {svc.items.map((item: string) => (
-                      <span key={item} className="wealth-tag">{item}</span>
-                    ))}
-                  </div>
-                </div>
+          <div className="svc-grid">
+            {([
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
+                title: t.s1Title, desc: t.s1Desc,
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
+                title: t.s2Title, desc: t.s2Desc,
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
+                title: t.s3Title, desc: t.s3Desc,
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+                title: t.s4Title, desc: t.s4Desc,
+              },
+            ] as { icon: React.ReactNode; title: string; desc: string }[]).map((svc, i) => (
+              <div key={i} className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}`}>
+                <div className="svc-icon">{svc.icon}</div>
+                <div className="svc-card-title">{svc.title}</div>
+                <p className="svc-card-desc">{svc.desc}</p>
               </div>
             ))}
           </div>

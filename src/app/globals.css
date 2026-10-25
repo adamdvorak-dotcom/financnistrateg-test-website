@@ -1633,6 +1633,69 @@ body::after {
   100%{ transform: translate(0, 0); }
 }
 
+/* ── Services — warm card grid ── */
+#services {
+  background: #EEE9DF;
+  padding: 96px 0 112px;
+}
+#services::before { display: none; }
+
+#services .section-eyebrow { color: #B8922A; }
+#services .section-eyebrow::before { background: #B8922A; }
+
+#services .section-title-lg {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  color: #1A1511;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+#services .section-sub { color: #5A4F43; max-width: 620px; }
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 52px;
+}
+
+.svc-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 24px 32px;
+  box-shadow: 0 2px 16px rgba(26,21,17,0.07);
+}
+
+.svc-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: #EEE9DF;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  color: #B8922A;
+}
+
+.svc-card-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 19px; font-weight: 700;
+  line-height: 1.3; color: #1A1511;
+  margin: 0 0 10px;
+}
+
+.svc-card-desc {
+  font-size: 14px; line-height: 1.7;
+  color: #5A4F43; margin: 0;
+}
+
+@media (max-width: 960px) {
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .svc-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+
 /* Rebrand reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .hero-text::after { animation: none; opacity: 0.35; top: 12%; bottom: 12%; }
