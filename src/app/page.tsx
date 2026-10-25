@@ -73,7 +73,7 @@ const T = {
     footerTagline: "Finanční Stratég", footerReg: "Registrován u ČNB. IČO: 08406804.", footerPrivacy: "Ochrana osobních údajů", footerTerms: "Podmínky užití",
     formSending: "Odesílám…", formSent: "✓ Odesláno!",
     nlEye: "Newsletter", nlTitle: "Finanční tipy přímo do schránky.", nlSub: "Jednou měsíčně posílám krátký přehled, co se děje na trzích, jak chránit úspory a kde jsou aktuálně příležitosti. Bez spamu.", nlPh: "vas@email.cz", nlBtn: "Odebírat", nlNote: "Odhlášení jedním kliknutím kdykoliv. Žádný spam.", nlSending: "Přihlašuji…", nlDone: "✓ Přihlášeno!",
-    blogEye: "Blog", blogTitle: "Finanční vzdělávání.", blogSub: "Píšu o tématech, která řeším se svými klienty — srozumitelně, bez zbytečného žargonu.",
+    blogEye: "Blog", blogTitle: "Finanční vzdělávání.", blogSub: "Píšu o tématech, která řeším se svými klienty, srozumitelně, bez zbytečného žargonu.",
     blogReadMore: "Číst dál",
   },
   en: {
