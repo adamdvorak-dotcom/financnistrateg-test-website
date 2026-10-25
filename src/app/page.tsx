@@ -138,6 +138,74 @@ function fmt(n: number, lang: Lang) {
   return Math.round(n).toLocaleString(lang === "cs" ? "cs-CZ" : "en-US");
 }
 
+/* ── Arc ring (calc summary + test result) ── */
+function ArcRing({ pct, label }: { pct: number; label: string }) {
+  const r = 36, circ = 2 * Math.PI * r;
+  const [drawn, setDrawn] = useState(0);
+  const firstRender = useRef(true);
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; const t = setTimeout(() => setDrawn(pct), 120); return () => clearTimeout(t); }
+    setDrawn(pct);
+  }, [pct]);
+  const offset = circ * (1 - Math.min(drawn / 100, 1));
+  return (
+    <div className="arc-ring-wrap">
+      <svg viewBox="0 0 88 88" width="88" height="88" style={{ transform: "rotate(-90deg)" }} aria-hidden="true">
+        <circle cx="44" cy="44" r={r} fill="none" stroke="var(--bg-3)" strokeWidth="5" />
+        <circle cx="44" cy="44" r={r} fill="none" stroke="#C9A260" strokeWidth="5"
+          strokeLinecap="round" strokeDasharray={circ} strokeDashoffset={offset}
+          style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(0.16,1,0.3,1)" }} />
+      </svg>
+      <div className="arc-label">{label}</div>
+    </div>
+  );
+}
+
+/* ── Growth chart (invest calc) ── */
+function GrowthChart({ monthly, rate, years, init }: { monthly: number; rate: number; years: number; init: number }) {
+  const W = 280, H = 72, steps = Math.min(years, 60);
+  const pts: [number, number][] = Array.from({ length: steps + 1 }, (_, i) => {
+    const n = (i / steps) * years * 12, r = rate / 100 / 12;
+    const fv = r === 0 ? monthly * n + init : monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) + init * Math.pow(1 + r, n);
+    return [i, Math.max(0, fv)];
+  });
+  const maxFv = Math.max(...pts.map(p => p[1]), 1);
+  const xs = pts.map(([i]) => (i / steps) * W);
+  const ys = pts.map(([, fv]) => H - 6 - (fv / maxFv) * (H - 14));
+  const linePath = `M${xs[0]},${ys[0]} ` + xs.slice(1).map((x, i) => `L${x},${ys[i + 1]}`).join(" ");
+  const areaPath = linePath + ` L${W},${H} L0,${H}Z`;
+  const last = { x: xs[xs.length - 1], y: ys[ys.length - 1] };
+  return (
+    <svg className="growth-chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cgfill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#C9A260" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="#C9A260" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={areaPath} fill="url(#cgfill)" className="chart-area" />
+      <path d={linePath} stroke="#C9A260" strokeWidth="2" fill="none" className="chart-line" />
+      <circle cx={last.x} cy={last.y} r="4" fill="#C9A260" className="chart-dot" />
+    </svg>
+  );
+}
+
+/* ── Gold range slider ── */
+function GoldRange({ value, min, max, step, onChange, fmtLabel }: {
+  value: number; min: number; max: number; step: number;
+  onChange: (v: number) => void; fmtLabel?: (v: number) => string;
+}) {
+  const pct = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+  const label = fmtLabel ? fmtLabel(value) : value.toLocaleString("cs-CZ");
+  return (
+    <div className="gold-range-outer" style={{ "--pct": `${pct.toFixed(1)}%` } as React.CSSProperties}>
+      <div className="gold-bubble" style={{ left: `${pct.toFixed(1)}%` }}>{label}</div>
+      <input type="range" min={min} max={max} step={step} value={value}
+        onChange={(e) => onChange(+e.target.value)} />
+    </div>
+  );
+}
+
 function SlotNum({ value }: { value: string }) {
   return (
     <span className="slot-num">
@@ -159,6 +227,7 @@ export default function Page() {
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
   const [refDot, setRefDot] = useState(0);
   const refScrollRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState("");
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -257,6 +326,19 @@ export default function Page() {
       else io.observe(el);
     });
     return () => { obs.disconnect(); io.disconnect(); };
+  }, []);
+
+  /* Active section for nav indicator */
+  useEffect(() => {
+    const sections = ["about", "services", "calculators", "blog", "contact"];
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id); });
+      },
+      { threshold: 0.3, rootMargin: "-10% 0px -60% 0px" }
+    );
+    sections.forEach((id) => { const el = document.getElementById(id); if (el) obs.observe(el); });
+    return () => obs.disconnect();
   }, []);
 
   /* Ref dots — track horizontal scroll on mobile */
@@ -541,11 +623,11 @@ export default function Page() {
             <span className="nav-logo-name">Adam Dvořák</span><span className="nav-logo-efa">, EFA</span>
           </a>
           <ul className="nav-links">
-            <li><a href="#about">{t.navAbout}</a></li>
-            <li><a href="#services">{t.navServices}</a></li>
-            <li><a href="#calculators">{t.navCalc}</a></li>
-            <li><a href="/blog">{t.navBlog}</a></li>
-            <li><a href="#contact">{t.navContact}</a></li>
+            <li><a href="#about" className={activeSection === "about" ? "nav-active" : ""}>{t.navAbout}</a></li>
+            <li><a href="#services" className={activeSection === "services" ? "nav-active" : ""}>{t.navServices}</a></li>
+            <li><a href="#calculators" className={activeSection === "calculators" ? "nav-active" : ""}>{t.navCalc}</a></li>
+            <li><a href="/blog" className={activeSection === "blog" ? "nav-active" : ""}>{t.navBlog}</a></li>
+            <li><a href="#contact" className={activeSection === "contact" ? "nav-active" : ""}>{t.navContact}</a></li>
           </ul>
           <div className="nav-right">
             <button className="theme-btn lang-btn" onClick={toggleLang} title="Switch language">
@@ -746,7 +828,7 @@ export default function Page() {
                       <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <input type="range" min={500} max={200000} step={1} value={invMonthly} onChange={(e) => setInvMonthly(+e.target.value)} />
+                    <GoldRange value={invMonthly} min={500} max={200000} step={1} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>500 Kč</span><span>200 000 Kč</span></div>
                   </div>
                   <div>
@@ -755,7 +837,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={invRate} min={0.1} max={30} step={0.1} onChange={(e) => setInvRate(+e.target.value || 0)} />
                       <span className="field-unit">% p.a.</span>
                     </div>
-                    <input type="range" min={1} max={20} step={0.5} value={invRate} onChange={(e) => setInvRate(+e.target.value)} />
+                    <GoldRange value={invRate} min={1} max={20} step={0.5} onChange={setInvRate} fmtLabel={(v) => v + " %"} />
                     <div className="range-meta"><span>1 %</span><span>20 %</span></div>
                   </div>
                   <div>
@@ -764,7 +846,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={invYears} min={1} max={50} onChange={(e) => setInvYears(+e.target.value || 0)} />
                       <span className="field-unit">let</span>
                     </div>
-                    <input type="range" min={1} max={40} step={1} value={invYears} onChange={(e) => setInvYears(+e.target.value)} />
+                    <GoldRange value={invYears} min={1} max={40} step={1} onChange={setInvYears} fmtLabel={(v) => v + " let"} />
                     <div className="range-meta"><span>1 rok</span><span>40 let</span></div>
                   </div>
                   <div>
@@ -778,7 +860,7 @@ export default function Page() {
                       }} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <input type="range" min={0} max={100} step={1} value={invInitPos} onChange={(e) => setInvInitPos(+e.target.value)} />
+                    <GoldRange value={invInitPos} min={0} max={100} step={1} onChange={setInvInitPos} fmtLabel={() => invInit > 0 ? invInit.toLocaleString("cs-CZ") + " Kč" : "0"} />
                     <div style={{ position: "relative", height: 18, marginTop: 2 }}>
                       {([
                         { pos: 0, label: "0" },
@@ -801,13 +883,17 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="calc-result">
-                  <div className="result-label">{t.invResultLabel}</div>
-                  <div className="result-big"><span>{t.currency}</span> <SlotNum key={fmt(iFv, lang)} value={fmt(iFv, lang)} /></div>
+                  <div className="calc-result-top">
+                    <ArcRing pct={Math.min(100, iDep > 0 ? (iProfit / iFv) * 100 : 0)} label={iDep > 0 ? (iFv / iDep).toFixed(1) + "×" : "—"} />
+                    <div className="calc-result-numbers">
+                      <div className="result-label">{t.invResultLabel}</div>
+                      <div className="result-big"><span>{t.currency}</span> <SlotNum key={fmt(iFv, lang)} value={fmt(iFv, lang)} /></div>
+                    </div>
+                  </div>
+                  <GrowthChart key={`${invMonthly}-${invRate}-${invYears}-${invInit}`} monthly={invMonthly} rate={invRate} years={invYears} init={invInit} />
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
-                  <div className="result-row"><span className="result-row-k">{t.invMult}</span><span className="result-row-v">{iDep > 0 ? (iFv / iDep).toFixed(2) + "×" : "—"}</span></div>
-                  <div className="progress-track"><div className="progress-fill" style={{ width: Math.min(100, iPct) + "%", background: "var(--accent)" }} /></div>
                 </div>
               </div>
 
@@ -820,7 +906,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={mtgAmt} min={100000} step={50000} onChange={(e) => setMtgAmt(+e.target.value || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <input type="range" min={500000} max={20000000} step={100000} value={mtgAmt} onChange={(e) => setMtgAmt(+e.target.value)} />
+                    <GoldRange value={mtgAmt} min={500000} max={20000000} step={100000} onChange={setMtgAmt} fmtLabel={(v) => (v / 1000000).toFixed(1) + " mil. Kč"} />
                     <div className="range-meta"><span>500 000</span><span>20 mil.</span></div>
                   </div>
                   <div>
@@ -829,7 +915,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={mtgRate} min={0.1} max={20} step={0.1} onChange={(e) => setMtgRate(+e.target.value || 0)} />
                       <span className="field-unit">% p.a.</span>
                     </div>
-                    <input type="range" min={1} max={15} step={0.1} value={mtgRate} onChange={(e) => setMtgRate(+e.target.value)} />
+                    <GoldRange value={mtgRate} min={1} max={15} step={0.1} onChange={setMtgRate} fmtLabel={(v) => v + " %"} />
                     <div className="range-meta"><span>1 %</span><span>15 %</span></div>
                   </div>
                   <div>
@@ -838,7 +924,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={mtgYrs} min={1} max={40} onChange={(e) => setMtgYrs(+e.target.value || 0)} />
                       <span className="field-unit">let</span>
                     </div>
-                    <input type="range" min={5} max={40} step={1} value={mtgYrs} onChange={(e) => setMtgYrs(+e.target.value)} />
+                    <GoldRange value={mtgYrs} min={5} max={40} step={1} onChange={setMtgYrs} fmtLabel={(v) => v + " let"} />
                     <div className="range-meta"><span>5 let</span><span>40 let</span></div>
                   </div>
                 </div>
@@ -861,7 +947,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={retAge} min={20} max={64} onChange={(e) => setRetAge(Math.min(64, Math.max(20, +e.target.value || 35)))} />
                       <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
                     </div>
-                    <input type="range" min={20} max={64} step={1} value={retAge} onChange={(e) => setRetAge(+e.target.value)} />
+                    <GoldRange value={retAge} min={20} max={64} step={1} onChange={setRetAge} fmtLabel={(v) => v + " let"} />
                     <div className="range-meta"><span>20</span><span>64 — {retYears} {t.retYrsToRet}</span></div>
                   </div>
                   <div>
@@ -870,7 +956,7 @@ export default function Page() {
                       <input type="number" className="field-input" value={retMissingYears} min={0} max={15} onChange={(e) => setRetMissingYears(Math.min(15, Math.max(0, +e.target.value || 0)))} />
                       <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
                     </div>
-                    <input type="range" min={0} max={15} step={1} value={retMissingYears} onChange={(e) => setRetMissingYears(+e.target.value)} />
+                    <GoldRange value={retMissingYears} min={0} max={15} step={1} onChange={setRetMissingYears} fmtLabel={(v) => v + " let"} />
                     <div className="range-meta"><span>0</span><span>15 let (−{fmt(15 * 480, lang)} Kč/měs.)</span></div>
                   </div>
                   <div>
@@ -879,7 +965,7 @@ export default function Page() {
                       <input type="text" inputMode="numeric" className="field-input" value={retCurrentSavings > 0 ? retCurrentSavings.toLocaleString("cs-CZ") : ""} placeholder="0" onChange={(e) => setRetCurrentSavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <input type="range" min={0} max={5000000} step={50000} value={retCurrentSavings} onChange={(e) => setRetCurrentSavings(+e.target.value)} />
+                    <GoldRange value={retCurrentSavings} min={0} max={5000000} step={50000} onChange={setRetCurrentSavings} fmtLabel={(v) => v === 0 ? "0" : (v / 1000).toFixed(0) + " tis. Kč"} />
                     <div className="range-meta"><span>0</span><span>5 mil.</span></div>
                   </div>
                   <div>
@@ -888,7 +974,7 @@ export default function Page() {
                       <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString("cs-CZ")} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <input type="range" min={0} max={50000} step={500} value={retMonthlySavings} onChange={(e) => setRetMonthlySavings(+e.target.value)} />
+                    <GoldRange value={retMonthlySavings} min={0} max={50000} step={500} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>0</span><span>50 000 Kč</span></div>
                   </div>
                   <div>
@@ -897,7 +983,7 @@ export default function Page() {
                       <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString("cs-CZ")} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <input type="range" min={15000} max={150000} step={1000} value={retDesiredPension} onChange={(e) => setRetDesiredPension(+e.target.value)} />
+                    <GoldRange value={retDesiredPension} min={15000} max={150000} step={1000} onChange={setRetDesiredPension} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>15 000</span><span>150 000 Kč</span></div>
                   </div>
                 </div>
