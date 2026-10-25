@@ -69,7 +69,7 @@ const T = {
     refEye: "Reference", refTitle: "Co říkají klienti.",
     contactSub: "První konzultace je vždy zdarma a bez závazků. Napište mi nebo rovnou zavolejte.",
     ctLocation: "Lokace", ctLocationVal: "Praha & celá ČR (online)", ctOffice: "Kancelář", ctOfficeVal: "Salvátorská 931/8, 110 00 Praha 1-Staré Město",
-    fName: "Jméno", fNamePh: "Jan Novák", fPhone: "Telefon", fTopic: "Téma", fTopicPh: "Firma, rodina, nebo obojí?", fMsg: "Zpráva", fMsgPh: "Klidně neformálně — kde jste teď a co byste chtěli jinak.", fSubmit: "Odeslat zprávu",
+    fName: "Jméno", fNamePh: "Jan Novák", fPhone: "Telefon", fTopic: "Téma", fTopicPh: "Firma, rodina, nebo obojí?", fMsg: "Zpráva", fMsgPh: "Klidně neformálně, kde jste teď a co byste chtěli jinak.", fSubmit: "Odeslat zprávu",
     footerTagline: "Finanční Stratég", footerReg: "Registrován u ČNB.", footerPrivacy: "Ochrana osobních údajů", footerTerms: "Podmínky užití",
     formSending: "Odesílám…", formSent: "✓ Odesláno!",
     nlEye: "Newsletter", nlTitle: "Finanční tipy přímo do schránky.", nlSub: "Jednou měsíčně posílám krátký přehled — co se děje na trzích, jak chránit úspory a kde jsou aktuálně příležitosti. Bez spamu.", nlPh: "vas@email.cz", nlBtn: "Odebírat", nlNote: "Odhlášení jedním kliknutím kdykoliv. Žádný spam.", nlSending: "Přihlašuji…", nlDone: "✓ Přihlášeno!",
@@ -1070,8 +1070,8 @@ export default function Page() {
               </div>
               <p className="bk-desc">
                 {lang === "cs"
-                  ? "První setkání je zdarma. Řeknete mi, kde jste, já vám řeknu, jak to vidím."
-                  : "The first meeting is free. Tell me where you are, I'll tell you how I see it."}
+                  ? "Ukážu vám, jak pracuji. Chci hlavně slyšet vás — co řešíte, co nefunguje. Primárně si musíme sednout."
+                  : "I'll show you how I work. Mostly I want to hear you — what you're dealing with, what isn't working. We just need to click."}
               </p>
               <button
                 className="btn-primary bk-btn"
