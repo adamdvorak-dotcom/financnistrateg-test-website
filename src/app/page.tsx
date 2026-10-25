@@ -65,7 +65,7 @@ const T = {
     aboutP4: "Pro klienta to znamená pomalý začátek a dlouhý vztah. První schůzka není o produktech, je o tom, jestli si rozumíme. Pak přichází analýza, plán, realizace. A pak roky práce, kdy plán dotahujeme podle toho, jak se mění váš život a svět kolem.",
     aboutP5: "Pracuji s lidmi, ne s portfolii. Své klienty znám jménem, jejich děti taky, někdy i jejich účetní. Když mi v neděli večer někdo napíše, že prodává firmu nebo že lékař přinesl zprávu, kterou nečekal, ozvu se.",
     aboutP6: "To je celý rozdíl.",
-    tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag3: "Nezávislý", tag4: "Investiční specialista", tag5: "Hypoteční expert",
+    tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag4: "Investiční specialista", heroCtaProcess: "Jak pracuju",
     refEye: "Reference", refTitle: "Co říkají klienti.",
     contactSub: "První konzultace je vždy zdarma a bez závazků. Napište mi nebo rovnou zavolejte.",
     ctLocation: "Lokace", ctLocationVal: "Praha & celá ČR (online)", ctOffice: "Kancelář", ctOfficeVal: "Salvátorská 931/8, 110 00 Praha 1-Staré Město",
@@ -119,7 +119,7 @@ const T = {
     aboutP4: "For the client this means a slow start and a long relationship. The first meeting is not about products, it is about whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
     aboutP5: "I work with people, not portfolios. I know my clients by name, their children too, sometimes their accountant as well. When someone writes to me on a Sunday evening that they are selling their company or that a doctor has delivered news they did not expect, I respond.",
     aboutP6: "That is the whole difference.",
-    tag1: "Certified Advisor", tag2: "CNB Registered", tag3: "Independent", tag4: "Investment Specialist", tag5: "Mortgage Expert",
+    tag1: "Certified Advisor", tag2: "CNB Registered", tag4: "Investment Specialist", heroCtaProcess: "How I work",
     refEye: "Testimonials", refTitle: "What clients say.",
     contactSub: "The first consultation is always free and without obligation. Write to me or call directly.",
     ctLocation: "Location", ctLocationVal: "Prague & Czech Republic (online)", ctOffice: "Office", ctOfficeVal: "Salvátorská 931/8, 110 00 Prague 1 – Old Town",
@@ -498,9 +498,9 @@ export default function Page() {
                 <span>{t.heroCta}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
-              <a href="#calculators" className="btn-ghost">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
-                <span>{t.navCalc}</span>
+              <a href="#process" className="btn-ghost">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>{t.heroCtaProcess}</span>
               </a>
             </div>
           </div>
@@ -873,7 +873,7 @@ export default function Page() {
               <p className="about-text">{t.aboutP5}</p>
               <p className="about-text about-text-strong">{t.aboutP6}</p>
               <div className="about-tags">
-                {[t.tag1, t.tag2, t.tag3, t.tag4, t.tag5].map((tag) => (
+                {[t.tag1, t.tag2, t.tag4].map((tag) => (
                   <span key={tag} className="about-tag">{tag}</span>
                 ))}
               </div>
