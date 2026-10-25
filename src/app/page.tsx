@@ -235,6 +235,7 @@ export default function Page() {
   const [refDot, setRefDot] = useState(0);
   const refScrollRef = useRef<HTMLDivElement>(null);
   const dustCanvasRef = useRef<HTMLCanvasElement>(null);
+  const contourCanvasRef = useRef<HTMLCanvasElement>(null);
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -287,6 +288,44 @@ export default function Page() {
     html.lang = lang;
   }, [lang]);
 
+
+  /* Animated contour lines — hero left panel */
+  useEffect(() => {
+    const canvas = contourCanvasRef.current;
+    if (!canvas || window.innerWidth < 640) return;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const W = canvas.width, H = canvas.height;
+    const cx = W * 0.44, cy = H * 0.52;
+    const radii = [44, 86, 130, 178, 230, 288, 352, 424];
+    let t = 0, raf: number;
+    const tick = () => {
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = "rgba(180,130,48,0.21)";
+      ctx.lineWidth = 0.9;
+      radii.forEach((baseR, i) => {
+        const s = i * 0.83;
+        ctx.beginPath();
+        for (let j = 0; j <= 160; j++) {
+          const a = (j / 160) * Math.PI * 2;
+          const r = baseR
+            + baseR * 0.11 * Math.sin(3 * a + t * 0.22 + s * 1.1)
+            + baseR * 0.07 * Math.sin(5 * a + t * 0.17 + s * 0.9)
+            + baseR * 0.04 * Math.cos(7 * a + t * 0.30 + s * 2.3);
+          const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
+          j === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      });
+      t += 0.007;
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   /* Dust particles on curtain canvas */
   useEffect(() => {
@@ -671,22 +710,7 @@ export default function Page() {
       <section id="hero" ref={heroRef}>
         <div className="hero-inner" ref={heroInnerRef}>
           <div className="hero-text">
-            <div className="hero-contour" aria-hidden="true">
-              <svg viewBox="0 0 600 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="rgba(180,130,48,0.22)" strokeWidth="0.9">
-                  <ellipse cx="300" cy="250" rx="40" ry="24"/>
-                  <ellipse cx="300" cy="250" rx="84" ry="50"/>
-                  <ellipse cx="300" cy="250" rx="128" ry="77"/>
-                  <ellipse cx="300" cy="250" rx="174" ry="104"/>
-                  <ellipse cx="300" cy="250" rx="222" ry="133"/>
-                  <ellipse cx="300" cy="250" rx="272" ry="163"/>
-                  <ellipse cx="300" cy="250" rx="326" ry="196"/>
-                  <ellipse cx="300" cy="250" rx="384" ry="230"/>
-                  <ellipse cx="300" cy="250" rx="446" ry="268"/>
-                  <ellipse cx="300" cy="250" rx="514" ry="308"/>
-                </g>
-              </svg>
-            </div>
+            <canvas ref={contourCanvasRef} className="hero-contour" aria-hidden="true" />
             <h1 className="hero-title" data-reveal>
               <span className="line"><span className="line-inner">{lang === "cs" ? h1Cs1 : h1En1}</span></span>
               <span className="line"><span className="line-inner"><em>{lang === "cs" ? h1Cs2 : h1En2}</em></span></span>
