@@ -234,6 +234,7 @@ export default function Page() {
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
   const [refDot, setRefDot] = useState(0);
   const refScrollRef = useRef<HTMLDivElement>(null);
+  const dustCanvasRef = useRef<HTMLCanvasElement>(null);
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -286,6 +287,43 @@ export default function Page() {
     html.lang = lang;
   }, [lang]);
 
+
+  /* Dust particles on curtain canvas */
+  useEffect(() => {
+    if (curtainPhase === "hidden") return;
+    const canvas = dustCanvasRef.current;
+    if (!canvas || window.innerWidth < 640) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const W = canvas.width = window.innerWidth;
+    const H = canvas.height = window.innerHeight;
+    const pts = Array.from({ length: 60 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.4 + 0.4,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: -(Math.random() * 0.35 + 0.05),
+      a: Math.random(), da: (Math.random() * 0.006 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
+    }));
+    let raf: number;
+    const tick = () => {
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        p.a += p.da;
+        if (p.a <= 0 || p.a >= 1) p.da *= -1;
+        if (p.y < -8) { p.y = H + 4; p.x = Math.random() * W; }
+        if (p.x < -8) p.x = W + 4;
+        if (p.x > W + 8) p.x = -4;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(230,210,170,${Math.max(0, Math.min(1, p.a)) * 0.55})`;
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    return () => cancelAnimationFrame(raf);
+  }, [curtainPhase]);
 
   /* Intro curtain — once per session */
   useEffect(() => {
@@ -579,6 +617,7 @@ export default function Page() {
     <>
       {curtainPhase !== "hidden" && (
         <div className={`curtain${curtainPhase === "exiting" ? " curtain-exit" : ""}`} aria-hidden="true">
+          <canvas ref={dustCanvasRef} className="dust-canvas" />
           <div className="curtain-wordmark">
             <span className="curtain-name">Adam Dvořák</span>
             <span className="curtain-efa">, EFA</span>
