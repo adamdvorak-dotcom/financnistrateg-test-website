@@ -58,7 +58,10 @@ const jsonLd = {
   name: "Adam Dvořák",
   jobTitle: "Nezávislý finanční poradce, EFA",
   url: BASE,
-  sameAs: [],
+  sameAs: [
+    "https://www.linkedin.com/in/adam-dvorak-efa",
+    "https://financnistrateg.com",
+  ],
   email: "adamdvorak@financnistrateg.com",
   knowsAbout: [
     "Finanční plánování",
