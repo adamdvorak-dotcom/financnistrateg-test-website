@@ -138,7 +138,7 @@ nav {
 .btn-nav:active { transform: translateY(0); }
 
 /* mobile */
-.hamburger { display: none; align-items: center; justify-content: center; width: 34px; height: 34px; cursor: pointer; flex-direction: column; gap: 4px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--bg-1); }
+.hamburger { display: none; align-items: center; justify-content: center; width: 34px; height: 34px; cursor: pointer; flex-direction: column; gap: 4px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--bg-1); padding: 0; }
 .hamburger span { width: 16px; height: 1.5px; background: var(--text-2); border-radius: 2px; transition: all 0.2s; }
 @media (max-width: 768px) {
   .nav-links, .btn-nav { display: none; }

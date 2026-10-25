@@ -459,6 +459,7 @@ export default function Page() {
         >
           <button
             onClick={() => setMobileOpen(false)}
+            aria-label={lang === "cs" ? "Zavřít menu" : "Close menu"}
             style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", fontSize: 28, color: "var(--text-2)", cursor: "pointer" }}
           >✕</button>
           <a href="#about" onClick={() => setMobileOpen(false)} style={{ fontSize: 24, fontWeight: 700, color: "var(--text-1)", textDecoration: "none", letterSpacing: "-0.03em" }}>{t.navAbout}</a>
@@ -487,9 +488,9 @@ export default function Page() {
               {lang === "cs" ? "EN" : "CS"}
             </button>
             <a href="/konzultace" className="btn-nav">{t.navCta}</a>
-            <div className="hamburger" onClick={() => setMobileOpen(true)}>
+            <button className="hamburger" onClick={() => setMobileOpen(true)} aria-label={lang === "cs" ? "Otevřít menu" : "Open menu"} aria-expanded={mobileOpen}>
               <span /><span /><span />
-            </div>
+            </button>
           </div>
         </div>
       </nav>
@@ -1015,26 +1016,26 @@ export default function Page() {
               <form onSubmit={handleFormSubmit}>
                 <div className="form-grid">
                   <div className="form-field" style={{ marginBottom: 0 }}>
-                    <label className="form-label">{t.fName}</label>
-                    <input name="name" type="text" className="form-input" placeholder={t.fNamePh} required />
+                    <label htmlFor="f-name" className="form-label">{t.fName}</label>
+                    <input id="f-name" name="name" type="text" className="form-input" placeholder={t.fNamePh} required />
                   </div>
                   <div className="form-field" style={{ marginBottom: 0 }}>
-                    <label className="form-label">{t.fPhone}</label>
-                    <input name="phone" type="tel" className="form-input" placeholder="+420 000 000 000" />
+                    <label htmlFor="f-phone" className="form-label">{t.fPhone}</label>
+                    <input id="f-phone" name="phone" type="tel" className="form-input" placeholder="+420 000 000 000" />
                   </div>
                 </div>
                 <div style={{ height: 12 }} />
                 <div className="form-field">
-                  <label className="form-label">E-mail</label>
-                  <input name="email" type="email" className="form-input" placeholder="vas@email.cz" required />
+                  <label htmlFor="f-email" className="form-label">E-mail</label>
+                  <input id="f-email" name="email" type="email" className="form-input" placeholder="vas@email.cz" required />
                 </div>
                 <div className="form-field">
-                  <label className="form-label">{t.fTopic}</label>
-                  <input name="topic" type="text" className="form-input" placeholder={t.fTopicPh} />
+                  <label htmlFor="f-topic" className="form-label">{t.fTopic}</label>
+                  <input id="f-topic" name="topic" type="text" className="form-input" placeholder={t.fTopicPh} />
                 </div>
                 <div className="form-field">
-                  <label className="form-label">{t.fMsg}</label>
-                  <textarea name="message" className="form-textarea" placeholder={t.fMsgPh} />
+                  <label htmlFor="f-message" className="form-label">{t.fMsg}</label>
+                  <textarea id="f-message" name="message" className="form-textarea" placeholder={t.fMsgPh} />
                 </div>
                 <button
                   type="submit"
@@ -1113,7 +1114,9 @@ export default function Page() {
           <h2 className="nl-title">{t.nlTitle}</h2>
           <p className="nl-sub">{t.nlSub}</p>
           <form className="nl-form" onSubmit={handleNlSubmit} noValidate>
+            <label htmlFor="nl-email" className="sr-only">{lang === "cs" ? "E-mailová adresa" : "Email address"}</label>
             <input
+              id="nl-email"
               type="email"
               className="nl-input"
               placeholder={t.nlPh}
