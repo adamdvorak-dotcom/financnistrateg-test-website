@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
+import { articles } from "./blog/articles";
 
 /* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
@@ -160,6 +161,9 @@ export default function Page() {
   const [retMonthlySavings, setRetMonthlySavings] = useState(3000);
   const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
+
+  /* Service card expand */
+  const [openCard, setOpenCard] = useState<number | null>(null);
 
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -533,25 +537,37 @@ export default function Page() {
             {([
               {
                 icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
-                title: t.s1Title, desc: t.s1Desc,
+                title: t.s1Title, desc: t.s1Desc, items: t.s1Items,
               },
               {
                 icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
-                title: t.s2Title, desc: t.s2Desc,
+                title: t.s2Title, desc: t.s2Desc, items: t.s2Items,
               },
               {
                 icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
-                title: t.s3Title, desc: t.s3Desc,
+                title: t.s3Title, desc: t.s3Desc, items: t.s3Items,
               },
               {
                 icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-                title: t.s4Title, desc: t.s4Desc,
+                title: t.s4Title, desc: t.s4Desc, items: t.s4Items,
               },
-            ] as { icon: React.ReactNode; title: string; desc: string }[]).map((svc, i) => (
+            ] as { icon: React.ReactNode; title: string; desc: string; items: string[] }[]).map((svc, i) => (
               <div key={i} className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}`}>
                 <div className="svc-icon">{svc.icon}</div>
                 <div className="svc-card-title">{svc.title}</div>
                 <p className="svc-card-desc">{svc.desc}</p>
+                <button
+                  className="svc-card-toggle"
+                  onClick={() => setOpenCard(openCard === i ? null : i)}
+                  aria-expanded={openCard === i}
+                >
+                  {openCard === i ? (lang === "cs" ? "Méně ↑" : "Less ↑") : (lang === "cs" ? "Co zahrnuje ↓" : "What's included ↓")}
+                </button>
+                {openCard === i && (
+                  <ul className="svc-card-items">
+                    {svc.items.map((item, j) => <li key={j}>{item}</li>)}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
@@ -566,10 +582,14 @@ export default function Page() {
             <h2 className="section-title-lg">{t.processTitle}</h2>
           </div>
           <div className="process-grid">
-            <div className="process-step reveal">
+            <div className="process-step process-step--featured reveal">
+              <span className="step-featured-badge">{lang === "cs" ? "Zdarma" : "Free"}</span>
               <span className="step-num">{t.step1Num}</span>
               <div className="step-title">{t.step1Title}</div>
               <div className="step-desc">{t.step1Desc}</div>
+              <a href="/konzultace" className="step-cta">
+                {lang === "cs" ? "Sjednat termín →" : "Book a call →"}
+              </a>
             </div>
             <div className="process-step reveal delay-1">
               <span className="step-num">{t.step2Num}</span>
@@ -903,33 +923,17 @@ export default function Page() {
             <p className="blog-sub">{t.blogSub}</p>
           </div>
           <div className="blog-grid">
-            <article className="blog-card reveal">
-              <div className="blog-card-tag">{lang === "cs" ? "Správa majetku" : "Wealth Management"}</div>
-              <h3 className="blog-card-title">{lang === "cs" ? "Jak efektivně spravovat svěřenské fondy" : "How to effectively manage trust funds"}</h3>
-              <p className="blog-card-desc">{lang === "cs" ? "Svěřenský fond je právní nástroj, který umožňuje převedení majetku do fondu a jeho oddělení od osobního majetku. Klíčem k úspěchu je pečlivé plánování, výběr kvalifikovaného správce a průběžné monitorování." : "A trust fund is a legal instrument that allows assets to be transferred and separated from personal property. The key to success is careful planning, choosing a qualified trustee, and ongoing monitoring."}</p>
-              <div className="blog-card-footer">
-                <span className="blog-card-date">{lang === "cs" ? "31. března 2025" : "March 31, 2025"}</span>
-                <a href="/blog/jak-efektivne-spravovat-sverenske-fondy" className="blog-card-link">{t.blogReadMore} →</a>
-              </div>
-            </article>
-            <article className="blog-card reveal delay-1">
-              <div className="blog-card-tag">{lang === "cs" ? "Hypotéky" : "Mortgages"}</div>
-              <h3 className="blog-card-title">{lang === "cs" ? "Fixace hypotéky: 3, 5 nebo 10 let? Jak se rozhodnout" : "Mortgage fix period: 3, 5 or 10 years? How to decide"}</h3>
-              <p className="blog-card-desc">{lang === "cs" ? "Délka fixace ovlivňuje výši splátky i vaši flexibilitu. Rozebírám, co vzít v úvahu při výběru — od vývoje úrokových sazeb po plány do budoucna." : "The fix period affects your monthly payment and flexibility. I break down what to consider — from interest rate trends to your future plans."}</p>
-              <div className="blog-card-footer">
-                <span className="blog-card-date">{lang === "cs" ? "2. března 2026" : "March 2, 2026"}</span>
-                <a href="/blog/fixace-hypoteky-jak-se-rozhodnout" className="blog-card-link">{t.blogReadMore} →</a>
-              </div>
-            </article>
-            <article className="blog-card reveal delay-2">
-              <div className="blog-card-tag">{lang === "cs" ? "Důchod" : "Retirement"}</div>
-              <h3 className="blog-card-title">{lang === "cs" ? "Penzijní spoření vs. investice: co se více vyplatí?" : "Pension savings vs. investments: which pays off more?"}</h3>
-              <p className="blog-card-desc">{lang === "cs" ? "Státní příspěvky a daňové úlevy dělají z třetího pilíře atraktivní nástroj. Ale má i svá omezení. Porovnávám ho s alternativou v podobě vlastního investičního portfolia." : "State contributions and tax relief make the third pillar attractive. But it has its limits. I compare it to building your own investment portfolio."}</p>
-              <div className="blog-card-footer">
-                <span className="blog-card-date">{lang === "cs" ? "18. února 2026" : "February 18, 2026"}</span>
-                <a href="/blog/penzijni-sporeni-vs-investice" className="blog-card-link">{t.blogReadMore} →</a>
-              </div>
-            </article>
+            {articles.slice(-3).reverse().map((article, i) => (
+              <article key={article.slug} className={`blog-card reveal${i > 0 ? ` delay-${i}` : ""}`}>
+                <div className="blog-card-tag">{lang === "cs" ? article.tag : article.tagEn}</div>
+                <h3 className="blog-card-title">{lang === "cs" ? article.title : article.titleEn}</h3>
+                <p className="blog-card-desc">{lang === "cs" ? article.desc : article.descEn}</p>
+                <div className="blog-card-footer">
+                  <span className="blog-card-date">{lang === "cs" ? article.date : article.dateEn}</span>
+                  <a href={`/blog/${article.slug}`} className="blog-card-link">{t.blogReadMore} →</a>
+                </div>
+              </article>
+            ))}
           </div>
           <div style={{ textAlign: "center", marginTop: 40 }}>
             <a href="/blog" className="btn-ghost">
