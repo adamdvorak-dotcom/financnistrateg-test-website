@@ -40,7 +40,7 @@ const T = {
     s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho — a vědět, který z nich v který rok aktivovat.",
     s5Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
     processEye: "Přístup", processTitle: "Jak spolupráce probíhá.",
-    step1Num: "Krok 01", step1Title: "Bezplatná konzultace", step1Desc: "Setkáme se osobně nebo online. Představím se, zjistím vaše životní cíle a očekávání. Bez závazků, bez prodeje.",
+    step1Num: "Krok 01", step1Title: "Úvodní konzultace", step1Desc: "Ukážu vám, jak pracuji a co od spolupráce čekám já. Ale hlavně — chci slyšet vás. Kde jste, co nefunguje, co chcete jinak. Primárně si musíme sednout.",
     step2Num: "Krok 02", step2Title: "Analýza & strategie", step2Desc: "Provedu hloubkovou analýzu příjmů, výdajů, majetku i závazků a na jejím základě navrhnu strategii přímo na míru.",
     step3Num: "Krok 03", step3Title: "Finanční plán", step3Desc: "Představím konkrétní finanční plán s doporučeními a prioritami. Společně provedeme audit stávající situace a nastavíme cíle.",
     step4Num: "Krok 04", step4Title: "Konzultace & dotazy", step4Desc: "Podrobně projdeme celý plán a zodpovím veškeré otázky. Strategii doladíme podle vašich připomínek a preferencí.",
@@ -94,7 +94,7 @@ const T = {
     s5Tag: "Retirement", s5Title: "Retirement planning", s5Desc: "Retirement is not about the third pillar. It is about having three income sources at 65 instead of one — and knowing which one to activate in which year. Analysis of years worked, filling missing contribution periods, combining the state pension, investment programme and other sources.",
     s5Items: ["Third pillar", "Contribution period analysis", "State pension calculation", "Filling missing periods", "Investment programme"],
     processEye: "Process", processTitle: "How we work together.",
-    step1Num: "Step 01", step1Title: "Free Consultation", step1Desc: "We meet in person or online. I introduce myself and learn about your goals and expectations. No commitment, no sales.",
+    step1Num: "Step 01", step1Title: "Intro consultation", step1Desc: "I'll show you how I work and what I expect from the collaboration. But mostly — I want to hear you. Where you are, what isn't working, what you want to change. First, we need to click.",
     step2Num: "Step 02", step2Title: "Analysis & Strategy", step2Desc: "An in-depth analysis of your income, expenses, assets and liabilities — from which I design a strategy tailored specifically to you.",
     step3Num: "Step 03", step3Title: "Financial Plan", step3Desc: "I present a concrete financial plan with recommendations and priorities. Together we audit your current situation and set clear goals.",
     step4Num: "Step 04", step4Title: "Consultation & Q&A", step4Desc: "We review the plan in detail and I answer all your questions. We refine the strategy based on your feedback and preferences.",
@@ -1066,7 +1066,7 @@ export default function Page() {
                 <span className="bk-type">{lang === "cs" ? "Online / Praha" : "Online / Prague"}</span>
               </div>
               <div className="bk-heading">
-                {lang === "cs" ? "Bezplatná konzultace" : "Free consultation"}
+                {lang === "cs" ? "Úvodní konzultace" : "Intro consultation"}
               </div>
               <p className="bk-desc">
                 {lang === "cs"
