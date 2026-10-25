@@ -239,7 +239,7 @@ export default function Page() {
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
-  const [invRate, setInvRate] = useState(7);
+  const [invRate, setInvRate] = useState(5);
   const [invYears, setInvYears] = useState(20);
   const [invInitPos, setInvInitPos] = useState(0);
 
@@ -834,7 +834,8 @@ export default function Page() {
             <div className="section-eyebrow">{t.processEye}</div>
             <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.processTitle}</span></span></h2>
           </div>
-          <div className="process-grid">
+          <div className="process-grid" data-reveal>
+            <div className="process-line-fill" />
             <div className="process-step process-step--featured reveal">
               <span className="step-featured-badge">{lang === "cs" ? "Zdarma" : "Free"}</span>
               <span className="step-num">{t.step1Num}</span>
@@ -977,6 +978,23 @@ export default function Page() {
                       : "Average investor: DALBAR QAIB 2023 (avg. annual equity fund return over 20 yrs). Stock market: S&P 500 historical average. Numbers are illustrative and exclude inflation and taxes."
                     }</p>
                   </div>
+                  <div className="calc-cta">
+                    <div className="calc-cta-text">
+                      <b>{lang === "cs" ? "Co to znamená pro vás?" : "What does this mean for you?"}</b>
+                      <span>{lang === "cs" ? "Projdeme čísla spolu za 30 minut, bez závazku." : "We'll walk through your numbers — 30 min, no strings."}</span>
+                    </div>
+                    <a
+                      href={`/konzultace?vklad=${invMonthly}&init=${invInit}&roky=${invYears}&vynosnost=${invRate}`}
+                      className="calc-cta-btn"
+                    >
+                      {lang === "cs" ? "Zahájit rozhovor" : "Start the conversation"}
+                    </a>
+                  </div>
+                  <p className="calc-disc">
+                    {lang === "cs"
+                      ? "Ilustrační výpočet, ne předpověď. Výnosy dosažené v minulosti nejsou zárukou výnosů budoucích."
+                      : "Illustrative calculation, not a forecast. Past performance does not guarantee future returns."}
+                  </p>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
@@ -1148,11 +1166,21 @@ export default function Page() {
               <p className="about-text">{t.aboutP4}</p>
               <p className="about-text">{t.aboutP5}</p>
               <p className="about-text about-text-strong">{t.aboutP6}</p>
-              <div className="about-tags">
-                {[t.tag4, t.tag5, t.tag6, t.tag7, t.tag8, t.tag9, t.tag10].map((tag) => (
-                  <span key={tag} className="about-tag">{tag}</span>
-                ))}
+              <div className="about-facts">
+                <div className="fact">
+                  <b>EFA</b>
+                  <span>{lang === "cs" ? "Evropská finanční kvalifikace" : "European Financial Advisor"}</span>
+                </div>
+                <div className="fact">
+                  <b>{lang === "cs" ? "8. rok" : "8th year"}</b>
+                  <span>{lang === "cs" ? "v oboru" : "in the field"}</span>
+                </div>
+                <div className="fact">
+                  <b>165+ mil.</b>
+                  <span>{lang === "cs" ? "Kč ve správě" : "CZK under management"}</span>
+                </div>
               </div>
+              <span className="sign" data-reveal>Adam Dvořák</span>
             </div>
           </div>
         </div>
