@@ -20,6 +20,8 @@ export function generateStaticParams() {
   ];
 }
 
+const BASE = "https://www.financnistrateg.com";
+
 export async function generateMetadata({
   params,
 }: {
@@ -27,13 +29,40 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   if (CATEGORY_LABELS[slug]) {
-    return { title: `${CATEGORY_LABELS[slug]} — Blog — Adam Dvořák` };
+    return {
+      title: `${CATEGORY_LABELS[slug]} — Blog`,
+      alternates: { canonical: `${BASE}/blog/${slug}` },
+    };
   }
   const article = getArticle(slug);
   if (!article) return {};
   return {
-    title: `${article.title} — Adam Dvořák`,
+    title: article.title,
     description: article.desc,
+    alternates: { canonical: `${BASE}/blog/${slug}` },
+    openGraph: {
+      title: article.title,
+      description: article.desc,
+      url: `${BASE}/blog/${slug}`,
+      siteName: "Finanční Stratég",
+      locale: "cs_CZ",
+      type: "article",
+      authors: [article.author],
+      images: [
+        {
+          url: "/adam-dvorak-hero.jpg",
+          width: 1200,
+          height: 800,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.desc,
+      images: ["/adam-dvorak-hero.jpg"],
+    },
   };
 }
 
