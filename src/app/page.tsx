@@ -878,6 +878,23 @@ export default function Page() {
                     </div>
                   </div>
                   <GrowthChart key={`${invMonthly}-${invRate}-${invYears}-${invInit}`} monthly={invMonthly} rate={invRate} years={invYears} init={invInit} />
+                  <div className="cmp-bars">
+                    {([
+                      { label: lang === "cs" ? "Průměrný investor, 20 let" : "Average investor, 20 yrs", pct: 3.6, max: 10, cls: "cmp-fill-avg" },
+                      { label: lang === "cs" ? "Akciový trh, 20 let" : "Stock market, 20 yrs", pct: 10, max: 10, cls: "cmp-fill-mkt" },
+                    ] as { label: string; pct: number; max: number; cls: string }[]).map((row) => (
+                      <div key={row.cls} className="cmp-bar-row">
+                        <div className="cmp-bar-meta">
+                          <span className="cmp-bar-label">{row.label}</span>
+                          <span className="cmp-bar-pct">{row.pct.toLocaleString("cs-CZ")} %</span>
+                        </div>
+                        <div className="cmp-bar-track">
+                          <div className={`cmp-bar-fill ${row.cls}`} style={{ width: `${(row.pct / row.max) * 100}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                    <p className="cmp-note">{lang === "cs" ? "Čísla ukázková (DALBAR), zdroj ověřte před použitím." : "Illustrative numbers (DALBAR), verify before use."}</p>
+                  </div>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
