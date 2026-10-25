@@ -928,7 +928,7 @@ export default function Page() {
               <p className="about-text">{t.aboutP5}</p>
               <p className="about-text about-text-strong">{t.aboutP6}</p>
               <div className="about-tags">
-                {[t.tag1, t.tag2, t.tag4, t.tag5, t.tag6, t.tag7, t.tag8, t.tag9, t.tag10].map((tag) => (
+                {[t.tag1, t.tag4, t.tag5, t.tag6, t.tag7, t.tag8, t.tag9, t.tag10].map((tag) => (
                   <span key={tag} className="about-tag">{tag}</span>
                 ))}
               </div>
