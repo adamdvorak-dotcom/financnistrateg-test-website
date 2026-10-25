@@ -588,27 +588,20 @@ export default function Page() {
       )}
       <div id="cursor-glow" aria-hidden="true" />
       {/* ── Mobile menu overlay ── */}
-      {mobileOpen && (
-        <div
-          style={{
-            position: "fixed", inset: 0, zIndex: 200,
-            background: "var(--bg)", display: "flex",
-            flexDirection: "column", alignItems: "center",
-            justifyContent: "center", gap: 32,
-          }}
-        >
-          <button
+      <div className={`mobile-overlay${mobileOpen ? " is-open" : ""}`} aria-hidden={!mobileOpen}>
+        {([
+          { href: "#about", label: t.navAbout },
+          { href: "#services", label: t.navServices },
+          { href: "#calculators", label: t.navCalc },
+          { href: "/blog", label: t.navBlog },
+          { href: "#contact", label: t.navContact },
+        ] as { href: string; label: string }[]).map((item, i) => (
+          <a key={i} href={item.href} className="mob-item"
+            style={{ "--i": i } as React.CSSProperties}
             onClick={() => setMobileOpen(false)}
-            aria-label={lang === "cs" ? "Zavřít menu" : "Close menu"}
-            style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", fontSize: 28, color: "var(--text-2)", cursor: "pointer" }}
-          >✕</button>
-          <a href="#about" onClick={() => setMobileOpen(false)} style={{ fontSize: 24, fontWeight: 700, color: "var(--text-1)", textDecoration: "none", letterSpacing: "-0.03em" }}>{t.navAbout}</a>
-          <a href="#services" onClick={() => setMobileOpen(false)} style={{ fontSize: 24, fontWeight: 700, color: "var(--text-1)", textDecoration: "none", letterSpacing: "-0.03em" }}>{t.navServices}</a>
-          <a href="#calculators" onClick={() => setMobileOpen(false)} style={{ fontSize: 24, fontWeight: 700, color: "var(--text-1)", textDecoration: "none", letterSpacing: "-0.03em" }}>{t.navCalc}</a>
-          <a href="#blog" onClick={() => setMobileOpen(false)} style={{ fontSize: 24, fontWeight: 700, color: "var(--text-1)", textDecoration: "none", letterSpacing: "-0.03em" }}>{t.navBlog}</a>
-          <a href="#contact" onClick={() => setMobileOpen(false)} style={{ fontSize: 24, fontWeight: 700, color: "var(--text-1)", textDecoration: "none", letterSpacing: "-0.03em" }}>{t.navContact}</a>
-        </div>
-      )}
+          >{item.label}</a>
+        ))}
+      </div>
 
       {/* ── Navbar ── */}
       <nav>
@@ -628,7 +621,7 @@ export default function Page() {
               {lang === "cs" ? "EN" : "CS"}
             </button>
             <a href="/konzultace" className="btn-nav">{t.navCta}</a>
-            <button className="hamburger" onClick={() => setMobileOpen(true)} aria-label={lang === "cs" ? "Otevřít menu" : "Open menu"} aria-expanded={mobileOpen}>
+            <button className={`hamburger${mobileOpen ? " is-open" : ""}`} onClick={() => setMobileOpen(v => !v)} aria-label={lang === "cs" ? (mobileOpen ? "Zavřít menu" : "Otevřít menu") : (mobileOpen ? "Close menu" : "Open menu")} aria-expanded={mobileOpen}>
               <span /><span /><span />
             </button>
           </div>
@@ -1191,36 +1184,46 @@ export default function Page() {
             <div className="contact-form-wrap">
               <form onSubmit={handleFormSubmit}>
                 <div className="form-grid">
-                  <div className="form-field" style={{ marginBottom: 0 }}>
-                    <label htmlFor="f-name" className="form-label">{t.fName}</label>
-                    <input id="f-name" name="name" type="text" className="form-input" placeholder={t.fNamePh} required />
+                  <div className="form-field float-field" style={{ marginBottom: 0 }}>
+                    <input id="f-name" name="name" type="text" className="form-input" placeholder=" " required />
+                    <label htmlFor="f-name" className="float-label">{t.fName}</label>
                   </div>
-                  <div className="form-field" style={{ marginBottom: 0 }}>
-                    <label htmlFor="f-phone" className="form-label">{t.fPhone}</label>
-                    <input id="f-phone" name="phone" type="tel" className="form-input" placeholder="+420 000 000 000" />
+                  <div className="form-field float-field" style={{ marginBottom: 0 }}>
+                    <input id="f-phone" name="phone" type="tel" className="form-input" placeholder=" " />
+                    <label htmlFor="f-phone" className="float-label">{t.fPhone}</label>
                   </div>
                 </div>
                 <div style={{ height: 12 }} />
-                <div className="form-field">
-                  <label htmlFor="f-email" className="form-label">E-mail</label>
-                  <input id="f-email" name="email" type="email" className="form-input" placeholder="vas@email.cz" required />
+                <div className="form-field float-field">
+                  <input id="f-email" name="email" type="email" className="form-input" placeholder=" " required />
+                  <label htmlFor="f-email" className="float-label">E-mail</label>
                 </div>
-                <div className="form-field">
-                  <label htmlFor="f-topic" className="form-label">{t.fTopic}</label>
-                  <input id="f-topic" name="topic" type="text" className="form-input" placeholder={t.fTopicPh} />
+                <div className="form-field float-field">
+                  <input id="f-topic" name="topic" type="text" className="form-input" placeholder=" " />
+                  <label htmlFor="f-topic" className="float-label">{t.fTopic}</label>
                 </div>
-                <div className="form-field">
-                  <label htmlFor="f-message" className="form-label">{t.fMsg}</label>
-                  <textarea id="f-message" name="message" className="form-textarea" placeholder={t.fMsgPh} />
+                <div className="form-field float-field float-ta">
+                  <textarea id="f-message" name="message" className="form-textarea" placeholder=" " />
+                  <label htmlFor="f-message" className="float-label">{t.fMsg}</label>
                 </div>
                 <button
                   type="submit"
-                  className="form-submit"
+                  className={`form-submit${formState === "sending" ? " is-sending" : formState === "sent" ? " is-sent" : ""}`}
                   disabled={formState !== "idle"}
-                  style={formState === "sent" ? { background: "#22c55e" } : formState === "error" ? { background: "var(--red)" } : undefined}
                 >
-                  <span>{formBtnText}</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  {formState === "sent" ? (
+                    <>
+                      <svg className="check-icon" viewBox="0 0 14 10" width="14" height="10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M1 5l3.5 3.5L12 1" />
+                      </svg>
+                      <span>{lang === "cs" ? "Odesláno" : "Sent"}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{formBtnText}</span>
+                      {formState === "idle" && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>}
+                    </>
+                  )}
                 </button>
                 {formState === "sent" && (
                   <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: "var(--r-sm)", color: "#22c55e", fontSize: 14, fontWeight: 500, lineHeight: 1.5 }}>

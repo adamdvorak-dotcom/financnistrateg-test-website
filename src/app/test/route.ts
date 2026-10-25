@@ -92,14 +92,13 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .item-text { font-size: 16px; min-width: 0; }
 .item-note { display: block; margin-top: 4px; font-size: 13px; line-height: 1.4; color: var(--muted); }
 .opts { display: flex; gap: 6px; }
-.opt { position: relative; }
-.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.opt span { display: inline-block; min-width: 78px; text-align: center; padding: 8px 10px; border: 1px solid var(--rule); border-radius: var(--radius); font-size: 14px; cursor: pointer; background: var(--sheet); color: var(--ink); user-select: none; }
-.opt span:hover { border-color: var(--gold); }
-.opt input:checked + span { background: var(--sel-bg); border-color: var(--sel-bg); color: var(--sel-fg); }
-.opt.ano input:checked + span { box-shadow: inset 0 -3px 0 var(--good); }
-.opt.cast input:checked + span { box-shadow: inset 0 -3px 0 var(--warn); }
-.opt.ne input:checked + span { box-shadow: inset 0 -3px 0 var(--bad); }
+.opt-card { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px; border: 1.5px solid var(--rule); border-radius: var(--radius); cursor: pointer; background: var(--sheet); user-select: none; transition: border-color 0.15s, background 0.15s; }
+.opt-card input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.opt-circ { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--rule); transition: background 0.15s, border-color 0.15s; flex-shrink: 0; }
+.opt-txt { font-size: 13px; color: var(--ink); text-align: center; }
+.opt-card:hover { border-color: var(--gold); }
+.opt-card:has(input:checked) { background: var(--gold-soft); border-color: var(--gold); }
+.opt-card:has(input:checked) .opt-circ { background: var(--gold); border-color: var(--gold); }
 .result { position: sticky; top: calc(env(safe-area-inset-top,0px) + 20px); background: var(--sheet); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: var(--radius); padding: 22px 22px 24px; }
 .result h2 { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
 .score { display: flex; align-items: baseline; gap: 8px; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
@@ -151,13 +150,23 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .lead-form .btn[disabled] { opacity: 0.6; cursor: progress; }
 .lead-form .privacy { font-size: 12px; line-height: 1.45; }
 .lead-form .privacy a { color: var(--ink); }
+.ff { position: relative; margin-bottom: 4px; }
+.ff input[type="text"], .ff input[type="email"] { font: 400 16px/1.3 var(--font-body); padding: 12px 12px; border: 1.5px solid var(--rule); border-radius: var(--radius); background: var(--sheet); color: var(--ink); width: 100%; min-width: 0; transition: border-color 0.15s; }
+.ff input:focus-visible { outline: none; border-color: var(--gold); }
+.ff label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--muted); pointer-events: none; line-height: 1; transition: top .18s, transform .18s, font-size .18s, color .18s, padding .18s; }
+.ff input:focus ~ label, .ff input:not(:placeholder-shown) ~ label { top: 0; transform: translateY(-50%); font-size: 11px; color: var(--gold); background: var(--sheet); padding: 0 3px; left: 10px; }
+.btn.solid { overflow: hidden; position: relative; }
+.btn.solid.is-sending::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%); animation: btn-sweep 1.2s ease-in-out infinite; }
+.btn.solid.is-sent { background: var(--good) !important; border-color: var(--good) !important; }
+@keyframes btn-sweep { from { transform: translateX(-150%); } to { transform: translateX(250%); } }
+@keyframes draw-chk { to { stroke-dashoffset: 0; } }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .thanks { font-size: 14px; color: var(--ink); margin: 0 0 12px; padding: 8px 10px; border-radius: var(--radius); background: var(--gold-soft); }
 .thanks:focus { outline: none; }
 .mobilebar { display: none; position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom,0px)); background: var(--navy); color: var(--on-navy); align-items: center; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; z-index: 5; }
 .mobilebar a { color: var(--on-navy); font-size: 14px; }
 @media (max-width: 900px) { .layout { grid-template-columns: minmax(0,1fr); } .result { position: static; } .mobilebar { display: flex; } }
-@media (max-width: 640px) { .masthead { grid-template-columns: minmax(0,1fr); padding-top: 28px; } .docmeta { display: none; } .item { grid-template-columns: 36px minmax(0,1fr); } .opts { grid-column: 1/-1; } .opt { flex: 1; } .opt span { width: 100%; min-width: 0; } .cta { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 640px) { .masthead { grid-template-columns: minmax(0,1fr); padding-top: 28px; } .docmeta { display: none; } .item { grid-template-columns: 36px minmax(0,1fr); } .opts { grid-column: 1/-1; } .opt-card { flex: 1; } .cta { grid-template-columns: minmax(0,1fr); } }
 @media (prefers-reduced-motion: no-preference) { .segs i { transition: background-color 0.25s ease; } }
 </style>
 </head>
@@ -195,8 +204,8 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
         <form class="lead-form" id="leadForm" novalidate hidden>
           <strong class="lead-title">Hotovo, výsledek je připravený.</strong>
           <p>Napište mi jméno a e-mail a hned se vám ukáže. Do pár dnů vám k němu napíšu pár vět osobně.</p>
-          <label class="field" for="leadName">Jméno<input type="text" id="leadName" name="jmeno" autocomplete="name" required></label>
-          <label class="field" for="leadEmail">E-mail<input type="email" id="leadEmail" name="email" autocomplete="email" inputmode="email" required></label>
+          <div class="ff"><input type="text" id="leadName" name="jmeno" autocomplete="name" required placeholder=" "><label for="leadName">Jméno</label></div>
+          <div class="ff"><input type="email" id="leadEmail" name="email" autocomplete="email" inputmode="email" required placeholder=" "><label for="leadEmail">E-mail</label></div>
           <label class="hp" aria-hidden="true">Web<input type="text" id="leadHp" name="web" tabindex="-1" autocomplete="off"></label>
           <label class="check" for="leadNews"><input type="checkbox" id="leadNews" name="newsletter"><span>Občas mi pošlete i něco dalšího pro majitele firem.</span></label>
           <p class="err" id="leadErr" role="alert" hidden></p>
@@ -295,7 +304,7 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       var html = '<span class="item-no">' + it.id + '</span><span class="item-text" id="t-' + name + '">' + it.t + (it.n ? '<span class="item-note">' + it.n + '</span>' : '') + '</span><div class="opts">';
       OPTS.forEach(function (o) {
         var id = name + "-" + o.v;
-        html += '<label class="opt ' + o.cls + '" for="' + id + '"><input type="radio" id="' + id + '" name="' + name + '" value="' + o.v + '"><span>' + o.label + '</span></label>';
+        html += '<label class="opt-card ' + o.cls + '" for="' + id + '"><input type="radio" id="' + id + '" name="' + name + '" value="' + o.v + '"><span class="opt-circ"></span><span class="opt-txt">' + o.label + '</span></label>';
       });
       html += "</div>";
       fs.innerHTML = html;
@@ -394,7 +403,7 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       areas.push({ name: a.name, score: sub });
     });
     weak.sort(function (x, y) { return (x.v - y.v) || (y.it.w - x.it.w); });
-    return { name: name, email: email, score: total, band: document.getElementById("bandTitle").textContent, answered: Object.keys(state.answers).length, areas: areas, details: details };
+    return { name: name, email: mail, score: total, band: document.getElementById("bandTitle").textContent, answered: Object.keys(state.answers).length, areas: areas, details: details };
   }
   function sendLead(payload) {
     return fetch(LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).then(function (r) { if (!r.ok) { throw new Error("HTTP " + r.status); } return r; });
@@ -418,10 +427,15 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
     if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email)) { fail("Zkontrolujte prosím e-mail.", mailEl); return; }
     if (document.getElementById("leadHp").value) { unlock(); return; }
     btn.disabled = true;
+    btn.classList.add('is-sending');
     btn.textContent = "Odesílám…";
     sendLead(buildPayload(name, email, document.getElementById("leadNews").checked)).then(function () {
-      unlock();
+      btn.classList.remove('is-sending');
+      btn.classList.add('is-sent');
+      btn.innerHTML = '<svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5l3.5 3.5L12 1" stroke-dasharray="17" stroke-dashoffset="17" style="animation:draw-chk .4s ease-out both"/></svg>';
+      setTimeout(unlock, 700);
     }).catch(function () {
+      btn.classList.remove('is-sending');
       attempts += 1;
       btn.disabled = false;
       btn.textContent = "Ukázat výsledek";
