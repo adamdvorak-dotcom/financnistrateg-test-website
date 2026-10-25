@@ -297,8 +297,8 @@ export default function Page() {
       y: Math.random() * window.innerHeight,
       vx: (Math.random() - 0.5) * 0.32,
       vy: (Math.random() - 0.5) * 0.32,
-      r: Math.random() * 1.6 + 0.5,
-      opacity: Math.random() * 0.32 + 0.06,
+      r: Math.random() * 2.4 + 0.9,
+      opacity: Math.random() * 0.55 + 0.18,
       phase: Math.random() * Math.PI * 2,
       pSpeed: Math.random() * 0.016 + 0.005,
     }));
@@ -316,12 +316,12 @@ export default function Page() {
         if (p.y > canvas.height + 12) p.y = -12;
 
         const pulse = 1 + Math.sin(p.phase) * 0.38;
-        const r = p.r * pulse * 3.5;
-        const alpha = p.opacity * (0.7 + Math.sin(p.phase + 1.1) * 0.3);
+        const r = p.r * pulse * 5;
+        const alpha = p.opacity * (0.75 + Math.sin(p.phase + 1.1) * 0.25);
 
         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
-        g.addColorStop(0,    `rgba(255, 242, 210, ${alpha})`);
-        g.addColorStop(0.38, `rgba(201, 162, 96,  ${alpha * 0.38})`);
+        g.addColorStop(0,    `rgba(255, 245, 220, ${alpha})`);
+        g.addColorStop(0.32, `rgba(210, 170, 100, ${alpha * 0.55})`);
         g.addColorStop(1,    `rgba(201, 162, 96,  0)`);
 
         ctx.beginPath();
