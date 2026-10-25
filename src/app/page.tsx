@@ -1453,7 +1453,7 @@ export default function Page() {
         </div>
       </footer>
 
-      {/* ── Floating contact pill ── */}
+      {/* ── Floating contact pill (desktop) ── */}
       <a
         href="#contact"
         className={`float-pill${pillVisible ? " show" : ""}`}
@@ -1462,6 +1462,12 @@ export default function Page() {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <span className="float-pill-label">{lang === "cs" ? "Napište mi" : "Contact me"}</span>
       </a>
+
+      {/* ── Mobile CTA bar ── */}
+      <div className={`cta-bar${pillVisible ? " show" : ""}`}>
+        <span className="cta-bar-text">{lang === "cs" ? "Zahájit rozhovor — první schůzka zdarma" : "Start the conversation — first meeting free"}</span>
+        <a href="/konzultace" className="cta-bar-btn">{lang === "cs" ? "Sjednat termín →" : "Book a call →"}</a>
+      </div>
 
     </>
   );

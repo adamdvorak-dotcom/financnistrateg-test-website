@@ -13,43 +13,28 @@ const html = `<!DOCTYPE html>
 <link rel="canonical" href="https://www.financnistrateg.com/test">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@500;600;700&family=Jost:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600&display=swap">
 <style>
 :root {
-  --paper: #f4f5f7;
-  --sheet: #ffffff;
-  --ink: #142033;
-  --muted: #586274;
-  --rule: #d8dce3;
-  --navy: #1b2a44;
-  --gold: #8f6f27;
-  --gold-soft: rgba(143, 111, 39, 0.12);
-  --seg-off: #e3e6ec;
+  --paper: #F0EBE0;
+  --sheet: #FCFBF8;
+  --ink: #1A1511;
+  --muted: #5F5347;
+  --rule: rgba(26,21,17,0.14);
+  --navy: #0C1F3A;
+  --gold: #C9A260;
+  --gold-deep: #8a6a2e;
+  --gold-soft: rgba(201,162,96,0.15);
+  --seg-off: rgba(26,21,17,0.10);
   --good: #2f6b4f;
-  --warn: #8f6413;
+  --warn: #8a6a2e;
   --bad: #9b3b32;
-  --on-navy: #f3efe4;
-  --sel-bg: #1b2a44;
-  --sel-fg: #f3efe4;
-  --font-display: "Cormorant Garant", "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-body: "Jost", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --radius: 6px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0c1524; --sheet: #121d30; --ink: #ece7da; --muted: #a5adbb;
-    --rule: #26344c; --navy: #1c2d4a; --gold: #cda95c;
-    --gold-soft: rgba(205,169,92,0.14); --seg-off: #233149;
-    --good: #74c39a; --warn: #dcae52; --bad: #e2817a; --on-navy: #f3efe4;
-    --sel-bg: #cda95c; --sel-fg: #0c1524; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0c1524; --sheet: #121d30; --ink: #ece7da; --muted: #a5adbb;
-  --rule: #26344c; --navy: #1c2d4a; --gold: #cda95c;
-  --gold-soft: rgba(205,169,92,0.14); --seg-off: #233149;
-  --good: #74c39a; --warn: #dcae52; --bad: #e2817a; --on-navy: #f3efe4;
-  --sel-bg: #cda95c; --sel-fg: #0c1524; color-scheme: dark;
+  --on-navy: #F5F2EC;
+  --sel-bg: #8a6a2e;
+  --sel-fg: #F5F2EC;
+  --font-display: "Lora", Georgia, serif;
+  --font-body: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --radius: 8px;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -63,7 +48,7 @@ body {
 .masthead {
   display: grid; grid-template-columns: minmax(0,1fr) auto;
   gap: 24px; align-items: end; padding-block: 40px 28px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
 .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin: 0 0 10px; }
 h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5.2vw,56px); line-height: 1.04; letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance; }
@@ -77,14 +62,14 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .back-link:hover { color: var(--ink); }
 .btn { appearance: none; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 500 14px/1 var(--font-body); letter-spacing: 0.04em; padding: 11px 16px; border-radius: var(--radius); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 .btn:hover { background: var(--gold-soft); }
-.btn.solid { background: var(--ink); color: var(--paper); }
-.btn.solid:hover { background: var(--gold); border-color: var(--gold); color: var(--paper); }
-.btn.solid.large { font-size: 17px; padding: 15px 36px; letter-spacing: 0.03em; }
+.btn.solid { background: var(--gold); color: var(--ink); border-color: var(--gold); border-radius: 999px; }
+.btn.solid:hover { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--on-navy); }
+.btn.solid.large { font-size: 17px; padding: 15px 36px; letter-spacing: 0.03em; border-radius: 999px; }
 .btn:focus-visible, .opt input:focus-visible + span, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .layout { display: grid; grid-template-columns: minmax(0,1fr) 360px; gap: 40px; align-items: start; margin-top: 32px; }
 .section { margin-bottom: 36px; }
 .section-head { display: flex; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--rule); padding-bottom: 8px; margin-bottom: 4px; }
-.section-no { font-family: var(--font-display); font-size: 30px; font-weight: 600; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
+.section-no { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: var(--ink); font-family: var(--font-display); font-size: 15px; font-weight: 700; flex-shrink: 0; line-height: 1; }
 .section-head h2 { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin: 0; line-height: 1.15; }
 .section-head .pts { margin-left: auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .item { padding: 16px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 44px minmax(0,1fr) auto; gap: 8px 16px; align-items: center; }
@@ -92,14 +77,13 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .item-text { font-size: 16px; min-width: 0; }
 .item-note { display: block; margin-top: 4px; font-size: 13px; line-height: 1.4; color: var(--muted); }
 .opts { display: flex; gap: 6px; }
-.opt-card { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px; border: 1.5px solid var(--rule); border-radius: var(--radius); cursor: pointer; background: var(--sheet); user-select: none; transition: border-color 0.15s, background 0.15s; }
+.opt-card { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; padding: 9px 12px; border: 1px solid rgba(26,21,17,.18); border-radius: 999px; cursor: pointer; background: var(--sheet); user-select: none; transition: border-color 0.15s, background 0.15s, color 0.15s; font-weight: 500; }
 .opt-card input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-.opt-circ { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--rule); transition: background 0.15s, border-color 0.15s; flex-shrink: 0; }
-.opt-txt { font-size: 13px; color: var(--ink); text-align: center; }
+.opt-circ { display: none; }
+.opt-txt { font-size: 13px; color: inherit; }
 .opt-card:hover { border-color: var(--gold); }
-.opt-card:has(input:checked) { background: var(--gold-soft); border-color: var(--gold); }
-.opt-card:has(input:checked) .opt-circ { background: var(--gold); border-color: var(--gold); }
-.result { position: sticky; top: calc(env(safe-area-inset-top,0px) + 20px); background: var(--sheet); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: var(--radius); padding: 22px 22px 24px; }
+.opt-card:has(input:checked) { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--sel-fg); }
+.result { position: sticky; top: calc(env(safe-area-inset-top,0px) + 20px); background: var(--sheet); border: 1px solid rgba(201,162,96,0.22); border-radius: 16px; padding: 22px 22px 24px; box-shadow: 0 2px 20px rgba(26,21,17,0.06); }
 .result h2 { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
 .score { display: flex; align-items: baseline; gap: 8px; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
 .score .big { font-size: 68px; font-weight: 600; line-height: 0.95; }
@@ -160,6 +144,8 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .btn.solid.is-sent { background: var(--good) !important; border-color: var(--good) !important; }
 @keyframes btn-sweep { from { transform: translateX(-150%); } to { transform: translateX(250%); } }
 @keyframes draw-chk { to { stroke-dashoffset: 0; } }
+#topBar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); width: 0%; z-index: 100; transition: width 0.4s ease; pointer-events: none; }
+.progress-pill { display: inline-flex; align-items: center; background: var(--gold-soft); border: 1px solid rgba(201,162,96,0.25); border-radius: 100px; padding: 5px 14px; margin: 16px 0 28px; font-size: 12px; font-weight: 600; color: var(--gold-deep); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .thanks { font-size: 14px; color: var(--ink); margin: 0 0 12px; padding: 8px 10px; border-radius: var(--radius); background: var(--gold-soft); }
 .thanks:focus { outline: none; }
@@ -171,6 +157,7 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 </style>
 </head>
 <body>
+<div id="topBar" aria-hidden="true"></div>
 <div class="wrap">
   <header class="masthead">
     <div>
@@ -185,6 +172,8 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       <dt>Čas</dt><dd>5 minut</dd>
     </dl>
   </header>
+
+  <p class="progress-pill" id="progressPill" hidden aria-live="polite">Odpovězeno <span id="pillCount">0</span> z 20</p>
 
   <div class="gate" id="gate">
     <p class="gate-hint">Odpovídáte sami za sebe. Žádné správné nebo špatné odpovědi, jen upřímné. Na konci uvidíte, kde jsou největší mezery, a tři kroky, kterými začít.</p>
@@ -234,7 +223,7 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       <p>Starám se o majetek majitelů firem a jejich rodin. Řešíme spolu, jak si z firmy vybírat peníze, co postavit vedle ní a jak ji jednou prodat nebo předat. Daně řeší daňový poradce a právo advokát. Já hlídám, aby to celé dávalo smysl. Na úvodním rozhovoru se nic neprodává.</p>
     </div>
     <div>
-      <a class="btn" href="/konzultace">Domluvit úvodní rozhovor</a>
+      <a class="btn" href="/konzultace">Zahájit rozhovor →</a>
       <span class="site">financnistrateg.com</span>
     </div>
   </section>
@@ -353,6 +342,11 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
     });
     document.getElementById("score").textContent = total;
     document.getElementById("answered").textContent = "Odpovězeno " + count + " z 20" + (count < 20 && count > 0 ? ", skóre je zatím průběžné" : "");
+    var topBar = document.getElementById("topBar");
+    if (topBar) topBar.style.width = (count / 20 * 100) + "%";
+    var pill = document.getElementById("progressPill"), pillCount = document.getElementById("pillCount");
+    if (pill) pill.hidden = count === 0;
+    if (pillCount) pillCount.textContent = count;
     document.getElementById("mbScore").textContent = locked ? "Odpovězeno " + count + " z 20" : "Skóre " + total + " / 40 · " + count + " z 20";
     document.getElementById("resultBody").hidden = locked;
     document.getElementById("lockBox").hidden = !locked;

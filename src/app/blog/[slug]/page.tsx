@@ -1080,10 +1080,19 @@ function ArticleContent({ slug }: { slug: string }) {
           Zjednodušeně: čím více let odvádíte a čím vyšší jsou vaše evidované příjmy v systému ČSSZ,
           tím vyšší důchod dostanete. Oba faktory hrají roli.
         </p>
+        <div className="stat">
+          <div className="stat-cell">
+            <b>22 000 Kč</b>
+            <span>Průměrný starobní důchod</span>
+          </div>
+          <div className="stat-cell">
+            <b>14–15 tis.</b>
+            <span>OSVČ na minimálních odvodech</span>
+          </div>
+        </div>
         <p>
           Pokud platíte minimální odvody pětadvacet let, vaše evidované příjmy jsou minimální.
-          Státní důchod bude odpovídající. Dnešní průměrný starobní důchod je kolem 22 000 Kč
-          měsíčně. OSVČ s minimálními odvody se pohybuje kolem čtrnácti, patnácti tisíc.
+          Státní důchod bude odpovídající — OSVČ s minimálními odvody se pohybuje kolem čtrnácti, patnácti tisíc korun měsíčně.
         </p>
 
         <h2>Proč to OSVČ dělají</h2>
@@ -1219,6 +1228,7 @@ export default async function ArticlePage({
 
   return (
     <>
+      <div className="read-progress-bar" id="readProgressBar" aria-hidden="true" />
       {/* ── Nav ── */}
       <nav>
         <div className="container nav-inner">
@@ -1262,11 +1272,11 @@ export default async function ArticlePage({
 
             <div className="article-cta">
               <div className="article-cta-text">
-                <div className="section-eyebrow" style={{ marginBottom: 8 }}>Konzultace</div>
-                <p>Chcete toto téma probrat osobně? První konzultace je zdarma a bez závazků.</p>
+                <div className="section-eyebrow" style={{ marginBottom: 8 }}>Osobní rozhovor</div>
+                <p>Chcete vědět, jak to vyjde u vás? První schůzka je zdarma a bez závazku.</p>
               </div>
               <Link href="/konzultace" className="btn-primary">
-                <span>Sjednat konzultaci</span>
+                <span>Zahájit rozhovor</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </Link>
             </div>
@@ -1286,6 +1296,65 @@ export default async function ArticlePage({
           </div>
         </div>
       </footer>
+
+      {/* ── Sticky CTA bar ── */}
+      <div className="cta-bar" id="ctaBar">
+        <span className="cta-bar-text">Chcete probrat vaši situaci osobně?</span>
+        <Link href="/konzultace" className="cta-bar-btn">Zahájit rozhovor →</Link>
+      </div>
+
+      {/* ── Client scripts: progress, anchors, CTA bar ── */}
+      <script dangerouslySetInnerHTML={{ __html: `
+        (function() {
+          // Reading progress bar
+          var bar = document.getElementById('readProgressBar');
+          var article = document.querySelector('.article-body');
+          function updateProgress() {
+            if (!bar || !article) return;
+            var rect = article.getBoundingClientRect();
+            var total = rect.height - window.innerHeight;
+            var scrolled = -rect.top;
+            bar.style.width = Math.max(0, Math.min(100, total > 0 ? (scrolled / total) * 100 : 0)) + '%';
+          }
+          window.addEventListener('scroll', updateProgress, { passive: true });
+          updateProgress();
+
+          // Anchor copy links on h2
+          document.querySelectorAll('.article-body h2').forEach(function(h2) {
+            var txt = h2.textContent || '';
+            var id = txt.toLowerCase()
+              .replace(/[^a-z0-9\\u00C0-\\u024F\\s-]/g, '')
+              .replace(/\\s+/g, '-')
+              .replace(/-+/g, '-')
+              .slice(0, 60);
+            h2.id = id;
+            var a = document.createElement('a');
+            a.href = '#' + id;
+            a.className = 'anchor-link';
+            a.title = 'Kopírovat odkaz';
+            a.innerHTML = '#';
+            a.addEventListener('click', function(e) {
+              e.preventDefault();
+              var url = location.href.split('#')[0] + '#' + id;
+              navigator.clipboard && navigator.clipboard.writeText(url);
+              history.pushState(null, '', '#' + id);
+            });
+            h2.insertBefore(a, h2.firstChild);
+          });
+
+          // CTA bar: show after first scroll, hide near footer
+          var ctaBar = document.getElementById('ctaBar');
+          var footer = document.querySelector('footer');
+          function updateCtaBar() {
+            if (!ctaBar) return;
+            var scrolled = window.scrollY > 200;
+            var nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight + 60;
+            ctaBar.classList.toggle('show', scrolled && !nearFooter);
+          }
+          window.addEventListener('scroll', updateCtaBar, { passive: true });
+          updateCtaBar();
+        })();
+      ` }} />
     </>
   );
 }
