@@ -1713,30 +1713,32 @@ html.light {
   transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-/* Shimmer sweep */
+/* Spotlight effect (Effect 09) */
+.svc-card { --mx: 50%; --my: 50%; }
+.svc-card > * { position: relative; }
 .svc-card::before {
   content: '';
   position: absolute;
-  top: 0; left: -80%; width: 50%; height: 100%;
-  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.55) 50%, transparent);
-  transform: skewX(-15deg);
+  inset: 0;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(201,162,96,.22), transparent 60%);
+  opacity: 0;
   pointer-events: none;
-  transition: left 0.7s ease;
+  transition: opacity 400ms cubic-bezier(.22,1,.36,1);
 }
-
-/* Top accent line */
 .svc-card::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,162,96,0.55), rgba(126,170,176,0.35), transparent);
+  inset: 0;
+  padding: 1px;
+  background: radial-gradient(220px circle at var(--mx) var(--my), rgba(201,162,96,.9), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
   opacity: 0;
-  transition: opacity 0.35s ease;
   pointer-events: none;
+  transition: opacity 400ms cubic-bezier(.22,1,.36,1);
+  border-radius: inherit;
 }
-
-.svc-card:hover::before { left: 140%; }
-.svc-card:hover::after  { opacity: 1; }
+.svc-card:hover::before, .svc-card:hover::after { opacity: 1; }
 .svc-card:hover {
   transform: translateY(-6px);
   border-color: rgba(201,162,96,0.32);
@@ -1910,4 +1912,135 @@ html.light {
   .quote-band-fill { animation: none; width: 100%; }
   .reveal-bold { transition: none; }
   #hero::before { animation: none; }
+}
+
+/* ══════════════════════════════════════
+   EFFECTS 01 · 06 · 08 · 09 · 12 · 14 · 16
+   ══════════════════════════════════════ */
+
+/* Shared tokens */
+:root {
+  --color-gold: #C9A260;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+}
+
+/* ── 01: Line reveal ── */
+.line { display: block; overflow: hidden; padding-bottom: .08em; }
+.line-inner { display: inline-block; }
+html.js .line-inner { transform: translateY(110%); transition: transform 900ms var(--ease-out); }
+html.js .line:nth-child(2) .line-inner { transition-delay: 120ms; }
+html.js .line:nth-child(3) .line-inner { transition-delay: 240ms; }
+html.js [data-reveal].is-in .line-inner { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .line-inner { transform: none; transition: none; }
+}
+
+/* ── 06: Drawn underline ── */
+.link-draw {
+  text-decoration: none;
+  padding-bottom: 3px;
+  background-image: linear-gradient(var(--color-gold), var(--color-gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 450ms var(--ease-out), color 150ms var(--ease-out);
+}
+.link-draw:hover, .link-draw:focus-visible { background-size: 100% 1px; }
+@media (prefers-reduced-motion: reduce) { .link-draw { transition: none; } }
+
+/* ── 08: Arriving arrow ── */
+.btn-primary { gap: 0; }
+.btn-arrow {
+  display: inline-flex;
+  width: 0; opacity: 0; overflow: hidden; margin-left: 0;
+  transition: width 300ms var(--ease-out), opacity 300ms var(--ease-out), margin-left 300ms var(--ease-out);
+}
+.btn-primary:hover .btn-arrow,
+.btn-primary:focus-visible .btn-arrow { width: 16px; opacity: 1; margin-left: 8px; }
+@media (hover: none) { .btn-arrow { width: 16px; opacity: 1; margin-left: 8px; } }
+@media (prefers-reduced-motion: reduce) {
+  .btn-arrow { transition: none; width: 16px; opacity: 1; margin-left: 8px; }
+}
+
+/* ── 09: Spotlight (svc-card) — reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .svc-card::before, .svc-card::after { transition: none; }
+}
+
+/* ── 12: Golden rule that draws ── */
+.section-rule { height: 1px; background: var(--color-gold); margin-bottom: 20px; }
+html.js .section-rule { width: 0; transition: width 1200ms var(--ease-out); }
+html.js [data-reveal].is-in .section-rule { width: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .section-rule { width: 100%; transition: none; }
+}
+
+/* ── 14: Breathing background (warm variant) ── */
+.band-warm { position: relative; overflow: hidden; isolation: isolate; }
+.band-warm::before, .band-warm::after {
+  content: ''; position: absolute; width: 55%; aspect-ratio: 1;
+  border-radius: 50%; filter: blur(50px);
+  pointer-events: none; z-index: -1; will-change: transform;
+}
+.band-warm::before {
+  background: rgba(201,162,96,.18); left: -10%; top: -20%;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+.band-warm::after {
+  background: rgba(194,163,90,.10); left: 50%; top: 40%;
+  animation: drift 22s ease-in-out infinite alternate-reverse;
+}
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(30%,25%) scale(1.15); }
+}
+@media (max-width: 639px) {
+  .band-warm::before, .band-warm::after { filter: blur(36px); width: 70%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .band-warm::before, .band-warm::after { animation: none; }
+}
+
+/* ── 16: Smooth accordion inside svc-card ── */
+.acc-head {
+  width: 100%; display: flex; justify-content: space-between;
+  align-items: center; gap: 12px; padding: 14px 0 0;
+  background: none; border: 0; border-top: 1px solid rgba(201,162,96,0.18);
+  margin-top: 16px;
+  color: #B8922A;
+  font: 600 12px/1.4 'Inter', sans-serif;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  text-align: left; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.acc-head:hover { opacity: 0.7; }
+.acc-head:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(201,162,96,.16), 0 0 0 1px var(--color-gold);
+  border-radius: 4px;
+}
+.acc-plus {
+  position: relative; width: 18px; height: 18px; flex: none;
+}
+.acc-plus::before, .acc-plus::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  background: #B8922A;
+  transform: translate(-50%, -50%);
+  transition: transform 350ms var(--ease-out);
+}
+.acc-plus::before { width: 12px; height: 1px; }
+.acc-plus::after { width: 1px; height: 12px; }
+.svc-card.is-open .acc-plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 400ms var(--ease-out);
+}
+.svc-card.is-open .acc-body { grid-template-rows: 1fr; }
+.acc-body > div { overflow: hidden; }
+.acc-body .svc-card-items { margin-top: 0; border-top: none; padding-top: 14px; padding-bottom: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .acc-body, .acc-plus::after { transition: none; }
 }

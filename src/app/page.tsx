@@ -210,7 +210,23 @@ export default function Page() {
       { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
     );
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-bold").forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+
+    // Effects 01 + 12: data-reveal → is-in
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revEls = document.querySelectorAll('[data-reveal]');
+    if (reduced || !('IntersectionObserver' in window)) {
+      revEls.forEach(el => el.classList.add('is-in'));
+      return () => obs.disconnect();
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.35, rootMargin: '0px 0px -10% 0px' });
+    revEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.9 && r.bottom > 0) el.classList.add('is-in');
+      else io.observe(el);
+    });
+    return () => { obs.disconnect(); io.disconnect(); };
   }, []);
 
   /* Floating pill — show when hero leaves viewport */
@@ -499,18 +515,15 @@ export default function Page() {
       <section id="hero" ref={heroRef}>
         <div className="hero-inner" ref={heroInnerRef}>
           <div className="hero-text">
-            <h1 className="hero-title">
-              {lang === "cs" ? (
-                <>{h1Cs1}<br /><em>{h1Cs2}</em></>
-              ) : (
-                <>{h1En1}<br /><em>{h1En2}</em></>
-              )}
+            <h1 className="hero-title" data-reveal>
+              <span className="line"><span className="line-inner">{lang === "cs" ? h1Cs1 : h1En1}</span></span>
+              <span className="line"><span className="line-inner"><em>{lang === "cs" ? h1Cs2 : h1En2}</em></span></span>
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
             <div className="hero-actions">
               <a href="/konzultace" className="btn-primary">
                 <span>{t.heroCta}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
               </a>
               <a href="/test" className="btn-ghost">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -528,7 +541,7 @@ export default function Page() {
       </section>
 
       {/* ── Quote band ── */}
-      <div className="quote-band" aria-live="polite">
+      <div className="quote-band band-warm" aria-live="polite">
         <div className="quote-band-inner">
           <p className={`quote-band-text${aphoVis ? " vis" : ""}`}>
             {APHORISMS[lang][aphoIdx]}
@@ -542,9 +555,10 @@ export default function Page() {
       {/* ── Services card grid ── */}
       <section id="services">
         <div className="container">
-          <div className="section-header reveal-bold">
+          <div className="section-header reveal-bold" data-reveal>
+            <div className="section-rule" />
             <div className="section-eyebrow">{t.navServices}</div>
-            <h2 className="section-title-lg">{t.servicesTitle}</h2>
+            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.servicesTitle}</span></span></h2>
             <p className="section-sub">{t.servicesSub}</p>
           </div>
           <div className="svc-grid">
@@ -566,22 +580,38 @@ export default function Page() {
                 title: t.s4Title, desc: t.s4Desc, items: t.s4Items,
               },
             ] as { icon: React.ReactNode; title: string; desc: string; items: string[] }[]).map((svc, i) => (
-              <div key={i} className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}`}>
+              <div
+                key={i}
+                className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}${openCard === i ? " is-open" : ""}`}
+                onPointerMove={(e) => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  e.currentTarget.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+                  e.currentTarget.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+                }}
+                onPointerLeave={(e) => {
+                  e.currentTarget.style.setProperty('--mx', '50%');
+                  e.currentTarget.style.setProperty('--my', '50%');
+                }}
+              >
                 <div className="svc-icon">{svc.icon}</div>
                 <div className="svc-card-title">{svc.title}</div>
                 <p className="svc-card-desc">{svc.desc}</p>
                 <button
-                  className="svc-card-toggle"
+                  className="acc-head"
+                  type="button"
                   onClick={() => setOpenCard(openCard === i ? null : i)}
                   aria-expanded={openCard === i}
                 >
-                  {openCard === i ? (lang === "cs" ? "Méně ↑" : "Less ↑") : (lang === "cs" ? "Co zahrnuje ↓" : "What's included ↓")}
+                  <span>{lang === "cs" ? "Co zahrnuje" : "What's included"}</span>
+                  <span className="acc-plus" aria-hidden="true" />
                 </button>
-                {openCard === i && (
-                  <ul className="svc-card-items">
-                    {svc.items.map((item, j) => <li key={j}>{item}</li>)}
-                  </ul>
-                )}
+                <div className="acc-body">
+                  <div>
+                    <ul className="svc-card-items">
+                      {svc.items.map((item, j) => <li key={j}>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -591,9 +621,10 @@ export default function Page() {
       {/* ── Process ── */}
       <section id="process">
         <div className="container">
-          <div className="section-header reveal-bold">
+          <div className="section-header reveal-bold" data-reveal>
+            <div className="section-rule" />
             <div className="section-eyebrow">{t.processEye}</div>
-            <h2 className="section-title-lg">{t.processTitle}</h2>
+            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.processTitle}</span></span></h2>
           </div>
           <div className="process-grid">
             <div className="process-step process-step--featured reveal">
@@ -632,9 +663,10 @@ export default function Page() {
       {/* ── Calculators ── */}
       <section id="calculators">
         <div className="container">
-          <div className="section-header reveal-bold">
+          <div className="section-header reveal-bold" data-reveal>
+            <div className="section-rule" />
             <div className="section-eyebrow">{t.navCalc}</div>
-            <h2 className="section-title-lg">{t.calcTitle}</h2>
+            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.calcTitle}</span></span></h2>
           </div>
           <div className="calc-wrap reveal">
             <div className="calc-header">
@@ -871,14 +903,12 @@ export default function Page() {
                 <img src="/adam-dvorak-about.jpg" alt="Adam Dvořák" />
               </div>
             </div>
-            <div className="reveal-right">
+            <div className="reveal-right" data-reveal>
+              <div className="section-rule" />
               <div className="section-eyebrow">{t.aboutEye}</div>
               <h2 className="section-title-lg" style={{ marginBottom: 20 }}>
-                {lang === "cs" ? (
-                  <>Proč jsem nešel<br />do banky.</>
-                ) : (
-                  <>Why I chose<br />independence.</>
-                )}
+                <span className="line"><span className="line-inner">{lang === "cs" ? "Proč jsem nešel" : "Why I chose"}</span></span>
+                <span className="line"><span className="line-inner">{lang === "cs" ? "do banky." : "independence."}</span></span>
               </h2>
               <p className="about-text">{t.aboutP1}</p>
               <p className="about-text">{t.aboutP2}</p>
@@ -899,9 +929,10 @@ export default function Page() {
       {/* ── References ── */}
       <section id="reference">
         <div className="container">
-          <div className="section-header reveal-bold">
+          <div className="section-header reveal-bold" data-reveal>
+            <div className="section-rule" />
             <div className="section-eyebrow">{t.refEye}</div>
-            <h2 className="section-title-lg">{t.refTitle}</h2>
+            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.refTitle}</span></span></h2>
           </div>
           <div className="ref-editorial">
             <div className="ref-editorial-card reveal">
@@ -931,9 +962,10 @@ export default function Page() {
       {/* ── Blog ── */}
       <section id="blog">
         <div className="container">
-          <div className="section-header reveal-bold">
+          <div className="section-header reveal-bold" data-reveal>
+            <div className="section-rule" />
             <div className="section-eyebrow">{t.blogEye}</div>
-            <h2 className="section-title-lg">{t.blogTitle}</h2>
+            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.blogTitle}</span></span></h2>
             <p className="blog-sub">{t.blogSub}</p>
           </div>
           <div className="blog-grid">
@@ -964,12 +996,9 @@ export default function Page() {
           <div className="contact-wrap reveal">
             <div className="contact-left">
               <div className="section-eyebrow" style={{ marginBottom: 16 }}>{t.navContact}</div>
-              <h2 className="contact-heading">
-                {lang === "cs" ? (
-                  <>Nekoušu.<br /><em>Napište mi.</em></>
-                ) : (
-                  <>I don&apos;t bite.<br /><em>Write to me.</em></>
-                )}
+              <h2 className="contact-heading" data-reveal>
+                <span className="line"><span className="line-inner">{lang === "cs" ? "Nekoušu." : "I don't bite."}</span></span>
+                <span className="line"><span className="line-inner"><em>{lang === "cs" ? "Napište mi." : "Write to me."}</em></span></span>
               </h2>
               <p className="contact-sub">{t.contactSub}</p>
               <div className="contact-items">
@@ -1068,10 +1097,11 @@ export default function Page() {
       <section id="booking">
         <div className="container">
           <div className="booking-split">
-            <div className="booking-info reveal-bold">
+            <div className="booking-info reveal-bold" data-reveal>
+              <div className="section-rule" />
               <div className="section-eyebrow">{lang === "cs" ? "Rezervace" : "Booking"}</div>
               <h2 className="section-title-lg">
-                {lang === "cs" ? "Vyberte si termín." : "Pick your slot."}
+                <span className="line"><span className="line-inner">{lang === "cs" ? "Vyberte si termín." : "Pick your slot."}</span></span>
               </h2>
             </div>
             <div className="booking-card reveal delay-1">
@@ -1099,7 +1129,7 @@ export default function Page() {
                 }}
               >
                 <span>{lang === "cs" ? "Vybrat termín" : "Pick a slot"}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
               </button>
             </div>
           </div>
@@ -1139,8 +1169,8 @@ export default function Page() {
           <div className="footer-logo">Adam <span>Dvořák</span> · <span>{t.footerTagline}</span></div>
           <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>{t.footerReg}</span></div>
           <div className="footer-links">
-            <a href="/privacy">{t.footerPrivacy}</a>
-            <a href="/terms">{t.footerTerms}</a>
+            <a href="/privacy" className="link-draw">{t.footerPrivacy}</a>
+            <a href="/terms" className="link-draw">{t.footerTerms}</a>
             <a href="#contact">{t.navContact}</a>
           </div>
         </div>
