@@ -1801,6 +1801,51 @@ html.light {
 
 /* ── Rebrand reduced motion ── */
 
+/* ── Floating contact pill ── */
+.float-pill {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #1A1511;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(201,162,96,0.35), 0 1px 4px rgba(26,21,17,0.12);
+  opacity: 0;
+  transform: translateY(12px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+}
+.float-pill.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.float-pill:hover {
+  background: #C9A260;
+  box-shadow: 0 6px 28px rgba(201,162,96,0.45);
+}
+@media (max-width: 640px) {
+  .float-pill {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+    bottom: 20px;
+    right: 16px;
+  }
+  .float-pill-label { display: none; }
+}
+
 /* Rebrand reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .hero-text::after { animation: none; opacity: 0.35; top: 12%; bottom: 12%; }
