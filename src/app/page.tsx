@@ -1106,6 +1106,30 @@ export default function Page() {
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       </section>
 
+      {/* ── Newsletter ── */}
+      <section id="newsletter" className="section-wrap">
+        <div className="container nl-wrap reveal">
+          <div className="section-eyebrow">{t.nlEye}</div>
+          <h2 className="nl-title">{t.nlTitle}</h2>
+          <p className="nl-sub">{t.nlSub}</p>
+          <form className="nl-form" onSubmit={handleNlSubmit} noValidate>
+            <input
+              type="email"
+              className="nl-input"
+              placeholder={t.nlPh}
+              value={nlEmail}
+              onChange={(e) => setNlEmail(e.target.value)}
+              required
+              disabled={nlState === "sending" || nlState === "done"}
+            />
+            <button type="submit" className="btn-primary nl-btn" disabled={nlState === "sending" || nlState === "done"}>
+              {nlState === "sending" ? t.nlSending : nlState === "done" ? t.nlDone : t.nlBtn}
+            </button>
+          </form>
+          <p className="nl-note">{t.nlNote}</p>
+        </div>
+      </section>
+
       {/* ── Footer ── */}
       <footer>
         <div className="container footer-inner">
