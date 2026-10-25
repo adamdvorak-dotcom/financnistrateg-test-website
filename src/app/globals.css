@@ -922,14 +922,14 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 540px) { .blog-tiles { grid-template-columns: 1fr; } }
 
 /* ── Blog listing ── */
-.blog-listing { display: flex; flex-direction: column; gap: 0; }
+.blog-listing { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
 .blog-listing-card {
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
-  padding: 28px 0; border-bottom: 1px solid var(--border);
-  text-decoration: none; transition: opacity 0.15s;
+  padding: 24px 12px 24px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: background 0.2s ease, padding-left 0.3s cubic-bezier(.22,1,.36,1);
 }
-.blog-listing-card:first-child { border-top: 1px solid var(--border); }
-.blog-listing-card:hover { opacity: 0.75; }
+.blog-listing-card:hover { background: var(--accent-dim); padding-left: 12px; }
 .blog-listing-left { flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .blog-listing-title {
   font-family: 'Lora', Georgia, serif;
@@ -941,10 +941,16 @@ input[type="range"]::-moz-range-thumb {
   display: flex; flex-direction: column; align-items: flex-end;
   gap: 8px; flex-shrink: 0;
 }
-.blog-listing-arrow { font-size: 20px; color: var(--accent); }
+.blog-listing-arrow {
+  font-size: 20px; color: var(--accent);
+  transform: translateX(-10px); opacity: 0;
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), opacity 0.25s ease;
+}
+.blog-listing-card:hover .blog-listing-arrow { transform: translateX(0); opacity: 1; }
 @media (max-width: 640px) {
   .blog-listing-card { flex-direction: column; align-items: flex-start; gap: 12px; }
   .blog-listing-right { flex-direction: row; align-items: center; gap: 12px; }
+  .blog-listing-arrow { transform: none; opacity: 1; }
 }
 
 /* ── Article page ── */
@@ -1407,6 +1413,30 @@ html.light {
   .ref-editorial-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
   .ref-editorial-card:last-child { border-bottom: none !important; }
 }
+@media (max-width: 640px) {
+  .ref-editorial {
+    display: flex; flex-direction: row;
+    overflow-x: scroll; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    border-top: none; gap: 0; padding-bottom: 4px;
+  }
+  .ref-editorial::-webkit-scrollbar { display: none; }
+  .ref-editorial-card {
+    flex: 0 0 85vw; scroll-snap-align: start;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--r-lg); margin-right: 12px;
+    padding: 28px 24px;
+  }
+  .ref-editorial-card:last-child { margin-right: 0; }
+  .ref-dots { display: flex; justify-content: center; gap: 6px; margin-top: 20px; }
+  .ref-dot {
+    height: 6px; width: 6px; border-radius: 3px;
+    background: var(--border-med);
+    transition: background 0.2s, width 0.3s cubic-bezier(.22,1,.36,1);
+  }
+  .ref-dot.active { background: var(--accent); width: 16px; }
+}
+@media (min-width: 641px) { .ref-dots { display: none; } }
 
 /* ── Contact: section heading ── */
 .contact-heading {
@@ -2050,6 +2080,19 @@ html.js [data-reveal].is-in .section-rule { width: 100%; }
   .acc-plus::after { transition: none; }
 }
 
+/* ── Slot machine digits ── */
+.slot-num { display: inline-flex; align-items: baseline; overflow: hidden; }
+.slot-digit {
+  display: inline-block;
+  animation: slot-roll 0.45s both cubic-bezier(0.16,1,0.3,1);
+}
+.slot-sep { display: inline-block; }
+@keyframes slot-roll {
+  from { transform: translateY(-70%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .slot-digit { animation: none; } }
+
 /* ── Intro curtain ── */
 .curtain {
   position: fixed; inset: 0; z-index: 9999;
@@ -2065,9 +2108,20 @@ html.js [data-reveal].is-in .section-rule { width: 100%; }
   animation: curtain-fadein 0.5s 0.25s ease forwards;
 }
 .curtain-name {
-  font-family: var(--font-serif, serif);
-  font-size: clamp(22px, 5vw, 46px);
-  font-weight: 600; letter-spacing: -0.04em; color: #f0ece6;
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(48px, 10vw, 100px);
+  font-weight: 700; letter-spacing: -0.04em;
+  background-image: url('/adam-dvorak-hero.jpg');
+  background-size: 160%;
+  background-position: 50% 20%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: curtain-pan 10s ease-in-out infinite alternate;
+}
+@keyframes curtain-pan {
+  from { background-position: 45% 15%; }
+  to   { background-position: 55% 55%; }
 }
 .curtain-efa {
   font-family: var(--font-serif, serif);

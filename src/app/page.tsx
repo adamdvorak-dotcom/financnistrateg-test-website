@@ -138,11 +138,27 @@ function fmt(n: number, lang: Lang) {
   return Math.round(n).toLocaleString(lang === "cs" ? "cs-CZ" : "en-US");
 }
 
+function SlotNum({ value }: { value: string }) {
+  return (
+    <span className="slot-num">
+      {value.split("").map((ch, i) => (
+        <span
+          key={i}
+          className={/\d/.test(ch) ? "slot-digit" : "slot-sep"}
+          style={/\d/.test(ch) ? { animationDelay: `${i * 60}ms` } : undefined}
+        >{ch}</span>
+      ))}
+    </span>
+  );
+}
+
 export default function Page() {
   const [lang, setLang] = useState<Lang>("cs");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [curtainPhase, setCurtainPhase] = useState<"hidden" | "visible" | "exiting">("hidden");
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
+  const [refDot, setRefDot] = useState(0);
+  const refScrollRef = useRef<HTMLDivElement>(null);
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -241,6 +257,15 @@ export default function Page() {
       else io.observe(el);
     });
     return () => { obs.disconnect(); io.disconnect(); };
+  }, []);
+
+  /* Ref dots — track horizontal scroll on mobile */
+  useEffect(() => {
+    const el = refScrollRef.current;
+    if (!el) return;
+    const onScroll = () => setRefDot(Math.round(el.scrollLeft / el.clientWidth));
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
   /* Floating pill — show when hero leaves viewport */
@@ -777,7 +802,7 @@ export default function Page() {
                 </div>
                 <div className="calc-result">
                   <div className="result-label">{t.invResultLabel}</div>
-                  <div className="result-big"><span>{t.currency}</span> {fmt(iFv, lang)}</div>
+                  <div className="result-big"><span>{t.currency}</span> <SlotNum key={fmt(iFv, lang)} value={fmt(iFv, lang)} /></div>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
@@ -819,7 +844,7 @@ export default function Page() {
                 </div>
                 <div className="calc-result">
                   <div className="result-label">{t.mtgResultLabel}</div>
-                  <div className="result-big"><span>{t.currency}</span> {fmt(mMo, lang)}</div>
+                  <div className="result-big"><span>{t.currency}</span> <SlotNum key={fmt(mMo, lang)} value={fmt(mMo, lang)} /></div>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.mtgTotal}</span><span className="result-row-v">{fmt(mTotal, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.mtgInt}</span><span className="result-row-v neg">{fmt(mInt, lang)} {t.currency}</span></div>
@@ -879,7 +904,7 @@ export default function Page() {
                 <div className="calc-result">
                   <div className="result-label">{t.retTotalLabel}</div>
                   <div className="result-big" style={retGap >= 0 ? { color: "var(--green)" } : { color: "var(--red)" }}>
-                    <span>{t.currency}</span> {fmt(retTotalMonthly, lang)}
+                    <span>{t.currency}</span> <SlotNum key={fmt(retTotalMonthly, lang)} value={fmt(retTotalMonthly, lang)} />
                   </div>
                   <div className="result-divider" />
                   <div className="result-row">
@@ -969,7 +994,7 @@ export default function Page() {
             <div className="section-eyebrow">{t.refEye}</div>
             <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.refTitle}</span></span></h2>
           </div>
-          <div className="ref-editorial">
+          <div className="ref-editorial" ref={refScrollRef}>
             <div className="ref-editorial-card reveal">
               <span className="ref-guillemet">«</span>
               <p className="ref-editorial-text">Naši dosavadní spolupráci hodnotíme velmi pozitivně. Oceňujeme vysokou profesionalitu, rychlost, flexibilitu a schopnost přizpůsobit řešení našim individuálním požadavkům. Přístup je precizní a zaměřený na detail.</p>
@@ -991,6 +1016,11 @@ export default function Page() {
               <div className="ref-editorial-author">Daneš a rodina</div>
             </div>
           </div>
+          <div className="ref-dots" aria-hidden="true">
+            {[0, 1, 2, 3].map((i) => (
+              <span key={i} className={`ref-dot${refDot === i ? " active" : ""}`} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1003,17 +1033,19 @@ export default function Page() {
             <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.blogTitle}</span></span></h2>
             <p className="blog-sub">{t.blogSub}</p>
           </div>
-          <div className="blog-grid">
+          <div className="blog-listing">
             {articles.slice(-3).reverse().map((article, i) => (
-              <article key={article.slug} className={`blog-card reveal${i > 0 ? ` delay-${i}` : ""}`}>
-                <div className="blog-card-tag">{lang === "cs" ? article.tag : article.tagEn}</div>
-                <h3 className="blog-card-title">{lang === "cs" ? article.title : article.titleEn}</h3>
-                <p className="blog-card-desc">{lang === "cs" ? article.desc : article.descEn}</p>
-                <div className="blog-card-footer">
-                  <span className="blog-card-date">{lang === "cs" ? article.date : article.dateEn}</span>
-                  <a href={`/blog/${article.slug}`} className="blog-card-link">{t.blogReadMore} →</a>
+              <a key={article.slug} href={`/blog/${article.slug}`} className={`blog-listing-card reveal${i > 0 ? ` delay-${i}` : ""}`}>
+                <div className="blog-listing-left">
+                  <div className="blog-card-tag">{lang === "cs" ? article.tag : article.tagEn}</div>
+                  <h3 className="blog-listing-title">{lang === "cs" ? article.title : article.titleEn}</h3>
+                  <p className="blog-listing-desc">{lang === "cs" ? article.desc : article.descEn}</p>
                 </div>
-              </article>
+                <div className="blog-listing-right">
+                  <span className="blog-card-date">{lang === "cs" ? article.date : article.dateEn}</span>
+                  <span className="blog-listing-arrow">→</span>
+                </div>
+              </a>
             ))}
           </div>
           <div style={{ textAlign: "center", marginTop: 40 }}>
