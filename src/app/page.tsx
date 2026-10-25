@@ -163,28 +163,35 @@ function ArcRing({ pct, label }: { pct: number; label: string }) {
 
 /* ── Growth chart (invest calc) ── */
 function GrowthChart({ monthly, rate, years, init }: { monthly: number; rate: number; years: number; init: number }) {
-  const W = 280, H = 72, steps = Math.min(years, 60);
-  const pts: [number, number][] = Array.from({ length: steps + 1 }, (_, i) => {
-    const n = (i / steps) * years * 12, r = rate / 100 / 12;
-    const fv = r === 0 ? monthly * n + init : monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) + init * Math.pow(1 + r, n);
-    return [i, Math.max(0, fv)];
+  const W = 280, H = 68, steps = Math.min(years, 60);
+  const depPts = Array.from({ length: steps + 1 }, (_, i) => {
+    const n = (i / steps) * years * 12;
+    return Math.max(0, monthly * n + init);
   });
-  const maxFv = Math.max(...pts.map(p => p[1]), 1);
-  const xs = pts.map(([i]) => (i / steps) * W);
-  const ys = pts.map(([, fv]) => H - 6 - (fv / maxFv) * (H - 14));
-  const linePath = `M${xs[0]},${ys[0]} ` + xs.slice(1).map((x, i) => `L${x},${ys[i + 1]}`).join(" ");
-  const areaPath = linePath + ` L${W},${H} L0,${H}Z`;
-  const last = { x: xs[xs.length - 1], y: ys[ys.length - 1] };
+  const fvPts = Array.from({ length: steps + 1 }, (_, i) => {
+    const n = (i / steps) * years * 12, r = rate / 100 / 12;
+    return r === 0 ? monthly * n + init : monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) + init * Math.pow(1 + r, n);
+  });
+  const maxFv = Math.max(...fvPts, 1);
+  const toY = (v: number) => H - 4 - (v / maxFv) * (H - 12);
+  const xs = Array.from({ length: steps + 1 }, (_, i) => (i / steps) * W);
+  const fvY = fvPts.map(toY);
+  const depY = depPts.map(toY);
+  const fvPath = `M${xs[0]},${fvY[0]} ` + xs.slice(1).map((x, i) => `L${x},${fvY[i + 1]}`).join(" ");
+  const depPath = `M${xs[0]},${depY[0]} ` + xs.slice(1).map((x, i) => `L${x},${depY[i + 1]}`).join(" ");
+  const areaPath = fvPath + ` L${W},${H} L0,${H}Z`;
+  const last = { x: xs[xs.length - 1], y: fvY[fvY.length - 1] };
   return (
     <svg className="growth-chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <linearGradient id="cgfill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#C9A260" stopOpacity="0.22" />
+          <stop offset="0%" stopColor="#C9A260" stopOpacity="0.18" />
           <stop offset="100%" stopColor="#C9A260" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path d={areaPath} fill="url(#cgfill)" className="chart-area" />
-      <path d={linePath} stroke="#C9A260" strokeWidth="2" fill="none" className="chart-line" />
+      <path d={depPath} stroke="var(--text-3)" strokeWidth="1.5" strokeDasharray="4 3" fill="none" className="chart-dep" />
+      <path d={fvPath} stroke="#C9A260" strokeWidth="2" fill="none" className="chart-line" />
       <circle cx={last.x} cy={last.y} r="4" fill="#C9A260" className="chart-dot" />
     </svg>
   );
@@ -227,7 +234,6 @@ export default function Page() {
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
   const [refDot, setRefDot] = useState(0);
   const refScrollRef = useRef<HTMLDivElement>(null);
-  const [activeSection, setActiveSection] = useState("");
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -328,18 +334,6 @@ export default function Page() {
     return () => { obs.disconnect(); io.disconnect(); };
   }, []);
 
-  /* Active section for nav indicator */
-  useEffect(() => {
-    const sections = ["about", "services", "calculators", "blog", "contact"];
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id); });
-      },
-      { threshold: 0.3, rootMargin: "-10% 0px -60% 0px" }
-    );
-    sections.forEach((id) => { const el = document.getElementById(id); if (el) obs.observe(el); });
-    return () => obs.disconnect();
-  }, []);
 
   /* Ref dots — track horizontal scroll on mobile */
   useEffect(() => {
@@ -623,11 +617,11 @@ export default function Page() {
             <span className="nav-logo-name">Adam Dvořák</span><span className="nav-logo-efa">, EFA</span>
           </a>
           <ul className="nav-links">
-            <li><a href="#about" className={activeSection === "about" ? "nav-active" : ""}>{t.navAbout}</a></li>
-            <li><a href="#services" className={activeSection === "services" ? "nav-active" : ""}>{t.navServices}</a></li>
-            <li><a href="#calculators" className={activeSection === "calculators" ? "nav-active" : ""}>{t.navCalc}</a></li>
-            <li><a href="/blog" className={activeSection === "blog" ? "nav-active" : ""}>{t.navBlog}</a></li>
-            <li><a href="#contact" className={activeSection === "contact" ? "nav-active" : ""}>{t.navContact}</a></li>
+            <li><a href="#about">{t.navAbout}</a></li>
+            <li><a href="#services">{t.navServices}</a></li>
+            <li><a href="#calculators">{t.navCalc}</a></li>
+            <li><a href="/blog">{t.navBlog}</a></li>
+            <li><a href="#contact">{t.navContact}</a></li>
           </ul>
           <div className="nav-right">
             <button className="theme-btn lang-btn" onClick={toggleLang} title="Switch language">
