@@ -65,7 +65,7 @@ const T = {
     aboutP4: "Pro klienta to znamená pomalý začátek a dlouhý vztah. První schůzka není o produktech, je o tom, jestli si rozumíme. Pak přichází analýza, plán, realizace. A pak roky práce, kdy plán dotahujeme podle toho, jak se mění váš život a svět kolem.",
     aboutP5: "Pracuji s lidmi, ne s portfolii. Své klienty znám jménem, jejich děti taky, někdy i jejich účetní. Když mi v neděli večer někdo napíše, že prodává firmu nebo že lékař přinesl zprávu, kterou nečekal, ozvu se.",
     aboutP6: "To je celý rozdíl.",
-    tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag4: "Investiční specialista", heroCtaProcess: "Finanční preventivka",
+    tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag4: "Investiční specialista", tag5: "Majetkové plánování", tag6: "Podnikové poradenství", tag7: "Správa majetku", tag8: "Investiční poradenství", tag9: "Finanční plánování", tag10: "Krizový management", heroCtaProcess: "Finanční preventivka",
     refEye: "Reference", refTitle: "Co říkají klienti.",
     contactSub: "První konzultace je vždy zdarma a bez závazků. Napište mi nebo rovnou zavolejte.",
     ctLocation: "Lokace", ctLocationVal: "Praha & celá ČR (online)", ctOffice: "Kancelář", ctOfficeVal: "Salvátorská 931/8, 110 00 Praha 1-Staré Město",
@@ -119,7 +119,7 @@ const T = {
     aboutP4: "For the client this means a slow start and a long relationship. The first meeting is not about products, it is about whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
     aboutP5: "I work with people, not portfolios. I know my clients by name, their children too, sometimes their accountant as well. When someone writes to me on a Sunday evening that they are selling their company or that a doctor has delivered news they did not expect, I respond.",
     aboutP6: "That is the whole difference.",
-    tag1: "Certified Advisor", tag2: "CNB Registered", tag4: "Investment Specialist", heroCtaProcess: "Financial check-up",
+    tag1: "Certified Advisor", tag2: "CNB Registered", tag4: "Investment Specialist", tag5: "Wealth Planning", tag6: "Business Advisory", tag7: "Asset Management", tag8: "Investment Advisory", tag9: "Financial Planning", tag10: "Crisis Management", heroCtaProcess: "Financial check-up",
     refEye: "Testimonials", refTitle: "What clients say.",
     contactSub: "The first consultation is always free and without obligation. Write to me or call directly.",
     ctLocation: "Location", ctLocationVal: "Prague & Czech Republic (online)", ctOffice: "Office", ctOfficeVal: "Salvátorská 931/8, 110 00 Prague 1 – Old Town",
@@ -917,7 +917,7 @@ export default function Page() {
               <p className="about-text">{t.aboutP5}</p>
               <p className="about-text about-text-strong">{t.aboutP6}</p>
               <div className="about-tags">
-                {[t.tag1, t.tag2, t.tag4].map((tag) => (
+                {[t.tag1, t.tag2, t.tag4, t.tag5, t.tag6, t.tag7, t.tag8, t.tag9, t.tag10].map((tag) => (
                   <span key={tag} className="about-tag">{tag}</span>
                 ))}
               </div>
