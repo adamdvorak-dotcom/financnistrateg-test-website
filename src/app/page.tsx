@@ -141,6 +141,7 @@ function fmt(n: number, lang: Lang) {
 export default function Page() {
   const [lang, setLang] = useState<Lang>("cs");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [curtainPhase, setCurtainPhase] = useState<"hidden" | "visible" | "exiting">("hidden");
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
 
   /* Invest calc */
@@ -194,6 +195,20 @@ export default function Page() {
     html.lang = lang;
   }, [lang]);
 
+
+  /* Intro curtain — once per session */
+  useEffect(() => {
+    if (sessionStorage.getItem("curtain_shown")) return;
+    sessionStorage.setItem("curtain_shown", "1");
+    setCurtainPhase("visible");
+    document.body.style.overflow = "hidden";
+    const t1 = setTimeout(() => setCurtainPhase("exiting"), 1400);
+    const t2 = setTimeout(() => {
+      setCurtainPhase("hidden");
+      document.body.style.overflow = "";
+    }, 2350);
+    return () => { clearTimeout(t1); clearTimeout(t2); document.body.style.overflow = ""; };
+  }, []);
 
   /* Scroll reveal */
   useEffect(() => {
@@ -461,6 +476,15 @@ export default function Page() {
 
   return (
     <>
+      {curtainPhase !== "hidden" && (
+        <div className={`curtain${curtainPhase === "exiting" ? " curtain-exit" : ""}`} aria-hidden="true">
+          <div className="curtain-wordmark">
+            <span className="curtain-name">Adam Dvořák</span>
+            <span className="curtain-efa">, EFA</span>
+          </div>
+          <div className="curtain-line" />
+        </div>
+      )}
       <div id="cursor-glow" aria-hidden="true" />
       {/* ── Mobile menu overlay ── */}
       {mobileOpen && (

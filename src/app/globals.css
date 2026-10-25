@@ -2049,3 +2049,41 @@ html.js [data-reveal].is-in .section-rule { width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .acc-plus::after { transition: none; }
 }
+
+/* ── Intro curtain ── */
+.curtain {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0f1929;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+  transition: transform 0.95s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+.curtain.curtain-exit { transform: translateY(-100%); }
+.curtain-wordmark {
+  display: flex; align-items: baseline; gap: 0;
+  opacity: 0;
+  animation: curtain-fadein 0.5s 0.25s ease forwards;
+}
+.curtain-name {
+  font-family: var(--font-serif, serif);
+  font-size: clamp(22px, 5vw, 46px);
+  font-weight: 600; letter-spacing: -0.04em; color: #f0ece6;
+}
+.curtain-efa {
+  font-family: var(--font-serif, serif);
+  font-size: clamp(14px, 2.5vw, 24px);
+  font-weight: 400; color: #C9A260; letter-spacing: 0;
+}
+.curtain-line {
+  width: min(200px, 50vw); height: 1px;
+  background: #C9A260;
+  transform-origin: left; transform: scaleX(0);
+  animation: curtain-draw 0.7s 0.65s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes curtain-fadein { to { opacity: 1; } }
+@keyframes curtain-draw   { to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .curtain { transition: none; }
+  .curtain-wordmark { animation: none; opacity: 1; }
+  .curtain-line { animation: none; transform: scaleX(1); }
+}
