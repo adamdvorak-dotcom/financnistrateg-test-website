@@ -40,11 +40,11 @@ const T = {
     s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho — a vědět, který z nich v který rok aktivovat.",
     s5Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
     processEye: "Přístup", processTitle: "Jak spolupráce probíhá.",
-    step1Num: "Krok 01", step1Title: "Úvodní konzultace", step1Desc: "Ukážu vám, jak pracuji a co od spolupráce čekám já. Ale hlavně — chci slyšet vás. Kde jste, co nefunguje, co chcete jinak. Primárně si musíme sednout.",
+    step1Num: "Krok 01", step1Title: "Úvodní konzultace", step1Desc: "Ukážu vám, jak pracuji a co od spolupráce čekám já. Ale hlavně, chci slyšet vás. Kde jste, co nefunguje, co chcete jinak. Primárně si musíme sednout.",
     step2Num: "Krok 02", step2Title: "Analýza & strategie", step2Desc: "Provedu hloubkovou analýzu příjmů, výdajů, majetku i závazků a na jejím základě navrhnu strategii přímo na míru.",
     step3Num: "Krok 03", step3Title: "Finanční plán", step3Desc: "Představím konkrétní finanční plán s doporučeními a prioritami. Společně provedeme audit stávající situace a nastavíme cíle.",
     step4Num: "Krok 04", step4Title: "Konzultace & dotazy", step4Desc: "Podrobně projdeme celý plán a zodpovím veškeré otázky. Strategii doladíme podle vašich připomínek a preferencí.",
-    step5Num: "Krok 05", step5Title: "Realizace & servis", step5Desc: "Spustíme plán — nastavíme produkty, otevřeme účty. Domluvíme pravidelné servisní schůzky pro průběžný dohled a aktualizace.",
+    step5Num: "Krok 05", step5Title: "Realizace & servis", step5Desc: "Spustíme plán, nastavíme produkty, otevřeme účty. Domluvíme pravidelné servisní schůzky pro průběžný dohled a aktualizace.",
     calcTitle: "Jak vám pracují peníze.",
     tabInvest: "Investiční kalkulačka", tabMortgage: "Hypoteční kalkulačka",
     invMonthly: "Měsíční vklad", invRate: "Roční výnos", invYears: "Délka investice", invInit: "Jednorázový vklad",
@@ -1070,7 +1070,7 @@ export default function Page() {
               </div>
               <p className="bk-desc">
                 {lang === "cs"
-                  ? "Ukážu vám, jak pracuji. Chci hlavně slyšet vás — co řešíte, co nefunguje. Primárně si musíme sednout."
+                  ? "Ukážu vám, jak pracuji. Chci hlavně slyšet vás, co řešíte, co nefunguje. Primárně si musíme sednout."
                   : "I'll show you how I work. Mostly I want to hear you — what you're dealing with, what isn't working. We just need to click."}
               </p>
               <button
