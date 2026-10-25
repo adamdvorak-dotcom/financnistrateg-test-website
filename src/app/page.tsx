@@ -59,7 +59,7 @@ const T = {
     retYrsToRet: "let do důchodu",
     retDisclaimer: "Pouze ilustrativní výpočet. Pracujeme s průměrným důchodem dle ČSSZ (21 840 Kč), průměrným zhodnocením 6 % p.a. a čerpáním portfolia po dobu 20 let.",
     aboutEye: "O mně",
-    aboutP1: "Adam Dvořák, EFA. Osmým rokem v oboru, držitel evropské finanční kvalifikace European Financial Advisor. Pracuji s úzkým okruhem podnikatelů a rodin — typicky tam, kde už nejde o produkty, ale o architekturu.",
+    aboutP1: "Adam Dvořák, EFA. Osmým rokem v oboru, držitel evropské finanční kvalifikace European Financial Advisor. Pracuji s úzkým okruhem podnikatelů a rodin, typicky tam, kde už nejde o produkty, ale o architekturu.",
     aboutP2: "Většina finančního poradenství v Česku funguje jako prodej. Někdo zavolá, něco doporučí, vy něco podepíšete, on dostane provizi. Tak já nepracuji.",
     aboutP3: "Inspirací je mi švýcarské privátní bankovnictví. Jeden člověk, který drží celý obraz od cashflow přes investice až po krizovej plán. Žádné call centrum, žádný tým specialistů.",
     aboutP4: "Pro klienta to znamená pomalý začátek a dlouhý vztah. První schůzka není o produktech, je o tom, jestli si rozumíme. Pak přichází analýza, plán, realizace. A pak roky práce, kdy plán dotahujeme podle toho, jak se mění váš život a svět kolem.",
