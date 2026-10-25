@@ -65,6 +65,7 @@ body::after {
 
 /* ── Utilities ── */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 480px) { .container { padding: 0 16px; } }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
 /* ── Navbar ── */
@@ -260,7 +261,7 @@ nav {
     padding: 0 20px;
   }
   .hero-text { text-align: center; }
-  .hero-title { font-size: 32px; }
+  .hero-title { font-size: clamp(26px, 7.5vw, 36px); }
   .hero-sub { font-size: 15px; max-width: 100%; margin-bottom: 24px; }
   .hero-actions { justify-content: center; }
   .hero-photo-wrap { margin: 0 -20px; width: calc(100% + 40px); }
@@ -694,6 +695,7 @@ input[type="range"]::-moz-range-thumb {
 .contact-item-meta { font-size: 11px; color: var(--text-3); }
 
 .contact-form-wrap { padding: 48px; }
+@media (max-width: 560px) { .contact-form-wrap, .contact-left { padding: 24px; } }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
 @media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
 
