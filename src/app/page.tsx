@@ -893,7 +893,10 @@ export default function Page() {
                         </div>
                       </div>
                     ))}
-                    <p className="cmp-note">{lang === "cs" ? "Čísla ukázková (DALBAR), zdroj ověřte před použitím." : "Illustrative numbers (DALBAR), verify before use."}</p>
+                    <p className="cmp-note">{lang === "cs"
+                      ? "Průměrný investor: DALBAR QAIB 2023 (průměrný roční výnos akciových podílových fondů za 20 let). Akciový trh: S&P 500 historický průměr. Čísla jsou ilustrativní a nezohledňují inflaci ani daně."
+                      : "Average investor: DALBAR QAIB 2023 (avg. annual equity fund return over 20 yrs). Stock market: S&P 500 historical average. Numbers are illustrative and exclude inflation and taxes."
+                    }</p>
                   </div>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
