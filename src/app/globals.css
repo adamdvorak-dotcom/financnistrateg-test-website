@@ -147,6 +147,7 @@ nav {
   display: grid; grid-template-columns: 1fr 360px;
   align-items: center; gap: 80px;
   padding: 0 28px;
+  will-change: transform, opacity;
 }
 
 .hero-glow {

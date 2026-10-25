@@ -278,6 +278,8 @@ export default function Page() {
 
   /* ── Floating dust particles ── */
   const dustRef = useRef<HTMLCanvasElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const heroInnerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const canvas = dustRef.current;
     if (!canvas) return;
@@ -339,6 +341,29 @@ export default function Page() {
     };
   }, []);
 
+  /* Hero parallax — content drifts up and fades on scroll */
+  useEffect(() => {
+    const hero = heroRef.current;
+    const inner = heroInnerRef.current;
+    if (!hero || !inner) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.innerWidth < 768) return;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const heroH = hero.offsetHeight;
+        const progress = scrollY / heroH;
+        inner.style.transform = `translateY(${scrollY * 0.38}px)`;
+        inner.style.opacity = String(Math.max(0, 1 - progress * 1.75));
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const toggleLang = () => {
     const next: Lang = lang === "cs" ? "en" : "cs";
@@ -516,8 +541,8 @@ export default function Page() {
       </nav>
 
       {/* ── Hero ── */}
-      <section id="hero">
-        <div className="hero-inner">
+      <section id="hero" ref={heroRef}>
+        <div className="hero-inner" ref={heroInnerRef}>
           <div className="hero-text">
             <h1 className="hero-title">
               {lang === "cs" ? (
