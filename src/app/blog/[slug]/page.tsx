@@ -1072,8 +1072,8 @@ function ArticleContent({ slug }: { slug: string }) {
       <div className="article-body">
         <p>
           OSVČ platí sociální pojištění z vyměřovacího základu. Zákon říká, že základ musí být
-          alespoň polovina zisku. A minimem je zákonem stanovené minimum, které je v roce 2026
-          zhruba 105 000 Kč ročně.
+          alespoň 55&nbsp;% zisku.<a href="#zdroj-1" className="fn">1</a> Zákonem stanovené
+          minimum pro rok 2026 je 17&nbsp;139&nbsp;Kč měsíčně, do konce června 19&nbsp;587&nbsp;Kč.<a href="#zdroj-2" className="fn">2</a>
         </p>
         <p>
           Tenhle článek je pro ty, kteří platí zákonné minimum a ještě nepočítali, co z toho vyjde
@@ -1088,7 +1088,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <div className="stat">
           <div className="stat-cell">
             <b>22 000 Kč</b>
-            <span>Průměrný starobní důchod</span>
+            <span>Průměrný starobní důchod<a href="#zdroj-3" className="fn">3</a></span>
           </div>
           <div className="stat-cell">
             <b>14–15 tis.</b>
@@ -1099,6 +1099,32 @@ function ArticleContent({ slug }: { slug: string }) {
           Pokud platíte minimální odvody pětadvacet let, vaše evidované příjmy jsou minimální.
           Státní důchod bude odpovídající. OSVČ s minimálními odvody se pohybuje kolem čtrnácti, patnácti tisíc korun měsíčně.
         </p>
+
+        <div className="calc-cta">
+          <div>
+            <p className="t">Jak velká je vaše mezera?</p>
+            <p style={{fontSize:14,lineHeight:1.6,color:"rgba(245,242,236,.72)",marginTop:10,marginBottom:18}}>
+              Spočítejte si, kolik dostanete od státu a kolik vám bude chybět.
+            </p>
+            <a href="/konzultace" style={{display:"inline-flex",alignItems:"center",gap:8,padding:"10px 20px",
+              borderRadius:999,background:"#C9A260",color:"#0C1F3A",fontWeight:600,fontSize:14,textDecoration:"none"}}>
+              Spočítat s poradcem →
+            </a>
+          </div>
+          <div>
+            <p style={{fontSize:12,fontWeight:500,color:"rgba(245,242,236,.55)",marginBottom:10,letterSpacing:".06em",textTransform:"uppercase"}}>Odhadovaný příjem v důchodu</p>
+            <div className="bar">
+              <div className="s" title="Státní důchod ~14–15 tis. Kč" />
+              <div className="u" title="DIP + vlastní investice" />
+              <div className="x" title="Mezera bez investic" />
+            </div>
+            <div style={{display:"flex",gap:14,marginTop:8,fontSize:11,color:"rgba(245,242,236,.55)"}}>
+              <span>Státní důchod</span>
+              <span style={{color:"#C9A260"}}>+ investice</span>
+              <span>mezera</span>
+            </div>
+          </div>
+        </div>
 
         <h2>Proč to OSVČ dělají</h2>
         <p>
@@ -1120,19 +1146,19 @@ function ArticleContent({ slug }: { slug: string }) {
           Tři věci, které dávají smysl dohromady.
         </p>
         <p>
-          Za prvé, DIP. Od roku 2024 si OSVČ může odepsat z daní až 48 000 Kč vložených do
-          investičního účtu. Na daních to reálně ušetří osm až jedenáct tisíc ročně v závislosti
-          na sazbě. A ty peníze rostou bez daně z výnosů.
+          Za prvé, DIP. Od roku 2024 si OSVČ může odepsat z daní až 48&nbsp;000&nbsp;Kč vložených do
+          investičního účtu. Na daních to reálně ušetří sedm až jedenáct tisíc ročně v závislosti
+          na sazbě.<a href="#zdroj-4" className="fn">4</a> A ty peníze rostou bez daně z výnosů.
         </p>
         <p>
           Za druhé, investiční program vedle toho. Systematický vklad do diverzifikovaného ETF
           portfolia každý měsíc bez ohledu na trhy. Z tisícikoruny měsíčně za pětadvacet let
-          při sedmiprocentním průměrném výnosu vyroste přes 800 000 Kč.
+          při sedmiprocentním průměrném výnosu vyroste přes 800&nbsp;000&nbsp;Kč.
         </p>
         <p>
           Za třetí, dobrovolné navýšení vyměřovacího základu. Nemusíte platit maximum, ale platit
-          trochu více než zákonné minimum. Každých 10 000 Kč ročně navíc na základu přidá do
-          důchodu zhruba 150 Kč měsíčně na celý život.
+          trochu více než zákonné minimum. Každých 10&nbsp;000&nbsp;Kč ročně navíc na základu přidá do
+          důchodu zhruba 150&nbsp;Kč měsíčně na celý život.
         </p>
 
         <h2>Kdy začít</h2>
@@ -1144,6 +1170,15 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>
           Nejhorší odpověď je počkat na lepší dobu.
         </p>
+
+        <div className="sources" id="zdroje">
+          <ol>
+            <li id="zdroj-1"><b>Zákon č. 589/1992 Sb.</b>, § 5b odst. 2 — vyměřovací základ OSVČ nesmí být nižší než 55 % daňového základu.</li>
+            <li id="zdroj-2"><b>ČSSZ: Přehled o příjmech a výdajích OSVČ 2026</b> — minimální záloha na pojistné: 19 587 Kč/měs. (I. pololetí), 17 139 Kč/měs. (II. pololetí). cssz.cz</li>
+            <li id="zdroj-3"><b>MPSV: Statistická ročenka z oblasti práce a sociálních věcí 2025</b> — průměrný starobní důchod k 31. 12. 2025 činil přibližně 22 000 Kč. mpsv.cz</li>
+            <li id="zdroj-4"><b>Zákon č. 586/1992 Sb.</b>, § 15b — odpočet vkladů na DIP (Dlouhodobý investiční produkt) až 48 000 Kč ročně. Úspora 15 % (základní sazba) až 23 % (vyšší sazba).</li>
+          </ol>
+        </div>
       </div>
     );
   }
@@ -1304,10 +1339,7 @@ export default async function ArticlePage({
                 <span>·</span>
                 <span>{article.date}</span>
                 {article.updated && (
-                  <>
-                    <span>·</span>
-                    <span>Aktualizováno {article.updated}</span>
-                  </>
+                  <span className="updated">Aktualizováno {article.updated}</span>
                 )}
                 {article.readTime && (
                   <>
@@ -1332,7 +1364,7 @@ export default async function ArticlePage({
             <div className="article-cta">
               <div className="article-cta-text">
                 <div className="section-eyebrow" style={{ marginBottom: 8 }}>Osobní rozhovor</div>
-                <p>Chcete vědět, jak to vyjde u vás? První schůzka je zdarma a bez závazku.</p>
+                <p>Chcete vědět, jak to vyjde u vás? První konzultace je bez závazků.</p>
               </div>
               <Link href="/konzultace" className="btn-primary">
                 <span>Zahájit rozhovor</span>

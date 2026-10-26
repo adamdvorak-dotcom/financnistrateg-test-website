@@ -244,6 +244,7 @@ export const articles: Article[] = [
     descEn: "The self-employed pay minimum contributions and save money today. In thirty years they discover their state pension barely covers rent. What the numbers look like and what to do differently while there's still time.",
     date: "13. října 2026",
     dateEn: "October 13, 2026",
+    updated: "26. října 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
     tldr: ["OSVČ platí minimální odvody a šetří tisíce ročně.", "Za 30 let jim státní důchod nepokryje ani základní náklady.", "Řešení: maximalizovat odvody nebo investovat mimo třetí pilíř."],

@@ -2661,3 +2661,44 @@ nav.scrolled .nav-logo{font-size:15px}
 .page.p3{left:340px;top:0;transform:rotateY(-10deg) rotateX(4deg) rotateZ(3.5deg)}
 @media(max-width:700px){.plan{grid-template-columns:minmax(0,1fr);overflow:hidden}
   .stack{width:640px;transform:scale(.52);transform-origin:left top;margin-bottom:-235px}}
+
+/* ── Updated badge ── */
+.updated{display:inline-flex;align-items:center;gap:7px;padding:3px 11px 3px 9px;
+  border:1px solid rgba(201,162,96,.6);border-radius:999px;color:#7A5C35;font-weight:500;font-size:13px}
+.updated::before{content:"";width:6px;height:6px;border-radius:50%;background:#C9A260;flex-shrink:0}
+
+/* ── Footnote links ── */
+.fn{font:600 10px Inter,sans-serif;color:#A9823F;vertical-align:super;margin-left:2px;text-decoration:none}
+
+/* ── Mid-article CTA ── */
+.calc-cta{margin:34px 0 38px;display:grid;grid-template-columns:1.08fr 1fr;gap:30px;align-items:center;
+  padding:30px 32px;border-radius:20px;color:#F5F2EC;
+  background:radial-gradient(circle at 100% 0,rgba(201,162,96,.2),transparent 55%),#0C1F3A}
+.calc-cta .t{font:500 25px/1.2 Lora,serif}
+.calc-cta .bar{display:flex;height:36px;gap:3px}
+.calc-cta .bar .s{flex:52;background:#F5F2EC;border-radius:8px 0 0 8px}
+.calc-cta .bar .u{flex:26;background:#C9A260}
+.calc-cta .bar .x{flex:22;border:1px dashed rgba(245,242,236,.55);border-radius:0 8px 8px 0;
+  background:repeating-linear-gradient(135deg,rgba(245,242,236,.22) 0 2px,transparent 2px 7px)}
+@media(max-width:700px){.calc-cta{grid-template-columns:1fr;gap:20px;padding:24px 20px}}
+
+/* ── Sources block ── */
+.sources{margin:46px 0 26px;padding-top:22px;border-top:1px solid rgba(26,21,17,.14)}
+.sources ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.sources li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:4px;padding:9px 0;
+  border-bottom:1px dashed rgba(26,21,17,.13);font:400 13.5px/1.5 Inter,sans-serif;color:#5a4f43}
+.sources li::before{content:counter(s);font:500 13px/1.5 Lora,serif;color:#A9823F}
+.sources li b{color:#1A1511;font-weight:600}
+
+/* ── 404 page ── */
+.nf{position:relative;min-height:100vh;background:#0C1F3A;color:#F5F2EC;overflow:hidden;display:flex;flex-direction:column}
+.nf .big{font:400 clamp(120px,15vw,210px)/.85 Lora,serif;color:transparent;
+  -webkit-text-stroke:1.2px rgba(201,162,96,.75);letter-spacing:-.02em}
+.nf h1{font:400 46px/1.08 Lora,serif}
+.nf h1 em{color:#C9A260}
+.nf .links{display:grid;gap:12px}
+.nf .links a{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:16px;padding:18px 20px;
+  border:1px solid rgba(245,242,236,.14);border-radius:16px;background:rgba(245,242,236,.04);color:#F5F2EC;text-decoration:none}
+.nf .links a:first-child{border-color:rgba(201,162,96,.6);background:rgba(201,162,96,.1)}
+.nf main{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;max-width:1180px;margin:0 auto;padding:30px 56px 70px}
+@media(max-width:760px){.nf main{grid-template-columns:1fr;gap:34px;padding:14px 20px 40px}.nf .big{font-size:120px}.nf h1{font-size:34px}}
