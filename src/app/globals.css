@@ -697,8 +697,7 @@ input[type="range"]::-moz-range-thumb {
   transition: filter 1.2s ease, transform 1.2s ease;
 }
 @media (hover: hover) {
-  .about-photo-frame img { filter: grayscale(90%); }
-  .about-photo-frame:hover img { filter: grayscale(0%); transform: scale(1.05); }
+  .about-photo-frame:hover img { transform: scale(1.05); }
 }
 .about-photo-deco {
   position: absolute; bottom: -16px; right: -16px;
