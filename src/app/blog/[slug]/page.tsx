@@ -48,7 +48,7 @@ export async function generateMetadata({
   const article = getArticle(slug);
   if (!article) return {};
   return {
-    title: article.title,
+    title: { absolute: article.title },
     description: article.desc,
     alternates: { canonical: `${BASE}/blog/${slug}` },
     openGraph: {

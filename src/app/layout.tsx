@@ -8,11 +8,12 @@ const BASE = "https://www.financnistrateg.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "Adam Dvořák, EFA | Finanční poradce Praha",
-    template: "%s | Adam Dvořák, EFA | Finanční poradce Praha",
+    default: "Finanční stratég a poradce, Praha | Adam Dvořák, EFA",
+    template: "%s | Adam Dvořák, EFA",
   },
   description:
-    "Nezávislý finanční poradce Praha pro podnikatele a majitele firem. Investice, ETF, DIP, penzijní spoření, ochrana a správa majetku. Osmý rok v oboru. První konzultace zdarma.",
+    "Finanční stratég pro majitele firem, lékaře a advokáty v Praze. " +
+    "Investice, DIP, krizový plán a předání majetku. Osmý rok v oboru.",
   keywords: [
     "finanční poradce Praha",
     "investiční poradenství Praha",
@@ -34,9 +35,9 @@ export const metadata: Metadata = {
     canonical: BASE,
   },
   openGraph: {
-    title: "Adam Dvořák, EFA | Finanční poradce Praha",
+    title: "Finanční stratég a poradce, Praha | Adam Dvořák, EFA",
     description:
-      "Nezávislý finanční poradce Praha pro podnikatele a majitele firem. Investice, ETF, DIP, penzijní spoření, ochrana a správa majetku. První konzultace zdarma.",
+      "Finanční stratég pro majitele firem, lékaře a advokáty v Praze. Investice, DIP, krizový plán a předání majetku. Osmý rok v oboru.",
     url: BASE,
     siteName: "Finanční Stratég",
     locale: "cs_CZ",
@@ -52,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adam Dvořák, EFA | Finanční poradce Praha",
+    title: "Finanční stratég a poradce, Praha | Adam Dvořák, EFA",
     description:
-      "Nezávislý finanční poradce Praha. Investice, ETF, DIP, penzijní spoření, ochrana majetku. První konzultace zdarma.",
+      "Finanční stratég pro majitele firem, lékaře a advokáty v Praze. Investice, DIP, krizový plán a předání majetku. Osmý rok v oboru.",
     images: ["/adam-dvorak-hero.jpg"],
   },
   robots: {
