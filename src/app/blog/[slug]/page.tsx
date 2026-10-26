@@ -1271,7 +1271,7 @@ export default async function ArticlePage({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-      <div className="read-progress-bar" id="readProgressBar" aria-hidden="true" />
+      <div className="progress" aria-hidden="true" />
       {/* ── Nav ── */}
       <nav>
         <div className="container nav-inner">
@@ -1356,15 +1356,14 @@ export default async function ArticlePage({
       {/* ── Client scripts: progress, anchors, CTA bar ── */}
       <script dangerouslySetInnerHTML={{ __html: `
         (function() {
-          // Reading progress bar
-          var bar = document.getElementById('readProgressBar');
-          var article = document.querySelector('.article-body');
+          // Page progress bar + nav.scrolled
+          var prog = document.querySelector('.progress');
+          var nav = document.querySelector('nav');
           function updateProgress() {
-            if (!bar || !article) return;
-            var rect = article.getBoundingClientRect();
-            var total = rect.height - window.innerHeight;
-            var scrolled = -rect.top;
-            bar.style.width = Math.max(0, Math.min(100, total > 0 ? (scrolled / total) * 100 : 0)) + '%';
+            var total = document.documentElement.scrollHeight - window.innerHeight;
+            var pct = total > 0 ? (window.scrollY / total * 100) : 0;
+            if (prog) prog.style.setProperty('--p', pct + '%');
+            if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
           }
           window.addEventListener('scroll', updateProgress, { passive: true });
           updateProgress();

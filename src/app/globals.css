@@ -2534,3 +2534,30 @@ footer {
 .article-meta .av{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#0C1F3A;color:#C9A260;font:500 12px/1 Lora,serif;flex-shrink:0}
 .article-body>p:first-of-type{font:400 21px/1.5 Lora,serif;color:#1A1511;margin-bottom:28px}
 .article-body p{font-size:17px;line-height:1.7;hyphens:auto;max-width:66ch}
+
+/* ── Nav scroll shrink, page progress, lang button ── */
+nav.scrolled{height:50px}
+nav.scrolled .nav-logo{font-size:15px}
+.progress{position:fixed;left:0;top:0;height:2px;background:linear-gradient(90deg,#C9A260,#B8922A);z-index:400;width:var(--p,0%)}
+.lang-btn{display:inline-flex;gap:7px;color:#9a8a78;border:1px solid rgba(26,21,17,.14)}
+.lang-btn::before{content:"CZ";color:#1A1511;font-weight:600}
+
+/* ── Calculator presets ── */
+.presets{display:flex;gap:8px;margin:8px 0 14px;flex-wrap:wrap}
+.presets button{font:500 12px Inter,sans-serif;padding:7px 12px;border-radius:999px;border:1px solid rgba(26,21,17,.16);background:none;color:#5a4f43;cursor:pointer}
+.presets button.on{background:#1A1511;color:#F5F2EC;border-color:#1A1511}
+
+/* ── Newsletter layout ── */
+.nl-wrap{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:48px;text-align:left;padding:30px 0;border-top:1px solid rgba(26,21,17,.14);border-bottom:1px solid rgba(26,21,17,.14)}
+.nl-title{font-size:26px;margin:0}
+.nl-sub{font-size:14px;max-width:60ch;margin:6px 0 0}
+.nl-form{grid-column:2;grid-row:1/4;display:flex;gap:10px}
+.nl-input{min-width:280px}
+.nl-note{grid-column:2;font-size:11px;text-align:right}
+#newsletter{background:none}
+@media(max-width:700px){
+  .nl-wrap{grid-template-columns:1fr}
+  .nl-form{grid-column:1;grid-row:auto}
+  .nl-note{grid-column:1;text-align:left}
+  .nl-input{min-width:0;flex:1}
+}

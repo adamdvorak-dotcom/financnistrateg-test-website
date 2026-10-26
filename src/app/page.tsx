@@ -451,6 +451,22 @@ export default function Page() {
     return () => { obs.disconnect(); nav.classList.remove("over-dark"); };
   }, []);
 
+  /* Nav scrolled + progress bar */
+  useEffect(() => {
+    const nav = document.querySelector<HTMLElement>("nav");
+    const prog = document.querySelector<HTMLElement>(".progress");
+    const onScroll = () => {
+      if (!nav) return;
+      nav.classList.toggle("scrolled", window.scrollY > 60);
+      if (prog) {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        prog.style.setProperty("--p", total > 0 ? (window.scrollY / total * 100) + "%" : "0%");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   /* Aphorism cycle */
   useEffect(() => {
     const timer = setInterval(() => {
@@ -757,6 +773,7 @@ export default function Page() {
         </div>
       </div>
 
+      <div className="progress" aria-hidden="true" />
       {/* ── Navbar ── */}
       <nav>
         <div className="container nav-inner">
@@ -967,6 +984,11 @@ export default function Page() {
                 <div className="calc-inputs">
                   <div>
                     <label className="field-label">{t.invMonthly}</label>
+                    <div className="presets">
+                      {[2000, 5000, 10000, 25000].map(v => (
+                        <button key={v} type="button" className={invMonthly === v ? "on" : ""} onClick={() => setInvMonthly(v)}>{v.toLocaleString("cs-CZ")} Kč</button>
+                      ))}
+                    </div>
                     <div className="field-input-wrap">
                       <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} />
                       <span className="field-unit">Kč</span>
@@ -1082,6 +1104,11 @@ export default function Page() {
                 <div className="calc-inputs">
                   <div>
                     <label className="field-label">{t.mtgAmt}</label>
+                    <div className="presets">
+                      {[2000000, 4000000, 6000000, 8000000].map(v => (
+                        <button key={v} type="button" className={mtgAmt === v ? "on" : ""} onClick={() => setMtgAmt(v)}>{v / 1000000} mil.</button>
+                      ))}
+                    </div>
                     <div className="field-input-wrap">
                       <input type="number" className="field-input" value={mtgAmt} min={100000} step={50000} onChange={(e) => setMtgAmt(+e.target.value || 0)} />
                       <span className="field-unit">Kč</span>
@@ -1150,6 +1177,11 @@ export default function Page() {
                   </div>
                   <div>
                     <label className="field-label">{t.retMonthlySavLabel}</label>
+                    <div className="presets">
+                      {[1000, 3000, 5000, 10000].map(v => (
+                        <button key={v} type="button" className={retMonthlySavings === v ? "on" : ""} onClick={() => setRetMonthlySavings(v)}>{v.toLocaleString("cs-CZ")} Kč</button>
+                      ))}
+                    </div>
                     <div className="field-input-wrap">
                       <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString("cs-CZ")} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
                       <span className="field-unit">Kč</span>
