@@ -2685,9 +2685,10 @@ nav.scrolled .nav-logo{font-size:15px}
 /* ── Sources block ── */
 .sources{margin:46px 0 26px;padding-top:22px;border-top:1px solid rgba(26,21,17,.14)}
 .sources ol{list-style:none;margin:0;padding:0;counter-reset:s}
-.sources li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:4px;padding:9px 0;
+.sources li{counter-increment:s;position:relative;padding:9px 0 9px 34px;
   border-bottom:1px dashed rgba(26,21,17,.13);font:400 13.5px/1.5 Inter,sans-serif;color:#5a4f43}
-.sources li::before{content:counter(s);font:500 13px/1.5 Lora,serif;color:#A9823F}
+.sources li::before{content:counter(s);position:absolute;left:0;top:11px;
+  font:500 13px/1 Lora,serif;color:#A9823F}
 .sources li b{color:#1A1511;font-weight:600}
 
 /* ── 404 page ── */
