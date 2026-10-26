@@ -72,6 +72,26 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .gate .rc .band p { color: rgba(245,242,236,.55); }
 .back-link { font-size: 14px; color: var(--muted); border-color: var(--rule); }
 .back-link:hover { color: var(--ink); }
+.masthead-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.masthead-logo img { width: 32px; height: 32px; border-radius: 50%; display: block; }
+.masthead-logo span { font-size: 15px; font-weight: 500; color: var(--ink); }
+.rc-chip { display: inline-block; font-size: 10px; letter-spacing: .1em; font-weight: 600; text-transform: uppercase; background: rgba(201,162,96,.15); color: var(--gold); border-radius: 4px; padding: 2px 7px; margin-left: 8px; vertical-align: middle; }
+.rc-head { display: flex; align-items: center; margin-bottom: 16px; }
+.rc-head .eyebrow { margin: 0; color: rgba(201,162,96,.55); }
+.rc-score-text .title { font: 600 16px/1.2 var(--font-display); color: var(--on-navy); }
+.rc-score-text .sub { font-size: 12px; color: rgba(245,242,236,.5); margin-top: 4px; }
+.rc-bars { display: grid; gap: 9px; margin-bottom: 16px; }
+.rc-bar-row { display: grid; grid-template-columns: minmax(0,1fr) 34px; gap: 3px 8px; font-size: 12px; }
+.rc-bar-row .lbl { color: rgba(245,242,236,.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rc-bar-row .val { color: rgba(245,242,236,.45); text-align: right; font-variant-numeric: tabular-nums; }
+.rc-bar-track { grid-column: 1/-1; height: 4px; border-radius: 2px; background: rgba(245,242,236,.1); }
+.rc-bar-fill { height: 100%; border-radius: 2px; background: var(--gold); transition: width .6s ease; }
+.rc-bar-fill.weak { background: #c0503a; }
+.rc-footer { font-size: 13px; color: rgba(245,242,236,.55); border-top: 1px solid rgba(245,242,236,.1); padding-top: 12px; margin-top: 4px; line-height: 1.5; }
+.rc-footer strong { color: rgba(245,242,236,.8); }
+.gate .ex-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.gate .ex-head .eyebrow { margin: 0; font-size: 11px; }
+.gate .ex-head .ex-count { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
 body:not(.started) .mobilebar { display: none !important; }
 @media(max-width:767px) { .gate { grid-template-columns: 1fr; } .gate .rc { display: none; } }
 .btn { appearance: none; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 500 14px/1 var(--font-body); letter-spacing: 0.04em; padding: 11px 16px; border-radius: var(--radius); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
@@ -182,8 +202,9 @@ body:not(.started) .mobilebar { display: none !important; }
 <div id="topBar" aria-hidden="true"></div>
 <div class="wrap">
   <header class="masthead">
-    <a href="https://www.financnistrateg.com" style="text-decoration:none">
-      <p class="eyebrow" style="margin:0">Finanční Stratég · Adam Dvořák</p>
+    <a href="https://www.financnistrateg.com" class="masthead-logo">
+      <img src="/icon-192.png" alt="Adam Dvořák, EFA">
+      <span>Finanční Stratég</span>
     </a>
     <a href="https://www.financnistrateg.com" class="btn back-link">← Zpět na web</a>
   </header>
@@ -192,10 +213,14 @@ body:not(.started) .mobilebar { display: none !important; }
 
   <div class="gate" id="gate">
     <div>
-      <p class="eyebrow">Finanční preventivka · 5 minut</p>
+      <p class="eyebrow">— Pro majitele firem · 5 minut</p>
       <h1>Finanční preventivka.<em>Nic vás nebolí.<br>A právě proto.</em></h1>
-      <p class="gate-hint">20 tvrzení, 5 oblastí. Zjistěte, kde máte největší mezery v připravenosti firmy a rodiny.</p>
+      <p class="gate-hint">Dvacet tvrzení v pěti oblastech. Odpovídáte Ano, Částečně nebo Ne, upřímně a sami za sebe. Na konci uvidíte, kde máte největší mezery, a tři kroky, kterými začít.</p>
       <div class="ex">
+        <div class="ex-head">
+          <span class="eyebrow">První tvrzení</span>
+          <span class="ex-count">1 z 20</span>
+        </div>
         <p class="item-text" style="margin:0">Firma vydrží dva měsíce bez mého telefonu.</p>
         <div class="opts ex-opts">
           <span class="opt-card"><span class="opt-txt">Ano</span></span>
@@ -206,7 +231,10 @@ body:not(.started) .mobilebar { display: none !important; }
       <button class="btn solid large" id="gateStart" type="button">Zahájit preventivku →</button>
     </div>
     <div class="rc" role="presentation" aria-hidden="true">
-      <p class="eyebrow" style="color:rgba(201,162,96,.55);margin-bottom:16px">Ukázka: výsledek</p>
+      <div class="rc-head">
+        <p class="eyebrow">Takhle vypadá výsledek</p>
+        <span class="rc-chip">Ukázka</span>
+      </div>
       <div class="score" style="margin-bottom:20px">
         <div class="ring-outer" style="--p:0.6">
           <svg class="ring" viewBox="0 0 88 88" width="88" height="88" aria-hidden="true">
@@ -214,41 +242,37 @@ body:not(.started) .mobilebar { display: none !important; }
             <circle class="fg" cx="44" cy="44" r="38" transform="rotate(-90 44 44)" style="stroke-dashoffset:95.5"/>
           </svg>
           <div class="ring-inner">
-            <span class="big" style="color:var(--on-navy)">24</span>
-            <span class="of" style="color:rgba(245,242,236,.55)">/ 40</span>
+            <span class="big" style="color:var(--on-navy);font-size:22px">60 %</span>
           </div>
         </div>
-        <div>
-          <div style="font:600 16px/1.2 var(--font-display);color:var(--on-navy)">Příprava je rozjetá</div>
-          <div style="font-size:13px;color:rgba(245,242,236,.5);margin-top:5px">Pár klíčových kroků chybí</div>
+        <div class="rc-score-text">
+          <div class="title">Základ stojí, díry jsou vidět.</div>
+          <div class="sub">Nejslabší oblast je tady Daně a struktura.</div>
         </div>
       </div>
-      <div class="meters">
-        <div class="meter-row">
-          <span class="lbl">1. Firma bez majitele</span><span class="val">4 / 8</span>
-          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span>
+      <div class="rc-bars">
+        <div class="rc-bar-row">
+          <span class="lbl">Firma bez majitele</span><span class="val">50 %</span>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:50%"></div></div>
         </div>
-        <div class="meter-row">
-          <span class="lbl">2. Peníze mimo firmu</span><span class="val">6 / 8</span>
-          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+        <div class="rc-bar-row">
+          <span class="lbl">Peníze mimo firmu</span><span class="val">63 %</span>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:63%"></div></div>
         </div>
-        <div class="meter-row">
-          <span class="lbl">3. Rodina a dokumenty</span><span class="val">5 / 8</span>
-          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>
+        <div class="rc-bar-row">
+          <span class="lbl">Rodina a dokumenty</span><span class="val">63 %</span>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:63%"></div></div>
         </div>
-        <div class="meter-row">
-          <span class="lbl">4. Daně a struktura</span><span class="val">5 / 8</span>
-          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>
+        <div class="rc-bar-row">
+          <span class="lbl">Daně a struktura</span><span class="val">38 %</span>
+          <div class="rc-bar-track"><div class="rc-bar-fill weak" style="width:38%"></div></div>
         </div>
-        <div class="meter-row">
-          <span class="lbl">5. Plán odchodu</span><span class="val">4 / 8</span>
-          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span>
+        <div class="rc-bar-row">
+          <span class="lbl">Plán odchodu</span><span class="val">88 %</span>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:88%"></div></div>
         </div>
       </div>
-      <div class="band r" style="margin-top:14px">
-        <strong>Firma bez majitele</strong>
-        <p>Nejslabší oblast · začněte tu</p>
-      </div>
+      <div class="rc-footer"><strong>A pak tři kroky.</strong> Konkrétně, v pořadí, ve kterém dávají smysl.</div>
     </div>
   </div>
 
