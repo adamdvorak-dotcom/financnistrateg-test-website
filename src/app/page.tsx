@@ -962,6 +962,41 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ── Preventivka ── */}
+      <section className="section-wrap">
+        <div className="container">
+          <div className="prev-card">
+            <div>
+              <div className="section-eyebrow" style={{color:"rgba(201,162,96,.72)",marginBottom:20}}>Pro majitele firem</div>
+              <h3>Finanční preventivka</h3>
+              <p style={{marginTop:16}}>Nic vás nebolí, a právě proto je dobrá chvíle podívat se, jestli firma běží i bez vás.</p>
+              <a href="/test" className="btn-primary" style={{marginTop:32,display:"inline-flex",alignItems:"center",gap:8}}>
+                <span>Začít preventivku</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+              {/* r=96, circ=603.19, arc=112.64, gap=490.55, step=120.64 */}
+              <svg viewBox="0 0 220 220" width="220" height="220" aria-hidden="true" style={{display:"block",maxWidth:"100%"}}>
+                <circle cx="110" cy="110" r="96" fill="none" stroke="rgba(201,162,96,.1)" strokeWidth="12" />
+                <g transform="rotate(-90 110 110)">
+                  {[0,1,2,3,4].map(i => (
+                    <circle key={i} cx="110" cy="110" r="96" fill="none"
+                      stroke="rgba(201,162,96,1)"
+                      strokeOpacity={+(1 - i * 0.15).toFixed(2)}
+                      strokeWidth="12"
+                      strokeDasharray="112.64 490.55"
+                      strokeDashoffset={-(i * 120.637)}
+                      strokeLinecap="round"
+                    />
+                  ))}
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Calculators ── */}
       <section id="calculators">
         <div className="container">
