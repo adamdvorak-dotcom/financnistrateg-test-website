@@ -601,7 +601,7 @@ export default function Page() {
   const iDep = invMonthly * iN + invInit;
   const iProfit = Math.max(0, iFv - iDep);
   const iPct = iDep > 0 ? (iDep / iFv) * 100 : 50;
-  const INF_RATE = 0.035; // ČSÚ průměr 2004–2023
+  const INF_RATE = 0.033; // ČSÚ průměr 2005–2025
   const inflFactor = Math.pow(1 + INF_RATE, invYears);
   const dispFv   = invInflation ? iFv   / inflFactor : iFv;
   const dispDep  = invInflation ? iDep  / inflFactor : iDep;
@@ -1232,8 +1232,8 @@ export default function Page() {
                   <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(dispProfit, lang)} {t.currency}</span></div>
                   <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 10, lineHeight: 1.5 }}>
                     {lang === "cs"
-                      ? "Průměrná inflace v ČR za posledních 20 let: 3,5 % ročně (dle ČSÚ, 2004–2023)."
-                      : "Average Czech inflation over 20 years: 3.5% p.a. (ČSÚ, 2004–2023)."}
+                      ? "Průměrná inflace v ČR za posledních 20 let: 3,3 % ročně (dle ČSÚ, 2005–2025)."
+                      : "Average Czech inflation over 20 years: 3.3% p.a. (ČSÚ, 2005–2025)."}
                   </p>
                 </div>
               </div>
