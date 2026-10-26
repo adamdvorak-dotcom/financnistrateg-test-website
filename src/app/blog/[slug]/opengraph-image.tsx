@@ -1,4 +1,6 @@
 import { ImageResponse } from 'next/og'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { getArticle } from '@/app/blog/articles'
 
 export const size = { width: 1200, height: 630 }
@@ -7,11 +9,7 @@ export const contentType = 'image/png'
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const article = getArticle(slug)
-
-  const loraRes = await fetch(
-    'https://fonts.gstatic.com/s/lora/v35/0QI6MX1D_JOxE7fSWoAJDdpW5Q.ttf'
-  )
-  const lora = await loraRes.arrayBuffer()
+  const lora = await readFile(join(process.cwd(), 'assets/Lora-Medium.ttf'))
 
   return new ImageResponse(
     (
