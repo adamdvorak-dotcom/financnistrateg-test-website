@@ -244,8 +244,6 @@ export default function Page() {
   const [invRate, setInvRate] = useState(5);
   const [invYears, setInvYears] = useState(20);
   const [invInitPos, setInvInitPos] = useState(0);
-  const [invInflation, setInvInflation] = useState(false);
-
   /* Mortgage calc */
   const [mtgAmt, setMtgAmt] = useState(4000000);
   const [mtgRate, setMtgRate] = useState(4.5);
@@ -601,12 +599,6 @@ export default function Page() {
   const iDep = invMonthly * iN + invInit;
   const iProfit = Math.max(0, iFv - iDep);
   const iPct = iDep > 0 ? (iDep / iFv) * 100 : 50;
-  const INF_RATE = 0.033; // ČSÚ průměr 2005–2025
-  const inflFactor = Math.pow(1 + INF_RATE, invYears);
-  const dispFv   = invInflation ? iFv   / inflFactor : iFv;
-  const dispDep  = invInflation ? iDep  / inflFactor : iDep;
-  const dispProfit = Math.max(0, dispFv - dispDep);
-
   /* ── Mortgage calculator ── */
   const mR = mtgRate / 100 / 12;
   const mN = mtgYrs * 12;
@@ -1158,35 +1150,11 @@ export default function Page() {
                     <div className="calc-result-numbers">
                       <div className="result-label">
                         {t.invResultLabel}
-                        {invInflation && (
-                          <span style={{ marginLeft: 6, fontSize: 11, color: "#A9823F", fontWeight: 500 }}>
-                            · {lang === "cs" ? "reálná hodnota" : "real value"}
-                          </span>
-                        )}
                       </div>
                       <div className="result-big">
-                        <SlotNum key={fmt(dispFv, lang)} value={fmt(dispFv, lang)} />
+                        <SlotNum key={fmt(iFv, lang)} value={fmt(iFv, lang)} />
                         {" "}<span>{t.currency}</span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => setInvInflation(v => !v)}
-                        style={{
-                          marginTop: 10, display: "inline-flex", alignItems: "center", gap: 7,
-                          padding: "5px 12px", borderRadius: 999, border: "1px solid rgba(26,21,17,.18)",
-                          background: invInflation ? "#0C1F3A" : "transparent",
-                          color: invInflation ? "#F5F2EC" : "var(--text-2)",
-                          fontSize: 12, fontWeight: 500, cursor: "pointer",
-                        }}
-                      >
-                        <span style={{
-                          width: 8, height: 8, borderRadius: "50%",
-                          background: invInflation ? "#C9A260" : "rgba(26,21,17,.3)", flexShrink: 0,
-                        }} />
-                        {lang === "cs"
-                          ? (invInflation ? "Vypnout inflaci" : "Zapnout inflaci")
-                          : (invInflation ? "Hide inflation" : "Show inflation")}
-                      </button>
                     </div>
                   </div>
                   <GrowthChart key={`${invMonthly}-${invRate}-${invYears}-${invInit}`} monthly={invMonthly} rate={invRate} years={invYears} init={invInit} />
@@ -1228,13 +1196,8 @@ export default function Page() {
                       : "Illustrative calculation, not a forecast. Past performance does not guarantee future returns."}
                   </p>
                   <div className="result-divider" />
-                  <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(dispDep, lang)} {t.currency}</span></div>
-                  <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(dispProfit, lang)} {t.currency}</span></div>
-                  <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 10, lineHeight: 1.5 }}>
-                    {lang === "cs"
-                      ? "Průměrná inflace v ČR za posledních 20 let: 3,3 % ročně (dle ČSÚ, 2005–2025)."
-                      : "Average Czech inflation over 20 years: 3.3% p.a. (ČSÚ, 2005–2025)."}
-                  </p>
+                  <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
+                  <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
                 </div>
               </div>
 
