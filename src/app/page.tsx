@@ -1500,17 +1500,13 @@ export default function Page() {
               </div>
               {/* Office map */}
               <div className="office-map">
-                <img src="/map-salvatorska.svg" alt="Mapa okolí kanceláře" />
+                <img src="/map-salvatorska.png" alt="Mapa okolí kanceláře" />
                 <div className="pin" />
-                <div className="lbl">Opero · Salvátorská 8</div>
+                <div className="lbl">{lang === "cs" ? "Kancelář · Salvátorská 931/8" : "Office · Salvátorská 931/8"}</div>
               </div>
               <div style={{display:"flex",gap:14,marginTop:12,flexWrap:"wrap"}}>
-                <a href="https://mapy.cz/zakladni?x=14.4188&y=50.0884&z=17" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:"var(--gold)",fontWeight:500,textDecoration:"none"}}>Mapy.cz →</a>
+                <a href="https://mapy.cz/zakladni?x=14.4188&y=50.0884&z=17" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:"var(--gold)",fontWeight:500,textDecoration:"none"}}>{lang === "cs" ? "Otevřít v Mapy.cz →" : "Open in Mapy.cz →"}</a>
                 <a href="https://maps.google.com/maps?q=Salvátorská+8,+110+00+Praha+1" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:"var(--text-2)",fontWeight:500,textDecoration:"none"}}>Google Maps →</a>
-              </div>
-              <div className="trust" style={{marginTop:14}}>
-                <span>{lang === "cs" ? "Praha 1, Staré Město" : "Prague 1, Old Town"}</span>
-                <span>Opero coworking</span>
               </div>
             </div>
 
