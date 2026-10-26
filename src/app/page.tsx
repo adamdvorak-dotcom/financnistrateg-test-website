@@ -984,16 +984,11 @@ export default function Page() {
                 <div className="calc-inputs">
                   <div>
                     <label className="field-label">{t.invMonthly}</label>
-                    <div className="presets">
-                      {[2000, 5000, 10000, 25000].map(v => (
-                        <button key={v} type="button" className={invMonthly === v ? "on" : ""} onClick={() => setInvMonthly(v)}>{v.toLocaleString("cs-CZ")} Kč</button>
-                      ))}
-                    </div>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} onBlur={(e) => { const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0; setInvMonthly(Math.round(v / 100) * 100 || 500); }} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <GoldRange value={invMonthly} min={500} max={200000} step={1} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
+                    <GoldRange value={invMonthly} min={500} max={200000} step={100} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>500 Kč</span><span>200 000 Kč</span></div>
                   </div>
                   <div>
