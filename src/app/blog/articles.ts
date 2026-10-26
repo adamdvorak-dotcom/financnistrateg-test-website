@@ -14,6 +14,7 @@ export type Article = {
   updated?: string;
   updatedEn?: string;
   author: string;
+  readTime?: number;
 };
 
 export const articles: Article[] = [
@@ -31,6 +32,7 @@ export const articles: Article[] = [
     updated: "8. května 2025",
     updatedEn: "May 8, 2025",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "fixace-hypoteky-jak-se-rozhodnout",
@@ -44,6 +46,7 @@ export const articles: Article[] = [
     date: "2. března 2026",
     dateEn: "March 2, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele",
@@ -59,6 +62,7 @@ export const articles: Article[] = [
     updated: "8. května 2025",
     updatedEn: "May 8, 2025",
     author: "Adam Dvořák, EFA",
+    readTime: 3,
   },
   {
     slug: "jak-se-pocita-duchod-v-cr",
@@ -72,6 +76,7 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 5,
   },
   {
     slug: "penzijni-sporeni-vs-investice",
@@ -85,6 +90,7 @@ export const articles: Article[] = [
     date: "18. února 2026",
     dateEn: "February 18, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "jak-investovat-do-etf",
@@ -98,6 +104,7 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 6,
   },
   {
     slug: "dip-dlouhodoby-investicni-produkt",
@@ -111,6 +118,7 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "financni-poduska-jak-ji-spravne-nastavit",
@@ -124,6 +132,7 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "danove-optimalizace-pro-osvc-a-jednatele",
@@ -137,6 +146,7 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 5,
   },
   {
     slug: "mimoradna-splatka-hypoteky",
@@ -150,6 +160,7 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "firma-a-osobni-majetek",
@@ -163,6 +174,7 @@ export const articles: Article[] = [
     date: "13. října 2026",
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "trhy-padaji-co-ted",
@@ -176,6 +188,7 @@ export const articles: Article[] = [
     date: "13. října 2026",
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 3,
   },
   {
     slug: "kolik-si-vyplacet-ze-sro",
@@ -189,6 +202,7 @@ export const articles: Article[] = [
     date: "13. října 2026",
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
   {
     slug: "investicni-byt-napocitam-to",
@@ -202,6 +216,7 @@ export const articles: Article[] = [
     date: "13. října 2026",
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 5,
   },
   {
     slug: "osvc-duchod-proc-jste-na-tom-hur",
@@ -215,6 +230,7 @@ export const articles: Article[] = [
     date: "13. října 2026",
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
+    readTime: 4,
   },
 ];
 

@@ -2525,3 +2525,12 @@ footer {
 
 /* ── Float pill: hide on mobile (replaced by cta-bar) ── */
 @media (max-width: 640px) { .float-pill { display: none !important; } }
+
+/* ── Article page typography ── */
+.article-tag{display:inline-flex;align-items:center;gap:10px;font:600 11px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;margin-bottom:22px}
+.article-tag::before{content:"";width:24px;height:1px;background:#C9A260}
+.article-title{font-size:62px;line-height:1.04;letter-spacing:-.015em;max-width:17ch;text-wrap:balance}
+.article-meta{display:flex;align-items:center;gap:12px;font:500 13px Inter,sans-serif;padding-bottom:28px;border-bottom:1px solid rgba(26,21,17,.12);margin-bottom:34px}
+.article-meta .av{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#0C1F3A;color:#C9A260;font:500 12px/1 Lora,serif;flex-shrink:0}
+.article-body>p:first-of-type{font:400 21px/1.5 Lora,serif;color:#1A1511;margin-bottom:28px}
+.article-body p{font-size:17px;line-height:1.7;hyphens:auto;max-width:66ch}

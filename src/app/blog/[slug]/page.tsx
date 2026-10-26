@@ -1299,13 +1299,20 @@ export default async function ArticlePage({
               <div className="article-tag">{article.tag}</div>
               <h1 className="article-title">{article.title}</h1>
               <div className="article-meta">
+                <span className="av">AD</span>
                 <span>{article.author}</span>
-                <span className="article-meta-dot">·</span>
+                <span>·</span>
                 <span>{article.date}</span>
                 {article.updated && (
                   <>
-                    <span className="article-meta-dot">·</span>
+                    <span>·</span>
                     <span>Aktualizováno {article.updated}</span>
+                  </>
+                )}
+                {article.readTime && (
+                  <>
+                    <span>·</span>
+                    <span>{article.readTime} min čtení</span>
                   </>
                 )}
               </div>
