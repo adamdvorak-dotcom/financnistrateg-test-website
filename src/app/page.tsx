@@ -434,6 +434,23 @@ export default function Page() {
     return () => obs.disconnect();
   }, []);
 
+  /* Nav over-dark — transparent while hero is visible */
+  useEffect(() => {
+    const hero = heroRef.current;
+    const nav = document.querySelector("nav");
+    if (!hero || !nav) return;
+    nav.classList.add("over-dark");
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) nav.classList.add("over-dark");
+        else nav.classList.remove("over-dark");
+      },
+      { threshold: 0 }
+    );
+    obs.observe(hero);
+    return () => { obs.disconnect(); nav.classList.remove("over-dark"); };
+  }, []);
+
   /* Aphorism cycle */
   useEffect(() => {
     const timer = setInterval(() => {
