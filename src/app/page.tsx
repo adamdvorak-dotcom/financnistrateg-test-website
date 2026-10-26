@@ -1498,6 +1498,20 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+              {/* Office map */}
+              <div className="office-map">
+                <img src="/map-salvatorska.svg" alt="Mapa okolí kanceláře" />
+                <div className="pin" />
+                <div className="lbl">Opero · Salvátorská 8</div>
+              </div>
+              <div style={{display:"flex",gap:14,marginTop:12,flexWrap:"wrap"}}>
+                <a href="https://mapy.cz/zakladni?x=14.4188&y=50.0884&z=17" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:"var(--gold)",fontWeight:500,textDecoration:"none"}}>Mapy.cz →</a>
+                <a href="https://maps.google.com/maps?q=Salvátorská+8,+110+00+Praha+1" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:"var(--text-2)",fontWeight:500,textDecoration:"none"}}>Google Maps →</a>
+              </div>
+              <div className="trust" style={{marginTop:14}}>
+                <span>{lang === "cs" ? "Praha 1, Staré Město" : "Prague 1, Old Town"}</span>
+                <span>Opero coworking</span>
+              </div>
             </div>
 
             <div className="contact-form-wrap">
@@ -1544,6 +1558,13 @@ export default function Page() {
                     </>
                   )}
                 </button>
+                {formState === "idle" && (
+                  <div className="trust" style={{marginTop:14}}>
+                    <span>{lang === "cs" ? "Odpovídám do 24 hodin" : "I reply within 24 hours"}</span>
+                    <span>{lang === "cs" ? "Diskrétně" : "Discreetly"}</span>
+                    <span>{lang === "cs" ? "Bez závazků" : "No commitment"}</span>
+                  </div>
+                )}
                 {formState === "sent" && (
                   <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: "var(--r-sm)", color: "#22c55e", fontSize: 14, fontWeight: 500, lineHeight: 1.5 }}>
                     ✓ {lang === "cs"

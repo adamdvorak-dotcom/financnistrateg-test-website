@@ -1318,6 +1318,15 @@ export default async function ArticlePage({
               </div>
             </header>
 
+            {article.tldr && article.tldr.length > 0 && (
+              <div className="tldr">
+                <ol>
+                  {article.tldr.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
             <ArticleContent slug={slug} />
 
             <div className="article-cta">
@@ -1346,6 +1355,13 @@ export default async function ArticlePage({
               </div>
             )}
           </div>
+          <nav className="toc" id="toc" aria-label="Obsah článku">
+            {article.readTime && (
+              <div id="tocTime" data-total={article.readTime} style={{fontSize:12,color:"var(--text-2)",marginBottom:16,fontWeight:500}}>
+                Zbývá {article.readTime} {article.readTime === 1 ? "minuta" : "minut"} čtení
+              </div>
+            )}
+          </nav>
         </div>
       </main>
 
@@ -1379,6 +1395,42 @@ export default async function ArticlePage({
 
       {/* ── Client scripts: progress, anchors, CTA bar ── */}
       <script dangerouslySetInnerHTML={{ __html: `
+        // TOC: build from h2s, highlight active with IntersectionObserver
+        (function() {
+          var toc = document.getElementById('toc');
+          if (!toc) return;
+          var h2s = Array.from(document.querySelectorAll('.article-body h2'));
+          if (!h2s.length) { toc.style.display = 'none'; return; }
+          h2s.forEach(function(h, i) {
+            if (!h.id) h.id = 'h-' + i;
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            toc.appendChild(a);
+          });
+          var links = toc.querySelectorAll('a');
+          var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+              if (e.isIntersecting) {
+                links.forEach(function(l) { l.classList.remove('on'); });
+                var active = toc.querySelector('a[href="#' + e.target.id + '"]');
+                if (active) active.classList.add('on');
+              }
+            });
+          }, { rootMargin: '-20% 0px -70% 0px' });
+          h2s.forEach(function(h) { io.observe(h); });
+          // Reading time countdown
+          var countdown = document.getElementById('tocTime');
+          if (countdown) {
+            window.addEventListener('scroll', function() {
+              var total = document.documentElement.scrollHeight - window.innerHeight;
+              var pct = total > 0 ? window.scrollY / total : 0;
+              var readTime = parseInt(countdown.dataset.total || '5', 10);
+              var remaining = Math.max(1, Math.round(readTime * (1 - pct)));
+              countdown.textContent = (remaining === 1 ? 'Zbývá 1 minuta' : 'Zbývají ' + remaining + ' minuty');
+            }, { passive: true });
+          }
+        })();
         (function() {
           // Page progress bar + nav.scrolled
           var prog = document.querySelector('.progress');

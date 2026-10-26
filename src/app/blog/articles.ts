@@ -15,6 +15,7 @@ export type Article = {
   updatedEn?: string;
   author: string;
   readTime?: number;
+  tldr?: string[];
 };
 
 export const articles: Article[] = [
@@ -33,6 +34,7 @@ export const articles: Article[] = [
     updatedEn: "May 8, 2025",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Svěřenský fond odděluje majetek od osobního vlastnictví majitele.", "Klíčová rozhodnutí: výběr správce a vymezení beneficientů.", "Správně nastavený fond chrání majetek i před věřiteli."],
   },
   {
     slug: "fixace-hypoteky-jak-se-rozhodnout",
@@ -47,6 +49,7 @@ export const articles: Article[] = [
     dateEn: "March 2, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Kratší fixace = nižší sazba, ale riziko růstu při refixaci.", "Delší fixace chrání cashflow, ale omezuje flexibilitu.", "Správná volba závisí na vašich plánech a toleranci rizika."],
   },
   {
     slug: "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele",
@@ -63,6 +66,7 @@ export const articles: Article[] = [
     updatedEn: "May 8, 2025",
     author: "Adam Dvořák, EFA",
     readTime: 3,
+    tldr: ["Moderní správa majetku jde nad rámec investic a fondů.", "Klíčový trend: konsolidace majetku pod jednoho správce.", "Podnikatel potřebuje jiný přístup než zaměstnanec."],
   },
   {
     slug: "jak-se-pocita-duchod-v-cr",
@@ -77,6 +81,7 @@ export const articles: Article[] = [
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 5,
+    tldr: ["Výše důchodu závisí na výdělcích za celou kariéru, ne jen na posledních.", "OSVČ platí minimální odvody a platí za to nižším důchodem.", "Výpočet jde ovlivnit: odpracovaná léta a výše příjmů."],
   },
   {
     slug: "penzijni-sporeni-vs-investice",
@@ -91,6 +96,7 @@ export const articles: Article[] = [
     dateEn: "February 18, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Třetí pilíř dává státní příspěvky a daňový odpočet.", "Vlastní investiční portfolio nabízí vyšší flexibilitu a výnos.", "Optimum je kombinace: třetí pilíř + investice nad rámec."],
   },
   {
     slug: "jak-investovat-do-etf",
@@ -105,6 +111,7 @@ export const articles: Article[] = [
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 6,
+    tldr: ["ETF kopíruje celý index za zlomek nákladů aktivně spravovaných fondů.", "Investiční horizont a pravidelnost rozhodují víc než načasování.", "Klíč je jednoduchý plán, který vydržíte dodržovat i při poklesu."],
   },
   {
     slug: "dip-dlouhodoby-investicni-produkt",
@@ -119,6 +126,7 @@ export const articles: Article[] = [
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["DIP umožňuje investovat do akcií a ETF s daňovým odpočtem.", "Odpočet až 48 000 Kč ročně, zaměstnavatel může přidat 50 000 Kč.", "Vhodné pro každého, kdo platí daň z příjmu a investuje pravidelně."],
   },
   {
     slug: "financni-poduska-jak-ji-spravne-nastavit",
@@ -133,6 +141,7 @@ export const articles: Article[] = [
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Peníze na běžném účtu reálně ztrácejí hodnotu vůči inflaci.", "Třívrstvý systém: okamžitá rezerva, střednědobá, dlouhodobá.", "Každá vrstva má jiný nástroj a jiný horizont likvidace."],
   },
   {
     slug: "danove-optimalizace-pro-osvc-a-jednatele",
@@ -147,6 +156,7 @@ export const articles: Article[] = [
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 5,
+    tldr: ["Správnou kombinací mzdy, dividend a DIP ušetříte desítky tisíc.", "OSVČ: paušální daň vs. paušální výdaje závisí na výši příjmů.", "Jednatelé s.r.o. mají více nástrojů než klasičtí zaměstnanci."],
   },
   {
     slug: "mimoradna-splatka-hypoteky",
@@ -161,6 +171,7 @@ export const articles: Article[] = [
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Mimořádná splátka je garantovaný výnos rovný úrokové sazbě.", "Při sazbě pod 5 % globální akcie historicky překonají splácení.", "Klíč je načasování na výročí fixace, aby se vyhnuli pokutám."],
   },
   {
     slug: "firma-a-osobni-majetek",
@@ -175,6 +186,7 @@ export const articles: Article[] = [
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Devět z deseti majitelů má veškerý majetek zamčený ve firmě.", "Firma selže, osobní majetek ji přežít nemusí, pokud není oddělen.", "Řešení: pravidelné výběry a investice mimo firemní strukturu."],
   },
   {
     slug: "trhy-padaji-co-ted",
@@ -189,6 +201,7 @@ export const articles: Article[] = [
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 3,
+    tldr: ["Mozek v panice přikazuje prodat, historická data říkají opak.", "Trhy se vždy zotavily, horizontu 10+ let dočasný pokles nevadí.", "Nejhorší je prodat na dně a koupit zpět po zdražení."],
   },
   {
     slug: "kolik-si-vyplacet-ze-sro",
@@ -203,6 +216,7 @@ export const articles: Article[] = [
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["Kombinace mzdy a dividendy je daňově výhodnější než jen mzda.", "DIP ze s.r.o. je jeden z mála způsobů, jak budovat majetek bez odvodů.", "Optimální split závisí na výši zisku a osobní daňové situaci."],
   },
   {
     slug: "investicni-byt-napocitam-to",
@@ -217,6 +231,7 @@ export const articles: Article[] = [
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 5,
+    tldr: ["Hrubý výnos 5 % po odečtení daní, správy a oprav klesá pod 3 %.", "Hypotéka na investiční byt má jiné podmínky než na vlastní bydlení.", "Nemovitost jako investice funguje, ale čísla musí sedět předem."],
   },
   {
     slug: "osvc-duchod-proc-jste-na-tom-hur",
@@ -231,6 +246,7 @@ export const articles: Article[] = [
     dateEn: "October 13, 2026",
     author: "Adam Dvořák, EFA",
     readTime: 4,
+    tldr: ["OSVČ platí minimální odvody a šetří tisíce ročně.", "Za 30 let jim státní důchod nepokryje ani základní náklady.", "Řešení: maximalizovat odvody nebo investovat mimo třetí pilíř."],
   },
 ];
 
