@@ -75,6 +75,7 @@ const T = {
     nlEye: "Newsletter", nlTitle: "Finanční tipy přímo do schránky.", nlSub: "Jednou měsíčně posílám krátký přehled, co se děje na trzích, jak chránit úspory a kde jsou aktuálně příležitosti. Bez spamu.", nlPh: "vas@email.cz", nlBtn: "Odebírat", nlNote: "Odhlášení jedním kliknutím kdykoliv. Žádný spam.", nlSending: "Přihlašuji…", nlDone: "✓ Přihlášeno!",
     blogEye: "Blog", blogTitle: "Finanční vzdělávání.", blogSub: "Píšu o tématech, která řeším se svými klienty, srozumitelně, bez zbytečného žargonu.",
     blogReadMore: "Číst dál",
+    planEye: "Co dostanete", planHead: "Tohle dostanete do ruky.",
   },
   en: {
     navAbout: "About", navServices: "Services", navCalc: "Calculators", navBlog: "Blog", navContact: "Contact", navCta: "Free Consultation",
@@ -129,6 +130,7 @@ const T = {
     nlEye: "Newsletter", nlTitle: "Financial insights straight to your inbox.", nlSub: "Once a month I send a short overview: what is happening in the markets, how to protect savings and where the current opportunities are. No spam.", nlPh: "your@email.com", nlBtn: "Subscribe", nlNote: "Unsubscribe with one click at any time. No spam.", nlSending: "Subscribing…", nlDone: "✓ Subscribed!",
     blogEye: "Blog", blogTitle: "Financial education.", blogSub: "I write about topics I tackle with my clients. Clearly, without unnecessary jargon.",
     blogReadMore: "Read more",
+    planEye: "What you get", planHead: "This is what you walk away with.",
   },
 };
 
@@ -957,6 +959,58 @@ export default function Page() {
               <span className="step-num">{t.step5Num}</span>
               <div className="step-title">{t.step5Title}</div>
               <div className="step-desc">{t.step5Desc}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Plan ── */}
+      <section className="section-wrap">
+        <div className="container">
+          <div className="plan">
+            <div>
+              <div className="section-eyebrow">{t.planEye}</div>
+              <h2 className="section-title-lg" style={{marginTop:12,marginBottom:20}}>{t.planHead}</h2>
+              <p style={{maxWidth:"44ch",color:"var(--text-2)",lineHeight:1.65,marginBottom:32}}>{t.s3Desc}</p>
+              <ol style={{listStyle:"none",margin:0,padding:0,display:"flex",flexDirection:"column",gap:10}}>
+                {t.s3Items.map((item, i) => (
+                  <li key={i} style={{display:"flex",alignItems:"center",gap:14,font:"500 15px/1 var(--font-sans)",color:"var(--text-1)"}}>
+                    <span style={{fontFamily:"var(--font-display)",fontSize:13,color:"var(--gold)",minWidth:18}}>{String(i+1).padStart(2,"0")}</span>
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="stack">
+              {/* p1: navy cover */}
+              <div className="page p1">
+                <div style={{width:52,height:52,borderRadius:"50%",border:"1.5px solid rgba(201,162,96,.45)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:20}}>
+                  <span style={{fontFamily:"Lora,serif",fontSize:24,fontWeight:500,color:"#C9A260"}}>N</span>
+                </div>
+                <div style={{fontSize:10,letterSpacing:2.5,textTransform:"uppercase",color:"rgba(201,162,96,.7)",marginBottom:10}}>Finanční plán</div>
+                <div style={{fontFamily:"Lora,serif",fontSize:24,fontWeight:500,lineHeight:1.2,flexGrow:1}}>Rodina N.</div>
+                <div style={{marginTop:"auto",fontSize:10,color:"rgba(245,242,236,.35)",letterSpacing:0.5}}>Aktualizováno · leden 2025</div>
+              </div>
+              {/* p2: chapter with chart */}
+              <div className="page p2">
+                <div style={{fontSize:9,letterSpacing:2,textTransform:"uppercase",color:"#C9A260",marginBottom:8}}>Kapitola 02</div>
+                <div style={{fontFamily:"Lora,serif",fontSize:15,fontWeight:500,marginBottom:14,color:"#1A1511"}}>Investiční strategie</div>
+                <svg width={138} height={44} style={{display:"block",marginBottom:12,overflow:"visible"}}>
+                  <polygon points="0,38 23,30 46,34 69,16 92,22 115,10 138,14 138,44 0,44" fill="rgba(201,162,96,.12)"/>
+                  <polyline points="0,38 23,30 46,34 69,16 92,22 115,10 138,14" fill="none" stroke="rgba(201,162,96,.7)" strokeWidth="1.5" strokeLinejoin="round"/>
+                </svg>
+                {[1,.88,1,.72,.9,.6].map((w,i) => (
+                  <div key={i} style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`}}/>
+                ))}
+              </div>
+              {/* p3: chapter with text */}
+              <div className="page p3">
+                <div style={{fontSize:9,letterSpacing:2,textTransform:"uppercase",color:"#C9A260",marginBottom:8}}>Kapitola 04</div>
+                <div style={{fontFamily:"Lora,serif",fontSize:15,fontWeight:500,marginBottom:14,color:"#1A1511"}}>Daňová optimalizace</div>
+                {[1,.9,.95,.7,1,.85,.65,.8].map((w,i) => (
+                  <div key={i} style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`}}/>
+                ))}
+              </div>
             </div>
           </div>
         </div>
