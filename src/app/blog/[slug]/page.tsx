@@ -22,6 +22,17 @@ export function generateStaticParams() {
 
 const BASE = "https://www.financnistrateg.com";
 
+const CZECH_MONTHS: Record<string, string> = {
+  ledna: "01", února: "02", března: "03", dubna: "04",
+  května: "05", června: "06", července: "07", srpna: "08",
+  září: "09", října: "10", listopadu: "11", prosince: "12",
+};
+
+function czechDateToISO(d: string): string {
+  const parts = d.replace(".", "").trim().split(/\s+/);
+  return `${parts[2]}-${CZECH_MONTHS[parts[1]] ?? "01"}-${parts[0].padStart(2, "0")}`;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -1226,8 +1237,40 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.desc,
+    url: `${BASE}/blog/${slug}`,
+    datePublished: czechDateToISO(article.date),
+    ...(article.updated ? { dateModified: czechDateToISO(article.updated) } : {}),
+    author: { "@type": "Person", name: "Adam Dvořák", url: BASE },
+    publisher: {
+      "@type": "Organization",
+      name: "Finanční Stratég",
+      url: BASE,
+      logo: { "@type": "ImageObject", url: `${BASE}/adam-dvorak-hero.jpg` },
+    },
+    image: { "@type": "ImageObject", url: `${BASE}/adam-dvorak-hero.jpg`, width: 1200, height: 800 },
+    inLanguage: "cs",
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE}/blog/${slug}` },
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Finanční Stratég", item: BASE },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
+      { "@type": "ListItem", position: 3, name: article.title, item: `${BASE}/blog/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="read-progress-bar" id="readProgressBar" aria-hidden="true" />
       {/* ── Nav ── */}
       <nav>

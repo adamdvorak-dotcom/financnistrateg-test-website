@@ -652,8 +652,59 @@ export default function Page() {
     nlState === "error" ? (lang === "cs" ? "✕ Chyba" : "✕ Error") :
     t.nlBtn;
 
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Co je DIP (Dlouhodobý investiční produkt) a pro koho je určený?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "DIP je od roku 2024 nový způsob daňově zvýhodněného investování v Česku. Umožňuje investovat do akcií, ETF a dluhopisů a odečíst si z daňového základu až 48 000 Kč ročně — daňová úspora až 7 200 Kč. Zaměstnavatel může navíc přispět až 50 000 Kč ročně zcela bez daní a odvodů. Podmínkou je investiční horizont minimálně 10 let a věk nejméně 60 let při výběru. DIP je vhodný pro OSVČ, jednatele i zaměstnance s delším investičním horizontem.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Jak funguje penzijní spoření (třetí pilíř) v Česku?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Penzijní spoření (DPS — Doplňkové penzijní spoření) je státem podporovaný spořicí produkt. Na příspěvky nad 500 Kč měsíčně přidává stát až 340 Kč měsíčně. Příspěvky nad 12 000 Kč ročně lze odečíst z daňového základu — odpočet až 24 000 Kč/rok. Zaměstnavatel může přispívat až 50 000 Kč ročně bez sociálního a zdravotního pojištění. Nevýhodou jsou nižší očekávané výnosy oproti vlastnímu ETF portfoliu — proto ho doporučuji kombinovat s DIP.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Jak začít investovat v Česku — první kroky?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Prvním krokem je definovat cíl a investiční horizont — na jak dlouho investujete a co chcete investováním dosáhnout. Pro horizont 10 a více let jsou vhodné globální indexové ETF, které kopírují světové trhy za nízké poplatky (pod 0,2 % ročně) a historicky vynáší 7–10 % ročně. Doporučuji začít pravidelnými měsíčními vklady místo jednorázové investice. V Česku lze investovat přes DIP s daňovým odpočtem nebo přímo přes brokerské platformy.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Proč si vybrat nezávislého finančního poradce místo bankovního poradce?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nezávislý finanční poradce je odměňován honorářem od klienta — ne provizemi za prodané produkty. To eliminuje konflikt zájmů: doporučuje to, co je pro vás skutečně nejlepší. Bankovní poradce nabízí jen produkty své banky a je motivován prodejem. Nezávislý poradce vybírá z celého trhu, řeší celkový finanční plán a sleduje vaše cíle dlouhodobě.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Jak ochránit rodinný majetek a nastavit dědictví pro podnikatele?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pro podnikatele je klíčové oddělit osobní majetek od firmy — většina majitelů firem má vše v podniku, což je riziko. Doporučuji kombinaci: svěřenský fond pro ochranu majetku rodině, notářská závěť se správcem pozůstalosti, manželská smlouva pro oddělení podílu ve firmě od SJM, a pravidelné vyplácení dividend do osobního portfolia mimo firmu. Cílem je, aby rodina nebyla závislá na osudu jedné firmy.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       {curtainPhase !== "hidden" && (
         <div className={`curtain${curtainPhase === "exiting" ? " curtain-exit" : ""}`} aria-hidden="true">
           <canvas ref={dustCanvasRef} className="dust-canvas" />

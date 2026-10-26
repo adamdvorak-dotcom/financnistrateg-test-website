@@ -3,9 +3,10 @@ import Link from "next/link";
 import { articles, type ArticleCategory } from "./articles";
 
 export const metadata: Metadata = {
-  title: "Blog — Adam Dvořák, Finanční Stratég",
+  title: "Blog — Investice, DIP, Důchod, Hypotéky, Majetek",
   description:
-    "Články o investicích, hypotékách, penzijním spoření a správě majetku. Srozumitelně, bez zbytečného žargonu.",
+    "Praktické články o investicích, ETF, DIP, penzijním spoření, hypotékách a správě majetku od nezávislého finančního poradce z Prahy. Srozumitelně, bez žargonu.",
+  alternates: { canonical: "https://www.financnistrateg.com/blog" },
 };
 
 const categories: { id: ArticleCategory; label: string; desc: string }[] = [

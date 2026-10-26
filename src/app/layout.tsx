@@ -8,18 +8,35 @@ const BASE = "https://www.financnistrateg.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "Adam Dvořák, EFA — Finanční Stratég",
-    template: "%s | Adam Dvořák, EFA",
+    default: "Adam Dvořák, EFA — Finanční poradce Praha",
+    template: "%s | Adam Dvořák, EFA — Finanční poradce Praha",
   },
   description:
-    "Nezávislý finanční poradce pro podnikatele a majitele firem. Pomáhám s cashflow, ochranou majetku, investicemi a přípravou na odchod z firmy.",
+    "Nezávislý finanční poradce Praha pro podnikatele a majitele firem. Investice, ETF, DIP, penzijní spoření, ochrana a správa majetku. Osmý rok v oboru. První konzultace zdarma.",
+  keywords: [
+    "finanční poradce Praha",
+    "investiční poradenství Praha",
+    "DIP dlouhodobý investiční produkt",
+    "penzijní spoření",
+    "ETF investice",
+    "správa majetku Praha",
+    "ochrana majetku",
+    "finanční stratég",
+    "finanční plánování podnikatelé",
+    "Adam Dvořák EFA",
+    "nezávislý finanční poradce",
+    "důchod plánování",
+    "dědictví finanční poradce",
+    "daňová optimalizace OSVČ",
+    "kolik si vyplácet ze sro",
+  ],
   alternates: {
     canonical: BASE,
   },
   openGraph: {
-    title: "Adam Dvořák, EFA — Finanční Stratég",
+    title: "Adam Dvořák, EFA — Finanční poradce Praha",
     description:
-      "Nezávislý finanční poradce pro podnikatele a majitele firem. Pomáhám s cashflow, ochranou majetku, investicemi a přípravou na odchod z firmy.",
+      "Nezávislý finanční poradce Praha pro podnikatele a majitele firem. Investice, ETF, DIP, penzijní spoření, ochrana a správa majetku. První konzultace zdarma.",
     url: BASE,
     siteName: "Finanční Stratég",
     locale: "cs_CZ",
@@ -29,15 +46,15 @@ export const metadata: Metadata = {
         url: "/adam-dvorak-hero.jpg",
         width: 1200,
         height: 800,
-        alt: "Adam Dvořák, EFA — nezávislý finanční poradce",
+        alt: "Adam Dvořák, EFA — nezávislý finanční poradce Praha",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adam Dvořák, EFA — Finanční Stratég",
+    title: "Adam Dvořák, EFA — Finanční poradce Praha",
     description:
-      "Nezávislý finanční poradce pro podnikatele a majitele firem.",
+      "Nezávislý finanční poradce Praha. Investice, ETF, DIP, penzijní spoření, ochrana majetku. První konzultace zdarma.",
     images: ["/adam-dvorak-hero.jpg"],
   },
   robots: {
@@ -52,28 +69,87 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Adam Dvořák",
+  alternateName: "Adam Dvořák EFA",
   jobTitle: "Nezávislý finanční poradce, EFA",
+  description: "Nezávislý finanční poradce pro podnikatele a majitele firem v Praze. Osmý rok v oboru, přes 165 milionů Kč pod správou.",
   url: BASE,
   sameAs: [
     "https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/",
     "https://financnistrateg.com",
+    "https://www.financnistrateg.com",
   ],
   email: "adamdvorak@financnistrateg.com",
   knowsAbout: [
-    "Finanční plánování",
-    "Investice",
-    "Ochrana majetku",
+    "Finanční plánování Praha",
+    "Investiční poradenství",
+    "ETF a indexové fondy",
+    "DIP — Dlouhodobý investiční produkt",
+    "Penzijní spoření a třetí pilíř",
+    "Ochrana a správa majetku",
     "Podnikatelské finance",
-    "Penzijní spoření",
-    "Hypotéky",
+    "Finanční strategie",
+    "Daňová optimalizace OSVČ a jednatelů",
+    "Hypotéky a refinancování",
+    "Svěřenské fondy",
+    "Dědictví a mezigenerační přenos majetku",
+    "Cashflow management pro firmy",
+    "Výběr peněz ze s.r.o. — mzda vs. dividendy",
   ],
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Praha",
+    addressRegion: "Praha",
     addressCountry: "CZ",
+  },
+  worksFor: {
+    "@type": "Organization",
+    name: "Finanční Stratég",
+    url: BASE,
+  },
+};
+
+const serviceLd = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  name: "Finanční Stratég — Finanční poradce Praha",
+  alternateName: ["Adam Dvořák EFA finanční poradce Praha", "Finanční poradce Praha"],
+  description: "Nezávislé finanční poradenství pro podnikatele a majitele firem v Praze. Investice, ETF, DIP, penzijní spoření, správa a ochrana majetku. První konzultace zdarma.",
+  url: BASE,
+  email: "adamdvorak@financnistrateg.com",
+  areaServed: [
+    { "@type": "City", name: "Praha" },
+    { "@type": "AdministrativeArea", name: "Středočeský kraj" },
+    { "@type": "Country", name: "Česká republika" },
+  ],
+  serviceType: [
+    "Investiční poradenství",
+    "Finanční plánování",
+    "Správa majetku",
+    "Penzijní poradenství",
+    "Daňová optimalizace",
+    "Ochrana majetku",
+  ],
+  provider: {
+    "@type": "Person",
+    name: "Adam Dvořák",
+    jobTitle: "EFA — European Financial Advisor",
+  },
+  priceRange: "Bezplatná první konzultace",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Finanční poradenství Praha",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Investiční poradenství a ETF portfolia" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "DIP — Dlouhodobý investiční produkt" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Penzijní spoření a plánování důchodu" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Správa a ochrana rodinného majetku" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Daňová optimalizace pro OSVČ a jednatele" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dědictví, svěřenské fondy a mezigenerační přenos" } },
+    ],
   },
 };
 
@@ -95,7 +171,11 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
         />
       </head>
       <body>
