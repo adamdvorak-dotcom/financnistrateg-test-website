@@ -64,11 +64,11 @@ export default function KonzultacePage() {
             Zarezervujte si první schůzku.
           </h1>
           <p style={{ color: "var(--text-2)", fontSize: 16, maxWidth: 520, lineHeight: 1.65 }}>
-            30 minut, zdarma a bez závazků. Zjistíme, jestli si rozumíme — a co by
+            30 minut, zdarma a bez závazků. Zjistíme, jestli si rozumíme, a co by
             mohla spolupráce přinést.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
-            {["EFA — European Financial Advisor", "Registrován u ČNB", "Praha & online"].map((b) => (
+            {["EFA (European Financial Advisor)", "Registrován u ČNB", "Praha & online"].map((b) => (
               <span key={b} style={{
                 fontSize: 11, fontWeight: 600, letterSpacing: "0.07em",
                 textTransform: "uppercase", color: "var(--text-3)",
@@ -177,7 +177,7 @@ export default function KonzultacePage() {
                 </button>
                 {formState === "sent" && (
                   <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: "var(--r-sm)", color: "#22c55e", fontSize: 14, fontWeight: 500, lineHeight: 1.5 }}>
-                    ✓ Děkuji! Zpráva dorazila. Ozvu se vám co nejdříve — obvykle do 24 hodin.
+                    ✓ Děkuji! Zpráva dorazila. Ozvu se vám co nejdříve, obvykle do 24 hodin.
                   </div>
                 )}
                 {formState === "error" && (

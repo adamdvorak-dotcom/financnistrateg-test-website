@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Podmínky užití — Adam Dvořák, EFA",
-  description: "Podmínky užití webu Adam Dvořák, EFA — nezávislý finanční poradce.",
+  title: "Podmínky užití | Adam Dvořák, EFA",
+  description: "Podmínky užití webu Adam Dvořák, EFA, nezávislý finanční poradce.",
 };
 
 export default function TermsPage() {
@@ -66,7 +66,7 @@ export default function TermsPage() {
 
               <h2>3. Autorská práva</h2>
               <p>
-                Veškerý obsah webu — texty, grafika, loga, fotografie a další materiály — je
+                Veškerý obsah webu (texty, grafika, loga, fotografie a další materiály) je
                 chráněn autorským právem © 2026 Adam Dvořák. Jakékoli šíření, kopírování nebo
                 jiné užití obsahu bez předchozího písemného souhlasu provozovatele je zakázáno,
                 s výjimkou případů dovolených zákonem.

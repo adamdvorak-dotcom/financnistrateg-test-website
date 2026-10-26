@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
         from: "Web formulář <onboarding@resend.dev>",
         to: [TO],
         reply_to: email,
-        subject: `Nová zpráva: ${topic || "bez tématu"} — ${name}`,
+        subject: `Nová zpráva: ${topic || "bez tématu"} | ${name}`,
         text: body,
       }),
     });

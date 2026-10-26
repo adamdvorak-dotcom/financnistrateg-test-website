@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Ochrana osobních údajů — Adam Dvořák, EFA",
+  title: "Ochrana osobních údajů | Adam Dvořák, EFA",
   description: "Zásady ochrany osobních údajů a informace o zpracování osobních dat na webu Adam Dvořák, EFA.",
 };
 
@@ -54,18 +54,18 @@ export default function PrivacyPage() {
 
               <h2>2. Jaké údaje zpracováváme a proč</h2>
               <p>
-                <strong>Kontaktní formulář</strong> — Při odeslání dotazu zpracováváme jméno, e-mailovou adresu,
+                <strong>Kontaktní formulář</strong>: Při odeslání dotazu zpracováváme jméno, e-mailovou adresu,
                 telefonní číslo a obsah zprávy. Účelem je vyřízení vašeho dotazu a navázání spolupráce.
                 Právním základem je náš oprávněný zájem podle čl. 6 odst. 1 písm. f) GDPR.
               </p>
               <p>
-                <strong>Newsletter</strong> — Při přihlášení k odběru zpracováváme e-mailovou adresu.
+                <strong>Newsletter</strong>: Při přihlášení k odběru zpracováváme e-mailovou adresu.
                 Účelem je zasílání finančního přehledu a aktuálních informací. Právním základem je váš
                 souhlas podle čl. 6 odst. 1 písm. a) GDPR. Souhlas můžete kdykoli odvolat kliknutím
                 na odkaz v patičce každého e-mailu.
               </p>
               <p>
-                <strong>Rezervační systém (Calendly)</strong> — Při rezervaci schůzky prostřednictvím
+                <strong>Rezervační systém (Calendly)</strong>: Při rezervaci schůzky prostřednictvím
                 Calendly jsou vaše údaje zpracovávány také společností Calendly LLC. Doporučujeme
                 seznámit se se zásadami ochrany osobních údajů služby Calendly.
               </p>
@@ -90,13 +90,13 @@ export default function PrivacyPage() {
                 V souladu s GDPR máte právo na:
               </p>
               <p>
-                <strong>Přístup</strong> — právo získat potvrzení, zda jsou vaše osobní údaje zpracovávány,
+                <strong>Přístup</strong>: právo získat potvrzení, zda jsou vaše osobní údaje zpracovávány,
                 a přístup k těmto údajům.<br />
-                <strong>Opravu</strong> — právo požadovat opravení nepřesných nebo doplnění neúplných údajů.<br />
-                <strong>Výmaz</strong> — právo požadovat smazání údajů, pokud pominul účel jejich zpracování.<br />
-                <strong>Omezení zpracování</strong> — právo požadovat dočasné pozastavení zpracování.<br />
-                <strong>Přenositelnost</strong> — právo obdržet své údaje ve strukturovaném, strojově čitelném formátu.<br />
-                <strong>Námitku</strong> — právo vznést námitku proti zpracování na základě oprávněného zájmu.
+                <strong>Opravu</strong>: právo požadovat opravení nepřesných nebo doplnění neúplných údajů.<br />
+                <strong>Výmaz</strong>: právo požadovat smazání údajů, pokud pominul účel jejich zpracování.<br />
+                <strong>Omezení zpracování</strong>: právo požadovat dočasné pozastavení zpracování.<br />
+                <strong>Přenositelnost</strong>: právo obdržet své údaje ve strukturovaném, strojově čitelném formátu.<br />
+                <strong>Námitku</strong>: právo vznést námitku proti zpracování na základě oprávněného zájmu.
               </p>
               <p>
                 Svá práva uplatněte na adrese{" "}

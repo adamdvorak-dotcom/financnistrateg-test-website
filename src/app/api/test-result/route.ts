@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
         from: "Test připravenosti <onboarding@resend.dev>",
         to: [TO],
         reply_to: email,
-        subject: `Test: ${score}/40 · ${band} — ${name}`,
+        subject: `Test: ${score}/40 · ${band}| ${name}`,
         text,
       }),
     });

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { articles, type ArticleCategory } from "./articles";
 
 export const metadata: Metadata = {
-  title: "Blog — Investice, DIP, Důchod, Hypotéky, Majetek",
+  title: "Blog: Investice, DIP, Důchod, Hypotéky, Majetek",
   description:
     "Praktické články o investicích, ETF, DIP, penzijním spoření, hypotékách a správě majetku od nezávislého finančního poradce z Prahy. Srozumitelně, bez žargonu.",
   alternates: { canonical: "https://www.financnistrateg.com/blog" },
@@ -23,7 +23,7 @@ const categories: { id: ArticleCategory; label: string; desc: string }[] = [
   {
     id: "strategie",
     label: "Strategie",
-    desc: "Celkový pohled na finance — plánování, cíle a prioritizace.",
+    desc: "Celkový pohled na finance: plánování, cíle a prioritizace.",
   },
   {
     id: "financovani",
@@ -73,7 +73,7 @@ export default function BlogPage() {
             Finanční vzdělávání.
           </h1>
           <p style={{ color: "var(--text-2)", fontSize: 16, maxWidth: 520 }}>
-            Píšu o tématech, která řeším se svými klienty — srozumitelně, bez zbytečného žargonu.
+            Píšu o tématech, která řeším se svými klienty . Srozumitelně, bez zbytečného žargonu.
           </p>
         </div>
       </section>

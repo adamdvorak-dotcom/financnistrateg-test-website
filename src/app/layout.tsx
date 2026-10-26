@@ -8,8 +8,8 @@ const BASE = "https://www.financnistrateg.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "Adam Dvořák, EFA — Finanční poradce Praha",
-    template: "%s | Adam Dvořák, EFA — Finanční poradce Praha",
+    default: "Adam Dvořák, EFA | Finanční poradce Praha",
+    template: "%s | Adam Dvořák, EFA | Finanční poradce Praha",
   },
   description:
     "Nezávislý finanční poradce Praha pro podnikatele a majitele firem. Investice, ETF, DIP, penzijní spoření, ochrana a správa majetku. Osmý rok v oboru. První konzultace zdarma.",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     canonical: BASE,
   },
   openGraph: {
-    title: "Adam Dvořák, EFA — Finanční poradce Praha",
+    title: "Adam Dvořák, EFA | Finanční poradce Praha",
     description:
       "Nezávislý finanční poradce Praha pro podnikatele a majitele firem. Investice, ETF, DIP, penzijní spoření, ochrana a správa majetku. První konzultace zdarma.",
     url: BASE,
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: "/adam-dvorak-hero.jpg",
         width: 1200,
         height: 800,
-        alt: "Adam Dvořák, EFA — nezávislý finanční poradce Praha",
+        alt: "Adam Dvořák, EFA | nezávislý finanční poradce Praha",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adam Dvořák, EFA — Finanční poradce Praha",
+    title: "Adam Dvořák, EFA | Finanční poradce Praha",
     description:
       "Nezávislý finanční poradce Praha. Investice, ETF, DIP, penzijní spoření, ochrana majetku. První konzultace zdarma.",
     images: ["/adam-dvorak-hero.jpg"],
@@ -87,7 +87,7 @@ const personLd = {
     "Finanční plánování Praha",
     "Investiční poradenství",
     "ETF a indexové fondy",
-    "DIP — Dlouhodobý investiční produkt",
+    "DIP (Dlouhodobý investiční produkt)",
     "Penzijní spoření a třetí pilíř",
     "Ochrana a správa majetku",
     "Podnikatelské finance",
@@ -97,7 +97,7 @@ const personLd = {
     "Svěřenské fondy",
     "Dědictví a mezigenerační přenos majetku",
     "Cashflow management pro firmy",
-    "Výběr peněz ze s.r.o. — mzda vs. dividendy",
+    "Výběr peněz ze s.r.o.: mzda vs. dividendy",
   ],
   address: {
     "@type": "PostalAddress",
@@ -115,7 +115,7 @@ const personLd = {
 const serviceLd = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
-  name: "Finanční Stratég — Finanční poradce Praha",
+  name: "Finanční Stratég | Finanční poradce Praha",
   alternateName: ["Adam Dvořák EFA finanční poradce Praha", "Finanční poradce Praha"],
   description: "Nezávislé finanční poradenství pro podnikatele a majitele firem v Praze. Investice, ETF, DIP, penzijní spoření, správa a ochrana majetku. První konzultace zdarma.",
   url: BASE,
@@ -136,7 +136,7 @@ const serviceLd = {
   provider: {
     "@type": "Person",
     name: "Adam Dvořák",
-    jobTitle: "EFA — European Financial Advisor",
+    jobTitle: "EFA (European Financial Advisor)",
   },
   priceRange: "Bezplatná první konzultace",
   hasOfferCatalog: {
@@ -144,7 +144,7 @@ const serviceLd = {
     name: "Finanční poradenství Praha",
     itemListElement: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Investiční poradenství a ETF portfolia" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "DIP — Dlouhodobý investiční produkt" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "DIP (Dlouhodobý investiční produkt)" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Penzijní spoření a plánování důchodu" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Správa a ochrana rodinného majetku" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Daňová optimalizace pro OSVČ a jednatele" } },
