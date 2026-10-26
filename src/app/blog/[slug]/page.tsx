@@ -365,8 +365,7 @@ function ArticleContent({ slug }: { slug: string }) {
 
         <h2>Co je ETF a proč funguje</h2>
         <p>
-          ETF (Exchange Traded Fund) je fond obchodovaný na burze, který kopíruje vývoj indexu —
-          například globálního akciového indexu zahrnujícího tisíce firem z celého světa najednou.
+          ETF (Exchange Traded Fund) je fond obchodovaný na burze, který kopíruje vývoj indexu, například globálního akciového indexu zahrnujícího tisíce firem z celého světa najednou.
           Roční správcovský poplatek globálních indexových ETF se typicky pohybuje okolo 0,07–0,22 %.
           Srovnejte to s aktivně spravovanými podílovými fondy, kde bývá poplatek 1,5–2,5 %
           ročně, přičemž výkonnost přesto ve většině případů zaostává za trhem.
@@ -382,8 +381,7 @@ function ArticleContent({ slug }: { slug: string }) {
           Česká daňová pravidla pro ETF jsou jedny z nejpříznivějších v Evropě, pokud víte,
           jak je využít. Základní nástroj je <strong>časový test tří let</strong>: prodáte-li
           investici nejdříve tři roky po nákupu, zisk z prodeje je osvobozen od daně z příjmů.
-          Přesná aplikace závisí na vaší situaci a doporučuji ji konzultovat s daňovým poradcem —
-          pravidla se mění a detaily záleží.
+          Přesná aplikace závisí na vaší situaci a doporučuji ji konzultovat s daňovým poradcem. Pravidla se mění a detaily záleží.
         </p>
 
         <h2>Než začnete: horizont a plán jsou základ</h2>
@@ -478,8 +476,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Příspěvek zaměstnavatele: přehlížená výhoda</h2>
         <p>
           Zaměstnavatel může přispívat do DIP až <strong>50 000 Kč ročně</strong> a tento
-          příspěvek je zcela osvobozen od daně z příjmů, sociálního i zdravotního pojištění —
-          jak na straně zaměstnavatele, tak zaměstnance. Jde o jednu z mála legálních cest,
+          příspěvek je zcela osvobozen od daně z příjmů, sociálního i zdravotního pojištění, jak na straně zaměstnavatele, tak zaměstnance. Jde o jednu z mála legálních cest,
           jak dostat benefity bez odvodů.
         </p>
         <p>
@@ -639,7 +636,7 @@ function ArticleContent({ slug }: { slug: string }) {
           <li>Pásmo 3 (příjmy do 2 000 000 Kč): <strong>27 139 Kč/měsíc</strong></li>
         </ul>
         <p>
-          Zásadní omezení: v paušálním režimu <strong>nelze uplatňovat daňové odpočty</strong> —
+          Zásadní omezení: v paušálním režimu <strong>nelze uplatňovat daňové odpočty</strong>:
           DIP, penzijní spoření, slevy na děti ani úroky z hypotéky. Pokud tyto odpočty
           máte, spočítejte si, co je výhodnější. Přihláška vždy do <strong>12. ledna</strong>
           daného roku, letos je termín pryč, přemýšlejte o změně od roku 2027.
@@ -694,8 +691,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Základní matematika rozhodnutí</h2>
         <p>
           Mimořádná splátka hypotéky přináší <strong>zaručený výnos rovný výši vaší
-          úrokové sazby</strong>. Při sazbě 4,5 % p.a. je to garantovaných 4,5 % —
-          bez rizika, bez volatility. Otázka pak zní: dokážete najít investici
+          úrokové sazby</strong>. Při sazbě 4,5 % p.a. je to garantovaných 4,5 %, bez rizika, bez volatility. Otázka pak zní: dokážete najít investici
           s vyšším výnosem? Historický průměrný výnos globálních akciových indexů
           je 7–10 % p.a. (před inflací). Ve velmi dlouhém horizontu (a s ochotou přijmout krátkodobé výkyvy) odpověď zní: zpravidla ano.
         </p>
@@ -714,8 +710,7 @@ function ArticleContent({ slug }: { slug: string }) {
             bez dluhů" je legitimní a má svou cenu. Není potřeba ji ignorovat.</li>
           <li><strong>Refinancujete</strong>, nižší jistina při refinancování zlepší vaši
             pozici vůči bance a může přinést lepší sazbu.</li>
-          <li><strong>Dostali jste jednorázový příjem</strong> (dědictví, bonus, prodej aktiv) —
-            lepší než nechat peníze ladem.</li>
+          <li><strong>Dostali jste jednorázový příjem</strong> (dědictví, bonus, prodej aktiv). Lepší než nechat peníze ladem.</li>
         </ul>
 
         <h2>Pravidla pro mimořádné splátky bez sankce (2026)</h2>
@@ -1236,6 +1231,12 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
+  const related = articles
+    .filter(a => a.slug !== slug && a.category === article.category)
+    .slice(0, 2)
+    .concat(articles.filter(a => a.slug !== slug && a.category !== article.category))
+    .slice(0, 2);
+
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -1319,6 +1320,19 @@ export default async function ArticlePage({
 
             <ArticleContent slug={slug} />
 
+            {/* ── Share ── */}
+            <div className="share">
+              <a href={`mailto:?subject=${encodeURIComponent(article.title)}&body=https://www.financnistrateg.com/blog/${slug}`} title="Sdílet e-mailem" aria-label="Sdílet e-mailem">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </a>
+              <a href="#" className="share-copy" data-url={`https://www.financnistrateg.com/blog/${slug}`} title="Kopírovat odkaz" aria-label="Kopírovat odkaz">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </a>
+              <a href={`https://linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://www.financnistrateg.com/blog/${slug}`)}&title=${encodeURIComponent(article.title)}`} target="_blank" rel="noopener noreferrer" title="Sdílet na LinkedIn" aria-label="Sdílet na LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+            </div>
+
             <div className="article-cta">
               <div className="article-cta-text">
                 <div className="section-eyebrow" style={{ marginBottom: 8 }}>Osobní rozhovor</div>
@@ -1329,9 +1343,33 @@ export default async function ArticlePage({
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </Link>
             </div>
+
+            {/* ── Related ── */}
+            {related.length > 0 && (
+              <div className="related">
+                <div className="section-eyebrow">Další čtení</div>
+                <div className="g">
+                  {related.map(a => (
+                    <Link key={a.slug} href={`/blog/${a.slug}`}>
+                      <b>{a.title}</b>
+                      <span style={{ fontSize: 13, color: "var(--text-2)" }}>{a.tag}{a.readTime ? ` · ${a.readTime} min čtení` : ""}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>
+
+      {/* ── Quote band ── */}
+      <div className="quote-band">
+        <div className="container quote-band-inner">
+          <p className="quote-band-text">Peníze jsou nástroj, ne cíl. Cílem je svoboda: dělat rozhodnutí proto, že chcete, ne proto, že musíte.</p>
+          <div className="quote-band-attr">Adam Dvořák, EFA</div>
+          <div className="quote-band-progress"><div className="quote-band-fill" style={{ width: "100%" }} /></div>
+        </div>
+      </div>
 
       {/* ── Footer ── */}
       <footer>
@@ -1388,6 +1426,18 @@ export default async function ArticlePage({
               history.pushState(null, '', '#' + id);
             });
             h2.insertBefore(a, h2.firstChild);
+          });
+
+          // Share: copy link
+          document.querySelectorAll('.share-copy').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              var url = btn.getAttribute('data-url') || window.location.href;
+              navigator.clipboard && navigator.clipboard.writeText(url).then(function() {
+                btn.setAttribute('title', 'Zkopírováno!');
+                setTimeout(function() { btn.setAttribute('title', 'Kopírovat odkaz'); }, 2000);
+              });
+            });
           });
 
           // CTA bar: show after first scroll, hide near footer
