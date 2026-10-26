@@ -2703,3 +2703,27 @@ nav.scrolled .nav-logo{font-size:15px}
 .nf .links a:first-child{border-color:rgba(201,162,96,.6);background:rgba(201,162,96,.1)}
 .nf main{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;max-width:1180px;margin:0 auto;padding:30px 56px 70px}
 @media(max-width:760px){.nf main{grid-template-columns:1fr;gap:34px;padding:14px 20px 40px}.nf .big{font-size:120px}.nf h1{font-size:34px}}
+
+/* ── Blog chips filter ── */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips a{padding:8px 14px;border-radius:999px;border:1px solid rgba(26,21,17,.14);background:#FCFBF8;
+  font:500 13px/1 Inter,sans-serif;color:var(--text-2);text-decoration:none;transition:border-color .12s,background .12s}
+.chips a:hover{border-color:rgba(26,21,17,.3)}
+.chips a.on{background:#0C1F3A;border-color:#0C1F3A;color:#F5F2EC}
+
+/* ── Blog featured card ── */
+.feat{display:grid;grid-template-columns:1.25fr 1fr;border-radius:24px;overflow:hidden;background:#0C1F3A;color:#F5F2EC;text-decoration:none}
+.feat:hover{opacity:.92}
+@media(max-width:900px){.feat{grid-template-columns:1fr}.feat>*:last-child{display:none}}
+
+/* ── Blog 3-col grid + card ── */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.g3{grid-template-columns:1fr}}
+.blog-g3-card{display:flex;flex-direction:column;padding:26px 24px;border:1px solid rgba(26,21,17,.12);
+  border-radius:18px;background:#FCFBF8;text-decoration:none;color:inherit;transition:border-color .12s,background .12s}
+.blog-g3-card:hover{border-color:rgba(26,21,17,.28);background:#F5F0E8}
+
+/* ── Calc copy toast ── */
+.toast{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);
+  padding:10px 16px;border-radius:12px;background:#F5F2EC;color:#1A1511;white-space:nowrap;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);font:500 13px/1 Inter,sans-serif;pointer-events:none}

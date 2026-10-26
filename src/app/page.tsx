@@ -244,6 +244,8 @@ export default function Page() {
   const [invRate, setInvRate] = useState(5);
   const [invYears, setInvYears] = useState(20);
   const [invInitPos, setInvInitPos] = useState(0);
+  const [invRealToggle, setInvRealToggle] = useState(false);
+  const [invCopyToast, setInvCopyToast] = useState<string | null>(null);
 
   /* Mortgage calc */
   const [mtgAmt, setMtgAmt] = useState(4000000);
@@ -561,6 +563,21 @@ export default function Page() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* ── Read calculator params from URL on mount ── */
+  useEffect(() => {
+    const p = new URLSearchParams(location.search);
+    if (p.get("vklad"))     setInvMonthly(Math.round(+(p.get("vklad") ?? 0) / 1000) * 1000 || 5000);
+    if (p.get("roky"))      setInvYears(Math.min(40, Math.max(1, +(p.get("roky") ?? 20))));
+    if (p.get("vynosnost")) setInvRate(Math.min(20, Math.max(1, +(p.get("vynosnost") ?? 5))));
+    if (p.get("init")) {
+      const v = +(p.get("init") ?? 0);
+      if (v > 0) setInvInitPos(Math.round(1 + 99 * (Math.log10(v / 1000) / Math.log10(50000))));
+    }
+    if (p.get("vklad") || p.get("roky")) {
+      setTimeout(() => document.getElementById("calculators")?.scrollIntoView({ behavior: "smooth" }), 300);
+    }
   }, []);
 
   const toggleLang = () => {
@@ -1136,7 +1153,35 @@ export default function Page() {
                     <ArcRing pct={Math.min(100, iDep > 0 ? (iProfit / iFv) * 100 : 0)} label={iDep > 0 ? (iFv / iDep).toFixed(1) + "×" : "—"} />
                     <div className="calc-result-numbers">
                       <div className="result-label">{t.invResultLabel}</div>
-                      <div className="result-big"><span>{t.currency}</span> <SlotNum key={fmt(iFv, lang)} value={fmt(iFv, lang)} /></div>
+                      <div className="result-big">
+                        <SlotNum
+                          key={fmt(invRealToggle ? iFv / Math.pow(1.02, invYears) : iFv, lang)}
+                          value={fmt(invRealToggle ? iFv / Math.pow(1.02, invYears) : iFv, lang)}
+                        />
+                        {" "}<span>{t.currency}</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setInvRealToggle(v => !v)}
+                        style={{
+                          marginTop: 10, display: "inline-flex", alignItems: "center", gap: 7,
+                          padding: "5px 12px", borderRadius: 999, border: "1px solid rgba(26,21,17,.18)",
+                          background: invRealToggle ? "#0C1F3A" : "transparent",
+                          color: invRealToggle ? "#F5F2EC" : "var(--text-2)",
+                          fontSize: 12, fontWeight: 500, cursor: "pointer",
+                        }}
+                      >
+                        <span style={{
+                          width: 8, height: 8, borderRadius: "50%",
+                          background: invRealToggle ? "#C9A260" : "rgba(26,21,17,.3)", flexShrink: 0,
+                        }} />
+                        {lang === "cs" ? "v dnešních penězích" : "in today's money"}
+                        {invRealToggle && (
+                          <span style={{ color: "rgba(245,242,236,.6)", fontWeight: 400, fontSize: 11 }}>
+                            · inflace 2 % ČNB
+                          </span>
+                        )}
+                      </button>
                     </div>
                   </div>
                   <GrowthChart key={`${invMonthly}-${invRate}-${invYears}-${invInit}`} monthly={invMonthly} rate={invRate} years={invYears} init={invInit} />
@@ -1177,6 +1222,28 @@ export default function Page() {
                       ? "Ilustrační výpočet, ne předpověď. Výnosy dosažené v minulosti nejsou zárukou výnosů budoucích."
                       : "Illustrative calculation, not a forecast. Past performance does not guarantee future returns."}
                   </p>
+                  <div style={{ display: "flex", gap: 10, marginTop: 16, position: "relative" }}>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        const url = `${location.origin}/?vklad=${invMonthly}&init=${invInit}&roky=${invYears}&vynosnost=${invRate}#calculators`;
+                        await navigator.clipboard.writeText(url);
+                        setInvCopyToast(lang === "cs" ? "Odkaz zkopírován" : "Link copied");
+                        setTimeout(() => setInvCopyToast(null), 2200);
+                      }}
+                      style={{
+                        display: "inline-flex", alignItems: "center", gap: 7, padding: "9px 16px",
+                        borderRadius: 999, border: "1px solid rgba(26,21,17,.18)", background: "transparent",
+                        fontSize: 13, fontWeight: 500, cursor: "pointer", color: "var(--text-2)",
+                      }}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      {lang === "cs" ? "Odkaz na výpočet" : "Share calculation"}
+                    </button>
+                    {invCopyToast && (
+                      <div className="toast">{invCopyToast}</div>
+                    )}
+                  </div>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
