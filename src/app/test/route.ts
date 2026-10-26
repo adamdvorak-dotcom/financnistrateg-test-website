@@ -46,8 +46,8 @@ body {
 }
 .wrap { max-width: 1120px; margin: 0 auto; }
 .masthead {
-  display: grid; grid-template-columns: minmax(0,1fr) auto;
-  gap: 24px; align-items: end; padding-block: 40px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding-block: 24px 20px;
   border-bottom: 1px solid var(--rule);
 }
 .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin: 0 0 10px; }
@@ -56,10 +56,24 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .docmeta { display: grid; grid-template-columns: auto auto; gap: 4px 16px; font-size: 13px; color: var(--muted); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; background: var(--sheet); font-variant-numeric: tabular-nums; }
 .docmeta dt { text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; padding-top: 2px; }
 .docmeta dd { margin: 0; color: var(--ink); font-weight: 500; }
-.gate { padding: 52px 0 68px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-.gate-hint { font-size: 15px; color: var(--muted); margin: 0; max-width: 52ch; }
-.back-link { font-size: 14px; color: var(--muted); border-color: var(--rule); margin-top: 4px; }
+.gate { display: grid; grid-template-columns: 1.08fr .92fr; gap: 64px; align-items: center; min-height: calc(100vh - 120px); padding: 44px 0 64px; }
+.gate h1 em { display: block; color: var(--gold-deep); font-style: normal; }
+.gate-hint { font-size: 15px; color: var(--muted); margin: 12px 0 24px; max-width: 50ch; }
+.gate .ex { background: var(--sheet); border-radius: 16px; padding: 18px 20px; margin-bottom: 28px; border: 1px solid var(--rule); }
+.gate .ex .item-text { font-size: 15px; }
+.gate .ex .opts { margin-top: 10px; pointer-events: none; opacity: .85; }
+.gate .rc { background: var(--navy); color: var(--on-navy); border-radius: 24px; padding: 32px; }
+.gate .rc .meter-row .lbl { color: rgba(245,242,236,.8); }
+.gate .rc .meter-row .val { color: rgba(245,242,236,.45); }
+.gate .rc .segs i { background: rgba(245,242,236,.15); }
+.gate .rc .segs i.on { background: var(--gold); }
+.gate .rc .band { background: rgba(155,59,50,.18); border-color: var(--bad); }
+.gate .rc .band strong { color: rgba(245,242,236,.9); }
+.gate .rc .band p { color: rgba(245,242,236,.55); }
+.back-link { font-size: 14px; color: var(--muted); border-color: var(--rule); }
 .back-link:hover { color: var(--ink); }
+body:not(.started) .mobilebar { display: none !important; }
+@media(max-width:767px) { .gate { grid-template-columns: 1fr; } .gate .rc { display: none; } }
 .btn { appearance: none; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 500 14px/1 var(--font-body); letter-spacing: 0.04em; padding: 11px 16px; border-radius: var(--radius); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 .btn:hover { background: var(--gold-soft); }
 .btn.solid { background: var(--gold); color: var(--ink); border-color: var(--gold); border-radius: 999px; }
@@ -168,25 +182,74 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 <div id="topBar" aria-hidden="true"></div>
 <div class="wrap">
   <header class="masthead">
-    <div>
-      <p class="eyebrow">Finanční Stratég · Adam Dvořák</p>
-      <h1>Finanční preventivka pro majitele firem</h1>
-      <p class="lead">Nic vás nebolí, a právě proto je dobrá chvíle podívat se, jestli firma běží i bez vás, kolik majetku máte mimo ni, co máte sepsané pro rodinu, jak máte nastavené daně a smlouvy a co s firmou dál. Dvacet tvrzení, pět minut a žádná čekárna. Na konci vás poprosím o jméno a e-mail a výsledek se hned ukáže.</p>
-    </div>
-    <dl class="docmeta" aria-label="Údaje o testu">
-      <dt>Oblasti</dt><dd>5</dd>
-      <dt>Tvrzení</dt><dd>20</dd>
-      <dt>Body</dt><dd>0 až 40</dd>
-      <dt>Čas</dt><dd>5 minut</dd>
-    </dl>
+    <a href="https://www.financnistrateg.com" style="text-decoration:none">
+      <p class="eyebrow" style="margin:0">Finanční Stratég · Adam Dvořák</p>
+    </a>
+    <a href="https://www.financnistrateg.com" class="btn back-link">← Zpět na web</a>
   </header>
 
   <p class="progress-pill" id="progressPill" hidden aria-live="polite">Odpovězeno <span id="pillCount">0</span> z 20</p>
 
   <div class="gate" id="gate">
-    <p class="gate-hint">Odpovídáte sami za sebe. Žádné správné nebo špatné odpovědi, jen upřímné. Na konci uvidíte, kde jsou největší mezery, a tři kroky, kterými začít.</p>
-    <button class="btn solid large" id="gateStart" type="button">Začít Finanční preventivku →</button>
-    <a href="https://www.financnistrateg.com" class="btn back-link">← Zpět na web</a>
+    <div>
+      <p class="eyebrow">Finanční preventivka · 5 minut</p>
+      <h1>Finanční preventivka.<em>Nic vás nebolí.<br>A právě proto.</em></h1>
+      <p class="gate-hint">20 tvrzení, 5 oblastí. Zjistěte, kde máte největší mezery v připravenosti firmy a rodiny.</p>
+      <div class="ex">
+        <p class="item-text" style="margin:0">Firma vydrží dva měsíce bez mého telefonu.</p>
+        <div class="opts ex-opts">
+          <span class="opt-card"><span class="opt-txt">Ano</span></span>
+          <span class="opt-card"><span class="opt-txt">Částečně</span></span>
+          <span class="opt-card"><span class="opt-txt">Ne</span></span>
+        </div>
+      </div>
+      <button class="btn solid large" id="gateStart" type="button">Zahájit preventivku →</button>
+    </div>
+    <div class="rc" role="presentation" aria-hidden="true">
+      <p class="eyebrow" style="color:rgba(201,162,96,.55);margin-bottom:16px">Ukázka: výsledek</p>
+      <div class="score" style="margin-bottom:20px">
+        <div class="ring-outer" style="--p:0.6">
+          <svg class="ring" viewBox="0 0 88 88" width="88" height="88" aria-hidden="true">
+            <circle class="bg" cx="44" cy="44" r="38"/>
+            <circle class="fg" cx="44" cy="44" r="38" transform="rotate(-90 44 44)" style="stroke-dashoffset:95.5"/>
+          </svg>
+          <div class="ring-inner">
+            <span class="big" style="color:var(--on-navy)">24</span>
+            <span class="of" style="color:rgba(245,242,236,.55)">/ 40</span>
+          </div>
+        </div>
+        <div>
+          <div style="font:600 16px/1.2 var(--font-display);color:var(--on-navy)">Příprava je rozjetá</div>
+          <div style="font-size:13px;color:rgba(245,242,236,.5);margin-top:5px">Pár klíčových kroků chybí</div>
+        </div>
+      </div>
+      <div class="meters">
+        <div class="meter-row">
+          <span class="lbl">1. Firma bez majitele</span><span class="val">4 / 8</span>
+          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <div class="meter-row">
+          <span class="lbl">2. Peníze mimo firmu</span><span class="val">6 / 8</span>
+          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+        </div>
+        <div class="meter-row">
+          <span class="lbl">3. Rodina a dokumenty</span><span class="val">5 / 8</span>
+          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>
+        </div>
+        <div class="meter-row">
+          <span class="lbl">4. Daně a struktura</span><span class="val">5 / 8</span>
+          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>
+        </div>
+        <div class="meter-row">
+          <span class="lbl">5. Plán odchodu</span><span class="val">4 / 8</span>
+          <span class="segs" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span>
+        </div>
+      </div>
+      <div class="band r" style="margin-top:14px">
+        <strong>Firma bez majitele</strong>
+        <p>Nejslabší oblast · začněte tu</p>
+      </div>
+    </div>
   </div>
 
   <div class="layout" id="quizContent" hidden>
@@ -343,7 +406,7 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
     var first = form.querySelector("input[type=radio]");
     if (first) { first.focus(); }
   }
-  document.getElementById("gateStart").addEventListener("click", showQuiz);
+  document.getElementById("gateStart").addEventListener("click", function() { document.body.classList.add("started"); showQuiz(); });
   function render() {
     var locked = !state.unlocked;
     var total = 0, count = 0, cands = [];

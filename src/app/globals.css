@@ -2727,3 +2727,15 @@ nav.scrolled .nav-logo{font-size:15px}
 .toast{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);
   padding:10px 16px;border-radius:12px;background:#F5F2EC;color:#1A1511;white-space:nowrap;
   box-shadow:0 8px 24px rgba(0,0,0,.18);font:500 13px/1 Inter,sans-serif;pointer-events:none}
+
+/* ── Article reading progress ── */
+.read-bar{position:fixed;left:0;top:0;height:3px;z-index:400;pointer-events:none;
+  width:calc(var(--read-p,0) * 100%);
+  background:linear-gradient(90deg,#B8914A,#D4B06C)}
+.read-chip{position:fixed;left:50%;top:14px;transform:translateX(-50%);
+  padding:0 14px;height:30px;border-radius:999px;z-index:350;pointer-events:none;
+  background:rgba(252,251,248,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:inline-flex;align-items:center;gap:8px;
+  font:500 12px/1 Inter,sans-serif;color:#5a4f43;white-space:nowrap;
+  opacity:0;transition:opacity .3s;max-width:min(460px,90vw);overflow:hidden}
+.read-chip.show{opacity:1}

@@ -953,7 +953,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Dvě základní možnosti: mzda nebo dividendy</h2>
         <p>
           Mzda ze s.r.o. snižuje základ daně firmy, protože je to náklad. Platíte z ní odvody
-          na sociální a zdravotní pojištění, celkem zhruba 45 % navíc k hrubé mzdě. Ale tím si
+          na sociální a zdravotní pojištění: firma přidá 33,8&nbsp;% navíc k hrubé mzdě a vám se z ní strhne dalších 11,6&nbsp;%. Tím si
           budujete sociální pojistku a důchodové nároky.
         </p>
         <p>
@@ -979,8 +979,8 @@ function ArticleContent({ slug }: { slug: string }) {
           platíte odjinud, dividendy dávají smysl. Patnáct procent a hotovo.
         </p>
         <p>
-          Pozor na jednu věc: od roku 2025 se dividendy nad čtyři miliony ročně zdaňují
-          třiadvaceti procenty. Nad tuhle hranici se čísla mění.
+          A platí to bez ohledu na výši. Ať si vyplatíte sto tisíc, nebo deset milionů,
+          firma strhne patnáct procent a tím je daň vyřízená.
         </p>
 
         <h2>DIP jako třetí páka</h2>
@@ -1307,6 +1307,14 @@ export default async function ArticlePage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="progress" aria-hidden="true" />
+      <div className="read-bar" id="readBar" aria-hidden="true" />
+      {article.readTime && (
+        <div className="read-chip" id="readChip">
+          <span>{article.title.length > 44 ? article.title.slice(0, 41) + '…' : article.title}</span>
+          <span style={{opacity:.4}}>·</span>
+          <span id="chipTime" data-total={article.readTime}>{article.readTime} min čtení</span>
+        </div>
+      )}
       {/* ── Nav ── */}
       <nav>
         <div className="container nav-inner">
@@ -1464,14 +1472,25 @@ export default async function ArticlePage({
           }
         })();
         (function() {
-          // Page progress bar + nav.scrolled
+          // Page progress bar + nav.scrolled + read-bar + read-chip
           var prog = document.querySelector('.progress');
           var nav = document.querySelector('nav');
+          var readBar = document.getElementById('readBar');
+          var readChip = document.getElementById('readChip');
+          var chipTime = document.getElementById('chipTime');
           function updateProgress() {
             var total = document.documentElement.scrollHeight - window.innerHeight;
-            var pct = total > 0 ? (window.scrollY / total * 100) : 0;
+            var p = total > 0 ? window.scrollY / total : 0;
+            var pct = p * 100;
             if (prog) prog.style.setProperty('--p', pct + '%');
             if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+            if (readBar) readBar.style.setProperty('--read-p', p);
+            if (readChip) readChip.classList.toggle('show', window.scrollY > 180);
+            if (chipTime) {
+              var rt = parseInt(chipTime.dataset.total || '5', 10);
+              var rem = Math.max(1, Math.round(rt * (1 - p)));
+              chipTime.textContent = rem + (rem === 1 ? ' minuta čtení' : ' min čtení');
+            }
           }
           window.addEventListener('scroll', updateProgress, { passive: true });
           updateProgress();
