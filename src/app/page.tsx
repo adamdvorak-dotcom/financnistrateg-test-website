@@ -244,8 +244,7 @@ export default function Page() {
   const [invRate, setInvRate] = useState(5);
   const [invYears, setInvYears] = useState(20);
   const [invInitPos, setInvInitPos] = useState(0);
-  const [invRealToggle, setInvRealToggle] = useState(false);
-  const [invCopyToast, setInvCopyToast] = useState<string | null>(null);
+  const [invInflation, setInvInflation] = useState(false);
 
   /* Mortgage calc */
   const [mtgAmt, setMtgAmt] = useState(4000000);
@@ -602,6 +601,11 @@ export default function Page() {
   const iDep = invMonthly * iN + invInit;
   const iProfit = Math.max(0, iFv - iDep);
   const iPct = iDep > 0 ? (iDep / iFv) * 100 : 50;
+  const INF_RATE = 0.035; // ČSÚ průměr 2004–2023
+  const inflFactor = Math.pow(1 + INF_RATE, invYears);
+  const dispFv   = invInflation ? iFv   / inflFactor : iFv;
+  const dispDep  = invInflation ? iDep  / inflFactor : iDep;
+  const dispProfit = Math.max(0, dispFv - dispDep);
 
   /* ── Mortgage calculator ── */
   const mR = mtgRate / 100 / 12;
@@ -1152,35 +1156,36 @@ export default function Page() {
                   <div className="calc-result-top">
                     <ArcRing pct={Math.min(100, iDep > 0 ? (iProfit / iFv) * 100 : 0)} label={iDep > 0 ? (iFv / iDep).toFixed(1) + "×" : "—"} />
                     <div className="calc-result-numbers">
-                      <div className="result-label">{t.invResultLabel}</div>
+                      <div className="result-label">
+                        {t.invResultLabel}
+                        {invInflation && (
+                          <span style={{ marginLeft: 6, fontSize: 11, color: "#A9823F", fontWeight: 500 }}>
+                            · {lang === "cs" ? "reálná hodnota" : "real value"}
+                          </span>
+                        )}
+                      </div>
                       <div className="result-big">
-                        <SlotNum
-                          key={fmt(invRealToggle ? iFv / Math.pow(1.02, invYears) : iFv, lang)}
-                          value={fmt(invRealToggle ? iFv / Math.pow(1.02, invYears) : iFv, lang)}
-                        />
+                        <SlotNum key={fmt(dispFv, lang)} value={fmt(dispFv, lang)} />
                         {" "}<span>{t.currency}</span>
                       </div>
                       <button
                         type="button"
-                        onClick={() => setInvRealToggle(v => !v)}
+                        onClick={() => setInvInflation(v => !v)}
                         style={{
                           marginTop: 10, display: "inline-flex", alignItems: "center", gap: 7,
                           padding: "5px 12px", borderRadius: 999, border: "1px solid rgba(26,21,17,.18)",
-                          background: invRealToggle ? "#0C1F3A" : "transparent",
-                          color: invRealToggle ? "#F5F2EC" : "var(--text-2)",
+                          background: invInflation ? "#0C1F3A" : "transparent",
+                          color: invInflation ? "#F5F2EC" : "var(--text-2)",
                           fontSize: 12, fontWeight: 500, cursor: "pointer",
                         }}
                       >
                         <span style={{
                           width: 8, height: 8, borderRadius: "50%",
-                          background: invRealToggle ? "#C9A260" : "rgba(26,21,17,.3)", flexShrink: 0,
+                          background: invInflation ? "#C9A260" : "rgba(26,21,17,.3)", flexShrink: 0,
                         }} />
-                        {lang === "cs" ? "v dnešních penězích" : "in today's money"}
-                        {invRealToggle && (
-                          <span style={{ color: "rgba(245,242,236,.6)", fontWeight: 400, fontSize: 11 }}>
-                            · inflace 2 % ČNB
-                          </span>
-                        )}
+                        {lang === "cs"
+                          ? (invInflation ? "Vypnout inflaci" : "Zapnout inflaci")
+                          : (invInflation ? "Hide inflation" : "Show inflation")}
                       </button>
                     </div>
                   </div>
@@ -1201,8 +1206,8 @@ export default function Page() {
                       </div>
                     ))}
                     <p className="cmp-note">{lang === "cs"
-                      ? "Průměrný investor: DALBAR QAIB 2023 (průměrný roční výnos akciových podílových fondů za 20 let). Akciový trh: S&P 500 historický průměr. Čísla jsou ilustrativní a nezohledňují inflaci ani daně."
-                      : "Average investor: DALBAR QAIB 2023 (avg. annual equity fund return over 20 yrs). Stock market: S&P 500 historical average. Numbers are illustrative and exclude inflation and taxes."
+                      ? "Průměrný investor: DALBAR QAIB 2023 (průměrný roční výnos akciových podílových fondů za 20 let). Akciový trh: S&P 500 historický průměr. Čísla jsou ilustrativní."
+                      : "Average investor: DALBAR QAIB 2023 (avg. annual equity fund return over 20 yrs). Stock market: S&P 500 historical average. Numbers are illustrative."
                     }</p>
                   </div>
                   <div className="calc-cta">
@@ -1222,31 +1227,14 @@ export default function Page() {
                       ? "Ilustrační výpočet, ne předpověď. Výnosy dosažené v minulosti nejsou zárukou výnosů budoucích."
                       : "Illustrative calculation, not a forecast. Past performance does not guarantee future returns."}
                   </p>
-                  <div style={{ display: "flex", gap: 10, marginTop: 16, position: "relative" }}>
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        const url = `${location.origin}/?vklad=${invMonthly}&init=${invInit}&roky=${invYears}&vynosnost=${invRate}#calculators`;
-                        await navigator.clipboard.writeText(url);
-                        setInvCopyToast(lang === "cs" ? "Odkaz zkopírován" : "Link copied");
-                        setTimeout(() => setInvCopyToast(null), 2200);
-                      }}
-                      style={{
-                        display: "inline-flex", alignItems: "center", gap: 7, padding: "9px 16px",
-                        borderRadius: 999, border: "1px solid rgba(26,21,17,.18)", background: "transparent",
-                        fontSize: 13, fontWeight: 500, cursor: "pointer", color: "var(--text-2)",
-                      }}
-                    >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                      {lang === "cs" ? "Odkaz na výpočet" : "Share calculation"}
-                    </button>
-                    {invCopyToast && (
-                      <div className="toast">{invCopyToast}</div>
-                    )}
-                  </div>
                   <div className="result-divider" />
-                  <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(iDep, lang)} {t.currency}</span></div>
-                  <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(iProfit, lang)} {t.currency}</span></div>
+                  <div className="result-row"><span className="result-row-k">{t.invDep}</span><span className="result-row-v">{fmt(dispDep, lang)} {t.currency}</span></div>
+                  <div className="result-row"><span className="result-row-k">{t.invProfit}</span><span className="result-row-v pos">{fmt(dispProfit, lang)} {t.currency}</span></div>
+                  <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 10, lineHeight: 1.5 }}>
+                    {lang === "cs"
+                      ? "Průměrná inflace v ČR za posledních 20 let: 3,5 % ročně (dle ČSÚ, 2004–2023)."
+                      : "Average Czech inflation over 20 years: 3.5% p.a. (ČSÚ, 2004–2023)."}
+                  </p>
                 </div>
               </div>
 
