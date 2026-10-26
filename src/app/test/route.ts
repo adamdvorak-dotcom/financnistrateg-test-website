@@ -389,10 +389,10 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       li.innerHTML = '<span><span class="ref">' + c.it.id + " · " + c.area + "</span>" + c.it.tip + "</span>";
       ol.appendChild(li);
     });
-    var pe = document.getElementById(“prioEmpty”);
+    var pe = document.getElementById("prioEmpty");
     pe.hidden = top3.length > 0;
-    if (!top3.length) { pe.textContent = count === 20 ? “Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní.” : “Zatím nic. Jakmile odpovíte „ne” nebo „částečně”, objeví se tu, čím začít.”; }
-    var rc = document.getElementById(“resultCta”);
+    if (!top3.length) { pe.textContent = count === 20 ? "Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní." : 'Zatím nic. Jakmile odpovíte „ne" nebo „částečně", objeví se tu, čím začít.'; }
+    var rc = document.getElementById("resultCta");
     if (rc) rc.hidden = !state.unlocked;
   }
   function renderLock(count) {
