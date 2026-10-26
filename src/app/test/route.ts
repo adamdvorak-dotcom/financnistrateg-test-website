@@ -83,11 +83,19 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
 .opt-txt { font-size: 13px; color: inherit; }
 .opt-card:hover { border-color: var(--gold); }
 .opt-card:has(input:checked) { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--sel-fg); }
-.result { position: sticky; top: calc(env(safe-area-inset-top,0px) + 20px); background: var(--sheet); border: 1px solid rgba(201,162,96,0.22); border-radius: 16px; padding: 22px 22px 24px; box-shadow: 0 2px 20px rgba(26,21,17,0.06); }
-.result h2 { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
-.score { display: flex; align-items: baseline; gap: 8px; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
-.score .big { font-size: 68px; font-weight: 600; line-height: 0.95; }
-.score .of { font-size: 26px; color: var(--muted); }
+.result { position: sticky; top: calc(env(safe-area-inset-top,0px) + 24px); background: var(--sheet); border: 1px solid rgba(201,162,96,0.22); border-radius: 16px; padding: 22px 22px 24px; box-shadow: 0 2px 20px rgba(26,21,17,0.06); max-height: calc(100vh - 48px); overflow-y: auto; }
+.result h2 { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.score { display: flex; align-items: center; gap: 14px; font-variant-numeric: tabular-nums; }
+.ring-outer { position: relative; flex-shrink: 0; width: 88px; height: 88px; }
+.ring { display: block; }
+.ring .bg { fill: none; stroke: rgba(26,21,17,0.08); stroke-width: 7; }
+.ring .fg { fill: none; stroke: var(--gold); stroke-width: 7; stroke-linecap: round;
+  stroke-dasharray: 238.76; stroke-dashoffset: calc(238.76 * (1 - var(--p, 0)));
+  transition: stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1); }
+.ring-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.score .big { font-family: var(--font-display); font-size: 28px; font-weight: 600; line-height: 1; color: var(--ink); }
+.score .of { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.result-cta { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(26,21,17,.12); }
 .answered { font-size: 13px; color: var(--muted); margin: 2px 0 14px; font-variant-numeric: tabular-nums; }
 .band { border-radius: var(--radius); padding: 10px 12px; margin-bottom: 18px; border-left: 3px solid var(--muted); background: var(--paper); }
 .band strong { display: block; font-size: 15px; }
@@ -204,7 +212,18 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       </div>
       <div id="resultBody">
         <p class="thanks" id="thanks" tabindex="-1" hidden>Díky. Do pár dnů vám k výsledku napíšu.</p>
-        <div class="score" aria-live="polite"><span class="big" id="score">0</span><span class="of">/ 40</span></div>
+        <div class="score" aria-live="polite">
+          <div class="ring-outer">
+            <svg class="ring" viewBox="0 0 88 88" width="88" height="88" aria-hidden="true">
+              <circle class="bg" cx="44" cy="44" r="38"/>
+              <circle class="fg" cx="44" cy="44" r="38" transform="rotate(-90 44 44)"/>
+            </svg>
+            <div class="ring-inner">
+              <span class="big" id="score">0</span>
+              <span class="of">/ 40</span>
+            </div>
+          </div>
+        </div>
         <p class="answered" id="answered">Odpovězeno 0 z 20</p>
         <div class="band" id="band"><strong id="bandTitle">Výsledek</strong><p id="bandText"></p></div>
         <div class="meters" id="meters"></div>
@@ -212,6 +231,10 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
           <h3>Tři kroky, kterými začít</h3>
           <ol id="prio"></ol>
           <p class="empty" id="prioEmpty" hidden>Zatím nic. Jakmile odpovíte „ne" nebo „částečně", objeví se tu, čím začít.</p>
+        </div>
+        <div class="result-cta" id="resultCta" hidden>
+          <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Chcete promluvit o výsledku osobně?</p>
+          <a href="/konzultace" class="btn solid">Zahájit rozhovor →</a>
         </div>
       </div>
     </aside>
@@ -366,9 +389,11 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
       li.innerHTML = '<span><span class="ref">' + c.it.id + " · " + c.area + "</span>" + c.it.tip + "</span>";
       ol.appendChild(li);
     });
-    var pe = document.getElementById("prioEmpty");
+    var pe = document.getElementById(“prioEmpty”);
     pe.hidden = top3.length > 0;
-    if (!top3.length) { pe.textContent = count === 20 ? "Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní." : "Zatím nic. Jakmile odpovíte „ne“ nebo „částečně“, objeví se tu, čím začít."; }
+    if (!top3.length) { pe.textContent = count === 20 ? “Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní.” : “Zatím nic. Jakmile odpovíte „ne” nebo „částečně”, objeví se tu, čím začít.”; }
+    var rc = document.getElementById(“resultCta”);
+    if (rc) rc.hidden = !state.unlocked;
   }
   function renderLock(count) {
     document.getElementById("lockCount").textContent = "Odpovězeno " + count + " z 20";
@@ -404,6 +429,10 @@ h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px,5
   }
   function unlock() {
     state.unlocked = true;
+    var pts = 0;
+    AREAS.forEach(function(a) { a.items.forEach(function(it) { pts += (state.answers[it.id] || 0); }); });
+    var ringOuter = document.querySelector('.ring-outer');
+    if (ringOuter) ringOuter.style.setProperty('--p', (pts / 40).toFixed(3));
     var th = document.getElementById("thanks");
     th.hidden = false;
     render();

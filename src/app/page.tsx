@@ -679,6 +679,14 @@ export default function Page() {
             onClick={() => setMobileOpen(false)}
           >{item.label}</a>
         ))}
+        <div className="mob-cta">
+          <a href="/konzultace" className="btn-primary" onClick={() => setMobileOpen(false)}>
+            {lang === "cs" ? "Zahájit rozhovor →" : "Start the conversation →"}
+          </a>
+          <a href="mailto:adamdvorak@financnistrateg.com" className="mob-contact">
+            adamdvorak@financnistrateg.com
+          </a>
+        </div>
       </div>
 
       {/* ── Navbar ── */}
