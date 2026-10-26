@@ -37,7 +37,7 @@ const T = {
     s3Items: ["Cashflow & rozpočet", "Pojistná ochrana", "Likvidní rezerva", "Daňová optimalizace", "Krizový scénář"],
     s4Tag: "Důchod", s4Title: "Důchod ze tří zdrojů", s4Desc: "V 65 mít tři příjmy místo jednoho a vědět, který kdy zapnout. Cihla vám rohlíky nezaplatí.",
     s4Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
-    s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho — a vědět, který z nich v který rok aktivovat.",
+    s5Tag: "Důchod", s5Title: "Příprava na důchod", s5Desc: "Důchod není o třetím pilíři. Je o tom mít v 65 letech tři zdroje příjmu místo jednoho, a vědět, který z nich v který rok aktivovat.",
     s5Items: ["Třetí pilíř", "Analýza let pojištění", "Výpočet státního důchodu", "Doplnění chybějících dob", "Investiční program"],
     processEye: "Přístup", processTitle: "Jak spolupráce probíhá.",
     step1Num: "Krok 01", step1Title: "Úvodní konzultace", step1Desc: "Ukážu vám, jak pracuji a co od spolupráce čekám já. Ale hlavně, chci slyšet vás. Kde jste, co nefunguje, co chcete jinak. Primárně si musíme sednout.",
@@ -256,7 +256,7 @@ export default function Page() {
   const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
 
-  /* Service card expand — handled imperatively to preserve reveal animation */
+  /* Service card expand, handled imperatively to preserve reveal animation */
 
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -289,7 +289,7 @@ export default function Page() {
   }, [lang]);
 
 
-  /* Animated contour lines — hero left panel */
+  /* Animated contour lines, hero left panel */
   useEffect(() => {
     const canvas = contourCanvasRef.current;
     if (!canvas || window.innerWidth < 640) return;
@@ -364,7 +364,7 @@ export default function Page() {
     return () => cancelAnimationFrame(raf);
   }, [curtainPhase]);
 
-  /* Intro curtain — once per session */
+  /* Intro curtain, once per session */
   useEffect(() => {
     if (sessionStorage.getItem("curtain_shown")) return;
     sessionStorage.setItem("curtain_shown", "1");
@@ -412,7 +412,7 @@ export default function Page() {
   }, []);
 
 
-  /* Ref dots — track horizontal scroll on mobile */
+  /* Ref dots, track horizontal scroll on mobile */
   useEffect(() => {
     const el = refScrollRef.current;
     if (!el) return;
@@ -421,7 +421,7 @@ export default function Page() {
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Floating pill — show when hero leaves viewport */
+  /* Floating pill, show when hero leaves viewport */
   const [pillVisible, setPillVisible] = useState(false);
   useEffect(() => {
     const hero = heroRef.current;
@@ -434,7 +434,7 @@ export default function Page() {
     return () => obs.disconnect();
   }, []);
 
-  /* Nav over-dark — transparent while hero is visible */
+  /* Nav over-dark, transparent while hero is visible */
   useEffect(() => {
     const hero = heroRef.current;
     const nav = document.querySelector("nav");
@@ -479,7 +479,7 @@ export default function Page() {
     return () => clearInterval(timer);
   }, [lang]);
 
-  /* Cursor glow — lerp follow */
+  /* Cursor glow, lerp follow */
   useEffect(() => {
     const el = document.getElementById("cursor-glow");
     if (!el) return;
@@ -500,7 +500,7 @@ export default function Page() {
     return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(rafId); };
   }, []);
 
-  /* Hero heading scramble — runs once on mount */
+  /* Hero heading scramble, runs once on mount */
   useEffect(() => {
     const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const run = (
@@ -537,7 +537,7 @@ export default function Page() {
   const heroRef = useRef<HTMLElement>(null);
   const heroInnerRef = useRef<HTMLDivElement>(null);
 
-  /* Hero parallax — content drifts up and fades on scroll */
+  /* Hero parallax, content drifts up and fades on scroll */
   useEffect(() => {
     const hero = heroRef.current;
     const inner = heroInnerRef.current;
@@ -677,7 +677,7 @@ export default function Page() {
   const formBtnText =
     formState === "sending" ? t.formSending :
     formState === "sent" ? t.formSent :
-    formState === "error" ? (lang === "cs" ? "✕ Chyba — zkuste znovu" : "✕ Error — try again") :
+    formState === "error" ? (lang === "cs" ? "✕ Chyba, zkuste znovu" : "✕ Error, try again") :
     t.fSubmit;
   const nlBtnText =
     nlState === "sending" ? t.nlSending :
@@ -694,7 +694,7 @@ export default function Page() {
         name: "Co je DIP (Dlouhodobý investiční produkt) a pro koho je určený?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "DIP je od roku 2024 nový způsob daňově zvýhodněného investování v Česku. Umožňuje investovat do akcií, ETF a dluhopisů a odečíst si z daňového základu až 48 000 Kč ročně — daňová úspora až 7 200 Kč. Zaměstnavatel může navíc přispět až 50 000 Kč ročně zcela bez daní a odvodů. Podmínkou je investiční horizont minimálně 10 let a věk nejméně 60 let při výběru. DIP je vhodný pro OSVČ, jednatele i zaměstnance s delším investičním horizontem.",
+          text: "DIP je od roku 2024 nový způsob daňově zvýhodněného investování v Česku. Umožňuje investovat do akcií, ETF a dluhopisů a odečíst si z daňového základu až 48 000 Kč ročně, daňová úspora až 7 200 Kč. Zaměstnavatel může navíc přispět až 50 000 Kč ročně zcela bez daní a odvodů. Podmínkou je investiční horizont minimálně 10 let a věk nejméně 60 let při výběru. DIP je vhodný pro OSVČ, jednatele i zaměstnance s delším investičním horizontem.",
         },
       },
       {
@@ -702,15 +702,15 @@ export default function Page() {
         name: "Jak funguje penzijní spoření (třetí pilíř) v Česku?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Penzijní spoření (DPS — Doplňkové penzijní spoření) je státem podporovaný spořicí produkt. Na příspěvky nad 500 Kč měsíčně přidává stát až 340 Kč měsíčně. Příspěvky nad 12 000 Kč ročně lze odečíst z daňového základu — odpočet až 24 000 Kč/rok. Zaměstnavatel může přispívat až 50 000 Kč ročně bez sociálního a zdravotního pojištění. Nevýhodou jsou nižší očekávané výnosy oproti vlastnímu ETF portfoliu — proto ho doporučuji kombinovat s DIP.",
+          text: "Penzijní spoření (DPS, Doplňkové penzijní spoření) je státem podporovaný spořicí produkt. Na příspěvky nad 500 Kč měsíčně přidává stát až 340 Kč měsíčně. Příspěvky nad 12 000 Kč ročně lze odečíst z daňového základu, odpočet až 24 000 Kč/rok. Zaměstnavatel může přispívat až 50 000 Kč ročně bez sociálního a zdravotního pojištění. Nevýhodou jsou nižší očekávané výnosy oproti vlastnímu ETF portfoliu, proto ho doporučuji kombinovat s DIP.",
         },
       },
       {
         "@type": "Question",
-        name: "Jak začít investovat v Česku — první kroky?",
+        name: "Jak začít investovat v Česku, první kroky?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Prvním krokem je definovat cíl a investiční horizont — na jak dlouho investujete a co chcete investováním dosáhnout. Pro horizont 10 a více let jsou vhodné globální indexové ETF, které kopírují světové trhy za nízké poplatky (pod 0,2 % ročně) a historicky vynáší 7–10 % ročně. Doporučuji začít pravidelnými měsíčními vklady místo jednorázové investice. V Česku lze investovat přes DIP s daňovým odpočtem nebo přímo přes brokerské platformy.",
+          text: "Prvním krokem je definovat cíl a investiční horizont, na jak dlouho investujete a co chcete investováním dosáhnout. Pro horizont 10 a více let jsou vhodné globální indexové ETF, které kopírují světové trhy za nízké poplatky (pod 0,2 % ročně) a historicky vynáší 7–10 % ročně. Doporučuji začít pravidelnými měsíčními vklady místo jednorázové investice. V Česku lze investovat přes DIP s daňovým odpočtem nebo přímo přes brokerské platformy.",
         },
       },
       {
@@ -718,7 +718,7 @@ export default function Page() {
         name: "Proč si vybrat nezávislého finančního poradce místo bankovního poradce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Nezávislý finanční poradce je odměňován honorářem od klienta — ne provizemi za prodané produkty. To eliminuje konflikt zájmů: doporučuje to, co je pro vás skutečně nejlepší. Bankovní poradce nabízí jen produkty své banky a je motivován prodejem. Nezávislý poradce vybírá z celého trhu, řeší celkový finanční plán a sleduje vaše cíle dlouhodobě.",
+          text: "Nezávislý finanční poradce je odměňován honorářem od klienta, ne provizemi za prodané produkty. To eliminuje konflikt zájmů: doporučuje to, co je pro vás skutečně nejlepší. Bankovní poradce nabízí jen produkty své banky a je motivován prodejem. Nezávislý poradce vybírá z celého trhu, řeší celkový finanční plán a sleduje vaše cíle dlouhodobě.",
         },
       },
       {
@@ -726,7 +726,7 @@ export default function Page() {
         name: "Jak ochránit rodinný majetek a nastavit dědictví pro podnikatele?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Pro podnikatele je klíčové oddělit osobní majetek od firmy — většina majitelů firem má vše v podniku, což je riziko. Doporučuji kombinaci: svěřenský fond pro ochranu majetku rodině, notářská závěť se správcem pozůstalosti, manželská smlouva pro oddělení podílu ve firmě od SJM, a pravidelné vyplácení dividend do osobního portfolia mimo firmu. Cílem je, aby rodina nebyla závislá na osudu jedné firmy.",
+          text: "Pro podnikatele je klíčové oddělit osobní majetek od firmy, většina majitelů firem má vše v podniku, což je riziko. Doporučuji kombinaci: svěřenský fond pro ochranu majetku rodině, notářská závěť se správcem pozůstalosti, manželská smlouva pro oddělení podílu ve firmě od SJM, a pravidelné vyplácení dividend do osobního portfolia mimo firmu. Cílem je, aby rodina nebyla závislá na osudu jedné firmy.",
         },
       },
     ],
@@ -823,7 +823,7 @@ export default function Page() {
           <div className="hero-photo-wrap">
             <div className="hero-photo-frame">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/adam-dvorak-hero.jpg" alt="Adam Dvořák — Finanční stratég" loading="eager" />
+              <img src="/adam-dvorak-hero.jpg" alt="Adam Dvořák, Finanční stratég" loading="eager" />
             </div>
           </div>
         </div>
@@ -1155,7 +1155,7 @@ export default function Page() {
                       <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
                     </div>
                     <GoldRange value={retAge} min={20} max={64} step={1} onChange={setRetAge} fmtLabel={(v) => v + " let"} />
-                    <div className="range-meta"><span>20</span><span>64 — {retYears} {t.retYrsToRet}</span></div>
+                    <div className="range-meta"><span>20</span><span>64, {retYears} {t.retYrsToRet}</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.retMissingYrsLabel}</label>
@@ -1463,7 +1463,7 @@ export default function Page() {
                 {formState === "sent" && (
                   <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: "var(--r-sm)", color: "#22c55e", fontSize: 14, fontWeight: 500, lineHeight: 1.5 }}>
                     ✓ {lang === "cs"
-                      ? "Děkuji! Zpráva dorazila v pořádku. Ozvu se vám co nejdříve — obvykle do 24 hodin."
+                      ? "Děkuji! Zpráva dorazila v pořádku. Ozvu se vám co nejdříve, obvykle do 24 hodin."
                       : "Thank you! Your message arrived safely. I'll get back to you shortly, usually within 24 hours."}
                   </div>
                 )}
@@ -1573,7 +1573,7 @@ export default function Page() {
 
       {/* ── Mobile CTA bar ── */}
       <div className={`cta-bar${pillVisible ? " show" : ""}`}>
-        <span className="cta-bar-text">{lang === "cs" ? "Zahájit rozhovor — první schůzka zdarma" : "Start the conversation · first meeting free"}</span>
+        <span className="cta-bar-text">{lang === "cs" ? "Zahájit rozhovor, první schůzka zdarma" : "Start the conversation · first meeting free"}</span>
         <a href="/konzultace" className="cta-bar-btn">{lang === "cs" ? "Sjednat termín →" : "Book a call →"}</a>
       </div>
 
