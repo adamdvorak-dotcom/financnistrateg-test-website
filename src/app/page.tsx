@@ -82,7 +82,7 @@ const T = {
     heroSub: "Nine out of ten business owners have their personal wealth locked in their home. I work with entrepreneurs and families who want to change that. Eight years in the field, over CZK 165 million under management.",
     heroCta: "Start a conversation",
     servicesTitle: "What I do for you",
-    servicesSub: "I do not work as a specialist in one thing. I work as one person who holds the entire picture — from daily cashflow to what happens if you do not come home tomorrow.",
+    servicesSub: "I do not work as a specialist in one thing. I work as one person who holds the entire picture: from daily cashflow to what happens if you do not come home tomorrow.",
     s1Tag: "Family Wealth", s1Title: "Family Wealth Management & Transfer", s1Desc: "Structuring, protecting and transferring wealth across generations. I work with families and entrepreneurs where it is no longer about products but about how to keep wealth together across generations and life situations nobody asks about until they arrive. I work discreetly, always with the specific family context in mind, not from templates.",
     s1Items: ["Crisis & succession plan", "Trust funds", "Family council", "Business sale & exit", "Foreign structures (Switzerland)", "Family office advisory", "Wealth tax optimisation"],
     s2Tag: "Investments", s2Title: "Investments without illusions", s2Desc: "I build portfolios that make sense in relation to the rest of your life, not to a table of historical returns. No “investment opportunity of the year”, no products I cannot justify in five years. Diversification across asset classes, jurisdictions and currencies, with regular review.",
@@ -91,14 +91,14 @@ const T = {
     s3Items: ["Cashflow & budgeting", "Insurance cover", "Liquid reserve", "Tax optimisation", "Crisis scenario"],
     s4Tag: "Financing", s4Title: "Mortgages & property financing", s4Desc: "A mortgage is not a commodity, it is a long-term contract that affects cashflow, taxes and what you can afford elsewhere in the next ten years. I help design the mortgage as part of the overall architecture, not as a separate item.",
     s4Items: ["Bank comparison", "Fix-rate strategy", "Refinancing", "Investment properties", "Optimisation in relation to the whole"],
-    s5Tag: "Retirement", s5Title: "Retirement planning", s5Desc: "Retirement is not about the third pillar. It is about having three income sources at 65 instead of one — and knowing which one to activate in which year. Analysis of years worked, filling missing contribution periods, combining the state pension, investment programme and other sources.",
+    s5Tag: "Retirement", s5Title: "Retirement planning", s5Desc: "Retirement is not about the third pillar. It is about having three income sources at 65 instead of one, and knowing which one to activate in which year. Analysis of years worked, filling missing contribution periods, combining the state pension, investment programme and other sources.",
     s5Items: ["Third pillar", "Contribution period analysis", "State pension calculation", "Filling missing periods", "Investment programme"],
     processEye: "Process", processTitle: "How we work together.",
-    step1Num: "Step 01", step1Title: "Intro consultation", step1Desc: "I'll show you how I work and what I expect from the collaboration. But mostly — I want to hear you. Where you are, what isn't working, what you want to change. First, we need to click.",
-    step2Num: "Step 02", step2Title: "Analysis & Strategy", step2Desc: "An in-depth analysis of your income, expenses, assets and liabilities — from which I design a strategy tailored specifically to you.",
+    step1Num: "Step 01", step1Title: "Intro consultation", step1Desc: "I'll show you how I work and what I expect from the collaboration. But mostly, I want to hear you. Where you are, what isn't working, what you want to change. First, we need to click.",
+    step2Num: "Step 02", step2Title: "Analysis & Strategy", step2Desc: "An in-depth analysis of your income, expenses, assets and liabilities, from which I design a strategy tailored specifically to you.",
     step3Num: "Step 03", step3Title: "Financial Plan", step3Desc: "I present a concrete financial plan with recommendations and priorities. Together we audit your current situation and set clear goals.",
     step4Num: "Step 04", step4Title: "Consultation & Q&A", step4Desc: "We review the plan in detail and I answer all your questions. We refine the strategy based on your feedback and preferences.",
-    step5Num: "Step 05", step5Title: "Implementation & Service", step5Desc: "We launch the plan — set up products, open accounts. We schedule regular service meetings for ongoing oversight and updates.",
+    step5Num: "Step 05", step5Title: "Implementation & Service", step5Desc: "We launch the plan: set up products, open accounts. We schedule regular service meetings for ongoing oversight and updates.",
     calcTitle: "Make your money work for you.",
     tabInvest: "Investment Calculator", tabMortgage: "Mortgage Calculator",
     invMonthly: "Monthly Deposit", invRate: "Annual Return", invYears: "Investment Period", invInit: "Lump-sum Deposit",
@@ -113,7 +113,7 @@ const T = {
     retYrsToRet: "years to retirement",
     retDisclaimer: "Illustrative calculation only. We use the average Czech state pension per ČSSZ (CZK 21,840), average 6% p.a. return and 20-year portfolio drawdown.",
     aboutEye: "About Me",
-    aboutP1: "Adam Dvořák, EFA. Eight years in the field, holder of the European Financial Advisor qualification. I work with a select group of entrepreneurs and families — typically where it is no longer about products, but about architecture.",
+    aboutP1: "Adam Dvořák, EFA. Eight years in the field, holder of the European Financial Advisor qualification. I work with a select group of entrepreneurs and families, typically where it is no longer about products, but about architecture.",
     aboutP2: "Most financial advice in the Czech Republic works like sales. Someone calls, recommends something, you sign something, they get a commission. That is not how I work.",
     aboutP3: "My inspiration is Swiss private banking. One person who holds the entire picture from cashflow through investment strategy to the crisis plan. No call centre, but a team of specialists.",
     aboutP4: "For the client this means a slow start and a long relationship. The first meeting is not about products, it is about whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
@@ -123,11 +123,11 @@ const T = {
     refEye: "Testimonials", refTitle: "What clients say.",
     contactSub: "The first consultation is always free and without obligation. Write to me or call directly.",
     ctLocation: "Location", ctLocationVal: "Prague & Czech Republic (online)", ctOffice: "Office", ctOfficeVal: "Salvátorská 931/8, 110 00 Prague 1 – Old Town",
-    fName: "Name", fNamePh: "John Smith", fPhone: "Phone", fTopic: "Topic", fTopicPh: "Business, family, or both?", fMsg: "Message", fMsgPh: "Keep it informal — where are you now and what would you like to change.", fSubmit: "Send Message",
+    fName: "Name", fNamePh: "John Smith", fPhone: "Phone", fTopic: "Topic", fTopicPh: "Business, family, or both?", fMsg: "Message", fMsgPh: "Keep it informal. Where are you now and what would you like to change.", fSubmit: "Send Message",
     footerTagline: "Financial Strategist", footerReg: "Registered with CNB. Company ID: 08406804.", footerPrivacy: "Privacy Policy", footerTerms: "Terms of Use",
     formSending: "Sending…", formSent: "✓ Sent!",
-    nlEye: "Newsletter", nlTitle: "Financial insights straight to your inbox.", nlSub: "Once a month I send a short overview — what is happening in the markets, how to protect savings and where the current opportunities are. No spam.", nlPh: "your@email.com", nlBtn: "Subscribe", nlNote: "Unsubscribe with one click at any time. No spam.", nlSending: "Subscribing…", nlDone: "✓ Subscribed!",
-    blogEye: "Blog", blogTitle: "Financial education.", blogSub: "I write about topics I tackle with my clients — clearly, without unnecessary jargon.",
+    nlEye: "Newsletter", nlTitle: "Financial insights straight to your inbox.", nlSub: "Once a month I send a short overview: what is happening in the markets, how to protect savings and where the current opportunities are. No spam.", nlPh: "your@email.com", nlBtn: "Subscribe", nlNote: "Unsubscribe with one click at any time. No spam.", nlSending: "Subscribing…", nlDone: "✓ Subscribed!",
+    blogEye: "Blog", blogTitle: "Financial education.", blogSub: "I write about topics I tackle with my clients. Clearly, without unnecessary jargon.",
     blogReadMore: "Read more",
   },
 };
@@ -1079,7 +1079,7 @@ export default function Page() {
                   <div className="calc-cta">
                     <div className="calc-cta-text">
                       <b>{lang === "cs" ? "Co to znamená pro vás?" : "What does this mean for you?"}</b>
-                      <span>{lang === "cs" ? "Projdeme čísla spolu za 30 minut, bez závazku." : "We'll walk through your numbers — 30 min, no strings."}</span>
+                      <span>{lang === "cs" ? "Projdeme čísla spolu za 30 minut, bez závazku." : "We'll walk through your numbers. 30 min, no strings."}</span>
                     </div>
                     <a
                       href={`/konzultace?vklad=${invMonthly}&init=${invInit}&roky=${invYears}&vynosnost=${invRate}`}
@@ -1464,7 +1464,7 @@ export default function Page() {
                   <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: "var(--r-sm)", color: "#22c55e", fontSize: 14, fontWeight: 500, lineHeight: 1.5 }}>
                     ✓ {lang === "cs"
                       ? "Děkuji! Zpráva dorazila v pořádku. Ozvu se vám co nejdříve — obvykle do 24 hodin."
-                      : "Thank you! Your message arrived safely. I'll get back to you shortly — usually within 24 hours."}
+                      : "Thank you! Your message arrived safely. I'll get back to you shortly, usually within 24 hours."}
                   </div>
                 )}
                 {formState === "error" && (
@@ -1500,7 +1500,7 @@ export default function Page() {
               <p className="bk-desc">
                 {lang === "cs"
                   ? "Ukážu vám, jak pracuji. Chci hlavně slyšet vás, co řešíte, co nefunguje. Primárně si musíme sednout."
-                  : "I'll show you how I work. Mostly I want to hear you — what you're dealing with, what isn't working. We just need to click."}
+                  : "I'll show you how I work. Mostly I want to hear you: what you're dealing with, what isn't working. We just need to click."}
               </p>
               <button
                 className="btn-primary bk-btn"
@@ -1573,7 +1573,7 @@ export default function Page() {
 
       {/* ── Mobile CTA bar ── */}
       <div className={`cta-bar${pillVisible ? " show" : ""}`}>
-        <span className="cta-bar-text">{lang === "cs" ? "Zahájit rozhovor — první schůzka zdarma" : "Start the conversation — first meeting free"}</span>
+        <span className="cta-bar-text">{lang === "cs" ? "Zahájit rozhovor — první schůzka zdarma" : "Start the conversation · first meeting free"}</span>
         <a href="/konzultace" className="cta-bar-btn">{lang === "cs" ? "Sjednat termín →" : "Book a call →"}</a>
       </div>
 
