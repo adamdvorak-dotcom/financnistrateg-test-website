@@ -985,10 +985,10 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.invMonthly}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} onBlur={(e) => { const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0; setInvMonthly(Math.round(v / 100) * 100 || 500); }} />
+                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} onBlur={(e) => { const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0; setInvMonthly(Math.round(v / 1000) * 1000 || 1000); }} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <GoldRange value={invMonthly} min={500} max={200000} step={100} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
+                    <GoldRange value={invMonthly} min={1000} max={200000} step={1000} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>500 Kč</span><span>200 000 Kč</span></div>
                   </div>
                   <div>
@@ -1181,7 +1181,7 @@ export default function Page() {
                       <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString("cs-CZ")} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <GoldRange value={retMonthlySavings} min={0} max={50000} step={500} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
+                    <GoldRange value={retMonthlySavings} min={0} max={50000} step={1000} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>0</span><span>50 000 Kč</span></div>
                   </div>
                   <div>
