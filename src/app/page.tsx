@@ -982,14 +982,14 @@ export default function Page() {
               </ol>
             </div>
             <div className="stack">
-              {/* p1: navy cover */}
-              <div className="page p1">
-                <div style={{width:52,height:52,borderRadius:"50%",border:"1.5px solid rgba(201,162,96,.45)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:20}}>
-                  <span style={{fontFamily:"Lora,serif",fontSize:24,fontWeight:500,color:"#C9A260"}}>N</span>
+              {/* p1: cover — gradient style matching real FP document */}
+              <div className="page p1" style={{background:"linear-gradient(125deg,#9E93CA 0%,#E8E3D5 50%,#C5B870 100%)",color:"#fff"}}>
+                <div style={{fontSize:9,letterSpacing:2.5,textTransform:"uppercase",color:"rgba(255,255,255,.6)",marginBottom:16}}>Finanční plán</div>
+                <div style={{fontFamily:"Lora,serif",fontSize:38,fontWeight:700,lineHeight:1.0,flexGrow:1}}>Rodina<br/>N.</div>
+                <div style={{borderTop:"1px solid rgba(255,255,255,.3)",paddingTop:14}}>
+                  <div style={{fontSize:9,color:"rgba(255,255,255,.5)",marginBottom:5,letterSpacing:0.5}}>financnistrateg.com</div>
+                  <div style={{fontSize:11,fontWeight:600,letterSpacing:0.3}}>Adam Dvořák, EFA</div>
                 </div>
-                <div style={{fontSize:10,letterSpacing:2.5,textTransform:"uppercase",color:"rgba(201,162,96,.7)",marginBottom:10}}>Finanční plán</div>
-                <div style={{fontFamily:"Lora,serif",fontSize:24,fontWeight:500,lineHeight:1.2,flexGrow:1}}>Rodina N.</div>
-                <div style={{marginTop:"auto",fontSize:10,color:"rgba(245,242,236,.35)",letterSpacing:0.5}}>Aktualizováno · leden 2025</div>
               </div>
               {/* p2: chapter with chart */}
               <div className="page p2">
