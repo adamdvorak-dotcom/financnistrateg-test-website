@@ -244,6 +244,11 @@ export default function Page() {
   const [invRate, setInvRate] = useState(5);
   const [invYears, setInvYears] = useState(20);
   const [invInitPos, setInvInitPos] = useState(0);
+  /* Asset structure */
+  const [firma, setFirma] = useState(40)
+  const [nem, setNem] = useState(12)
+  const [inv, setInv] = useState(2)
+  const [hot, setHot] = useState(1.5)
   /* Mortgage calc */
   const [mtgAmt, setMtgAmt] = useState(4000000);
   const [mtgRate, setMtgRate] = useState(4.5);
@@ -626,6 +631,33 @@ export default function Page() {
     retAdditionalFV * retR / ((Math.pow(1 + retR, retN) - 1) * (1 + retR)) - retMonthlySavings
   );
 
+  /* Druhá noha */
+  const noha = firma + nem + inv + hot
+  const nohaMin = inv + hot
+  const nohaMimo = noha - firma
+  const nohaFmt = (x: number) =>
+    x.toLocaleString('cs-CZ', { minimumFractionDigits: 0, maximumFractionDigits: 1 })
+  const nohaDil = (x: number) => `${noha > 0 ? (x / noha) * 100 : 0}%`
+  const nohaPct = (x: number) => `${noha > 0 ? Math.round((x / noha) * 100) : 0} %`
+
+  /* Pension result redesign */
+  const pCil = retDesiredPension            // target monthly income in retirement
+  const pStat = retStatePension              // from state pension
+  const pPort = retPortfolioMonthly          // from portfolio
+  const pChybi = Math.max(0, pCil - pStat - pPort)
+  const pSirka = (x: number) => `${(x / Math.max(pCil, pStat + pPort) * 100)}%`
+  const pRMo = invRate / 100 / 12
+  const pNMo = invYears * 12
+  const pFvF = pNMo > 0 && pRMo > 0
+    ? ((Math.pow(1 + pRMo, pNMo) - 1) / pRMo) * (1 + pRMo)
+    : pNMo
+  const pKapital = pChybi > 0 ? pChybi * 12 / Math.max(invRate / 100, 0.01) : 0
+  const pDoplatek = pKapital > 0 && pFvF > 0
+    ? Math.ceil(pKapital / pFvF / 100) * 100
+    : 0
+  const pKc = (x: number) => `${Math.round(x).toLocaleString('cs-CZ')} Kč`
+  const pCislo = (x: number) => Math.round(x).toLocaleString('cs-CZ')
+
   /* ── Form handlers ── */
   const handleFormSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
@@ -841,6 +873,70 @@ export default function Page() {
               <img src="/adam-dvorak-hero.jpg" alt="Adam Dvořák, Finanční stratég" loading="eager" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Druhá noha ── */}
+      <section className="noha" id="druha-noha">
+        <div className="container">
+          <div className="section-eyebrow">Struktura majetku</div>
+          <h2 className="section-title" style={{ marginTop: 8, marginBottom: 8 }}>Kde máte majetek.</h2>
+          <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: 480, marginBottom: 32 }}>
+            Zadejte odhadovanou hodnotu každé části. Počítá se jen v prohlížeči.
+          </p>
+
+          <div className="noha-sliders">
+            {[
+              { label: 'Firma', val: firma, set: setFirma, max: 150 },
+              { label: 'Nemovitosti', val: nem, set: setNem, max: 80 },
+              { label: 'Investice', val: inv, set: setInv, max: 50 },
+              { label: 'Hotovost', val: hot, set: setHot, max: 20 },
+            ].map(({ label, val, set, max }) => (
+              <div key={label}>
+                <div className="noha-slider-label">
+                  <span>{label}</span>
+                  <span>{nohaFmt(val)} mil. Kč</span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={max}
+                  step={0.5}
+                  value={val}
+                  onChange={(e) => set(+e.target.value)}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="pruh" role="img" aria-label={`Majetek: firma ${nohaPct(firma)}, nemovitosti ${nohaPct(nem)}, investice ${nohaPct(inv)}, hotovost ${nohaPct(hot)}`}>
+            <i className="firma" style={{ width: nohaDil(firma) }} />
+            <i className="nem" style={{ width: nohaDil(nem) }} />
+            <i className="inv" style={{ width: nohaDil(inv) }} />
+            <i className="hot" style={{ width: nohaDil(hot) }} />
+          </div>
+          <div className="pruh-legend">
+            <span className="l-firma">Firma {nohaPct(firma)}</span>
+            <span className="l-nem">Nemovitosti {nohaPct(nem)}</span>
+            <span className="l-inv">Investice {nohaPct(inv)}</span>
+            <span className="l-hot">Hotovost {nohaPct(hot)}</span>
+          </div>
+
+          <div className="karty">
+            <div>
+              <small>Mimo firmu</small>
+              <b>{nohaFmt(nohaMimo)} mil.</b>
+              <span>{nohaPct(nohaMimo)} majetku</span>
+            </div>
+            <div className="navy">
+              <small>K dispozici hned</small>
+              <b>{nohaFmt(nohaMin)} mil.</b>
+              <span>{nohaPct(nohaMin)} bez prodeje firmy nebo baráku</span>
+            </div>
+          </div>
+
+          <blockquote className="noha-quote">„Cihla vám rohlíky nezaplatí."</blockquote>
+          <a className="btn-navy" href="/konzultace">Probrat druhou nohu →</a>
         </div>
       </section>
 
@@ -1302,48 +1398,25 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="calc-result">
-                  <div className="result-label">{t.retTotalLabel}</div>
-                  <div className="result-big" style={retGap >= 0 ? { color: "var(--green)" } : { color: "var(--red)" }}>
-                    <span>{t.currency}</span> <SlotNum key={fmt(retTotalMonthly, lang)} value={fmt(retTotalMonthly, lang)} />
+                  <p className="result-label">Váš měsíční příjem v důchodu</p>
+                  <p className="result-big" style={{ color: 'var(--text-1)' }}>
+                    {pKc(pStat + pPort)} <small style={{ fontSize: '0.55em', color: 'var(--text-2)', fontWeight: 400 }}>z {pKc(pCil)}</small>
+                  </p>
+                  <div className="renta">
+                    <i className="stat" style={{ width: pSirka(pStat) }}>Stát {pCislo(pStat)}</i>
+                    <i className="port" style={{ width: pSirka(pPort) }}>Portfolio {pCislo(pPort)}</i>
+                    {pChybi > 0 && <i className="chybi" style={{ width: pSirka(pChybi) }} />}
                   </div>
-                  <div className="result-divider" />
-                  <div className="result-row">
-                    <span className="result-row-k">{t.retStatePensionLabel}</span>
-                    <span className="result-row-v">{fmt(21840, lang)} {t.currency}</span>
-                  </div>
-                  {retMissingYears > 0 && (
-                    <div className="result-row">
-                      <span className="result-row-k">{t.retMissingEffectLabel} ({retMissingYears} {lang === "cs" ? "let" : "yrs"})</span>
-                      <span className="result-row-v neg">−{fmt(retMissingYears * 480, lang)} {t.currency}</span>
-                    </div>
+                  {pChybi > 0 && (
+                    <p className="calc-hint">
+                      Chybějících {pKc(pChybi)} dorovnáte, když budete spořit o {pKc(pDoplatek)} měsíčně víc.
+                    </p>
                   )}
-                  <div className="result-row">
-                    <span className="result-row-k">{t.retYourPensionLabel}</span>
-                    <span className="result-row-v">{fmt(retStatePension, lang)} {t.currency}</span>
-                  </div>
-                  <div className="result-divider" />
-                  <div className="result-row">
-                    <span className="result-row-k">{t.retPortfolioValLabel}</span>
-                    <span className="result-row-v">{fmt(retPortfolioFV, lang)} {t.currency}</span>
-                  </div>
-                  <div className="result-row">
-                    <span className="result-row-k">{t.retPortfolioIncLabel}</span>
-                    <span className="result-row-v">{fmt(retPortfolioMonthly, lang)} {t.currency}</span>
-                  </div>
-                  <div className="result-divider" />
-                  <div className="result-row">
-                    <span className="result-row-k">{t.retGapLabel}</span>
-                    <span className={`result-row-v ${retGap >= 0 ? "pos" : "neg"}`}>{retGap >= 0 ? "+" : "−"}{fmt(Math.abs(retGap), lang)} {t.currency}</span>
-                  </div>
-                  {retGap < 0 && retExtraMonthly > 0 && (
-                    <div className="result-row">
-                      <span className="result-row-k">{t.retExtraLabel}</span>
-                      <span className="result-row-v neg">+{fmt(retExtraMonthly, lang)} {t.currency}</span>
-                    </div>
+                  {pChybi === 0 && (
+                    <p className="calc-hint" style={{ color: 'var(--good, #2f6b4f)' }}>
+                      Portfolio pokryje váš cíl celé. Jste na dobré cestě.
+                    </p>
                   )}
-                  <div className="progress-track">
-                    <div className="progress-fill" style={{ width: Math.min(100, (retTotalMonthly / Math.max(1, retDesiredPension)) * 100) + "%", background: retGap >= 0 ? "var(--green)" : "var(--red)" }} />
-                  </div>
                   <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 16, lineHeight: 1.55 }}>{t.retDisclaimer}</p>
                 </div>
               </div>

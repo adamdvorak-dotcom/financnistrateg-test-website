@@ -2765,3 +2765,46 @@ nav.scrolled .nav-logo{font-size:15px}
 .dipk-out{background:#0C1F3A;color:#F5F2EC;border-radius:10px;padding:16px 18px}
 .dipk-out b{font:600 26px/1 Lora,serif;color:#C9A260;display:block;margin-bottom:4px}
 .dipk-out span{display:block;font-size:13px;color:rgba(245,242,236,.65);margin-top:6px;line-height:1.5}
+
+/* ── Druhá noha ── */
+.noha{padding:72px 0;background:var(--sheet)}
+.noha-sliders{display:grid;gap:16px;margin-bottom:24px;max-width:600px}
+.noha-slider-label{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;color:var(--text-1)}
+.noha-slider-label span:last-child{font-weight:600}
+.noha input[type=range]{width:100%;accent-color:#C9A260;display:block}
+.pruh{display:flex;height:34px;border-radius:8px;overflow:hidden;max-width:600px}
+.pruh i{display:block;flex-shrink:0;transition:width .25s ease}
+.pruh .firma{background:#0C1F3A}
+.pruh .nem{background:#D9CBB0}
+.pruh .inv{background:#C9A260}
+.pruh .hot{background:#EFE7D8}
+.pruh-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;max-width:600px;font-size:12px;color:var(--text-2)}
+.pruh-legend span{display:flex;align-items:center;gap:6px}
+.pruh-legend span::before{content:'';width:10px;height:10px;border-radius:2px;display:block;flex-shrink:0}
+.l-firma::before{background:#0C1F3A}
+.l-nem::before{background:#D9CBB0}
+.l-inv::before{background:#C9A260}
+.l-hot::before{background:#EFE7D8}
+.karty{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;max-width:600px}
+.karty>div{padding:20px 22px;border-radius:14px;background:var(--paper);border:1px solid rgba(26,21,17,.1)}
+.karty>div small{font:600 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);display:block;margin-bottom:8px}
+.karty>div b{display:block;font:400 28px/1.1 Lora,serif;color:var(--text-1);margin-bottom:4px}
+.karty>div span{font-size:13px;color:var(--text-2);line-height:1.4}
+.karty>div.navy{background:#0C1F3A;border-color:#0C1F3A}
+.karty>div.navy small{color:rgba(201,162,96,.7)}
+.karty>div.navy b{color:#C9A260}
+.karty>div.navy span{color:rgba(245,242,236,.65)}
+.noha-quote{margin:28px 0 0;padding:0;font:400 18px/1.45 Lora,serif;color:var(--text-2);font-style:italic;border:none}
+.btn-navy{display:inline-flex;align-items:center;padding:13px 28px;background:#0C1F3A;color:#F5F2EC;border-radius:999px;font:500 15px/1 Inter,sans-serif;text-decoration:none;margin-top:20px;border:none;cursor:pointer;letter-spacing:.03em}
+.btn-navy:hover{background:#1a3a6a}
+@media(max-width:640px){.karty{grid-template-columns:1fr}}
+
+/* ── Pension renta bar ── */
+.renta{display:flex;height:34px;border-radius:8px;overflow:hidden;background:rgba(26,21,17,.06);position:relative;margin:12px 0 8px}
+.renta i{display:flex;align-items:center;overflow:hidden;font:normal 11px/1 Inter,sans-serif;padding:0 8px;white-space:nowrap;flex-shrink:0;transition:width .4s ease}
+.renta .stat{background:#8FA3BF;color:#0C1F3A}
+.renta .port{background:#C9A260;color:#0C1F3A}
+.renta .chybi{background:repeating-linear-gradient(135deg,rgba(201,162,96,.45) 0 6px,transparent 6px 12px)}
+.calc-hint{font-size:13px;color:var(--text-2);margin:8px 0 0;line-height:1.5}
+.result-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);margin:0 0 6px}
+
