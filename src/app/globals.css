@@ -2739,3 +2739,29 @@ nav.scrolled .nav-logo{font-size:15px}
   font:500 12px/1 Inter,sans-serif;color:#5a4f43;white-space:nowrap;
   opacity:0;transition:opacity .3s;max-width:min(460px,90vw);overflow:hidden}
 .read-chip.show{opacity:1}
+
+/* ── S.r.o. stat numbers ── */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px -40px}
+.num{padding:18px 20px;border-radius:14px;background:#FCFBF8;border:1px solid rgba(26,21,17,.08);border-top:3px solid #C9A260}
+.num span{font:600 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;display:block;margin-bottom:6px}
+.num b{display:block;font:400 34px/1.1 Lora,serif;color:#0C1F3A;margin:0 0 6px}
+.num p{font-size:12px;line-height:1.5;color:#5a4f43;margin:0}
+.num.navy{background:#0C1F3A;border-color:#0C1F3A;border-top-color:#C9A260}
+.num.navy span{color:rgba(201,162,96,.7)}
+.num.navy b{color:#C9A260}
+.num.navy p{color:rgba(245,242,236,.8)}
+@media(max-width:700px){.nums{grid-template-columns:1fr;margin-inline:0}}
+
+/* ── DIP inline calculator ── */
+.dipk{background:#FCFBF8;border:1px solid rgba(26,21,17,.08);border-radius:14px;padding:22px 24px;margin:28px 0}
+.dipk small{font:600 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;display:block;margin-bottom:14px}
+.dipk-row{margin-bottom:14px}
+.dipk-label{display:block;font-size:14px;color:#5a4f43;margin-bottom:8px}
+.dipk-label strong{color:#1A1511}
+.dipk input[type=range]{width:100%;accent-color:#C9A260}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.seg button{padding:7px 13px;border-radius:999px;border:1px solid rgba(26,21,17,.18);background:transparent;font:500 13px/1 Inter,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s;color:#1A1511}
+.seg button[aria-pressed=true]{background:#0C1F3A;color:#F5F2EC;border-color:#0C1F3A}
+.dipk-out{background:#0C1F3A;color:#F5F2EC;border-radius:10px;padding:16px 18px}
+.dipk-out b{font:600 26px/1 Lora,serif;color:#C9A260;display:block;margin-bottom:4px}
+.dipk-out span{display:block;font-size:13px;color:rgba(245,242,236,.65);margin-top:6px;line-height:1.5}

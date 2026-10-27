@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles, getArticle } from "../articles";
+import { DipKalk } from "../DipKalk";
 
 const CATEGORY_LABELS: Record<string, string> = {
   "rodinny-majetek": "Rodinný majetek",
@@ -463,10 +464,7 @@ function ArticleContent({ slug }: { slug: string }) {
           Roční limit daňového odpočtu je <strong>48 000 Kč</strong> (tj. 4 000 Kč měsíčně).
           Daňová úspora závisí na vaší sazbě daně z příjmů:
         </p>
-        <ul>
-          <li>15% sazba (příjmy do 1 762 812 Kč/rok): úspora <strong>7 200 Kč ročně</strong></li>
-          <li>23% sazba (příjmy nad 1 762 812 Kč/rok): úspora <strong>11 040 Kč ročně</strong></li>
-        </ul>
+        <DipKalk />
         <p>
           Pozor: limit 48 000 Kč je sdílený s penzijním spořením a životním pojištěním.
           Pokud příspíváte 2 000 Kč měsíčně do penzijka (24 000 Kč/rok), zbývá vám
@@ -982,6 +980,24 @@ function ArticleContent({ slug }: { slug: string }) {
           A platí to bez ohledu na výši. Ať si vyplatíte sto tisíc, nebo deset milionů,
           firma strhne patnáct procent a tím je daň vyřízená.
         </p>
+
+            <div className="nums">
+              <div className="num">
+                <span>Mzda</span>
+                <b>+33,8&nbsp;%</b>
+                <p>přidá firma navíc k hrubé mzdě. Dalších 11,6&nbsp;% se strhne vám.</p>
+              </div>
+              <div className="num">
+                <span>Dividenda</span>
+                <b>15&nbsp;%</b>
+                <p>srážková daň a hotovo. Bez ohledu na výši, bez odvodů.</p>
+              </div>
+              <div className="num navy">
+                <span>DIP od firmy</span>
+                <b>50&nbsp;000&nbsp;Kč</b>
+                <p>ročně může firma poslat na váš DIP bez daně a bez odvodů.</p>
+              </div>
+            </div>
 
         <h2>DIP jako třetí páka</h2>
         <p>
