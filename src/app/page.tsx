@@ -1399,8 +1399,8 @@ export default function Page() {
                 </div>
                 <div className="calc-result">
                   <p className="result-label">Váš měsíční příjem v důchodu</p>
-                  <p className="result-big" style={{ color: 'var(--text-1)' }}>
-                    {pKc(pStat + pPort)} <small style={{ fontSize: '0.55em', color: 'var(--text-2)', fontWeight: 400 }}>z {pKc(pCil)}</small>
+                  <p className="result-big">
+                    {pKc(pStat + pPort)} <small style={{ fontSize: '0.55em', color: 'rgba(245,242,236,.6)', fontWeight: 400 }}>z {pKc(pCil)}</small>
                   </p>
                   <div className="renta">
                     <i className="stat" style={{ width: pSirka(pStat) }}>Stát {pCislo(pStat)}</i>
