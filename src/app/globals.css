@@ -2918,6 +2918,9 @@ nav.scrolled .nav-logo{font-size:15px}
 .tym-body b{display:block;color:var(--text-1);font-weight:600;margin-bottom:2px}
 .tym-mapa{margin:0;border-radius:28px;background:#0C1F3A;box-shadow:0 32px 64px -40px rgba(12,31,58,.55);overflow:hidden}
 .tym-svg{width:100%;height:auto;display:block}
+.tym-detail{margin:0;padding:13px 16px;display:flex;gap:12px;align-items:baseline;border-top:1px solid rgba(201,162,96,.18)}
+.tym-detail-role{color:#C9A260;font:600 10px/1 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;padding-top:2px}
+.tym-detail-txt{color:rgba(245,242,236,.68);font:13px/1.55 Inter,sans-serif;margin:0}
 @media(max-width:900px){.tym{grid-template-columns:1fr;gap:32px}.tym-mapa{max-width:480px;margin:0 auto}}
 
 /* ── Na jak dlouho calculator ── */
