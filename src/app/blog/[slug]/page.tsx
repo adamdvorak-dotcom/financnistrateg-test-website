@@ -6,6 +6,7 @@ import { DipKalk } from "../DipKalk";
 import { PenzijkoKalk } from "../PenzijkoKalk";
 import { SverenskyFond } from "../SverenskyFond";
 import { AudioPlayer } from "../AudioPlayer";
+import { HoldingDiag } from "../HoldingDiag";
 
 const CATEGORY_LABELS: Record<string, string> = {
   "rodinny-majetek": "Rodinný majetek",
@@ -1024,6 +1025,14 @@ function ArticleContent({ slug }: { slug: string }) {
           se dají nastavit relativně rychle a ušetřit desítky tisíc ročně. A zároveň si budovat
           osobní majetek mimo firmu.
         </p>
+
+        <h2>A co holding?</h2>
+        <p>
+          Na holding se mě majitelé ptají hned po dividendách. Kamarád ho má, tak by ho chtěli taky.
+          Holding je šuplík vedle firmy: peníze do něj jdou bez daně a pracují dál.
+          Jestli ho potřebujete, záleží na tom, co s nimi chcete dělat.
+        </p>
+        <HoldingDiag />
       </div>
     );
   }

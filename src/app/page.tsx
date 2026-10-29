@@ -200,17 +200,24 @@ function GrowthChart({ monthly, rate, years, init }: { monthly: number; rate: nu
 }
 
 /* ── Gold range slider ── */
-function GoldRange({ value, min, max, step, onChange, fmtLabel }: {
+function GoldRange({ value, min, max, step, onChange, fmtLabel, logStep }: {
   value: number; min: number; max: number; step: number;
   onChange: (v: number) => void; fmtLabel?: (v: number) => string;
+  logStep?: (v: number) => number;
 }) {
-  const pct = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+  const pos = logStep ? Math.round(1000 * Math.log(Math.max(min, value) / min) / Math.log(max / min)) : null
+  const pct = logStep ? pos! / 10 : Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
   const label = fmtLabel ? fmtLabel(value) : value.toLocaleString("cs-CZ");
   return (
     <div className="gold-range-outer" style={{ "--pct": `${pct.toFixed(1)}%` } as React.CSSProperties}>
       <div className="gold-bubble" style={{ left: `${pct.toFixed(1)}%` }}>{label}</div>
-      <input type="range" min={min} max={max} step={step} value={value}
-        onChange={(e) => onChange(+e.target.value)} />
+      {logStep ? (
+        <input type="range" min={0} max={1000} step={1} value={pos!}
+          onChange={(e) => { const p = +e.target.value; const v = min * Math.pow(max / min, p / 1000); const k = logStep(v); onChange(Math.min(max, Math.round(v / k) * k)); }} />
+      ) : (
+        <input type="range" min={min} max={max} step={step} value={value}
+          onChange={(e) => onChange(+e.target.value)} />
+      )}
     </div>
   );
 }
@@ -272,7 +279,7 @@ export default function Page() {
   const [decZacatek, setDecZacatek] = useState(60)
 
   /* Inheritance calc */
-  const [dedManzel, setDedManzel] = useState<'manzelka' | 'manzel' | null>(null)
+  const [dedManzel, setDedManzel] = useState<'manzelka' | 'manzel' | 'druh' | null>(null)
   const [dedDeti, setDedDeti] = useState(2)
   const [dedNezletile, setDedNezletile] = useState(1)
   const [dedRodice, setDedRodice] = useState<0|1|2>(0)
@@ -695,19 +702,23 @@ export default function Page() {
 
   /* ── Inheritance widget ── */
   const kdoDedi = () => {
-    const jmeno = dedManzel === 'manzel' ? 'Manžel' : 'Manželka'
-    const pulkaSJM = dedManzel && dedSjm ? dedMajetek / 2 : 0
+    const sjm = dedManzel === 'manzelka' || dedManzel === 'manzel'
+    const jmeno = dedManzel === 'manzel' ? 'Manžel' : dedManzel === 'druh' ? 'Partner bez svatby' : 'Manželka'
+    const pulkaSJM = sjm && dedSjm ? dedMajetek / 2 : 0
     const D = dedMajetek - pulkaSJM
     if (dedDeti > 0) {
-      const dil = D / (dedDeti + (dedManzel ? 1 : 0))
+      const dil = D / (dedDeti + (sjm ? 1 : 0))
       return { trida: 1, dedici: [
-        ...(dedManzel ? [{ kdo: jmeno, castka: pulkaSJM + dil }] : []),
+        ...(sjm ? [{ kdo: jmeno, castka: pulkaSJM + dil }] : []),
         ...Array.from({ length: dedDeti }, (_, i) => ({
           kdo: i < dedDeti - dedNezletile ? 'Dospělé dítě' : 'Dítě do 18 let', castka: dil })),
       ] }
     }
     if (dedManzel || dedRodice > 0) {
-      const m = !dedManzel ? 0 : dedRodice ? Math.max(D / (1 + dedRodice), D / 2) : D
+      const sjm2 = dedManzel === 'manzelka' || dedManzel === 'manzel'
+      const m = !dedManzel ? 0
+        : sjm2 ? (dedRodice ? Math.max(D / (1 + dedRodice), D / 2) : D)
+        : (dedRodice > 0 ? D / (1 + dedRodice) : D)
       const r = dedRodice ? (D - m) / dedRodice : 0
       return { trida: 2, dedici: [
         ...(dedManzel ? [{ kdo: jmeno, castka: pulkaSJM + m }] : []),
@@ -717,8 +728,18 @@ export default function Page() {
     return { trida: 3, dedici: [{ kdo: 'Sourozenci a vzdálenější příbuzní', castka: D }] }
   }
   const dedVysledek = kdoDedi()
-  const dedFmt = (n: number) => Math.round(n).toLocaleString('cs-CZ') + ' Kč'
+  const dedSjmPartner = dedManzel === 'manzelka' || dedManzel === 'manzel'
+  const dedOpatrovnik = dedVysledek.trida === 1 && dedNezletile > 0 && (dedSjmPartner || dedNezletile >= 2)
+  const dedVarovani = dedManzel === 'druh' && dedDeti > 0
+    ? 'Partner bez svatby vedle dětí nedědí ani korunu, i kdybyste spolu žili dvacet let. Pomůže jen závěť.'
+    : null
+  const dedFmt = (n: number) => n >= 1_000_000_000
+    ? (Math.round(n / 100_000_000) / 10).toLocaleString('cs-CZ') + ' mld. Kč'
+    : n >= 10_000_000
+    ? (Math.round(n / 100_000) / 10).toLocaleString('cs-CZ') + ' mil. Kč'
+    : Math.round(n).toLocaleString('cs-CZ') + ' Kč'
   const dedZlomek = (x: number) => {
+    if (x >= 1 || x <= 0) return null
     for (let d = 1; d <= 96; d++) {
       if (Math.abs(x * d - Math.round(x * d)) < 1e-6) return `${Math.round(x * d)}/${d}`
     }
@@ -1305,7 +1326,7 @@ export default function Page() {
               <div className="ded-group">
                 <label className="ded-label">Partnerský stav</label>
                 <div className="ded-opts">
-                  {([['manzelka', 'Manželka'], ['manzel', 'Manžel'], [null, 'Sám/a']] as const).map(([v, l]) => (
+                  {([['manzelka', 'Manželka'], ['manzel', 'Manžel'], [null, 'Sám/a'], ['druh', 'Spolu bez svatby']] as const).map(([v, l]) => (
                     <button key={String(v)} type="button"
                       className={`ded-opt${dedManzel === v ? ' on' : ''}`}
                       onClick={() => setDedManzel(v)}>
@@ -1344,12 +1365,15 @@ export default function Page() {
               </div>
               <div className="ded-group">
                 <label className="ded-label">Váš majetek <strong>{dedMajetek >= 1_000_000_000 ? '1 mld. Kč' : (Math.round(dedMajetek / 100_000) / 10).toLocaleString('cs-CZ') + ' mil. Kč'}</strong></label>
-                <input type="range" min={1_000_000} max={1_000_000_000} step={5_000_000} value={dedMajetek}
-                  onChange={(e) => setDedMajetek(+e.target.value)}
+                <input type="range" min={0} max={1000} step={1}
+                  value={Math.round(1000 * Math.log(dedMajetek / 1_000_000) / Math.log(1000))}
+                  onChange={(e) => { const p = +e.target.value; const v = 1_000_000 * Math.pow(1000, p / 1000); const k = v < 10e6 ? 500_000 : v < 100e6 ? 1_000_000 : 10_000_000; setDedMajetek(Math.min(1_000_000_000, Math.round(v / k) * k)); }}
                   className="ded-range" />
-                <div className="ded-range-meta"><span>1 mil.</span><span>1 mld. Kč</span></div>
+                <div className="ded-ticks">
+                  <span>1 mil.</span><span>10 mil.</span><span>100 mil.</span><span>1 mld. Kč</span>
+                </div>
               </div>
-              {dedManzel && (
+              {dedSjmPartner && (
                 <div className="ded-group">
                   <label className="ded-label">Majetek ve společném jmění manželů?</label>
                   <div className="ded-opts">
@@ -1373,17 +1397,23 @@ export default function Page() {
                   <span className="ded-castka">{dedFmt(d.castka)}</span>
                 </div>
               ))}
-              {dedVysledek.trida === 1 && dedNezletile > 0 && (
-                <p className="ded-pozn">Za dítě do 18 let jedná kolizní opatrovník, zpravidla úředník OSPOD.</p>
+              {dedOpatrovnik && (
+                <p className="ded-pozn">Když dědí i rodič, který dítě zastupuje, nebo víc nezletilých sourozenců, jedná za dítě kolizní opatrovník, zpravidla úředník OSPOD.</p>
               )}
               {dedVysledek.trida === 1 && (
                 <p className="ded-pozn">I se závětí musíte dětem nechat povinný díl: nezletilým tři čtvrtiny, dospělým čtvrtinu zákonného podílu.</p>
+              )}
+              {dedVarovani && (
+                <p className="ded-pozn ded-warn">{dedVarovani}</p>
+              )}
+              {dedManzel === 'druh' && dedDeti === 0 && (
+                <p className="ded-pozn">Podmínka: partner bez svatby dědí ve 2.&nbsp;třídě jen pokud spolu žili aspoň rok ve společné domácnosti (§&nbsp;1636&nbsp;OZ).</p>
               )}
               <div className="ded-stat">
                 Přes 560 milionů korun zdědil v roce 2025 stát po 1 615 lidech, kteří neměli dědice ani závěť.
               </div>
               <a href="/konzultace" className="btn-primary" style={{ display: 'inline-flex', marginTop: 20 }}>
-                Sepsat závěť s poradcem →
+                Probrat, co do závěti patří →
               </a>
             </div>
           </div>
@@ -1600,8 +1630,8 @@ export default function Page() {
                       <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString("cs-CZ")} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
                       <span className="field-unit">Kč</span>
                     </div>
-                    <GoldRange value={retDesiredPension} min={15000} max={1_000_000} step={5000} onChange={setRetDesiredPension} fmtLabel={(v) => v >= 1_000_000 ? '1 mil. Kč' : v.toLocaleString("cs-CZ") + " Kč"} />
-                    <div className="range-meta"><span>15 000</span><span>1 000 000 Kč</span></div>
+                    <GoldRange value={retDesiredPension} min={15000} max={1_000_000} step={5000} onChange={setRetDesiredPension} fmtLabel={(v) => v >= 1_000_000 ? '1 mil. Kč' : v.toLocaleString("cs-CZ") + " Kč"} logStep={(v) => v < 100_000 ? 1_000 : v < 500_000 ? 5_000 : 50_000} />
+                    <div className="range-meta"><span>15 000 Kč</span><span>1 000 000 Kč</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.retAgeLabel}</label>

@@ -2940,6 +2940,13 @@ nav.scrolled .nav-logo{font-size:15px}
 .ded-opt.on{background:#0C1F3A;color:#F5F2EC;border-color:#0C1F3A}
 .ded-range{width:100%;accent-color:#C9A260;margin-bottom:4px}
 .ded-range-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--text-3)}
+.ded-ticks{position:relative;height:18px;margin-top:6px}
+.ded-ticks span{position:absolute;transform:translateX(-50%);font-size:11px;color:var(--text-3)}
+.ded-ticks span:nth-child(1){left:0;transform:none}
+.ded-ticks span:nth-child(2){left:33.333%}
+.ded-ticks span:nth-child(3){left:66.667%}
+.ded-ticks span:nth-child(4){left:100%;transform:translateX(-100%)}
+.ded-warn{color:#C9A260 !important;background:rgba(201,162,96,.1);border-radius:8px;padding:10px 12px}
 .ded-result{background:#0C1F3A;border-radius:20px;padding:28px;position:sticky;top:96px}
 .ded-result-label{font:600 10px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,162,96,.7);margin-bottom:16px}
 .ded-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid rgba(245,242,236,.07)}
@@ -2950,3 +2957,40 @@ nav.scrolled .nav-logo{font-size:15px}
 .ded-pozn{font-size:12px;color:rgba(245,242,236,.5);line-height:1.55;margin-top:12px}
 .ded-stat{margin-top:20px;font-size:12px;line-height:1.6;color:rgba(245,242,236,.4);font-style:italic;border-top:1px solid rgba(245,242,236,.06);padding-top:16px}
 @media(max-width:900px){.ded-grid{grid-template-columns:1fr}}
+
+/* ── Holding diagram ── */
+.hld-wrap{background:#FDFCF8;border:1px solid rgba(26,21,17,.08);border-radius:16px;padding:28px;margin:32px 0;box-shadow:0 2px 16px rgba(10,20,40,.06)}
+.hld-wrap p{font-size:13px;max-width:none;line-height:1.5;margin:0}
+.hld-eyebrow{font:600 10px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,162,96,.8);display:block;margin-bottom:14px}
+.hld-toggle{display:inline-flex;border-radius:999px;border:1.5px solid #D0C8B8;overflow:hidden;margin-bottom:20px}
+.hld-toggle button{padding:8px 18px;border:none;background:transparent;font:500 13px/1 Inter,sans-serif;cursor:pointer;color:#7A6A58;transition:background .15s,color .15s}
+.hld-toggle button.on{background:#0C1F3A;color:#F5F2EC}
+.hld-claim{font:400 22px/1.3 Lora,serif;color:#1A1511;margin:0 0 24px}
+.hld-claim em{color:#C9A260;font-style:normal}
+.hld-dia{display:flex;flex-direction:column;align-items:center;min-height:260px;justify-content:center;margin-bottom:24px}
+.hld-box{padding:12px 28px;border-radius:12px;text-align:center;font:500 14px/1.4 Inter,sans-serif;min-width:200px}
+.hld-box small{display:block;font-size:11px;margin-top:4px;font-weight:400}
+.hld-vy{background:#0C1F3A;color:#F5F2EC}
+.hld-vy small{color:rgba(245,242,236,.5)}
+.hld-hold{background:#1B3A5C;color:#F5F2EC;border:1.5px solid rgba(201,162,96,.5)}
+.hld-hold small{color:rgba(245,242,236,.5)}
+.hld-firma{background:#0C1F3A;color:#F5F2EC}
+.hld-firma small{color:rgba(245,242,236,.5)}
+.hld-sipka{display:flex;align-items:center;gap:14px;padding:4px 0}
+.hld-conn{display:flex;flex-direction:column;align-items:center;width:20px;flex-shrink:0}
+.hld-arr{color:#C9A260;font-size:11px;line-height:1;margin-bottom:-1px}
+.hld-ln{width:1.5px;height:36px;background:rgba(201,162,96,.45)}
+.hld-meta{display:flex;flex-direction:column;gap:4px}
+.hld-meta>span:first-child{font-size:12px;color:#7A6A58;line-height:1.3}
+.hld-dan{font:600 10px/1.2 Inter,sans-serif;padding:2px 8px;border-radius:999px;display:inline-block;color:#B85430;background:rgba(184,84,48,.1)}
+.hld-nula{color:#2A8A4A;background:rgba(42,138,74,.1)}
+.hld-info{display:flex;align-items:baseline;gap:14px;border-top:1px solid #E8E0D4;border-bottom:1px solid #E8E0D4;padding:18px 0;margin-bottom:20px}
+.hld-info b{font:400 34px/1 Lora,serif;color:#C9A260;flex-shrink:0}
+.hld-row{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.hld-badge{font:600 10px/1 Inter,sans-serif;padding:3px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0;margin-top:3px;letter-spacing:.04em}
+.hld-badge-pos{background:rgba(42,138,74,.1);color:#1E7A3A}
+.hld-badge-neg{background:rgba(184,84,48,.1);color:#9A3A1A}
+.hld-badge-neu{background:rgba(201,162,96,.12);color:#7A5C2A}
+.hld-row strong{display:block;font-size:14px;color:#1A1511;margin-bottom:3px}
+.hld-fn{display:block;font-size:11px;color:#999080;line-height:1.5;margin-top:20px;border-top:1px solid #E8E0D4;padding-top:16px}
+@media(max-width:600px){.hld-box{min-width:160px;padding:10px 16px}}
