@@ -2891,21 +2891,16 @@ nav.scrolled .nav-logo{font-size:15px}
 .penz-cta{display:inline-block;margin-top:4px;font:500 13px/1 Inter,sans-serif;color:#C9A260;text-decoration:underline;text-underline-offset:3px}
 
 /* ── Svěřenský fond diagram ── */
-.sf-wrap{margin:28px 0}
-.sf{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;gap:12px;align-items:center;margin-bottom:14px}
-.sf-node{cursor:pointer;border:1px solid rgba(26,21,17,.12);border-radius:12px;padding:12px 14px;text-align:center;background:transparent;font:500 14px/1.3 Lora,serif;color:#1A1511;transition:background .2s,color .2s,border-color .2s;width:100%}
-.sf-node.on,.sf-fond.on{background:#0C1F3A;color:#C9A260;border-color:#0C1F3A}
-.sf-zakladatel{grid-column:1;grid-row:1}
-.sf-spravce{grid-column:2;grid-row:1}
-.sf-dohled{grid-column:3;grid-row:1}
-.sf-fond-wrap{grid-column:1/-1;grid-row:2;display:flex;justify-content:center}
-.sf-fond{width:160px;aspect-ratio:1;border-radius:50%;border:1.5px solid #C9A260;display:grid;place-items:center;text-align:center;padding:12px;background:transparent;cursor:pointer;transition:background .2s;font:400 14px/1.3 Lora,serif;color:#0C1F3A}
-.sf-fond small{display:block;font:400 11px Inter,sans-serif;color:#7A5C35;margin-top:4px}
-.sf-obmysleni{grid-column:1/-1;grid-row:3}
-.sf-info{background:#0C1F3A;color:#F5F2EC;border-radius:10px;padding:16px 18px;font-size:14px;line-height:1.6}
-.sf-info strong{color:#C9A260}
-.sf-hint{font-size:13px;color:#7A5C35;margin:0;text-align:center}
-@media(max-width:600px){.sf{grid-template-columns:1fr}.sf-zakladatel,.sf-spravce,.sf-dohled,.sf-obmysleni{grid-column:1;grid-row:auto}}
+.sf-wrap{background:#FDFCF8;border:1px solid rgba(26,21,17,.07);border-radius:16px;padding:24px 28px 20px;margin:28px 0;overflow:hidden}
+.sf-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.sf-eyebrow{font:600 9px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;display:block;margin-bottom:5px}
+.sf-title{font:400 18px/1.2 Lora,serif;color:#1A1511;margin:0}
+.sf-cta-hint{font:400 11px/1 Inter,sans-serif;color:#999080;white-space:nowrap;padding-top:4px}
+.sf-svg{width:100%;height:auto;display:block}
+.sf-info{display:flex;gap:10px;align-items:flex-start;background:#F5F0E8;border-radius:8px;padding:12px 16px;margin-top:4px}
+.sf-dot{width:16px;height:16px;border-radius:50%;background:#C9A260;flex-shrink:0;margin-top:2px}
+.sf-info p{margin:0;font-size:13px;line-height:1.6;color:#1A1511}
+.sf-info strong{color:#7A5C35}
 
 /* ── Tým kolem vás ── */
 .tym{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:center}
