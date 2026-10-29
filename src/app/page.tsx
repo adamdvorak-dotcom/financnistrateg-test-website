@@ -47,7 +47,7 @@ const T = {
     step4Num: "Krok 04", step4Title: "Konzultace & dotazy", step4Desc: "Podrobně projdeme celý plán a zodpovím veškeré otázky. Strategii doladíme podle vašich připomínek a preferencí.",
     step5Num: "Krok 05", step5Title: "Realizace & servis", step5Desc: "Spustíme plán, nastavíme produkty, otevřeme účty. Domluvíme pravidelné servisní schůzky pro průběžný dohled a aktualizace.",
     calcTitle: "Jak vám pracují peníze.",
-    tabInvest: "Investiční kalkulačka", tabMortgage: "Hypoteční kalkulačka",
+    tabInvest: "Investiční kalkulačka", tabMortgage: "Hypoteční kalkulačka", tabDepletion: "Na jak dlouho", tabNew: "nové",
     invMonthly: "Měsíční vklad", invRate: "Roční výnos", invYears: "Délka investice", invInit: "Jednorázový vklad",
     invResultLabel: "Celková hodnota portfolia", currency: "Kč", invDep: "Celkové vklady", invProfit: "Výnos", invMult: "Násobek vkladů",
     mtgAmt: "Výše hypotéky", mtgRate: "Úroková sazba", mtgTerm: "Délka splatnosti",
@@ -168,7 +168,7 @@ const T = {
     step4Num: "Step 04", step4Title: "Consultation & Q&A", step4Desc: "We review the plan in detail and I answer all your questions. We refine the strategy based on your feedback and preferences.",
     step5Num: "Step 05", step5Title: "Implementation & Service", step5Desc: "We launch the plan: set up products, open accounts. We schedule regular service meetings for ongoing oversight and updates.",
     calcTitle: "Make your money work for you.",
-    tabInvest: "Investment Calculator", tabMortgage: "Mortgage Calculator",
+    tabInvest: "Investment Calculator", tabMortgage: "Mortgage Calculator", tabDepletion: "How long it lasts", tabNew: "new",
     invMonthly: "Monthly Deposit", invRate: "Annual Return", invYears: "Investment Period", invInit: "Lump-sum Deposit",
     invResultLabel: "Total Portfolio Value", currency: "CZK", invDep: "Total Deposits", invProfit: "Return", invMult: "Return Multiplier",
     mtgAmt: "Mortgage Amount", mtgRate: "Interest Rate", mtgTerm: "Loan Term",
@@ -699,6 +699,8 @@ export default function Page() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const heroRef = useRef<HTMLElement>(null);
+  const calcTouchX = useRef<number>(0);
+  const calcTabOrder = ['invest', 'mortgage', 'retirement', 'depletion'] as const;
   const heroInnerRef = useRef<HTMLDivElement>(null);
 
   /* Hero parallax, content drifts up and fades on scroll */
@@ -1529,11 +1531,20 @@ export default function Page() {
                 <button className={`calc-tab${calcTab === "mortgage" ? " active" : ""}`} onClick={() => setCalcTab("mortgage")}>{t.tabMortgage}</button>
                 <button className={`calc-tab${calcTab === "retirement" ? " active" : ""}`} onClick={() => setCalcTab("retirement")}>{t.tabRetirement}</button>
                 <button className={`calc-tab${calcTab === "depletion" ? " active" : ""}`} onClick={() => setCalcTab("depletion")}>
-                  Na jak dlouho <span className="new-badge">nové</span>
+                  {t.tabDepletion} <span className="new-badge">{t.tabNew}</span>
                 </button>
               </div>
             </div>
-            <div className="calc-body">
+            <div className="calc-body"
+              onTouchStart={(e) => { calcTouchX.current = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                const dx = e.changedTouches[0].clientX - calcTouchX.current;
+                if (Math.abs(dx) < 50) return;
+                const idx = calcTabOrder.indexOf(calcTab);
+                if (dx < 0 && idx < calcTabOrder.length - 1) setCalcTab(calcTabOrder[idx + 1]);
+                if (dx > 0 && idx > 0) setCalcTab(calcTabOrder[idx - 1]);
+              }}
+            >
               {/* Invest panel */}
               <div className={`calc-panel${calcTab === "invest" ? " active" : ""}`}>
                 <div className="calc-inputs">
