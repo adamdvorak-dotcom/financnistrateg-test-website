@@ -1595,6 +1595,15 @@ export default function Page() {
               <div className={`calc-panel${calcTab === "retirement" ? " active" : ""}`}>
                 <div className="calc-inputs">
                   <div>
+                    <label className="field-label">{t.retDesiredLabel}</label>
+                    <div className="field-input-wrap">
+                      <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString("cs-CZ")} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">Kč</span>
+                    </div>
+                    <GoldRange value={retDesiredPension} min={15000} max={1_000_000} step={5000} onChange={setRetDesiredPension} fmtLabel={(v) => v >= 1_000_000 ? '1 mil. Kč' : v.toLocaleString("cs-CZ") + " Kč"} />
+                    <div className="range-meta"><span>15 000</span><span>1 000 000 Kč</span></div>
+                  </div>
+                  <div>
                     <label className="field-label">{t.retAgeLabel}</label>
                     <div className="field-input-wrap">
                       <input type="number" className="field-input" value={retAge} min={20} max={64} onChange={(e) => setRetAge(Math.min(64, Math.max(20, +e.target.value || 35)))} />
@@ -1634,15 +1643,6 @@ export default function Page() {
                     </div>
                     <GoldRange value={retMonthlySavings} min={0} max={50000} step={1000} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
                     <div className="range-meta"><span>0</span><span>50 000 Kč</span></div>
-                  </div>
-                  <div>
-                    <label className="field-label">{t.retDesiredLabel}</label>
-                    <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString("cs-CZ")} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
-                      <span className="field-unit">Kč</span>
-                    </div>
-                    <GoldRange value={retDesiredPension} min={15000} max={150000} step={1000} onChange={setRetDesiredPension} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
-                    <div className="range-meta"><span>15 000</span><span>150 000 Kč</span></div>
                   </div>
                 </div>
                 <div className="calc-result">
