@@ -2918,7 +2918,8 @@ nav.scrolled .nav-logo{font-size:15px}
 .tym-body b{display:block;color:var(--text-1);font-weight:600;margin-bottom:2px}
 .tym-mapa{margin:0;border-radius:28px;background:#0C1F3A;box-shadow:0 32px 64px -40px rgba(12,31,58,.55);overflow:hidden}
 /* TymDiag — canvas + nodes */
-.tym-canvas{position:relative;aspect-ratio:540/320;width:100%}
+/* padding-bottom trick is more reliable than aspect-ratio when all children are position:absolute */
+.tym-canvas{position:relative;width:100%;height:0;padding-bottom:59.26%}
 .tym-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
 /* generic node anchor */
 .tnd{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center}
@@ -2930,23 +2931,29 @@ nav.scrolled .nav-logo{font-size:15px}
 .tnd-ring-ad{width:72px;height:72px;border-radius:50%;border:1.5px solid #C9A260;background:rgba(201,162,96,.07);display:flex;align-items:center;justify-content:center}
 .tnd-ring-ad em{font:italic 19px/1 Lora,serif;color:#C9A260;font-style:italic}
 .tnd-eye-ad{color:rgba(201,162,96,.5)}
-/* Specialist button */
-.tnd-spec{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:10px;position:absolute;transform:translate(-50%,-50%)}
-.tnd-dot{width:10px;height:10px;border-radius:50%;background:rgba(201,162,96,.75);box-shadow:0 0 0 4px rgba(201,162,96,.14);flex-shrink:0;transition:background .18s,box-shadow .18s,width .18s,height .18s}
-.tnd-spec:hover .tnd-dot,.tnd-spec.on .tnd-dot{background:#C9A260;box-shadow:0 0 0 6px rgba(201,162,96,.22),0 0 12px rgba(201,162,96,.18);width:12px;height:12px}
-.tnd-lbl{display:flex;flex-direction:column;gap:3px;pointer-events:none}
-.tnd-lbl-r{order:1;text-align:left}
-.tnd-lbl-l{order:-1;text-align:right}
-.tnd-role{display:block;font:500 11px/1 Inter,sans-serif;color:#F5F2EC;white-space:nowrap;transition:color .18s}
-.tnd-co{display:block;font:9px/1 Inter,sans-serif;color:rgba(245,242,236,.42);white-space:nowrap;transition:color .18s}
-.tnd-spec:hover .tnd-role,.tnd-spec.on .tnd-role{color:#F5F2EC}
-.tnd-spec:hover .tnd-co,.tnd-spec.on .tnd-co{color:rgba(245,242,236,.7)}
+/* Specialist dot button — centered exactly at (x, y) */
+.tnd-btn{position:absolute;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+.tnd-dot{width:10px;height:10px;border-radius:50%;background:rgba(201,162,96,.75);box-shadow:0 0 0 4px rgba(201,162,96,.14);transition:background .18s,box-shadow .18s,width .18s,height .18s}
+.tnd-btn:hover .tnd-dot,.tnd-btn.on .tnd-dot{background:#C9A260;box-shadow:0 0 0 6px rgba(201,162,96,.22),0 0 12px rgba(201,162,96,.18);width:12px;height:12px}
+/* Specialist label — absolutely positioned, transform set inline */
+.tnd-lbl{position:absolute;display:flex;flex-direction:column;gap:3px;cursor:pointer}
+.tnd-role{display:block;font:500 11px/1 Inter,sans-serif;color:rgba(245,242,236,.75);white-space:nowrap;transition:color .18s}
+.tnd-co{display:block;font:9px/1 Inter,sans-serif;color:rgba(245,242,236,.38);white-space:nowrap;transition:color .18s}
+.tnd-lbl:hover .tnd-role,.tnd-lbl.on .tnd-role{color:#F5F2EC}
+.tnd-lbl:hover .tnd-co,.tnd-lbl.on .tnd-co{color:rgba(245,242,236,.7)}
 /* Detail panel */
 .tym-panel{padding:14px 20px;display:flex;align-items:baseline;gap:12px;border-top:1px solid rgba(201,162,96,.16);min-height:52px}
 .tym-panel-role{color:#C9A260;font:600 10px/1 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;margin-top:1px}
 .tym-panel-txt{color:rgba(245,242,236,.68);font:13px/1.55 Inter,sans-serif;margin:0}
 .tym-panel-hint{color:rgba(245,242,236,.25);font:12px/1 Inter,sans-serif;margin:0}
-@media(max-width:900px){.tym{grid-template-columns:1fr;gap:32px}.tym-mapa{max-width:480px;margin:0 auto}.tnd-co{display:none}}
+@media(max-width:900px){
+  .tym{grid-template-columns:1fr;gap:32px}
+  .tym-mapa{max-width:100%;margin:0}
+  .tnd-co{display:none}
+  .tnd-role{font-size:10px}
+  /* Depletion calc: show result before sliders on mobile */
+  .calc-cols .calc-result{order:-1;position:static}
+}
 
 /* ── Na jak dlouho calculator ── */
 .new-badge{display:inline-block;font:600 9px/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;

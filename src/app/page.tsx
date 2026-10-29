@@ -77,6 +77,11 @@ const T = {
     blogEye: "Blog", blogTitle: "Finanční vzdělávání.", blogSub: "Píšu o tématech, která řeším se svými klienty, srozumitelně, bez zbytečného žargonu.",
     blogReadMore: "Číst dál",
     planEye: "Co dostanete", planHead: "Tohle dostanete do ruky.",
+    tymEye: "Tým kolem vás", tymH2a: "Jeden člověk.", tymH2b: "Za ním tým.",
+    tymSub: "Mluvíte se mnou. Když je potřeba advokát, daňař nebo notář, přivedu ho k vašemu stolu a hlídám, aby si všichni rozuměli.",
+    tymLi1b: "Jedno číslo, na které voláte.", tymLi1t: "Nemusíte nikomu vysvětlovat všechno od začátku.",
+    tymLi2b: "Specialisté, když jsou potřeba.", tymLi2t: "Na smlouvu advokát, na závěť notář, na prodej firmy M&A poradce.",
+    tymLi3b: "Všichni vědí, co řeší ti druzí.", tymLi3t: "Daně, právo a investice do sebe zapadnou.",
   },
   en: {
     navAbout: "About", navServices: "Services", navCalc: "Calculators", navBlog: "Blog", navContact: "Contact", navCta: "Free Consultation",
@@ -132,6 +137,11 @@ const T = {
     blogEye: "Blog", blogTitle: "Financial education.", blogSub: "I write about topics I tackle with my clients. Clearly, without unnecessary jargon.",
     blogReadMore: "Read more",
     planEye: "What you get", planHead: "This is what you walk away with.",
+    tymEye: "Your team", tymH2a: "One person.", tymH2b: "A team behind them.",
+    tymSub: "You talk to me. When a lawyer, tax advisor, or notary is needed, I bring them to your table and make sure everyone understands each other.",
+    tymLi1b: "One number to call.", tymLi1t: "No need to explain everything from scratch.",
+    tymLi2b: "Specialists when needed.", tymLi2t: "A lawyer for contracts, a notary for wills, an M&A advisor when selling the business.",
+    tymLi3b: "Everyone knows what the others are working on.", tymLi3t: "Tax, law and investments fit together.",
   },
 };
 
@@ -1834,20 +1844,20 @@ export default function Page() {
         <div className="container">
           <div className="tym">
             <div>
-              <div className="section-eyebrow">Tým kolem vás</div>
+              <div className="section-eyebrow">{t.tymEye}</div>
               <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 20 }}>
-                Jeden člověk. <em>Za ním tým.</em>
+                {t.tymH2a} <em>{t.tymH2b}</em>
               </h2>
               <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: '42ch', marginBottom: 28 }}>
-                Mluvíte se mnou. Když je potřeba advokát, daňař nebo notář, přivedu ho k vašemu stolu a hlídám, aby si všichni rozuměli.
+                {t.tymSub}
               </p>
               <ol className="tym-body">
-                <li><b>Jedno číslo, na které voláte.</b> Nemusíte nikomu vysvětlovat všechno od začátku.</li>
-                <li><b>Specialisté, když jsou potřeba.</b> Na smlouvu advokát, na závěť notář, na prodej firmy M&amp;A poradce.</li>
-                <li><b>Všichni vědí, co řeší ti druzí.</b> Daně, právo a investice do sebe zapadnou.</li>
+                <li><b>{t.tymLi1b}</b> {t.tymLi1t}</li>
+                <li><b>{t.tymLi2b}</b> {t.tymLi2t}</li>
+                <li><b>{t.tymLi3b}</b> {t.tymLi3t}</li>
               </ol>
             </div>
-            <TymDiag />
+            <TymDiag lang={lang} />
           </div>
         </div>
       </section>
