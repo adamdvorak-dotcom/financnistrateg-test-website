@@ -1350,12 +1350,12 @@ export default async function ArticlePage({
           </div>
         </div>
       </nav>
-      <AudioPlayer />
 
       {/* ── Article ── */}
       <main className="article-wrap">
         <div className="container">
           <div className="article-inner">
+            <AudioPlayer />
             <header className="article-header">
               <div className="article-tag">{article.tag}</div>
               <h1 className="article-title">{article.title}</h1>

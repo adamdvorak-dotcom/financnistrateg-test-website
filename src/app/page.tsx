@@ -1003,7 +1003,7 @@ export default function Page() {
                 veta: '„Někdo mi nabízí investici."',
                 text: 'Pošlete mi ji dřív, než podepíšete. Většinu nabídek, které mi lidi pošlou, končím větou: tohle ne.',
                 cta: 'Poslat nabídku',
-                href: '/konzultace',
+                href: 'mailto:adamdvorak@financnistrateg.com?subject=Nab%C3%ADdka%20k%20posouzen%C3%AD',
               },
               {
                 veta: '„Blíží se důchod."',
