@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import { articles } from "./blog/articles";
+import { TymDiag } from "./TymDiag";
 
 /* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
@@ -19,16 +20,6 @@ const APHORISMS: Record<string, string[]> = {
     "Building your retirement on an exit is like building a golf season on a hole in one.",
   ],
 };
-
-/* ── Tým specialists data ── */
-const TYM_SPEC = [
-  { role: 'Advokát',        co: 'smlouvy, svěřenský fond', popis: 'Připravuje smlouvy, zakládá svěřenský fond a hlídá vaše zájmy při prodeji nebo převodu majetku.', x: 160, y:  60, ta: 'start' as const, dx:  9, dy1: 14, dy2: 26 },
-  { role: 'Notář',          co: 'závěť, dědictví',         popis: 'Sepisuje závěť a zajišťuje, aby váš majetek přešel tam, kam chcete — bez zbytečných sporů.', x: 345, y:  52, ta: 'end'   as const, dx: -9, dy1: 14, dy2: 26 },
-  { role: 'Daňový poradce', co: 'daně firmy i rodiny',     popis: 'Koordinuje daně firmy, dividendy i osobní příjmy tak, aby výsledek seděl jako celek.', x: 455, y: 140, ta: 'end'   as const, dx: -9, dy1: -3, dy2:  9 },
-  { role: 'Účetní',         co: 'čísla firmy',             popis: 'Drží přesné účetnictví firmy a dodává podklady, ze kterých se rozhoduje.', x: 450, y: 212, ta: 'end'   as const, dx: -9, dy1: -3, dy2:  9 },
-  { role: 'M&A poradce',    co: 'prodej firmy',            popis: 'Připraví firmu na prodej, ocení ji a provede celý proces — od oslovení kupce po podpis smlouvy.', x: 345, y: 280, ta: 'end'   as const, dx: -9, dy1:-16, dy2: -4 },
-  { role: 'Privátní banka', co: 'účty v zahraničí',        popis: 'Zajišťuje účty a správu majetku v zahraničí pro případ, kdy potřebujete strukturu mimo českou jurisdikci.', x: 148, y: 280, ta: 'start' as const, dx:  9, dy1:-16, dy2: -4 },
-]
 
 /* ── Translations ── */
 const T = {
@@ -307,8 +298,6 @@ export default function Page() {
   const [aphoIdx, setAphoIdx] = useState(0);
   const [aphoVis, setAphoVis] = useState(true);
 
-  /* Tým diagram — active specialist */
-  const [activeTym, setActiveTym] = useState<string | null>(null);
 
   /* Hero heading scramble */
   const [h1Cs1, setH1Cs1] = useState("Jeden člověk.");
@@ -1858,53 +1847,7 @@ export default function Page() {
                 <li><b>Všichni vědí, co řeší ti druzí.</b> Daně, právo a investice do sebe zapadnou.</li>
               </ol>
             </div>
-            <figure className="tym-mapa" aria-label="Vy, Adam a šest specialistů kolem">
-              <svg viewBox="0 0 540 320" className="tym-svg">
-                {/* Dashed lines: AD → specialists */}
-                {TYM_SPEC.map((s, i) => {
-                  const ang = Math.atan2(s.y - 160, s.x - 240)
-                  const ac = activeTym === s.role
-                  return <line key={i}
-                    x1={240 + 44 * Math.cos(ang)} y1={160 + 44 * Math.sin(ang)}
-                    x2={s.x} y2={s.y}
-                    stroke={ac ? "rgba(201,162,96,.72)" : "rgba(201,162,96,.28)"}
-                    strokeWidth={ac ? 1.5 : 1}
-                    strokeDasharray="4 4" />
-                })}
-                {/* Solid line: Vy → AD */}
-                <line x1="97" y1="160" x2="196" y2="160" stroke="rgba(201,162,96,.45)" strokeWidth="1" />
-                {/* Vy circle */}
-                <circle cx="65" cy="160" r="36" fill="rgba(245,242,236,.1)" stroke="rgba(245,242,236,.65)" strokeWidth="1.5" />
-                <text x="65" y="165" textAnchor="middle" fill="#F5F2EC" fontSize="16" fontFamily="Lora,serif" fontStyle="italic">Vy</text>
-                <text x="65" y="205" textAnchor="middle" fill="rgba(245,242,236,.32)" fontSize="7.5" fontFamily="Inter,sans-serif" letterSpacing="1.6">JEDNO ČÍSLO</text>
-                {/* AD circle */}
-                <circle cx="240" cy="160" r="42" fill="rgba(201,162,96,.07)" stroke="#C9A260" strokeWidth="1.5" />
-                <text x="240" y="155" textAnchor="middle" fill="#C9A260" fontSize="22" fontFamily="Lora,serif" fontStyle="italic">AD</text>
-                <text x="240" y="170" textAnchor="middle" fill="rgba(201,162,96,.5)" fontSize="7" fontFamily="Inter,sans-serif" letterSpacing="1.4">ADAM, VÁŠ ČLOVĚK</text>
-                {/* Specialists — clickable */}
-                {TYM_SPEC.map((s) => {
-                  const ac = activeTym === s.role
-                  return (
-                    <g key={s.role} onClick={() => setActiveTym(activeTym === s.role ? null : s.role)} style={{ cursor: 'pointer' }}>
-                      {ac && <circle cx={s.x} cy={s.y} r="20" fill="none" stroke="rgba(201,162,96,.18)" strokeWidth="1.5" />}
-                      <circle cx={s.x} cy={s.y} r={ac ? 13 : 11} fill="none" stroke={ac ? "rgba(201,162,96,.72)" : "rgba(201,162,96,.25)"} strokeWidth={ac ? 1.5 : 1} />
-                      <circle cx={s.x} cy={s.y} r={ac ? 6.5 : 5} fill={ac ? "#C9A260" : "rgba(201,162,96,.8)"} />
-                      <text x={s.x + s.dx} y={s.y + s.dy1} textAnchor={s.ta} fill="#F5F2EC" fontSize="11" fontFamily="Inter,sans-serif" fontWeight="500">{s.role}</text>
-                      <text x={s.x + s.dx} y={s.y + s.dy2} textAnchor={s.ta} fill={ac ? "rgba(245,242,236,.8)" : "rgba(245,242,236,.45)"} fontSize="9" fontFamily="Inter,sans-serif">{s.co}</text>
-                    </g>
-                  )
-                })}
-              </svg>
-              {activeTym && (() => {
-                const s = TYM_SPEC.find(x => x.role === activeTym)!
-                return (
-                  <div className="tym-detail">
-                    <span className="tym-detail-role">{s.role}</span>
-                    <p className="tym-detail-txt">{s.popis}</p>
-                  </div>
-                )
-              })()}
-            </figure>
+            <TymDiag />
           </div>
         </div>
       </section>
