@@ -966,6 +966,62 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ── Situace ── */}
+      <section style={{ padding: '80px 0' }}>
+        <div className="container">
+          <div className="section-eyebrow">Většinou to začne jednou větou</div>
+          <h2 className="section-title" style={{ marginTop: 8, marginBottom: 40 }}>
+            Takhle to nejčastěji začíná.
+          </h2>
+          <div className="situace">
+            {[
+              {
+                veta: '„Prodávám firmu."',
+                text: 'Nebo o tom přemýšlím. Kolik za ni dostanu, jak je to s daní a hlavně co pak s penězi.',
+                cta: 'Probrat exit',
+                href: '/konzultace',
+              },
+              {
+                veta: '„Všechno mám ve firmě."',
+                text: 'Kromě baráku je všechno ve firmě. Postavíme druhou nohu, která nespadne, když se firmě zrovna nedaří.',
+                cta: 'Kde máte majetek',
+                href: '#druha-noha',
+              },
+              {
+                veta: '„Přišly velké peníze."',
+                text: 'Dědictví, prodej nebo velký bonus. Nejdřív klid, pak plán. Nic se nemusí podepsat tento týden.',
+                cta: 'Probrat v klidu',
+                href: '/konzultace',
+              },
+              {
+                veta: '„Chci to jednou předat dětem."',
+                text: 'A umí vaše děti s penězi zacházet? Předání začíná pravidly, ne až dědickým řízením.',
+                cta: 'Krizový plán',
+                href: '/test',
+              },
+              {
+                veta: '„Někdo mi nabízí investici."',
+                text: 'Pošlete mi ji dřív, než podepíšete. Většinu nabídek, které mi lidi pošlou, končím větou: tohle ne.',
+                cta: 'Poslat nabídku',
+                href: '/konzultace',
+              },
+              {
+                veta: '„Blíží se důchod."',
+                text: 'Stačí to? Spočítáme, kolik dá stát, kolik vaše peníze a co chybí.',
+                cta: 'Důchodová kalkulačka',
+                href: '#calculators',
+              },
+            ].map((s) => (
+              <a key={s.veta} href={s.href} className="situace-karta">
+                <p className="situace-veta">{s.veta}</p>
+                <p className="situace-text">{s.text}</p>
+                <span className="situace-cta">{s.cta} →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Process ── */}
       <section id="process">
         <div className="container">
@@ -1098,65 +1154,72 @@ export default function Page() {
 
       {/* ── Druhá noha ── */}
       <section className="noha" id="druha-noha">
-        <div className="container">
-          <div className="section-eyebrow">Struktura majetku</div>
-          <h2 className="section-title" style={{ marginTop: 8, marginBottom: 8 }}>Kde máte majetek.</h2>
-          <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: 480, marginBottom: 32 }}>
-            Zadejte odhadovanou hodnotu každé části. Počítá se jen v prohlížeči.
-          </p>
-
-          <div className="noha-sliders">
-            {[
-              { label: 'Firma', val: firma, set: setFirma, max: 150 },
-              { label: 'Nemovitosti', val: nem, set: setNem, max: 80 },
-              { label: 'Investice', val: inv, set: setInv, max: 50 },
-              { label: 'Hotovost', val: hot, set: setHot, max: 20 },
-            ].map(({ label, val, set, max }) => (
-              <div key={label}>
-                <div className="noha-slider-label">
-                  <span>{label}</span>
-                  <span>{nohaFmt(val)} mil. Kč</span>
+        <div className="container noha-grid">
+          <div>
+            <div className="section-eyebrow">Struktura majetku</div>
+            <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 16 }}>
+              Kde máte <em>majetek?</em>
+            </h2>
+            <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: '42ch', marginBottom: 32 }}>
+              Zadejte odhadovanou hodnotu každé části. Počítá se jen v prohlížeči.
+            </p>
+            <div className="noha-sliders">
+              {[
+                { label: 'Firma', val: firma, set: setFirma, max: 150 },
+                { label: 'Nemovitosti', val: nem, set: setNem, max: 80 },
+                { label: 'Investice', val: inv, set: setInv, max: 50 },
+                { label: 'Hotovost', val: hot, set: setHot, max: 20 },
+              ].map(({ label, val, set, max }) => (
+                <div key={label}>
+                  <div className="noha-slider-label">
+                    <span>{label}</span>
+                    <span>{nohaFmt(val)} mil. Kč</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={max}
+                    step={0.5}
+                    value={val}
+                    onChange={(e) => set(+e.target.value)}
+                  />
                 </div>
-                <input
-                  type="range"
-                  min={0}
-                  max={max}
-                  step={0.5}
-                  value={val}
-                  onChange={(e) => set(+e.target.value)}
-                />
+              ))}
+            </div>
+          </div>
+
+          <div className="noha-card">
+            <div className="noha-total">
+              <span>Váš majetek dohromady</span>
+              <b>{nohaFmt(noha)} mil. Kč</b>
+            </div>
+            <div className="pruh" role="img" aria-label={`Majetek: firma ${nohaPct(firma)}, nemovitosti ${nohaPct(nem)}, investice ${nohaPct(inv)}, hotovost ${nohaPct(hot)}`}>
+              <i className="firma" style={{ width: nohaDil(firma) }} />
+              <i className="nem" style={{ width: nohaDil(nem) }} />
+              <i className="inv" style={{ width: nohaDil(inv) }} />
+              <i className="hot" style={{ width: nohaDil(hot) }} />
+            </div>
+            <div className="pruh-legend">
+              <span className="l-firma">Firma {nohaPct(firma)}</span>
+              <span className="l-nem">Nemovitosti {nohaPct(nem)}</span>
+              <span className="l-inv">Investice {nohaPct(inv)}</span>
+              <span className="l-hot">Hotovost {nohaPct(hot)}</span>
+            </div>
+            <div className="karty">
+              <div>
+                <small>Mimo firmu</small>
+                <b>{nohaFmt(nohaMimo)} mil.</b>
+                <span>{nohaPct(nohaMimo)} majetku</span>
               </div>
-            ))}
-          </div>
-
-          <div className="pruh" role="img" aria-label={`Majetek: firma ${nohaPct(firma)}, nemovitosti ${nohaPct(nem)}, investice ${nohaPct(inv)}, hotovost ${nohaPct(hot)}`}>
-            <i className="firma" style={{ width: nohaDil(firma) }} />
-            <i className="nem" style={{ width: nohaDil(nem) }} />
-            <i className="inv" style={{ width: nohaDil(inv) }} />
-            <i className="hot" style={{ width: nohaDil(hot) }} />
-          </div>
-          <div className="pruh-legend">
-            <span className="l-firma">Firma {nohaPct(firma)}</span>
-            <span className="l-nem">Nemovitosti {nohaPct(nem)}</span>
-            <span className="l-inv">Investice {nohaPct(inv)}</span>
-            <span className="l-hot">Hotovost {nohaPct(hot)}</span>
-          </div>
-
-          <div className="karty">
-            <div>
-              <small>Mimo firmu</small>
-              <b>{nohaFmt(nohaMimo)} mil.</b>
-              <span>{nohaPct(nohaMimo)} majetku</span>
+              <div className="navy">
+                <small>K dispozici hned</small>
+                <b>{nohaFmt(nohaMin)} mil.</b>
+                <span>{nohaPct(nohaMin)} bez prodeje firmy nebo baráku</span>
+              </div>
             </div>
-            <div className="navy">
-              <small>K dispozici hned</small>
-              <b>{nohaFmt(nohaMin)} mil.</b>
-              <span>{nohaPct(nohaMin)} bez prodeje firmy nebo baráku</span>
-            </div>
+            <blockquote className="noha-quote">„Cihla vám rohlíky nezaplatí."</blockquote>
+            <a className="btn-navy" href="/konzultace">Probrat druhou nohu →</a>
           </div>
-
-          <blockquote className="noha-quote">„Cihla vám rohlíky nezaplatí."</blockquote>
-          <a className="btn-navy" href="/konzultace">Probrat druhou nohu →</a>
         </div>
       </section>
 
@@ -1251,6 +1314,19 @@ export default function Page() {
                         <SlotNum key={fmt(iFv, lang)} value={fmt(iFv, lang)} />
                         {" "}<span>{t.currency}</span>
                       </div>
+                      {(() => {
+                        const invRenta = Math.round((iFv / 1_000_000) * 5_000 / 100) * 100
+                        const invRentaStr = invRenta.toLocaleString('cs-CZ') + ' Kč'
+                        return invRenta > 0 ? (
+                          <div className="inv-renta">
+                            <p className="inv-renta-num">≈ {invRentaStr} <span>měsíčně renty</span></p>
+                            <p className="inv-renta-hint">Pravidlo palce: milion udělá zhruba 5&nbsp;000&nbsp;Kč měsíčně.</p>
+                            <button type="button" className="link-gold" onClick={() => setCalcTab('retirement')}>
+                              Spočítat celý důchod →
+                            </button>
+                          </div>
+                        ) : null
+                      })()}
                     </div>
                   </div>
                   <GrowthChart key={`${invMonthly}-${invRate}-${invYears}-${invInit}`} monthly={invMonthly} rate={invRate} years={invYears} init={invInit} />
