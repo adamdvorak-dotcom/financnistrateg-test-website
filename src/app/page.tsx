@@ -1667,26 +1667,44 @@ export default function Page() {
               </ol>
             </div>
             <figure className="tym-mapa" aria-label="Vy, Adam a šest specialistů kolem">
-              <span className="tym-vy">Vy</span>
-              <span className="tym-ad">AD</span>
-              {[
-                { role: 'Advokát',        co: 'smlouvy, svěřenský fond' },
-                { role: 'Notář',          co: 'závěť, dědictví' },
-                { role: 'Daňový poradce', co: 'daně firmy i rodiny' },
-                { role: 'Účetní',         co: 'čísla firmy' },
-                { role: 'M&A poradce',    co: 'prodej firmy' },
-                { role: 'Privátní banka', co: 'účty v zahraničí' },
-              ].map((t, i) => {
-                const uhel = -Math.PI / 3 + (i / 6) * 2 * Math.PI
-                return (
-                  <span key={t.role} className="tym-clen" style={{
-                    left: `${58 + 30 * Math.cos(uhel)}%`,
-                    top: `${50 + 36 * Math.sin(uhel)}%`,
-                  }}>
-                    {t.role}<small>{t.co}</small>
-                  </span>
-                )
-              })}
+              <svg viewBox="0 0 540 320" className="tym-svg">
+                {/* Dashed lines: AD → specialists */}
+                {([
+                  [160, 60], [345, 52], [455, 140], [450, 212], [345, 280], [148, 280],
+                ] as [number, number][]).map(([sx, sy], i) => {
+                  const ang = Math.atan2(sy - 160, sx - 240)
+                  return <line key={i}
+                    x1={240 + 44 * Math.cos(ang)} y1={160 + 44 * Math.sin(ang)}
+                    x2={sx} y2={sy}
+                    stroke="rgba(201,162,96,.28)" strokeWidth="1" strokeDasharray="4 4" />
+                })}
+                {/* Solid line: Vy → AD */}
+                <line x1="97" y1="160" x2="196" y2="160" stroke="rgba(201,162,96,.45)" strokeWidth="1" />
+                {/* Vy circle */}
+                <circle cx="65" cy="160" r="32" fill="rgba(245,242,236,.08)" stroke="rgba(245,242,236,.45)" strokeWidth="1" />
+                <text x="65" y="165" textAnchor="middle" fill="#F5F2EC" fontSize="15" fontFamily="Lora,serif" fontStyle="italic">Vy</text>
+                <text x="65" y="205" textAnchor="middle" fill="rgba(245,242,236,.32)" fontSize="7.5" fontFamily="Inter,sans-serif" letterSpacing="1.6">JEDNO ČÍSLO</text>
+                {/* AD circle */}
+                <circle cx="240" cy="160" r="42" fill="rgba(201,162,96,.07)" stroke="#C9A260" strokeWidth="1.5" />
+                <text x="240" y="155" textAnchor="middle" fill="#C9A260" fontSize="22" fontFamily="Lora,serif" fontStyle="italic">AD</text>
+                <text x="240" y="170" textAnchor="middle" fill="rgba(201,162,96,.5)" fontSize="7" fontFamily="Inter,sans-serif" letterSpacing="1.4">ADAM, VÁŠ ČLOVĚK</text>
+                {/* Specialists */}
+                {([
+                  { role: 'Advokát',        co: 'smlouvy, svěřenský fond', x: 160, y: 60,  ta: 'start' as const, dx:  9, dy1: 14, dy2: 26 },
+                  { role: 'Notář',          co: 'závěť, dědictví',          x: 345, y: 52,  ta: 'end'   as const, dx: -9, dy1: 14, dy2: 26 },
+                  { role: 'Daňový poradce', co: 'daně firmy i rodiny',      x: 455, y: 140, ta: 'end'   as const, dx: -9, dy1: -3, dy2:  9 },
+                  { role: 'Účetní',         co: 'čísla firmy',              x: 450, y: 212, ta: 'end'   as const, dx: -9, dy1: -3, dy2:  9 },
+                  { role: 'M&A poradce',    co: 'prodej firmy',             x: 345, y: 280, ta: 'end'   as const, dx: -9, dy1:-16, dy2: -4 },
+                  { role: 'Privátní banka', co: 'účty v zahraničí',         x: 148, y: 280, ta: 'start' as const, dx:  9, dy1:-16, dy2: -4 },
+                ]).map((s) => (
+                  <g key={s.role}>
+                    <circle cx={s.x} cy={s.y} r="5" fill="rgba(201,162,96,.75)" />
+                    <circle cx={s.x} cy={s.y} r="11" fill="none" stroke="rgba(201,162,96,.2)" strokeWidth="1" />
+                    <text x={s.x + s.dx} y={s.y + s.dy1} textAnchor={s.ta} fill="#F5F2EC" fontSize="11" fontFamily="Inter,sans-serif" fontWeight="500">{s.role}</text>
+                    <text x={s.x + s.dx} y={s.y + s.dy2} textAnchor={s.ta} fill="rgba(245,242,236,.45)" fontSize="9" fontFamily="Inter,sans-serif">{s.co}</text>
+                  </g>
+                ))}
+              </svg>
             </figure>
           </div>
         </div>
