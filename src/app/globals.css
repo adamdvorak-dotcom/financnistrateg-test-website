@@ -2872,45 +2872,50 @@ nav.scrolled .nav-logo{font-size:15px}
 @media(max-width:640px){.ap-label{display:none}}
 
 /* ── Penzijko quiz ── */
-.penz{background:#FCFBF8;border:1px solid rgba(26,21,17,.08);border-radius:16px;padding:26px 28px;margin:28px 0}
-.penz-eyebrow{font:600 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;margin:0 0 20px}
-.penz-q{margin-bottom:18px}
-.penz-label{display:block;font-size:14px;font-weight:500;color:#1A1511;margin-bottom:8px}
-.penz-label strong{color:#7A5C35}
-.penz-opts{display:flex;gap:6px;flex-wrap:wrap}
-.penz-opt{padding:7px 14px;border-radius:999px;border:1px solid rgba(26,21,17,.18);background:transparent;font:500 13px/1 Inter,sans-serif;cursor:pointer;color:#1A1511;transition:background .15s,border-color .15s,color .15s}
+.penz{background:#FCFBF8;border:1px solid rgba(26,21,17,.08);border-radius:16px;padding:26px 28px;margin:32px 0;box-shadow:0 2px 20px -6px rgba(26,21,17,.07)}
+.penz p{max-width:none;font-size:14px;line-height:1.6}
+.penz-eyebrow{font:600 9px/1 Inter,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#7A5C35;margin:0 0 6px}
+.penz-title{font:400 18px/1.2 Lora,serif;color:#1A1511;margin:0 0 20px}
+.penz-q{margin-bottom:20px}
+.penz-label{display:block;font-size:13px;font-weight:500;color:#555;margin-bottom:9px}
+.penz-label strong{color:#1A1511;font-size:15px;font-weight:600}
+.penz-opts{display:flex;gap:7px;flex-wrap:wrap}
+.penz-opt{padding:8px 16px;border-radius:999px;border:1px solid rgba(26,21,17,.15);background:transparent;font:500 13px/1 Inter,sans-serif;cursor:pointer;color:#1A1511;transition:background .15s,border-color .15s,color .15s}
+.penz-opt:hover{border-color:rgba(26,21,17,.3)}
 .penz-opt.on{background:#0C1F3A;color:#F5F2EC;border-color:#0C1F3A}
 .penz-range{width:100%;accent-color:#C9A260;margin-bottom:4px}
 .penz-range-meta{display:flex;justify-content:space-between;font-size:11px;color:#7A5C35}
-.penz-result{background:#0C1F3A;color:#F5F2EC;border-radius:12px;padding:22px 24px;margin-top:18px}
-.penz-nadpis{font:600 17px/1.2 Lora,serif;color:#C9A260;margin:0 0 8px}
-.penz-text{font-size:14px;line-height:1.6;color:rgba(245,242,236,.8);margin:0 0 12px}
+.penz-result{background:#0C1F3A;border-radius:12px;padding:22px 24px;margin-top:18px}
+.penz-result p{max-width:none;font-size:14px;line-height:1.6;color:rgba(245,242,236,.8)}
+.penz-nadpis{font:600 17px/1.25 Lora,serif;color:#C9A260;margin:0 0 8px}
+.penz-text{margin:0 0 12px}
 .penz-kroky{margin:0 0 14px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;counter-reset:k}
-.penz-kroky li{counter-increment:k;display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:13px;line-height:1.5;color:rgba(245,242,236,.75)}
-.penz-kroky li::before{content:counter(k);width:22px;height:22px;border-radius:50%;border:1px solid #C9A260;color:#C9A260;font-size:11px;display:grid;place-items:center;margin-top:1px;flex-shrink:0}
-.penz-cta{display:inline-block;margin-top:4px;font:500 13px/1 Inter,sans-serif;color:#C9A260;text-decoration:underline;text-underline-offset:3px}
+.penz-kroky li{counter-increment:k;position:relative;padding-left:34px;font-size:13px;line-height:1.55;color:rgba(245,242,236,.75)}
+.penz-kroky li::before{content:counter(k);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;border:1px solid #C9A260;color:#C9A260;font:600 10px/22px Inter,sans-serif;text-align:center;display:block}
+.penz-cta{display:inline-block;margin-top:6px;font:500 13px/1 Inter,sans-serif;color:#C9A260;text-decoration:underline;text-underline-offset:3px}
 
 /* ── Svěřenský fond diagram ── */
-.sf-wrap{background:#FDFCF8;border:1px solid rgba(26,21,17,.07);border-radius:16px;padding:24px 28px 20px;margin:28px 0;overflow:hidden}
+.sf-wrap{background:#FDFCF8;border:1px solid rgba(26,21,17,.07);border-radius:16px;padding:24px 28px 20px;margin:32px 0;overflow:hidden;box-shadow:0 2px 20px -6px rgba(26,21,17,.07)}
+.sf-wrap p{max-width:none;font-size:14px;line-height:1.6}
 .sf-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.sf-eyebrow{font:600 9px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;display:block;margin-bottom:5px}
+.sf-eyebrow{font:600 9px/1 Inter,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#7A5C35;display:block;margin-bottom:5px}
 .sf-title{font:400 18px/1.2 Lora,serif;color:#1A1511;margin:0}
 .sf-cta-hint{font:400 11px/1 Inter,sans-serif;color:#999080;white-space:nowrap;padding-top:4px}
 .sf-svg{width:100%;height:auto;display:block}
 .sf-info{display:flex;gap:10px;align-items:flex-start;background:#F5F0E8;border-radius:8px;padding:12px 16px;margin-top:4px}
-.sf-dot{width:16px;height:16px;border-radius:50%;background:#C9A260;flex-shrink:0;margin-top:2px}
-.sf-info p{margin:0;font-size:13px;line-height:1.6;color:#1A1511}
+.sf-dot{width:16px;height:16px;border-radius:50%;background:#C9A260;flex-shrink:0;margin-top:2px;flex-shrink:0}
+.sf-info p{margin:0;font-size:13px;line-height:1.6;color:#1A1511;max-width:none}
 .sf-info strong{color:#7A5C35}
 
 /* ── Tým kolem vás ── */
 .tym{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:center}
-.tym-body{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px;counter-reset:tym-c}
-.tym-body li{counter-increment:tym-c;display:flex;gap:14px;align-items:flex-start;font-size:14px;line-height:1.6;color:var(--text-2)}
-.tym-body li::before{content:counter(tym-c);min-width:26px;height:26px;border-radius:50%;border:1px solid #C9A260;color:#C9A260;font:600 11px/1 Inter,sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.tym-body b{color:var(--text-1);font-weight:600;display:block}
-.tym-mapa{margin:0;border-radius:28px;background:#0C1F3A;box-shadow:0 40px 80px -50px rgba(12,31,58,.6);overflow:hidden}
+.tym-body{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:20px;counter-reset:tym-c}
+.tym-body li{counter-increment:tym-c;position:relative;padding-left:42px;font-size:14px;line-height:1.65;color:var(--text-2)}
+.tym-body li::before{content:counter(tym-c);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;border:1px solid #C9A260;color:#C9A260;font:600 11px/26px Inter,sans-serif;text-align:center;display:block}
+.tym-body b{display:block;color:var(--text-1);font-weight:600;margin-bottom:2px}
+.tym-mapa{margin:0;border-radius:28px;background:#0C1F3A;box-shadow:0 32px 64px -40px rgba(12,31,58,.55);overflow:hidden}
 .tym-svg{width:100%;height:auto;display:block}
-@media(max-width:900px){.tym{grid-template-columns:1fr;gap:32px}}
+@media(max-width:900px){.tym{grid-template-columns:1fr;gap:32px}.tym-mapa{max-width:480px;margin:0 auto}}
 
 /* ── Na jak dlouho calculator ── */
 .new-badge{display:inline-block;font:600 9px/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;

@@ -43,7 +43,8 @@ export function PenzijkoKalk() {
 
   return (
     <div className="penz">
-      <p className="penz-eyebrow">Jaké penzijko máte?</p>
+      <span className="penz-eyebrow">Interaktivní průvodce</span>
+      <p className="penz-title">Jaké penzijko máte?</p>
 
       <div className="penz-q">
         <label className="penz-label">Kdy jste uzavřeli smlouvu?</label>
