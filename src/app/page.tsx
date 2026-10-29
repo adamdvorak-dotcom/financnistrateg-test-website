@@ -77,7 +77,7 @@ const T = {
     blogEye: "Blog", blogTitle: "Finanční vzdělávání.", blogSub: "Píšu o tématech, která řeším se svými klienty, srozumitelně, bez zbytečného žargonu.",
     blogReadMore: "Číst dál",
     planEye: "Co dostanete", planHead: "Tohle dostanete do ruky.",
-    tymEye: "Tým kolem vás", tymH2a: "Jeden člověk.", tymH2b: "Za ním tým.",
+    tymEye: "Tým kolem vás", tymH2a: "Jeden člověk.", tymH2b: "Za ním tým.",
     tymSub: "Mluvíte se mnou. Když je potřeba advokát, daňař nebo notář, přivedu ho k vašemu stolu a hlídám, aby si všichni rozuměli.",
     tymLi1b: "Jedno číslo, na které voláte.", tymLi1t: "Nemusíte nikomu vysvětlovat všechno od začátku.",
     tymLi2b: "Specialisté, když jsou potřeba.", tymLi2t: "Na smlouvu advokát, na závěť notář, na prodej firmy M&A poradce.",

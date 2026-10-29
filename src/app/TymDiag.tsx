@@ -5,20 +5,20 @@ const W = 540, H = 320;
 
 const SPEC = {
   cs: [
-    { role: "Advokát",        co: "smlouvy, svěřenský fond", popis: "Připravuje smlouvy, zakládá svěřenský fond a hlídá vaše zájmy při prodeji nebo převodu majetku.",          x: 160, y:  60, dir: "r" as const },
-    { role: "Notář",          co: "závěť, dědictví",         popis: "Sepisuje závěť a zajišťuje, aby váš majetek přešel tam, kam chcete — bez zbytečných sporů.",                x: 345, y:  52, dir: "l" as const },
-    { role: "Daňový poradce", co: "daně firmy i rodiny",     popis: "Koordinuje daně firmy, dividendy i osobní příjmy tak, aby výsledek seděl jako celek.",                      x: 455, y: 140, dir: "l" as const },
-    { role: "Účetní",         co: "čísla firmy",             popis: "Drží přesné účetnictví firmy a dodává podklady, ze kterých se rozhoduje.",                                  x: 450, y: 212, dir: "l" as const },
-    { role: "M&A poradce",    co: "prodej firmy",            popis: "Připraví firmu na prodej, ocení ji a provede celý proces — od oslovení kupce po podpis smlouvy.",            x: 345, y: 280, dir: "l" as const },
-    { role: "Privátní banka", co: "účty v zahraničí",        popis: "Zajišťuje účty a správu majetku v zahraničí pro případ, kdy potřebujete strukturu mimo českou jurisdikci.", x: 148, y: 280, dir: "r" as const },
+    { role: "Advokát",        co: "smlouvy, svěřenský fond", popis: "Smlouvy, svěřenský fond a vaše zájmy, když se prodává nebo převádí majetek.",                           x: 160, y:  60, dir: "r" as const },
+    { role: "Notář",          co: "závěť, dědictví",         popis: "Závěť, díky které se vaše rodina nebude jednou soudit o chalupu.",                                         x: 345, y:  52, dir: "l" as const },
+    { role: "Daňový poradce", co: "daně firmy i rodiny",     popis: "Daně firmy, dividendy a vaše vlastní příjmy na jednom stole.",                                             x: 455, y: 140, dir: "l" as const },
+    { role: "Účetní",         co: "čísla firmy",             popis: "Čísla firmy, ze kterých se rozhoduje. Bez nich hádáme.",                                                   x: 450, y: 212, dir: "l" as const },
+    { role: "M&A poradce",    co: "prodej firmy",            popis: "Připraví firmu na prodej, ocení ji a provede vás od prvního kupce po podpis.",                             x: 345, y: 280, dir: "l" as const },
+    { role: "Privátní banka", co: "účty v zahraničí",        popis: "Účty a správa majetku v zahraničí, když dává smysl mít část peněz mimo Česko.",                           x: 148, y: 280, dir: "r" as const },
   ],
   en: [
-    { role: "Lawyer",       co: "contracts, trust fund",    popis: "Prepares contracts, sets up trust funds and protects your interests when transferring assets.",         x: 160, y:  60, dir: "r" as const },
-    { role: "Notary",       co: "will, inheritance",        popis: "Drafts your will and ensures your estate passes where you intend — without unnecessary disputes.",       x: 345, y:  52, dir: "l" as const },
-    { role: "Tax advisor",  co: "company & personal taxes", popis: "Coordinates company taxes, dividends and personal income so the overall result works as a whole.",      x: 455, y: 140, dir: "l" as const },
-    { role: "Accountant",   co: "company figures",          popis: "Keeps accurate company accounts and delivers the figures decisions are based on.",                      x: 450, y: 212, dir: "l" as const },
-    { role: "M&A advisor",  co: "business sale",            popis: "Prepares your company for sale, values it and runs the whole process from finding a buyer to signing.", x: 345, y: 280, dir: "l" as const },
-    { role: "Private bank", co: "accounts abroad",          popis: "Provides accounts and asset management abroad when you need a structure outside Czech jurisdiction.",    x: 148, y: 280, dir: "r" as const },
+    { role: "Lawyer",       co: "contracts, trust fund",    popis: "Contracts, trust fund and your interests when assets are being sold or transferred.",                x: 160, y:  60, dir: "r" as const },
+    { role: "Notary",       co: "will, inheritance",        popis: "A will that stops your family from fighting over the cottage one day.",                                x: 345, y:  52, dir: "l" as const },
+    { role: "Tax advisor",  co: "company & personal taxes", popis: "Company taxes, dividends and your personal income at one table.",                                      x: 455, y: 140, dir: "l" as const },
+    { role: "Accountant",   co: "company figures",          popis: "The numbers decisions are made from. Without them, we're guessing.",                                   x: 450, y: 212, dir: "l" as const },
+    { role: "M&A advisor",  co: "business sale",            popis: "Gets the company ready for sale, values it and takes you from first buyer to signing.",                x: 345, y: 280, dir: "l" as const },
+    { role: "Private bank", co: "accounts abroad",          popis: "Accounts and asset management abroad, when it makes sense to keep some money outside the Czech Republic.", x: 148, y: 280, dir: "r" as const },
   ],
 };
 
