@@ -1862,10 +1862,11 @@ export default function Page() {
                 {/* Vy circle */}
                 <circle cx="65" cy="160" r="36" fill="rgba(245,242,236,.1)" stroke="rgba(245,242,236,.65)" strokeWidth="1.5" />
                 <text x="65" y="165" textAnchor="middle" fill="#F5F2EC" fontSize="16" fontFamily="Lora,serif" fontStyle="italic">Vy</text>
+                <text x="65" y="205" textAnchor="middle" fill="rgba(245,242,236,.32)" fontSize="7.5" fontFamily="Inter,sans-serif" letterSpacing="1.6">JEDNO ČÍSLO</text>
                 {/* AD circle */}
                 <circle cx="240" cy="160" r="42" fill="rgba(201,162,96,.07)" stroke="#C9A260" strokeWidth="1.5" />
-                <text x="240" y="154" textAnchor="middle" fill="#C9A260" fontSize="22" fontFamily="Lora,serif" fontStyle="italic">AD</text>
-                <text x="240" y="169" textAnchor="middle" fill="rgba(201,162,96,.55)" fontSize="9" fontFamily="Inter,sans-serif" fontWeight="500">Adam Dvořák</text>
+                <text x="240" y="155" textAnchor="middle" fill="#C9A260" fontSize="22" fontFamily="Lora,serif" fontStyle="italic">AD</text>
+                <text x="240" y="170" textAnchor="middle" fill="rgba(201,162,96,.5)" fontSize="7" fontFamily="Inter,sans-serif" letterSpacing="1.4">ADAM, VÁŠ ČLOVĚK</text>
                 {/* Specialists */}
                 {([
                   { role: 'Advokát',        co: 'smlouvy, svěřenský fond', x: 160, y:  60, ta: 'start' as const, dx:  9, dy1: 14, dy2: 26 },
