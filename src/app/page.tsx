@@ -1847,37 +1847,37 @@ export default function Page() {
             </div>
             <figure className="tym-mapa" aria-label="Vy, Adam a šest specialistů kolem">
               <svg viewBox="0 0 540 320" className="tym-svg">
-                {/* Dashed lines: AD → specialists, stop at outer ring edge */}
+                {/* Dashed lines: AD → specialists */}
                 {([
-                  [155, 60], [375, 44], [405, 128], [405, 215], [365, 268], [148, 268],
+                  [160, 60], [345, 52], [455, 140], [450, 212], [345, 280], [148, 280],
                 ] as [number, number][]).map(([sx, sy], i) => {
                   const ang = Math.atan2(sy - 160, sx - 240)
                   return <line key={i}
                     x1={240 + 44 * Math.cos(ang)} y1={160 + 44 * Math.sin(ang)}
-                    x2={sx - 14 * Math.cos(ang)} y2={sy - 14 * Math.sin(ang)}
-                    stroke="rgba(201,162,96,.3)" strokeWidth="1" strokeDasharray="4 4" />
+                    x2={sx} y2={sy}
+                    stroke="rgba(201,162,96,.28)" strokeWidth="1" strokeDasharray="4 4" />
                 })}
                 {/* Solid line: Vy → AD */}
-                <line x1="101" y1="160" x2="198" y2="160" stroke="rgba(201,162,96,.45)" strokeWidth="1" />
+                <line x1="97" y1="160" x2="196" y2="160" stroke="rgba(201,162,96,.45)" strokeWidth="1" />
                 {/* Vy circle */}
-                <circle cx="65" cy="160" r="36" fill="rgba(245,242,236,.09)" stroke="rgba(245,242,236,.65)" strokeWidth="1.5" />
+                <circle cx="65" cy="160" r="36" fill="rgba(245,242,236,.1)" stroke="rgba(245,242,236,.65)" strokeWidth="1.5" />
                 <text x="65" y="165" textAnchor="middle" fill="#F5F2EC" fontSize="16" fontFamily="Lora,serif" fontStyle="italic">Vy</text>
                 {/* AD circle */}
                 <circle cx="240" cy="160" r="42" fill="rgba(201,162,96,.07)" stroke="#C9A260" strokeWidth="1.5" />
                 <text x="240" y="154" textAnchor="middle" fill="#C9A260" fontSize="22" fontFamily="Lora,serif" fontStyle="italic">AD</text>
                 <text x="240" y="169" textAnchor="middle" fill="rgba(201,162,96,.55)" fontSize="9" fontFamily="Inter,sans-serif" fontWeight="500">Adam Dvořák</text>
-                {/* Specialists – text always away from centre, never crossing lines */}
+                {/* Specialists */}
                 {([
-                  { role: 'Advokát',        co: 'smlouvy, svěřenský fond', x: 155, y:  60, ta: 'end'    as const, dx: -16, dy1:  -6, dy2:   7 },
-                  { role: 'Notář',          co: 'závěť, dědictví',         x: 375, y:  44, ta: 'start'  as const, dx:  16, dy1:   8, dy2:  20 },
-                  { role: 'Daňový poradce', co: 'daně firmy i rodiny',     x: 405, y: 128, ta: 'start'  as const, dx:  16, dy1:  -3, dy2:  10 },
-                  { role: 'Účetní',         co: 'čísla firmy',             x: 405, y: 215, ta: 'start'  as const, dx:  16, dy1:  -3, dy2:  10 },
-                  { role: 'M&A poradce',    co: 'prodej firmy',            x: 365, y: 268, ta: 'middle' as const, dx:   0, dy1:  18, dy2:  30 },
-                  { role: 'Privátní banka', co: 'účty v zahraničí',        x: 148, y: 268, ta: 'middle' as const, dx:   0, dy1:  18, dy2:  30 },
+                  { role: 'Advokát',        co: 'smlouvy, svěřenský fond', x: 160, y:  60, ta: 'start' as const, dx:  9, dy1: 14, dy2: 26 },
+                  { role: 'Notář',          co: 'závěť, dědictví',         x: 345, y:  52, ta: 'end'   as const, dx: -9, dy1: 14, dy2: 26 },
+                  { role: 'Daňový poradce', co: 'daně firmy i rodiny',     x: 455, y: 140, ta: 'end'   as const, dx: -9, dy1: -3, dy2:  9 },
+                  { role: 'Účetní',         co: 'čísla firmy',             x: 450, y: 212, ta: 'end'   as const, dx: -9, dy1: -3, dy2:  9 },
+                  { role: 'M&A poradce',    co: 'prodej firmy',            x: 345, y: 280, ta: 'end'   as const, dx: -9, dy1:-16, dy2: -4 },
+                  { role: 'Privátní banka', co: 'účty v zahraničí',        x: 148, y: 280, ta: 'start' as const, dx:  9, dy1:-16, dy2: -4 },
                 ]).map((s) => (
                   <g key={s.role}>
-                    <circle cx={s.x} cy={s.y} r="7" fill="rgba(201,162,96,.88)" />
-                    <circle cx={s.x} cy={s.y} r="14" fill="none" stroke="rgba(201,162,96,.32)" strokeWidth="1.5" />
+                    <circle cx={s.x} cy={s.y} r="5" fill="rgba(201,162,96,.8)" />
+                    <circle cx={s.x} cy={s.y} r="11" fill="none" stroke="rgba(201,162,96,.25)" strokeWidth="1" />
                     <text x={s.x + s.dx} y={s.y + s.dy1} textAnchor={s.ta} fill="#F5F2EC" fontSize="11" fontFamily="Inter,sans-serif" fontWeight="500">{s.role}</text>
                     <text x={s.x + s.dx} y={s.y + s.dy2} textAnchor={s.ta} fill="rgba(245,242,236,.45)" fontSize="9" fontFamily="Inter,sans-serif">{s.co}</text>
                   </g>
