@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { articles, type ArticleCategory } from "./articles";
+import { ReadingPaths } from "./ReadingPaths";
 
 export const metadata: Metadata = {
   title: "Blog: Investice, DIP, Důchod, Hypotéky, Majetek",
@@ -96,6 +97,8 @@ export default async function BlogPage({
               );
             })}
           </div>
+
+          <ReadingPaths articles={articles.map(a => ({ slug: a.slug, title: a.title, readTime: a.readTime }))} />
 
           {/* ── Featured + 3-grid (no filter only) ── */}
           {!activeCat && (

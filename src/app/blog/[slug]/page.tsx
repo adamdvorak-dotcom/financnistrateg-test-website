@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles, getArticle } from "../articles";
 import { DipKalk } from "../DipKalk";
+import { AudioPlayer } from "../AudioPlayer";
 
 const CATEGORY_LABELS: Record<string, string> = {
   "rodinny-majetek": "Rodinný majetek",
@@ -1349,6 +1350,7 @@ export default async function ArticlePage({
           </div>
         </div>
       </nav>
+      <AudioPlayer />
 
       {/* ── Article ── */}
       <main className="article-wrap">

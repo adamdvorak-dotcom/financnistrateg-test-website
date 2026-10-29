@@ -2810,3 +2810,63 @@ nav.scrolled .nav-logo{font-size:15px}
 .calc-result .calc-hint{color:rgba(245,242,236,.8)}
 .calc-result .result-label{color:rgba(245,242,236,.65)}
 
+/* ── Druhá noha: 2-col layout ── */
+.noha-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.noha-card{background:#FCFBF8;border:1px solid rgba(26,21,17,.08);border-radius:24px;padding:34px;
+  box-shadow:0 30px 60px -44px rgba(12,31,58,.45)}
+.noha-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;
+  font:600 11px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7a5c35}
+.noha-total b{font:400 26px/1.1 Lora,serif;letter-spacing:0;text-transform:none;color:#0C1F3A}
+@media(max-width:900px){.noha-grid{grid-template-columns:1fr;gap:32px}}
+
+/* ── Situations section ── */
+.situace{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.situace-karta{display:flex;flex-direction:column;min-height:220px;padding:26px;border-radius:20px;
+  background:#FCFBF8;border:1px solid rgba(26,21,17,.08);text-decoration:none;color:inherit;
+  transition:background .25s,transform .25s,box-shadow .25s}
+.situace-karta:hover{background:#0C1F3A;transform:translateY(-4px);box-shadow:0 20px 40px -16px rgba(12,31,58,.4)}
+.situace-veta{font:600 17px/1.25 Lora,serif;color:#0C1F3A;margin:0 0 10px}
+.situace-karta:hover .situace-veta{color:#F5F2EC}
+.situace-text{font-size:13px;line-height:1.6;color:#5a4f43;margin:0;flex:1}
+.situace-karta:hover .situace-text{color:rgba(245,242,236,.7)}
+.situace-cta{display:block;margin-top:18px;font:600 12px/1 Inter,sans-serif;letter-spacing:.06em;
+  text-transform:uppercase;color:#C9A260}
+.situace-karta:hover .situace-cta{color:#C9A260}
+@media(max-width:900px){.situace{grid-template-columns:1fr}}
+
+/* ── Investment monthly renta hint ── */
+.inv-renta{margin-top:16px;padding-top:14px;border-top:1px solid rgba(245,242,236,.1)}
+.inv-renta-num{font:600 22px/1.1 Lora,serif;color:#C9A260;margin:0 0 4px}
+.inv-renta-num span{font:400 14px/1 Inter,sans-serif;color:rgba(245,242,236,.6);margin-left:4px}
+.inv-renta-hint{font-size:12px;color:rgba(245,242,236,.5);margin:0 0 10px;line-height:1.5}
+.link-gold{background:none;border:none;padding:0;font:500 13px/1 Inter,sans-serif;color:#C9A260;
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link-gold:hover{color:#e8c080}
+
+
+/* ── Blog reading paths ── */
+.cesty{background:#FCFBF8;border:1px solid rgba(26,21,17,.08);border-radius:16px;padding:22px 24px;margin:20px 0 32px}
+.cesty-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.cesty-eyebrow{font:600 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35;white-space:nowrap}
+.cesty-tabs{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.cesty-tabs button{padding:5px 12px;border-radius:999px;border:1px solid rgba(26,21,17,.15);background:transparent;font:500 12px/1 Inter,sans-serif;cursor:pointer;color:#1A1511;transition:background .15s,color .15s}
+.cesty-tabs button.on{background:#0C1F3A;color:#F5F2EC;border-color:#0C1F3A}
+.cesty-time{font-size:12px;color:#7A5C35;white-space:nowrap}
+.cesty-list{display:flex;flex-direction:column;gap:6px}
+.cesty-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;background:transparent;text-decoration:none;color:#1A1511;transition:background .15s}
+.cesty-item:hover{background:rgba(26,21,17,.04)}
+.cesty-num{width:22px;height:22px;border-radius:50%;border:1px solid #C9A260;color:#C9A260;font:600 11px/1 Inter,sans-serif;display:grid;place-items:center;flex-shrink:0}
+.cesty-title{flex:1;font-size:14px;font-weight:500}
+.cesty-mins{font-size:12px;color:#7A5C35}
+
+/* ── Article audio player ── */
+.audio-player{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#0C1F3A;border-radius:10px;margin:0 auto 28px;max-width:var(--article-width,680px)}
+.ap-play{width:36px;height:36px;border-radius:50%;background:#C9A260;border:none;cursor:pointer;display:grid;place-items:center;color:#0C1F3A;flex-shrink:0;transition:background .15s}
+.ap-play:hover{background:#e8c080}
+.ap-time{font:400 13px/1 Inter,sans-serif;color:rgba(245,242,236,.6);min-width:70px;font-variant-numeric:tabular-nums}
+.ap-rates{display:flex;gap:4px}
+.ap-rates button{padding:3px 7px;border-radius:4px;border:1px solid rgba(245,242,236,.2);background:transparent;font:500 11px/1 Inter,sans-serif;color:rgba(245,242,236,.55);cursor:pointer;transition:background .15s,color .15s}
+.ap-rates button.on{background:rgba(201,162,96,.2);color:#C9A260;border-color:rgba(201,162,96,.4)}
+.ap-label{font:500 12px/1 Inter,sans-serif;color:rgba(245,242,236,.45);margin-left:auto;white-space:nowrap}
+.cte-se{border-left:3px solid #C9A260;padding-left:12px;transition:border-color .3s}
+@media(max-width:640px){.ap-label{display:none}}
