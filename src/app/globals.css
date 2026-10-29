@@ -610,22 +610,7 @@ nav {
 .calc-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 @media (max-width: 640px) {
   .calc-header { padding: 14px 12px 0; }
-  /* inline-flex → flex so overflow-x:auto has a bounded width to scroll within */
-  .calc-tabs {
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .calc-tabs::-webkit-scrollbar { display: none; }
-  .calc-tab { white-space: nowrap; flex-shrink: 0; padding: 8px 13px; font-size: 12px; }
-  /* pan-y lets the browser scroll vertically; horizontal swipe goes to our handler */
   .calc-body { padding: 18px 14px; touch-action: pan-y; }
-  .calc-panel.active { grid-template-columns: 1fr; gap: 20px; }
-  .calc-panel.active > * { min-width: 0; }
-  .result-big { font-size: clamp(24px, 7.5vw, 34px); white-space: normal; word-break: break-word; }
 }
 .calc-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
 .calc-cols .calc-result{position:sticky;top:96px}
@@ -2430,6 +2415,40 @@ nav.over-dark .hamburger span { background: rgba(245,242,236,.7); }
   background: #0C1F3A;
   color: #F5F2EC;
   border-bottom: none;
+}
+/* ── Mobile calc fixes (must come AFTER inline-flex definition above) ── */
+@media (max-width: 640px) {
+  .calc-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 12px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .calc-tab {
+    flex: 1 1 calc(50% - 2px);
+    text-align: center;
+    font-size: 11px;
+    padding: 9px 6px;
+    border-radius: 9px;
+    white-space: nowrap;
+  }
+  .calc-tab.active { border-radius: 9px; }
+  /* result column: stack below inputs, never overflow */
+  .calc-panel.active {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .calc-panel.active > * { min-width: 0; max-width: 100%; }
+  .calc-result { width: 100%; box-sizing: border-box; overflow: hidden; }
+  .result-big {
+    font-size: clamp(24px, 7.5vw, 34px);
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 }
 .calc-result {
   background: #0C1F3A;
