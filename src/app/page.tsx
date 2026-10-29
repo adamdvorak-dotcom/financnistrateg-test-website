@@ -233,7 +233,7 @@ export default function Page() {
   const [lang, setLang] = useState<Lang>("cs");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [curtainPhase, setCurtainPhase] = useState<"hidden" | "visible" | "exiting">("hidden");
-  const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement">("invest");
+  const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement" | "depletion">("invest");
   const [refDot, setRefDot] = useState(0);
   const refScrollRef = useRef<HTMLDivElement>(null);
   const dustCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -261,6 +261,11 @@ export default function Page() {
   const [retMonthlySavings, setRetMonthlySavings] = useState(3000);
   const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
+  /* Depletion calculator */
+  const [decMajetek, setDecMajetek] = useState(10_000_000)
+  const [decVyber, setDecVyber] = useState(50_000)
+  const [decVynos, setDecVynos] = useState(4.5)
+  const [decZacatek, setDecZacatek] = useState(60)
 
   /* Service card expand, handled imperatively to preserve reveal animation */
 
@@ -657,6 +662,21 @@ export default function Page() {
     : 0
   const pKc = (x: number) => `${Math.round(x).toLocaleString('cs-CZ')} Kč`
   const pCislo = (x: number) => Math.round(x).toLocaleString('cs-CZ')
+
+  const tvar = (n: number, [jeden, dva, pet]: [string, string, string]) =>
+    n === 1 ? jeden : n >= 2 && n <= 4 ? dva : pet
+
+  const decR = decVynos / 100 / 12
+  const decNavzdy = decR > 0 ? decMajetek * decR : 0
+  const decMesice = decVyber <= decNavzdy
+    ? Infinity
+    : decR > 0
+      ? -Math.log(1 - (decMajetek * decR) / decVyber) / Math.log(1 + decR)
+      : decMajetek / decVyber
+  const decRoky = isFinite(decMesice) ? Math.floor(decMesice / 12) : 0
+  const decZbyva = isFinite(decMesice) ? Math.floor(decMesice % 12) : 0
+  const decZustatek = (m: number) =>
+    decMajetek * Math.pow(1 + decR, m) - (decR > 0 ? decVyber * ((Math.pow(1 + decR, m) - 1) / decR) : decVyber * m)
 
   /* ── Form handlers ── */
   const handleFormSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
@@ -1237,6 +1257,9 @@ export default function Page() {
                 <button className={`calc-tab${calcTab === "invest" ? " active" : ""}`} onClick={() => setCalcTab("invest")}>{t.tabInvest}</button>
                 <button className={`calc-tab${calcTab === "mortgage" ? " active" : ""}`} onClick={() => setCalcTab("mortgage")}>{t.tabMortgage}</button>
                 <button className={`calc-tab${calcTab === "retirement" ? " active" : ""}`} onClick={() => setCalcTab("retirement")}>{t.tabRetirement}</button>
+                <button className={`calc-tab${calcTab === "depletion" ? " active" : ""}`} onClick={() => setCalcTab("depletion")}>
+                  Na jak dlouho <span className="new-badge">nové</span>
+                </button>
               </div>
             </div>
             <div className="calc-body">
@@ -1497,6 +1520,86 @@ export default function Page() {
                 </div>
               </div>
 
+              {/* Depletion tab */}
+              {calcTab === 'depletion' && (
+                <div className="calc-cols">
+                  <div className="calc-inputs">
+                    <div>
+                      <label className="field-label">Majetek <span className="field-val">{Math.round(decMajetek / 1_000_000 * 10) / 10} mil. Kč</span></label>
+                      <GoldRange value={decMajetek} min={500_000} max={50_000_000} step={500_000} onChange={setDecMajetek} fmtLabel={(v) => (v / 1_000_000).toFixed(1) + ' mil.'} />
+                      <div className="range-meta"><span>0,5 mil.</span><span>50 mil. Kč</span></div>
+                    </div>
+                    <div>
+                      <label className="field-label">Měsíční výběr <span className="field-val">{decVyber.toLocaleString('cs-CZ')} Kč</span></label>
+                      <GoldRange value={decVyber} min={5_000} max={200_000} step={1_000} onChange={setDecVyber} fmtLabel={(v) => v.toLocaleString('cs-CZ')} />
+                      <div className="range-meta"><span>5 000</span><span>200 000 Kč</span></div>
+                    </div>
+                    <div>
+                      <label className="field-label">Roční výnos <span className="field-val">{decVynos} %</span></label>
+                      <GoldRange value={decVynos} min={0} max={10} step={0.1} onChange={setDecVynos} fmtLabel={(v) => v + ' %'} />
+                      <div className="range-meta"><span>0 %</span><span>10 %</span></div>
+                      <p style={{ fontSize: 12, color: 'rgba(245,242,236,.5)', marginTop: 4 }}>Klidné rentiérské portfolio dělá zhruba 4 až 5 %.</p>
+                    </div>
+                    <div>
+                      <label className="field-label">Začnete vybírat v <span className="field-val">{decZacatek} letech</span></label>
+                      <GoldRange value={decZacatek} min={40} max={80} step={1} onChange={setDecZacatek} fmtLabel={(v) => v + ' let'} />
+                      <div className="range-meta"><span>40 let</span><span>80 let</span></div>
+                    </div>
+                  </div>
+                  <div className="calc-result">
+                    {isFinite(decMesice) ? (
+                      <>
+                        <p className="result-label">Váš majetek vydrží</p>
+                        <p className="result-big">
+                          {decRoky} {tvar(decRoky, ['rok', 'roky', 'let'])}
+                          {decZbyva > 0 && <span style={{ fontSize: '0.6em', opacity: .7 }}> a {decZbyva} {tvar(decZbyva, ['měsíc', 'měsíce', 'měsíců'])}</span>}
+                        </p>
+                        <p style={{ fontSize: 13, color: 'rgba(245,242,236,.6)', margin: '0 0 16px', lineHeight: 1.5 }}>
+                          Když začnete v {decZacatek}, vystačí vám do {decZacatek + decRoky}.
+                        </p>
+                        <svg viewBox="0 0 200 80" className="dec-chart" preserveAspectRatio="none">
+                          {(() => {
+                            const maxM = Math.ceil(decMesice)
+                            const pts: string[] = []
+                            for (let step = 0; step <= 60; step++) {
+                              const m = (step / 60) * maxM
+                              const z = Math.max(0, decZustatek(m))
+                              pts.push(`${(step / 60) * 200},${80 - (z / decMajetek) * 78}`)
+                            }
+                            return <polyline points={pts.join(' ')} fill="none" stroke="#C9A260" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                          })()}
+                        </svg>
+                        <div className="result-divider" />
+                        <div className="result-row">
+                          <span className="result-row-k">Za 10 let zbude</span>
+                          <span className="result-row-v">{Math.max(0, Math.round(decZustatek(120))).toLocaleString('cs-CZ')} Kč</span>
+                        </div>
+                        <div className="result-row">
+                          <span className="result-row-k">Za 20 let zbude</span>
+                          <span className="result-row-v">{Math.max(0, Math.round(decZustatek(240))).toLocaleString('cs-CZ')} Kč</span>
+                        </div>
+                        <div className="result-row">
+                          <span className="result-row-k">Navždy vydrží</span>
+                          <span className="result-row-v">{Math.round(decNavzdy).toLocaleString('cs-CZ')} Kč/měs.</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <p className="result-label">Váš majetek vydrží</p>
+                        <p className="result-big">Navždy.</p>
+                        <p style={{ fontSize: 13, color: 'rgba(245,242,236,.6)', margin: '0 0 16px' }}>
+                          Výnos portfolia ({Math.round(decNavzdy).toLocaleString('cs-CZ')} Kč/měs.) pokryje výběr.
+                        </p>
+                      </>
+                    )}
+                    <p style={{ fontSize: 11, color: 'rgba(245,242,236,.35)', marginTop: 16, lineHeight: 1.55 }}>
+                      Ilustrační výpočet bez inflace a daní. Výběr se během let nemění.
+                    </p>
+                    <a className="btn-gold" href="/konzultace" style={{ display: 'inline-block', marginTop: 14 }}>Probrat rentu →</a>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
@@ -1541,6 +1644,50 @@ export default function Page() {
               </div>
               <span className="sign" data-reveal>Adam Dvořák</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Tým ── */}
+      <section style={{ padding: '80px 0' }}>
+        <div className="container">
+          <div className="tym">
+            <div>
+              <div className="section-eyebrow">Tým kolem vás</div>
+              <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 20 }}>
+                Jeden člověk. <em>Za ním tým.</em>
+              </h2>
+              <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: '42ch', marginBottom: 28 }}>
+                Mluvíte se mnou. Když je potřeba advokát, daňař nebo notář, přivedu ho k vašemu stolu a hlídám, aby si všichni rozuměli.
+              </p>
+              <ol className="tym-body">
+                <li><b>Jedno číslo, na které voláte.</b> Nemusíte nikomu vysvětlovat všechno od začátku.</li>
+                <li><b>Specialisté, když jsou potřeba.</b> Na smlouvu advokát, na závěť notář, na prodej firmy M&amp;A poradce.</li>
+                <li><b>Všichni vědí, co řeší ti druzí.</b> Daně, právo a investice do sebe zapadnou.</li>
+              </ol>
+            </div>
+            <figure className="tym-mapa" aria-label="Vy, Adam a šest specialistů kolem">
+              <span className="tym-vy">Vy</span>
+              <span className="tym-ad">AD</span>
+              {[
+                { role: 'Advokát',        co: 'smlouvy, svěřenský fond' },
+                { role: 'Notář',          co: 'závěť, dědictví' },
+                { role: 'Daňový poradce', co: 'daně firmy i rodiny' },
+                { role: 'Účetní',         co: 'čísla firmy' },
+                { role: 'M&A poradce',    co: 'prodej firmy' },
+                { role: 'Privátní banka', co: 'účty v zahraničí' },
+              ].map((t, i) => {
+                const uhel = -Math.PI / 3 + (i / 6) * 2 * Math.PI
+                return (
+                  <span key={t.role} className="tym-clen" style={{
+                    left: `${58 + 30 * Math.cos(uhel)}%`,
+                    top: `${50 + 36 * Math.sin(uhel)}%`,
+                  }}>
+                    {t.role}<small>{t.co}</small>
+                  </span>
+                )
+              })}
+            </figure>
           </div>
         </div>
       </section>
