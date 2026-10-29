@@ -608,7 +608,7 @@ nav {
 .calc-body { padding: 32px; }
 .calc-panel { display: none; }
 .calc-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-@media (max-width: 640px) { .calc-panel.active { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .calc-panel.active { grid-template-columns: 1fr; } .calc-panel.active > * { min-width: 0; } .result-big { font-size: 36px; white-space: normal; } }
 .calc-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
 .calc-cols .calc-result{position:sticky;top:96px}
 @media(max-width:900px){.calc-cols{grid-template-columns:1fr}}
