@@ -1343,11 +1343,11 @@ export default function Page() {
                 </div>
               </div>
               <div className="ded-group">
-                <label className="ded-label">Váš majetek <strong>{(Math.round(dedMajetek / 100_000) / 10).toLocaleString('cs-CZ')} mil. Kč</strong></label>
-                <input type="range" min={1_000_000} max={100_000_000} step={1_000_000} value={dedMajetek}
+                <label className="ded-label">Váš majetek <strong>{dedMajetek >= 1_000_000_000 ? '1 mld. Kč' : (Math.round(dedMajetek / 100_000) / 10).toLocaleString('cs-CZ') + ' mil. Kč'}</strong></label>
+                <input type="range" min={1_000_000} max={1_000_000_000} step={5_000_000} value={dedMajetek}
                   onChange={(e) => setDedMajetek(+e.target.value)}
                   className="ded-range" />
-                <div className="ded-range-meta"><span>1 mil.</span><span>100 mil. Kč</span></div>
+                <div className="ded-range-meta"><span>1 mil.</span><span>1 mld. Kč</span></div>
               </div>
               {dedManzel && (
                 <div className="ded-group">
