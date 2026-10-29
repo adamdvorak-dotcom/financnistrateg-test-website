@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles, getArticle } from "../articles";
 import { DipKalk } from "../DipKalk";
+import { PenzijkoKalk } from "../PenzijkoKalk";
+import { SverenskyFond } from "../SverenskyFond";
 import { AudioPlayer } from "../AudioPlayer";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -88,6 +90,7 @@ function ArticleContent({ slug }: { slug: string }) {
           a jeho oddělení od ostatního osobního majetku. Takový fond se může využívat
           pro ochranu aktiv v případě dědictví, rozvodů nebo dlužních problémů.
         </p>
+        <SverenskyFond />
         <h2>1. Důkladné plánování</h2>
         <p>
           Prvním krokem je důkladné plánování s jasnou představou o správě majetku
@@ -760,6 +763,7 @@ function ArticleContent({ slug }: { slug: string }) {
           klienti ptají. Obě cesty mají svá specifika a nejlepší řešení závisí na vaší
           situaci, věku a finančních cílech.
         </p>
+        <PenzijkoKalk />
         <h2>Třetí pilíř: penzijní spoření</h2>
         <p>
           Účastnické fondy (dříve penzijní připojištění) fungují díky kombinaci vašich
