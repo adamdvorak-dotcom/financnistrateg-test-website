@@ -43,7 +43,6 @@ export function TymDiag() {
         {/* Vy node */}
         <div className="tnd tnd-vy" style={{ left: `${(65 / W) * 100}%`, top: "50%" }}>
           <div className="tnd-ring-vy"><em>Vy</em></div>
-          <div className="tnd-eye">JEDNO ČÍSLO</div>
         </div>
 
         {/* AD node */}

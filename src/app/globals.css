@@ -2923,12 +2923,12 @@ nav.scrolled .nav-logo{font-size:15px}
 /* generic node anchor */
 .tnd{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center}
 /* Vy */
-.tnd-ring-vy{width:72px;height:72px;border-radius:50%;border:1.5px solid rgba(245,242,236,.65);background:rgba(245,242,236,.07);display:flex;align-items:center;justify-content:center}
-.tnd-ring-vy em{font:italic 16px/1 Lora,serif;color:#F5F2EC;font-style:italic}
+.tnd-ring-vy{width:96px;height:96px;border-radius:50%;border:1.5px solid rgba(245,242,236,.82);background:rgba(245,242,236,.16);display:flex;align-items:center;justify-content:center}
+.tnd-ring-vy em{font:italic 20px/1 Lora,serif;color:#F5F2EC;font-style:italic}
 .tnd-eye{margin-top:6px;font:600 7px/1 Inter,sans-serif;letter-spacing:1.5px;color:rgba(245,242,236,.32);text-transform:uppercase}
 /* AD */
-.tnd-ring-ad{width:84px;height:84px;border-radius:50%;border:1.5px solid #C9A260;background:rgba(201,162,96,.07);display:flex;align-items:center;justify-content:center}
-.tnd-ring-ad em{font:italic 22px/1 Lora,serif;color:#C9A260;font-style:italic}
+.tnd-ring-ad{width:72px;height:72px;border-radius:50%;border:1.5px solid #C9A260;background:rgba(201,162,96,.07);display:flex;align-items:center;justify-content:center}
+.tnd-ring-ad em{font:italic 19px/1 Lora,serif;color:#C9A260;font-style:italic}
 .tnd-eye-ad{color:rgba(201,162,96,.5)}
 /* Specialist button */
 .tnd-spec{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:10px;position:absolute;transform:translate(-50%,-50%)}
