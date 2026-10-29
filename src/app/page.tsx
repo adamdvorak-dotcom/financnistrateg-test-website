@@ -700,6 +700,7 @@ export default function Page() {
 
   const heroRef = useRef<HTMLElement>(null);
   const calcTouchX = useRef<number>(0);
+  const calcTouchY = useRef<number>(0);
   const calcTabOrder = ['invest', 'mortgage', 'retirement', 'depletion'] as const;
   const heroInnerRef = useRef<HTMLDivElement>(null);
 
@@ -1536,10 +1537,14 @@ export default function Page() {
               </div>
             </div>
             <div className="calc-body"
-              onTouchStart={(e) => { calcTouchX.current = e.touches[0].clientX; }}
+              onTouchStart={(e) => {
+                calcTouchX.current = e.touches[0].clientX;
+                calcTouchY.current = e.touches[0].clientY;
+              }}
               onTouchEnd={(e) => {
                 const dx = e.changedTouches[0].clientX - calcTouchX.current;
-                if (Math.abs(dx) < 50) return;
+                const dy = e.changedTouches[0].clientY - calcTouchY.current;
+                if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) return;
                 const idx = calcTabOrder.indexOf(calcTab);
                 if (dx < 0 && idx < calcTabOrder.length - 1) setCalcTab(calcTabOrder[idx + 1]);
                 if (dx > 0 && idx > 0) setCalcTab(calcTabOrder[idx - 1]);

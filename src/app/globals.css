@@ -609,14 +609,23 @@ nav {
 .calc-panel { display: none; }
 .calc-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 @media (max-width: 640px) {
-  .calc-header { padding: 20px 16px 0; }
-  .calc-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .calc-header { padding: 14px 12px 0; }
+  /* inline-flex → flex so overflow-x:auto has a bounded width to scroll within */
+  .calc-tabs {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
   .calc-tabs::-webkit-scrollbar { display: none; }
-  .calc-tab { white-space: nowrap; flex-shrink: 0; padding: 10px 14px; font-size: 12px; }
-  .calc-body { padding: 20px 16px; }
-  .calc-panel.active { grid-template-columns: 1fr; gap: 24px; }
+  .calc-tab { white-space: nowrap; flex-shrink: 0; padding: 8px 13px; font-size: 12px; }
+  /* pan-y lets the browser scroll vertically; horizontal swipe goes to our handler */
+  .calc-body { padding: 18px 14px; touch-action: pan-y; }
+  .calc-panel.active { grid-template-columns: 1fr; gap: 20px; }
   .calc-panel.active > * { min-width: 0; }
-  .result-big { font-size: clamp(26px, 8vw, 36px); white-space: normal; word-break: break-word; }
+  .result-big { font-size: clamp(24px, 7.5vw, 34px); white-space: normal; word-break: break-word; }
 }
 .calc-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
 .calc-cols .calc-result{position:sticky;top:96px}
