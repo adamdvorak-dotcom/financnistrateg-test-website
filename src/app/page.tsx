@@ -82,6 +82,67 @@ const T = {
     tymLi1b: "Jedno číslo, na které voláte.", tymLi1t: "Nemusíte nikomu vysvětlovat všechno od začátku.",
     tymLi2b: "Specialisté, když jsou potřeba.", tymLi2t: "Na smlouvu advokát, na závěť notář, na prodej firmy M&A poradce.",
     tymLi3b: "Všichni vědí, co řeší ti druzí.", tymLi3t: "Daně, právo a investice do sebe zapadnou.",
+    /* investment calc */
+    invMillSuffix: "mil. Kč", invExact: "přesně", invRentaMonth: "měsíčně renty",
+    invRentaHint: "Pravidlo palce: milion udělá zhruba 5 000 Kč měsíčně.",
+    invRentaCta: "Spočítat celý důchod →",
+    /* retirement calc result */
+    retResultLabel: "Váš měsíční příjem v důchodu", retOfTarget: "z",
+    retStateBar: "Stát", retOnTrack: "Portfolio pokryje váš cíl celé. Jste na dobré cestě.",
+    /* depletion calc */
+    decAssets: "Majetek", decWithdrawal: "Měsíční výběr", decReturn: "Roční výnos",
+    decStartAge: "Začnete vybírat v", decStartAgeSuffix: "letech",
+    decResultLabel: "Váš majetek vydrží", decNote: "Klidné rentiérské portfolio dělá zhruba 4 až 5 %.",
+    dec10y: "Za 10 let zbude", dec20y: "Za 20 let zbude", decForeverRow: "Navždy vydrží",
+    decForeverBig: "Navždy.", decPerMonth: "Kč/měs.",
+    decCta: "Probrat rentu →",
+    decDisc: "Ilustrační výpočet bez inflace a daní. Výběr se během let nemění.",
+    /* preventivka */
+    prevEye: "Pro majitele firem", prevH3: "Finanční preventivka",
+    prevP: "Nic vás nebolí, a právě proto je dobrá chvíle podívat se, jestli firma běží i bez vás.",
+    prevCta: "Začít preventivku",
+    /* druhá noha */
+    nohaEye: "Struktura majetku", nohaH2a: "Kde máte", nohaH2b: "majetek?",
+    nohaP: "Zadejte odhadovanou hodnotu každé části. Počítá se jen v prohlížeči.",
+    nohaFirmaLbl: "Firma", nohaNemLbl: "Nemovitosti", nohaInvLbl: "Investice", nohaHotLbl: "Hotovost",
+    nohaTotal: "Váš majetek dohromady", nohaOutside: "Mimo firmu", nohaLiquid: "K dispozici hned",
+    nohaOfAssets: "majetku", nohaNoSale: "bez prodeje firmy nebo baráku",
+    nohaQuote: "„Cihla vám rohlíky nezaplatí.“", nohaCta: "Probrat druhou nohu →",
+    /* dědictví */
+    dedEye: "Bez závěti rozhodne zákon", dedH2a: "Kdo dědí,", dedH2b: "když závěť nemáte?",
+    dedP: "Naklikněte svou situaci a hned vidíte, kdo co dostane.",
+    dedPartnerLabel: "Partnerský stav", dedChildrenLabel: "Počet dětí", dedMinorsLabel: "Z toho nezletilých",
+    dedParentsLabel: "Žijící rodiče", dedAssetLabel: "Váš majetek",
+    dedSjmLabel: "Majetek ve společném jmění manželů?", dedSjmYes: "Ano", dedSjmNo: "Ne, mám smlouvu",
+    dedClass1: "1. třída dědiců", dedClass2: "2. třída dědiců", dedClass3: "3. třída dědiců",
+    dedNoteGuardian: "Když dědí i rodič, který dítě zastupuje, nebo víc nezletilých sourozenců, jedná za dítě kolizní opatrovník, zpravidla úředník OSPOD.",
+    dedNoteForced: "I se závětí musíte dětem nechat povinný díl: nezletilým tři čtvrtiny, dospělým čtvrtinu zákonného podílu.",
+    dedWarnPartner: "Partner bez svatby vedle dětí nedědí ani korunu, i kdybyste spolu žili dvacet let. Pomůže jen závěť.",
+    dedNotePartner2: "Podmínka: partner bez svatby dědí ve 2. třídě jen pokud spolu žili aspoň rok ve společné domácnosti (§ 1636 OZ).",
+    dedStat: "Přes 560 milionů korun zdědil v roce 2025 stát po 1 615 lidech, kteří neměli dědice ani závěť.",
+    dedCta: "Probrat, co do závěti patří →",
+    dedNameWife: "Manželka", dedNameHusband: "Manžel", dedNamePartner: "Partner bez svatby",
+    dedNameAdultChild: "Dospělé dítě", dedNameMinorChild: "Dítě do 18 let",
+    dedNameParent: "Váš rodič", dedNameDistant: "Sourozenci a vzdálenější příbuzní",
+    dedParentOpts: ["Žádný", "Jeden", "Oba"] as [string, string, string],
+    dedPartnerOpts: [["manzelka", "Manželka"], ["manzel", "Manžel"], [null, "Sám/a"], ["druh", "Spolu bez svatby"]] as [string | null, string][],
+    /* situace */
+    situEye: "S čím za mnou chodíte", situH2a: "Takhle to", situH2b: "nejčastěji začíná.",
+    situCards: [
+      { veta: '„Prodávám firmu."', text: 'Nebo o tom přemýšlím. Kolik za ni dostanu, jak je to s daní a hlavně co pak s penězi.', cta: 'Probrat exit', href: '/konzultace' },
+      { veta: '„Všechno mám ve firmě."', text: 'Kromě baráku je všechno ve firmě. Postavíme druhou nohu, která nespadne, když se firmě zrovna nedaří.', cta: 'Kde máte majetek', href: '#druha-noha' },
+      { veta: '„Přišly velké peníze."', text: 'Dědictví, prodej nebo velký bonus. Nejdřív klid, pak plán. Nic se nemusí podepsat tento týden.', cta: 'Probrat v klidu', href: '/konzultace' },
+      { veta: '„Chci to jednou předat dětem."', text: 'A umí vaše děti s penězi zacházet? Předání začíná pravidly, ne až dědickým řízením.', cta: 'Kdo dědí bez závěti', href: '/#dedictvi' },
+      { veta: '„Někdo mi nabízí investici."', text: 'Pošlete mi ji dřív, než podepíšete. Většinu nabídek, které mi lidi pošlou, končím větou: tohle ne.', cta: 'Poslat nabídku', href: 'mailto:adamdvorak@financnistrateg.com?subject=Nab%C3%ADdka%20k%20posouzen%C3%AD' },
+      { veta: '„Blíží se důchod."', text: 'Stačí to? Spočítáme, kolik dá stát, kolik vaše peníze a co chybí.', cta: 'Důchodová kalkulačka', href: '/?kalkulacka=duchod#calculators' },
+    ] as { veta: string; text: string; cta: string; href: string }[],
+    /* references */
+    refs: [
+      { text: 'Naši dosavadní spolupráci hodnotíme velmi pozitivně. Oceňujeme vysokou profesionalitu, rychlost, flexibilitu a schopnost přizpůsobit řešení našim individuálním požadavkům. Přístup je precizní a zaměřený na detail.', author: 'Denisa a Dalibor' },
+      { text: 'Jsem rád za osobní přístup. Vím kam směřuji a není mi nic nucené ani prodávané.', author: 'Radek' },
+      { text: 'Už po první komunikaci s plánem do budoucna nám se ženou spadl kámen ze srdce, že se můžeme mít dobře. Začali jsme žít.', author: 'Miroslav' },
+      { text: 'Je to důvěra v mladého člověka, jehož služby budou moci v budoucnu využívat mí potomci. Investování vyžaduje hodně práce v získávání informací a rozvahu. A protože to momentálně není to, co mě naplňuje, rád tuto činnost přenechám odborníkům.', author: 'Daneš a rodina' },
+    ] as { text: string; author: string }[],
   },
   en: {
     navAbout: "About", navServices: "Services", navCalc: "Calculators", navBlog: "Blog", navContact: "Contact", navCta: "Free Consultation",
@@ -142,6 +203,67 @@ const T = {
     tymLi1b: "One number to call.", tymLi1t: "No need to explain everything from scratch.",
     tymLi2b: "Specialists when needed.", tymLi2t: "A lawyer for contracts, a notary for wills, an M&A advisor when selling the business.",
     tymLi3b: "Everyone knows what the others are working on.", tymLi3t: "Tax, law and investments fit together.",
+    /* investment calc */
+    invMillSuffix: "mil. CZK", invExact: "exact", invRentaMonth: "monthly income",
+    invRentaHint: "Rule of thumb: a million generates roughly 5,000 CZK per month.",
+    invRentaCta: "Calculate full retirement →",
+    /* retirement calc result */
+    retResultLabel: "Your monthly retirement income", retOfTarget: "of",
+    retStateBar: "State", retOnTrack: "Portfolio covers your target in full. You're on track.",
+    /* depletion calc */
+    decAssets: "Assets", decWithdrawal: "Monthly withdrawal", decReturn: "Annual return",
+    decStartAge: "You start withdrawing at", decStartAgeSuffix: "",
+    decResultLabel: "Your assets will last", decNote: "A steady retirement portfolio returns roughly 4–5%.",
+    dec10y: "After 10 years", dec20y: "After 20 years", decForeverRow: "Lasts forever",
+    decForeverBig: "Forever.", decPerMonth: "CZK/month",
+    decCta: "Discuss retirement income →",
+    decDisc: "Illustrative calculation, no inflation or tax. Withdrawal stays fixed.",
+    /* preventivka */
+    prevEye: "For business owners", prevH3: "Financial Health Check",
+    prevP: "Nothing hurts right now — which is exactly the right time to check whether the business runs without you.",
+    prevCta: "Start the check-up",
+    /* asset structure */
+    nohaEye: "Asset structure", nohaH2a: "Where is your", nohaH2b: "wealth?",
+    nohaP: "Enter the estimated value of each part. Calculated only in your browser.",
+    nohaFirmaLbl: "Business", nohaNemLbl: "Real estate", nohaInvLbl: "Investments", nohaHotLbl: "Cash",
+    nohaTotal: "Total assets", nohaOutside: "Outside business", nohaLiquid: "Available now",
+    nohaOfAssets: "of assets", nohaNoSale: "without selling the business or property",
+    nohaQuote: "\"Bricks don't pay bills.\"", nohaCta: "Discuss diversification →",
+    /* inheritance */
+    dedEye: "Without a will, the law decides", dedH2a: "Who inherits", dedH2b: "when you have no will?",
+    dedP: "Select your situation and see immediately who gets what.",
+    dedPartnerLabel: "Relationship status", dedChildrenLabel: "Number of children", dedMinorsLabel: "of which minors",
+    dedParentsLabel: "Living parents", dedAssetLabel: "Your assets",
+    dedSjmLabel: "Assets in joint matrimonial property?", dedSjmYes: "Yes", dedSjmNo: "No, I have a prenup",
+    dedClass1: "1st class of heirs", dedClass2: "2nd class of heirs", dedClass3: "3rd class of heirs",
+    dedNoteGuardian: "When a parent also inherits as the child's legal guardian, or when multiple minors inherit, a conflict guardian (usually a social services official) represents each child.",
+    dedNoteForced: "Even with a will, you must leave children their reserved portion: three-quarters of the legal share for minors, one-quarter for adults.",
+    dedWarnPartner: "An unmarried partner beside children inherits nothing, even if you lived together for twenty years. Only a will can change that.",
+    dedNotePartner2: "Condition: an unmarried partner inherits in 2nd class only if they lived together for at least one year in a shared household (§ 1636 CZ Civil Code).",
+    dedStat: "In 2025, the Czech state inherited over CZK 560 million from 1,615 people who had no heirs and no will.",
+    dedCta: "Discuss what belongs in a will →",
+    dedNameWife: "Wife", dedNameHusband: "Husband", dedNamePartner: "Unmarried partner",
+    dedNameAdultChild: "Adult child", dedNameMinorChild: "Child under 18",
+    dedNameParent: "Your parent", dedNameDistant: "Siblings and more distant relatives",
+    dedParentOpts: ["None", "One", "Both"] as [string, string, string],
+    dedPartnerOpts: [["manzelka", "Wife"], ["manzel", "Husband"], [null, "Single"], ["druh", "Partner, not married"]] as [string | null, string][],
+    /* situace */
+    situEye: "What brings people to me", situH2a: "This is how it", situH2b: "usually starts.",
+    situCards: [
+      { veta: '"I\'m selling my business."', text: 'Or thinking about it. How much will I get, what about tax, and — most importantly — what to do with the money.', cta: 'Discuss the exit', href: '/konzultace' },
+      { veta: '"Everything is tied up in the business."', text: 'Apart from the house, everything is in the company. Let\'s build a second leg that won\'t collapse if the business hits a rough patch.', cta: 'Where is your wealth', href: '#druha-noha' },
+      { veta: '"A large sum just arrived."', text: 'Inheritance, a sale, or a big bonus. First comes calm, then a plan. Nothing has to be signed this week.', cta: 'Let\'s talk it through', href: '/konzultace' },
+      { veta: '"I want to pass it on to my children."', text: 'And do your children know how to handle money? Succession starts with rules, not with probate.', cta: 'Who inherits without a will', href: '/#dedictvi' },
+      { veta: '"Someone is offering me an investment."', text: 'Send it to me before you sign. Most offers that reach me end with one sentence: not this one.', cta: 'Send the offer', href: 'mailto:adamdvorak@financnistrateg.com?subject=Investment%20offer%20for%20review' },
+      { veta: '"Retirement is getting close."', text: 'Is it enough? We\'ll work out how much the state provides, how much your money contributes, and what the gap is.', cta: 'Retirement calculator', href: '/?kalkulacka=duchod#calculators' },
+    ] as { veta: string; text: string; cta: string; href: string }[],
+    /* references */
+    refs: [
+      { text: 'We have been very happy with our collaboration so far. We appreciate the high professionalism, speed, flexibility and the ability to tailor solutions to our individual needs. The approach is precise and detail-oriented.', author: 'Denisa & Dalibor' },
+      { text: 'I appreciate the personal approach. I know where I\'m headed and nothing is pushed or sold to me.', author: 'Radek' },
+      { text: 'After the very first conversation and plan for the future, my wife and I felt a huge weight lift off our shoulders. We started living.', author: 'Miroslav' },
+      { text: 'It is trust in a young person whose services my children will be able to use in the future. Investing requires a lot of work gathering information and making considered decisions. Since that is not what fulfils me right now, I am happy to leave it to the experts.', author: 'Daneš & family' },
+    ] as { text: string; author: string }[],
   },
 };
 
@@ -694,8 +816,8 @@ export default function Page() {
   const pDoplatek = pKapital > 0 && pFvF > 0
     ? Math.ceil(pKapital / pFvF / 100) * 100
     : 0
-  const pKc = (x: number) => `${Math.round(x).toLocaleString('cs-CZ')} Kč`
-  const pCislo = (x: number) => Math.round(x).toLocaleString('cs-CZ')
+  const pKc = (x: number) => `${Math.round(x).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} ${t.currency}`
+  const pCislo = (x: number) => Math.round(x).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')
 
   const tvar = (n: number, [jeden, dva, pet]: [string, string, string]) =>
     n === 1 ? jeden : n >= 2 && n <= 4 ? dva : pet
@@ -715,7 +837,7 @@ export default function Page() {
   /* ── Inheritance widget ── */
   const kdoDedi = () => {
     const sjm = dedManzel === 'manzelka' || dedManzel === 'manzel'
-    const jmeno = dedManzel === 'manzel' ? 'Manžel' : dedManzel === 'druh' ? 'Partner bez svatby' : 'Manželka'
+    const jmeno = dedManzel === 'manzel' ? t.dedNameHusband : dedManzel === 'druh' ? t.dedNamePartner : t.dedNameWife
     const pulkaSJM = sjm && dedSjm ? dedMajetek / 2 : 0
     const D = dedMajetek - pulkaSJM
     if (dedDeti > 0) {
@@ -723,7 +845,7 @@ export default function Page() {
       return { trida: 1, dedici: [
         ...(sjm ? [{ kdo: jmeno, castka: pulkaSJM + dil }] : []),
         ...Array.from({ length: dedDeti }, (_, i) => ({
-          kdo: i < dedDeti - dedNezletile ? 'Dospělé dítě' : 'Dítě do 18 let', castka: dil })),
+          kdo: i < dedDeti - dedNezletile ? t.dedNameAdultChild : t.dedNameMinorChild, castka: dil })),
       ] }
     }
     if (dedManzel || dedRodice > 0) {
@@ -734,22 +856,21 @@ export default function Page() {
       const r = dedRodice ? (D - m) / dedRodice : 0
       return { trida: 2, dedici: [
         ...(dedManzel ? [{ kdo: jmeno, castka: pulkaSJM + m }] : []),
-        ...Array.from({ length: dedRodice }, () => ({ kdo: 'Váš rodič', castka: r })),
+        ...Array.from({ length: dedRodice }, () => ({ kdo: t.dedNameParent, castka: r })),
       ] }
     }
-    return { trida: 3, dedici: [{ kdo: 'Sourozenci a vzdálenější příbuzní', castka: D }] }
+    return { trida: 3, dedici: [{ kdo: t.dedNameDistant, castka: D }] }
   }
   const dedVysledek = kdoDedi()
   const dedSjmPartner = dedManzel === 'manzelka' || dedManzel === 'manzel'
   const dedOpatrovnik = dedVysledek.trida === 1 && dedNezletile > 0 && (dedSjmPartner || dedNezletile >= 2)
-  const dedVarovani = dedManzel === 'druh' && dedDeti > 0
-    ? 'Partner bez svatby vedle dětí nedědí ani korunu, i kdybyste spolu žili dvacet let. Pomůže jen závěť.'
-    : null
+  const dedVarovani = dedManzel === 'druh' && dedDeti > 0 ? t.dedWarnPartner : null
+  const loc = lang === 'cs' ? 'cs-CZ' : 'en-US'
   const dedFmt = (n: number) => n >= 1_000_000_000
-    ? (Math.round(n / 100_000_000) / 10).toLocaleString('cs-CZ') + ' mld. Kč'
+    ? (Math.round(n / 100_000_000) / 10).toLocaleString(loc) + (lang === 'cs' ? ' mld. Kč' : ' bil. CZK')
     : n >= 10_000_000
-    ? (Math.round(n / 100_000) / 10).toLocaleString('cs-CZ') + ' mil. Kč'
-    : Math.round(n).toLocaleString('cs-CZ') + ' Kč'
+    ? (Math.round(n / 100_000) / 10).toLocaleString(loc) + ' mil. ' + t.currency
+    : Math.round(n).toLocaleString(loc) + ' ' + t.currency
   const dedZlomek = (x: number) => {
     if (x >= 1 || x <= 0) return null
     for (let d = 1; d <= 96; d++) {
@@ -1069,49 +1190,12 @@ export default function Page() {
       {/* ── Situace ── */}
       <section style={{ padding: '80px 0' }}>
         <div className="container">
-          <div className="section-eyebrow">S čím za mnou chodíte</div>
+          <div className="section-eyebrow">{t.situEye}</div>
           <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 40 }}>
-            Takhle to <em>nejčastěji začíná.</em>
+            {t.situH2a} <em>{t.situH2b}</em>
           </h2>
           <div className="situace">
-            {[
-              {
-                veta: '„Prodávám firmu."',
-                text: 'Nebo o tom přemýšlím. Kolik za ni dostanu, jak je to s daní a hlavně co pak s penězi.',
-                cta: 'Probrat exit',
-                href: '/konzultace',
-              },
-              {
-                veta: '„Všechno mám ve firmě."',
-                text: 'Kromě baráku je všechno ve firmě. Postavíme druhou nohu, která nespadne, když se firmě zrovna nedaří.',
-                cta: 'Kde máte majetek',
-                href: '#druha-noha',
-              },
-              {
-                veta: '„Přišly velké peníze."',
-                text: 'Dědictví, prodej nebo velký bonus. Nejdřív klid, pak plán. Nic se nemusí podepsat tento týden.',
-                cta: 'Probrat v klidu',
-                href: '/konzultace',
-              },
-              {
-                veta: '„Chci to jednou předat dětem."',
-                text: 'A umí vaše děti s penězi zacházet? Předání začíná pravidly, ne až dědickým řízením.',
-                cta: 'Kdo dědí bez závěti',
-                href: '/#dedictvi',
-              },
-              {
-                veta: '„Někdo mi nabízí investici."',
-                text: 'Pošlete mi ji dřív, než podepíšete. Většinu nabídek, které mi lidi pošlou, končím větou: tohle ne.',
-                cta: 'Poslat nabídku',
-                href: 'mailto:adamdvorak@financnistrateg.com?subject=Nab%C3%ADdka%20k%20posouzen%C3%AD',
-              },
-              {
-                veta: '„Blíží se důchod."',
-                text: 'Stačí to? Spočítáme, kolik dá stát, kolik vaše peníze a co chybí.',
-                cta: 'Důchodová kalkulačka',
-                href: '/?kalkulacka=duchod#calculators',
-              },
-            ].map((s) => (
+            {t.situCards.map((s) => (
               <a key={s.veta} href={s.href} className="situace-karta">
                 <p className="situace-veta">{s.veta}</p>
                 <p className="situace-text">{s.text}</p>
@@ -1222,11 +1306,11 @@ export default function Page() {
         <div className="container">
           <div className="prev-card">
             <div>
-              <div className="section-eyebrow" style={{color:"rgba(201,162,96,.72)",marginBottom:20}}>Pro majitele firem</div>
-              <h3>Finanční preventivka</h3>
-              <p style={{marginTop:16}}>Nic vás nebolí, a právě proto je dobrá chvíle podívat se, jestli firma běží i bez vás.</p>
+              <div className="section-eyebrow" style={{color:"rgba(201,162,96,.72)",marginBottom:20}}>{t.prevEye}</div>
+              <h3>{t.prevH3}</h3>
+              <p style={{marginTop:16}}>{t.prevP}</p>
               <a href="/test" className="btn-primary" style={{marginTop:32,display:"inline-flex",alignItems:"center",gap:8}}>
-                <span>Začít preventivku</span>
+                <span>{t.prevCta}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -1256,24 +1340,24 @@ export default function Page() {
       <section className="noha" id="druha-noha">
         <div className="container noha-grid">
           <div>
-            <div className="section-eyebrow">Struktura majetku</div>
+            <div className="section-eyebrow">{t.nohaEye}</div>
             <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 16 }}>
-              Kde máte <em>majetek?</em>
+              {t.nohaH2a} <em>{t.nohaH2b}</em>
             </h2>
             <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: '42ch', marginBottom: 32 }}>
-              Zadejte odhadovanou hodnotu každé části. Počítá se jen v prohlížeči.
+              {t.nohaP}
             </p>
             <div className="noha-sliders">
               {[
-                { label: 'Firma', val: firma, set: setFirma, max: 150 },
-                { label: 'Nemovitosti', val: nem, set: setNem, max: 80 },
-                { label: 'Investice', val: inv, set: setInv, max: 50 },
-                { label: 'Hotovost', val: hot, set: setHot, max: 20 },
+                { label: t.nohaFirmaLbl, val: firma, set: setFirma, max: 150 },
+                { label: t.nohaNemLbl, val: nem, set: setNem, max: 80 },
+                { label: t.nohaInvLbl, val: inv, set: setInv, max: 50 },
+                { label: t.nohaHotLbl, val: hot, set: setHot, max: 20 },
               ].map(({ label, val, set, max }) => (
                 <div key={label}>
                   <div className="noha-slider-label">
                     <span>{label}</span>
-                    <span>{nohaFmt(val)} mil. Kč</span>
+                    <span>{nohaFmt(val)} {t.invMillSuffix}</span>
                   </div>
                   <input
                     type="range"
@@ -1290,35 +1374,35 @@ export default function Page() {
 
           <div className="noha-card">
             <div className="noha-total">
-              <span>Váš majetek dohromady</span>
-              <b>{nohaFmt(noha)} mil. Kč</b>
+              <span>{t.nohaTotal}</span>
+              <b>{nohaFmt(noha)} {t.invMillSuffix}</b>
             </div>
-            <div className="pruh" role="img" aria-label={`Majetek: firma ${nohaPct(firma)}, nemovitosti ${nohaPct(nem)}, investice ${nohaPct(inv)}, hotovost ${nohaPct(hot)}`}>
+            <div className="pruh" role="img" aria-label={`${t.nohaFirmaLbl} ${nohaPct(firma)}, ${t.nohaNemLbl} ${nohaPct(nem)}, ${t.nohaInvLbl} ${nohaPct(inv)}, ${t.nohaHotLbl} ${nohaPct(hot)}`}>
               <i className="firma" style={{ width: nohaDil(firma) }} />
               <i className="nem" style={{ width: nohaDil(nem) }} />
               <i className="inv" style={{ width: nohaDil(inv) }} />
               <i className="hot" style={{ width: nohaDil(hot) }} />
             </div>
             <div className="pruh-legend">
-              <span className="l-firma">Firma {nohaPct(firma)}</span>
-              <span className="l-nem">Nemovitosti {nohaPct(nem)}</span>
-              <span className="l-inv">Investice {nohaPct(inv)}</span>
-              <span className="l-hot">Hotovost {nohaPct(hot)}</span>
+              <span className="l-firma">{t.nohaFirmaLbl} {nohaPct(firma)}</span>
+              <span className="l-nem">{t.nohaNemLbl} {nohaPct(nem)}</span>
+              <span className="l-inv">{t.nohaInvLbl} {nohaPct(inv)}</span>
+              <span className="l-hot">{t.nohaHotLbl} {nohaPct(hot)}</span>
             </div>
             <div className="karty">
               <div>
-                <small>Mimo firmu</small>
+                <small>{t.nohaOutside}</small>
                 <b>{nohaFmt(nohaMimo)} mil.</b>
-                <span>{nohaPct(nohaMimo)} majetku</span>
+                <span>{nohaPct(nohaMimo)} {t.nohaOfAssets}</span>
               </div>
               <div className="navy">
-                <small>K dispozici hned</small>
+                <small>{t.nohaLiquid}</small>
                 <b>{nohaFmt(nohaMin)} mil.</b>
-                <span>{nohaPct(nohaMin)} bez prodeje firmy nebo baráku</span>
+                <span>{nohaPct(nohaMin)} {t.nohaNoSale}</span>
               </div>
             </div>
-            <blockquote className="noha-quote">„Cihla vám rohlíky nezaplatí."</blockquote>
-            <a className="btn-navy" href="/konzultace">Probrat druhou nohu →</a>
+            <blockquote className="noha-quote">{t.nohaQuote}</blockquote>
+            <a className="btn-navy" href="/konzultace">{t.nohaCta}</a>
           </div>
         </div>
       </section>
@@ -1326,29 +1410,29 @@ export default function Page() {
       {/* ── Dědictví ── */}
       <section id="dedictvi" style={{ padding: '80px 0', background: 'var(--bg-2)' }}>
         <div className="container">
-          <div className="section-eyebrow">Bez závěti rozhodne zákon</div>
+          <div className="section-eyebrow">{t.dedEye}</div>
           <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 8 }}>
-            Kdo dědí, <em>když závěť nemáte?</em>
+            {t.dedH2a} <em>{t.dedH2b}</em>
           </h2>
           <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: '50ch', marginBottom: 40 }}>
-            Naklikněte svou situaci a hned vidíte, kdo co dostane.
+            {t.dedP}
           </p>
           <div className="ded-grid">
             <div className="ded-inputs">
               <div className="ded-group">
-                <label className="ded-label">Partnerský stav</label>
+                <label className="ded-label">{t.dedPartnerLabel}</label>
                 <div className="ded-opts">
-                  {([['manzelka', 'Manželka'], ['manzel', 'Manžel'], [null, 'Sám/a'], ['druh', 'Spolu bez svatby']] as const).map(([v, l]) => (
+                  {t.dedPartnerOpts.map(([v, l]) => (
                     <button key={String(v)} type="button"
                       className={`ded-opt${dedManzel === v ? ' on' : ''}`}
-                      onClick={() => setDedManzel(v)}>
+                      onClick={() => setDedManzel(v as 'manzelka' | 'manzel' | 'druh' | null)}>
                       {l}
                     </button>
                   ))}
                 </div>
               </div>
               <div className="ded-group">
-                <label className="ded-label">Počet dětí <strong>{dedDeti}</strong></label>
+                <label className="ded-label">{t.dedChildrenLabel} <strong>{dedDeti}</strong></label>
                 <input type="range" min={0} max={6} step={1} value={dedDeti}
                   onChange={(e) => { setDedDeti(+e.target.value); setDedNezletile(Math.min(dedNezletile, +e.target.value)) }}
                   className="ded-range" />
@@ -1356,7 +1440,7 @@ export default function Page() {
               </div>
               {dedDeti > 0 && (
                 <div className="ded-group">
-                  <label className="ded-label">Z toho nezletilých <strong>{dedNezletile}</strong></label>
+                  <label className="ded-label">{t.dedMinorsLabel} <strong>{dedNezletile}</strong></label>
                   <input type="range" min={0} max={dedDeti} step={1} value={dedNezletile}
                     onChange={(e) => setDedNezletile(+e.target.value)}
                     className="ded-range" />
@@ -1364,39 +1448,39 @@ export default function Page() {
                 </div>
               )}
               <div className="ded-group">
-                <label className="ded-label">Žijící rodiče</label>
+                <label className="ded-label">{t.dedParentsLabel}</label>
                 <div className="ded-opts">
                   {([0, 1, 2] as const).map((v) => (
                     <button key={v} type="button"
                       className={`ded-opt${dedRodice === v ? ' on' : ''}`}
                       onClick={() => setDedRodice(v)}>
-                      {v === 0 ? 'Žádný' : v === 1 ? 'Jeden' : 'Oba'}
+                      {t.dedParentOpts[v]}
                     </button>
                   ))}
                 </div>
               </div>
               <div className="ded-group">
-                <label className="ded-label">Váš majetek <strong>{dedMajetek >= 1_000_000_000 ? '1 mld. Kč' : (Math.round(dedMajetek / 100_000) / 10).toLocaleString('cs-CZ') + ' mil. Kč'}</strong></label>
+                <label className="ded-label">{t.dedAssetLabel} <strong>{dedFmt(dedMajetek)}</strong></label>
                 <input type="range" min={0} max={1000} step={1}
                   value={Math.round(1000 * Math.log(dedMajetek / 1_000_000) / Math.log(1000))}
                   onChange={(e) => { const p = +e.target.value; const v = 1_000_000 * Math.pow(1000, p / 1000); const k = v < 10e6 ? 500_000 : v < 100e6 ? 1_000_000 : 10_000_000; setDedMajetek(Math.min(1_000_000_000, Math.round(v / k) * k)); }}
                   className="ded-range" />
                 <div className="ded-ticks">
-                  <span>1 mil.</span><span>10 mil.</span><span>100 mil.</span><span>1 mld. Kč</span>
+                  <span>1 mil.</span><span>10 mil.</span><span>100 mil.</span><span>1 {lang === 'cs' ? 'mld.' : 'bil.'} {t.currency}</span>
                 </div>
               </div>
               {dedSjmPartner && (
                 <div className="ded-group">
-                  <label className="ded-label">Majetek ve společném jmění manželů?</label>
+                  <label className="ded-label">{t.dedSjmLabel}</label>
                   <div className="ded-opts">
-                    <button type="button" className={`ded-opt${dedSjm ? ' on' : ''}`} onClick={() => setDedSjm(true)}>Ano</button>
-                    <button type="button" className={`ded-opt${!dedSjm ? ' on' : ''}`} onClick={() => setDedSjm(false)}>Ne, mám smlouvu</button>
+                    <button type="button" className={`ded-opt${dedSjm ? ' on' : ''}`} onClick={() => setDedSjm(true)}>{t.dedSjmYes}</button>
+                    <button type="button" className={`ded-opt${!dedSjm ? ' on' : ''}`} onClick={() => setDedSjm(false)}>{t.dedSjmNo}</button>
                   </div>
                 </div>
               )}
             </div>
             <div className="ded-result">
-              <p className="ded-result-label">{dedVysledek.trida === 1 ? '1. třída dědiců' : dedVysledek.trida === 2 ? '2. třída dědiců' : '3. třída dědiců'}</p>
+              <p className="ded-result-label">{dedVysledek.trida === 1 ? t.dedClass1 : dedVysledek.trida === 2 ? t.dedClass2 : t.dedClass3}</p>
               {dedVysledek.dedici.map((d, i) => (
                 <div key={i} className="ded-row">
                   <div className="ded-row-left">
@@ -1410,22 +1494,20 @@ export default function Page() {
                 </div>
               ))}
               {dedOpatrovnik && (
-                <p className="ded-pozn">Když dědí i rodič, který dítě zastupuje, nebo víc nezletilých sourozenců, jedná za dítě kolizní opatrovník, zpravidla úředník OSPOD.</p>
+                <p className="ded-pozn">{t.dedNoteGuardian}</p>
               )}
               {dedVysledek.trida === 1 && (
-                <p className="ded-pozn">I se závětí musíte dětem nechat povinný díl: nezletilým tři čtvrtiny, dospělým čtvrtinu zákonného podílu.</p>
+                <p className="ded-pozn">{t.dedNoteForced}</p>
               )}
               {dedVarovani && (
                 <p className="ded-pozn ded-warn">{dedVarovani}</p>
               )}
               {dedManzel === 'druh' && dedDeti === 0 && (
-                <p className="ded-pozn">Podmínka: partner bez svatby dědí ve 2.&nbsp;třídě jen pokud spolu žili aspoň rok ve společné domácnosti (§&nbsp;1636&nbsp;OZ).</p>
+                <p className="ded-pozn">{t.dedNotePartner2}</p>
               )}
-              <div className="ded-stat">
-                Přes 560 milionů korun zdědil v roce 2025 stát po 1 615 lidech, kteří neměli dědice ani závěť.
-              </div>
+              <div className="ded-stat">{t.dedStat}</div>
               <a href="/konzultace" className="btn-primary" style={{ display: 'inline-flex', marginTop: 20 }}>
-                Probrat, co do závěti patří →
+                {t.dedCta}
               </a>
             </div>
           </div>
@@ -1458,11 +1540,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.invMonthly}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString('cs-CZ')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} onBlur={(e) => { const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0; setInvMonthly(Math.round(v / 1000) * 1000 || 1000); }} />
-                      <span className="field-unit">Kč</span>
+                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} onBlur={(e) => { const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0; setInvMonthly(Math.round(v / 1000) * 1000 || 1000); }} />
+                      <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={invMonthly} min={1000} max={200000} step={1000} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
-                    <div className="range-meta"><span>500 Kč</span><span>200 000 Kč</span></div>
+                    <GoldRange value={invMonthly} min={1000} max={200000} step={1000} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} />
+                    <div className="range-meta"><span>500 {t.currency}</span><span>200 000 {t.currency}</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.invRate}</label>
@@ -1477,10 +1559,10 @@ export default function Page() {
                     <label className="field-label">{t.invYears}</label>
                     <div className="field-input-wrap">
                       <input type="number" className="field-input" value={invYears} min={1} max={50} onChange={(e) => setInvYears(+e.target.value || 0)} />
-                      <span className="field-unit">let</span>
+                      <span className="field-unit">{lang === 'cs' ? 'let' : 'yrs'}</span>
                     </div>
-                    <GoldRange value={invYears} min={1} max={40} step={1} onChange={setInvYears} fmtLabel={(v) => v + " let"} />
-                    <div className="range-meta"><span>1 rok</span><span>40 let</span></div>
+                    <GoldRange value={invYears} min={1} max={40} step={1} onChange={setInvYears} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : ' yrs')} />
+                    <div className="range-meta"><span>{lang === 'cs' ? '1 rok' : '1 yr'}</span><span>{lang === 'cs' ? '40 let' : '40 yrs'}</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.invInit}</label>
@@ -1491,9 +1573,9 @@ export default function Page() {
                         const pos = Math.round(1 + (Math.log10(Math.max(1000, v) / 1000) / Math.log10(50000)) * 99);
                         setInvInitPos(Math.max(0, Math.min(100, pos)));
                       }} />
-                      <span className="field-unit">Kč</span>
+                      <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={invInitPos} min={0} max={100} step={1} onChange={setInvInitPos} fmtLabel={() => invInit > 0 ? invInit.toLocaleString("cs-CZ") + " Kč" : "0"} />
+                    <GoldRange value={invInitPos} min={0} max={100} step={1} onChange={setInvInitPos} fmtLabel={() => invInit > 0 ? invInit.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency : "0"} />
                     <div style={{ position: "relative", height: 18, marginTop: 2 }}>
                       {([
                         { pos: 0, label: "0" },
@@ -1524,19 +1606,19 @@ export default function Page() {
                       </div>
                       <div className="result-big">
                         {iFv >= 10_000_000
-                          ? <>{(Math.round(iFv / 100_000) / 10).toLocaleString('cs-CZ')}<small>mil. Kč</small></>
-                          : <>{Math.round(iFv).toLocaleString('cs-CZ')}<small>Kč</small></>}
+                          ? <>{(Math.round(iFv / 100_000) / 10).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')}<small>{t.invMillSuffix}</small></>
+                          : <>{Math.round(iFv).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')}<small>{t.currency}</small></>}
                       </div>
-                      {iFv >= 10_000_000 && <p className="result-presne">přesně {Math.round(iFv).toLocaleString('cs-CZ')} Kč</p>}
+                      {iFv >= 10_000_000 && <p className="result-presne">{t.invExact} {fmt(iFv, lang)} {t.currency}</p>}
                       {(() => {
                         const invRenta = Math.round((iFv / 1_000_000) * 5_000 / 100) * 100
-                        const invRentaStr = invRenta.toLocaleString('cs-CZ') + ' Kč'
+                        const invRentaStr = invRenta.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency
                         return invRenta > 0 ? (
                           <div className="inv-renta">
-                            <p className="inv-renta-num">≈ {invRentaStr} <span>měsíčně renty</span></p>
-                            <p className="inv-renta-hint">Pravidlo palce: milion udělá zhruba 5&nbsp;000&nbsp;Kč měsíčně.</p>
+                            <p className="inv-renta-num">≈ {invRentaStr} <span>{t.invRentaMonth}</span></p>
+                            <p className="inv-renta-hint">{t.invRentaHint}</p>
                             <button type="button" className="link-gold" onClick={() => setCalcTab('retirement')}>
-                              Spočítat celý důchod →
+                              {t.invRentaCta}
                             </button>
                           </div>
                         ) : null
@@ -1599,9 +1681,9 @@ export default function Page() {
                     </div>
                     <div className="field-input-wrap">
                       <input type="number" className="field-input" value={mtgAmt} min={100000} step={50000} onChange={(e) => setMtgAmt(+e.target.value || 0)} />
-                      <span className="field-unit">Kč</span>
+                      <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={mtgAmt} min={500000} max={20000000} step={100000} onChange={setMtgAmt} fmtLabel={(v) => (v / 1000000).toFixed(1) + " mil. Kč"} />
+                    <GoldRange value={mtgAmt} min={500000} max={20000000} step={100000} onChange={setMtgAmt} fmtLabel={(v) => (v / 1000000).toFixed(1) + ' mil. ' + t.currency} />
                     <div className="range-meta"><span>500 000</span><span>20 mil.</span></div>
                   </div>
                   <div>
@@ -1617,10 +1699,10 @@ export default function Page() {
                     <label className="field-label">{t.mtgTerm}</label>
                     <div className="field-input-wrap">
                       <input type="number" className="field-input" value={mtgYrs} min={1} max={40} onChange={(e) => setMtgYrs(+e.target.value || 0)} />
-                      <span className="field-unit">let</span>
+                      <span className="field-unit">{lang === 'cs' ? 'let' : 'yrs'}</span>
                     </div>
-                    <GoldRange value={mtgYrs} min={5} max={40} step={1} onChange={setMtgYrs} fmtLabel={(v) => v + " let"} />
-                    <div className="range-meta"><span>5 let</span><span>40 let</span></div>
+                    <GoldRange value={mtgYrs} min={5} max={40} step={1} onChange={setMtgYrs} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : ' yrs')} />
+                    <div className="range-meta"><span>{lang === 'cs' ? '5 let' : '5 yrs'}</span><span>{lang === 'cs' ? '40 let' : '40 yrs'}</span></div>
                   </div>
                 </div>
                 <div className="calc-result">
@@ -1639,11 +1721,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.retDesiredLabel}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString("cs-CZ")} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
-                      <span className="field-unit">Kč</span>
+                      <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={retDesiredPension} min={15000} max={1_000_000} step={5000} onChange={setRetDesiredPension} fmtLabel={(v) => v >= 1_000_000 ? '1 mil. Kč' : v.toLocaleString("cs-CZ") + " Kč"} logStep={(v) => v < 100_000 ? 1_000 : v < 500_000 ? 5_000 : 50_000} />
-                    <div className="range-meta"><span>15 000 Kč</span><span>1 000 000 Kč</span></div>
+                    <GoldRange value={retDesiredPension} min={15000} max={1_000_000} step={5000} onChange={setRetDesiredPension} fmtLabel={(v) => v >= 1_000_000 ? '1 mil. ' + t.currency : v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} logStep={(v) => v < 100_000 ? 1_000 : v < 500_000 ? 5_000 : 50_000} />
+                    <div className="range-meta"><span>15 000 {t.currency}</span><span>1 000 000 {t.currency}</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.retAgeLabel}</label>
@@ -1660,51 +1742,53 @@ export default function Page() {
                       <input type="number" className="field-input" value={retMissingYears} min={0} max={15} onChange={(e) => setRetMissingYears(Math.min(15, Math.max(0, +e.target.value || 0)))} />
                       <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
                     </div>
-                    <GoldRange value={retMissingYears} min={0} max={15} step={1} onChange={setRetMissingYears} fmtLabel={(v) => v + " let"} />
-                    <div className="range-meta"><span>0</span><span>15 let (−{fmt(15 * 480, lang)} Kč/měs.)</span></div>
+                    <GoldRange value={retMissingYears} min={0} max={15} step={1} onChange={setRetMissingYears} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : '')} />
+                    <div className="range-meta"><span>0</span><span>15{lang === 'cs' ? ' let' : ''} (−{fmt(15 * 480, lang)} {t.currency}/{lang === 'cs' ? 'měs.' : 'mo.'})</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.retCurrentSavLabel}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retCurrentSavings > 0 ? retCurrentSavings.toLocaleString("cs-CZ") : ""} placeholder="0" onChange={(e) => setRetCurrentSavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
-                      <span className="field-unit">Kč</span>
+                      <input type="text" inputMode="numeric" className="field-input" value={retCurrentSavings > 0 ? retCurrentSavings.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') : ""} placeholder="0" onChange={(e) => setRetCurrentSavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={retCurrentSavings} min={0} max={5000000} step={50000} onChange={setRetCurrentSavings} fmtLabel={(v) => v === 0 ? "0" : (v / 1000).toFixed(0) + " tis. Kč"} />
+                    <GoldRange value={retCurrentSavings} min={0} max={5000000} step={50000} onChange={setRetCurrentSavings} fmtLabel={(v) => v === 0 ? "0" : (v / 1000).toFixed(0) + (lang === 'cs' ? ' tis. Kč' : 'k CZK')} />
                     <div className="range-meta"><span>0</span><span>5 mil.</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.retMonthlySavLabel}</label>
                     <div className="presets">
                       {[1000, 3000, 5000, 10000].map(v => (
-                        <button key={v} type="button" className={retMonthlySavings === v ? "on" : ""} onClick={() => setRetMonthlySavings(v)}>{v.toLocaleString("cs-CZ")} Kč</button>
+                        <button key={v} type="button" className={retMonthlySavings === v ? "on" : ""} onClick={() => setRetMonthlySavings(v)}>{v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} {t.currency}</button>
                       ))}
                     </div>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString("cs-CZ")} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
-                      <span className="field-unit">Kč</span>
+                      <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={retMonthlySavings} min={0} max={50000} step={1000} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString("cs-CZ") + " Kč"} />
-                    <div className="range-meta"><span>0</span><span>50 000 Kč</span></div>
+                    <GoldRange value={retMonthlySavings} min={0} max={50000} step={1000} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} />
+                    <div className="range-meta"><span>0</span><span>50 000 {t.currency}</span></div>
                   </div>
                 </div>
                 <div className="calc-result">
-                  <p className="result-label">Váš měsíční příjem v důchodu</p>
+                  <p className="result-label">{t.retResultLabel}</p>
                   <p className="result-big">
-                    {pKc(pStat + pPort)} <small style={{ fontSize: '0.55em', color: 'rgba(245,242,236,.6)', fontWeight: 400 }}>z {pKc(pCil)}</small>
+                    {pKc(pStat + pPort)} <small style={{ fontSize: '0.55em', color: 'rgba(245,242,236,.6)', fontWeight: 400 }}>{t.retOfTarget} {pKc(pCil)}</small>
                   </p>
                   <div className="renta">
-                    <i className="stat" style={{ width: pSirka(pStat) }}>Stát {pCislo(pStat)}</i>
+                    <i className="stat" style={{ width: pSirka(pStat) }}>{t.retStateBar} {pCislo(pStat)}</i>
                     <i className="port" style={{ width: pSirka(pPort) }}>Portfolio {pCislo(pPort)}</i>
                     {pChybi > 0 && <i className="chybi" style={{ width: pSirka(pChybi) }} />}
                   </div>
                   {pChybi > 0 && (
                     <p className="calc-hint">
-                      Chybějících {pKc(pChybi)} dorovnáte, když budete spořit o {pKc(pDoplatek)} měsíčně víc.
+                      {lang === 'cs'
+                        ? <>Chybějících {pKc(pChybi)} dorovnáte, když budete spořit o {pKc(pDoplatek)} měsíčně víc.</>
+                        : <>You're short {pKc(pChybi)}. Saving an extra {pKc(pDoplatek)} per month closes the gap.</>}
                     </p>
                   )}
                   {pChybi === 0 && (
                     <p className="calc-hint" style={{ color: 'var(--good, #2f6b4f)' }}>
-                      Portfolio pokryje váš cíl celé. Jste na dobré cestě.
+                      {t.retOnTrack}
                     </p>
                   )}
                   <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 16, lineHeight: 1.55 }}>{t.retDisclaimer}</p>
@@ -1716,37 +1800,39 @@ export default function Page() {
                 <div className="calc-cols">
                   <div className="calc-inputs">
                     <div>
-                      <label className="field-label">Majetek <span className="field-val">{(Math.round(decMajetek / 100_000) / 10).toLocaleString('cs-CZ')} mil. Kč</span></label>
-                      <GoldRange value={decMajetek} min={500_000} max={50_000_000} step={500_000} onChange={setDecMajetek} fmtLabel={(v) => (Math.round(v / 100_000) / 10).toLocaleString('cs-CZ') + ' mil.'} />
-                      <div className="range-meta"><span>0,5 mil.</span><span>50 mil. Kč</span></div>
+                      <label className="field-label">{t.decAssets} <span className="field-val">{(Math.round(decMajetek / 100_000) / 10).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} {t.invMillSuffix}</span></label>
+                      <GoldRange value={decMajetek} min={500_000} max={50_000_000} step={500_000} onChange={setDecMajetek} fmtLabel={(v) => (Math.round(v / 100_000) / 10).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' mil.'} />
+                      <div className="range-meta"><span>{lang === 'cs' ? '0,5 mil.' : '0.5 mil.'}</span><span>50 mil. {t.currency}</span></div>
                     </div>
                     <div>
-                      <label className="field-label">Měsíční výběr <span className="field-val">{decVyber.toLocaleString('cs-CZ')} Kč</span></label>
-                      <GoldRange value={decVyber} min={5_000} max={200_000} step={1_000} onChange={setDecVyber} fmtLabel={(v) => v.toLocaleString('cs-CZ')} />
-                      <div className="range-meta"><span>5 000</span><span>200 000 Kč</span></div>
+                      <label className="field-label">{t.decWithdrawal} <span className="field-val">{decVyber.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} {t.currency}</span></label>
+                      <GoldRange value={decVyber} min={5_000} max={200_000} step={1_000} onChange={setDecVyber} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} />
+                      <div className="range-meta"><span>5 000</span><span>200 000 {t.currency}</span></div>
                     </div>
                     <div>
-                      <label className="field-label">Roční výnos <span className="field-val">{decVynos.toLocaleString('cs-CZ')} %</span></label>
-                      <GoldRange value={decVynos} min={0} max={10} step={0.1} onChange={setDecVynos} fmtLabel={(v) => v.toLocaleString('cs-CZ') + ' %'} />
+                      <label className="field-label">{t.decReturn} <span className="field-val">{decVynos.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} %</span></label>
+                      <GoldRange value={decVynos} min={0} max={10} step={0.1} onChange={setDecVynos} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' %'} />
                       <div className="range-meta"><span>0 %</span><span>10 %</span></div>
-                      <p className="range-note">Klidné rentiérské portfolio dělá zhruba 4 až 5 %.</p>
+                      <p className="range-note">{t.decNote}</p>
                     </div>
                     <div>
-                      <label className="field-label">Začnete vybírat v <span className="field-val">{decZacatek} letech</span></label>
-                      <GoldRange value={decZacatek} min={40} max={80} step={1} onChange={setDecZacatek} fmtLabel={(v) => v + ' let'} />
-                      <div className="range-meta"><span>40 let</span><span>80 let</span></div>
+                      <label className="field-label">{t.decStartAge} <span className="field-val">{decZacatek}{t.decStartAgeSuffix ? ' ' + t.decStartAgeSuffix : ''}</span></label>
+                      <GoldRange value={decZacatek} min={40} max={80} step={1} onChange={setDecZacatek} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : '')} />
+                      <div className="range-meta"><span>40{lang === 'cs' ? ' let' : ''}</span><span>80{lang === 'cs' ? ' let' : ''}</span></div>
                     </div>
                   </div>
                   <div className="calc-result">
                     {isFinite(decMesice) ? (
                       <>
-                        <p className="result-label">Váš majetek vydrží</p>
+                        <p className="result-label">{t.decResultLabel}</p>
                         <p className="result-big">
-                          {decRoky} {tvar(decRoky, ['rok', 'roky', 'let'])}
-                          {decZbyva > 0 && <span style={{ fontSize: '0.6em', opacity: .7 }}> a {decZbyva} {tvar(decZbyva, ['měsíc', 'měsíce', 'měsíců'])}</span>}
+                          {decRoky} {lang === 'cs' ? tvar(decRoky, ['rok', 'roky', 'let']) : decRoky === 1 ? 'year' : 'years'}
+                          {decZbyva > 0 && <span style={{ fontSize: '0.6em', opacity: .7 }}> {lang === 'cs' ? 'a' : 'and'} {decZbyva} {lang === 'cs' ? tvar(decZbyva, ['měsíc', 'měsíce', 'měsíců']) : decZbyva === 1 ? 'month' : 'months'}</span>}
                         </p>
                         <p style={{ fontSize: 13, color: 'rgba(245,242,236,.6)', margin: '0 0 16px', lineHeight: 1.5 }}>
-                          Když začnete v {decZacatek}, vystačí vám do {decZacatek + decRoky}.
+                          {lang === 'cs'
+                            ? <>Když začnete v {decZacatek}, vystačí vám do {decZacatek + decRoky}.</>
+                            : <>Starting at {decZacatek}, your assets last until {decZacatek + decRoky}.</>}
                         </p>
                         <svg viewBox="0 0 200 80" className="dec-chart" preserveAspectRatio="none">
                           {(() => {
@@ -1762,31 +1848,33 @@ export default function Page() {
                         </svg>
                         <div className="result-divider" />
                         <div className="result-row">
-                          <span className="result-row-k">Za 10 let zbude</span>
-                          <span className="result-row-v">{Math.max(0, Math.round(decZustatek(120))).toLocaleString('cs-CZ')} Kč</span>
+                          <span className="result-row-k">{t.dec10y}</span>
+                          <span className="result-row-v">{Math.max(0, Math.round(decZustatek(120))).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} {t.currency}</span>
                         </div>
                         <div className="result-row">
-                          <span className="result-row-k">Za 20 let zbude</span>
-                          <span className="result-row-v">{Math.max(0, Math.round(decZustatek(240))).toLocaleString('cs-CZ')} Kč</span>
+                          <span className="result-row-k">{t.dec20y}</span>
+                          <span className="result-row-v">{Math.max(0, Math.round(decZustatek(240))).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} {t.currency}</span>
                         </div>
                         <div className="result-row">
-                          <span className="result-row-k">Navždy vydrží</span>
-                          <span className="result-row-v">{Math.round(decNavzdy).toLocaleString('cs-CZ')} Kč/měs.</span>
+                          <span className="result-row-k">{t.decForeverRow}</span>
+                          <span className="result-row-v">{Math.round(decNavzdy).toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} {t.decPerMonth}</span>
                         </div>
                       </>
                     ) : (
                       <>
-                        <p className="result-label">Váš majetek vydrží</p>
-                        <p className="result-big">Navždy.</p>
+                        <p className="result-label">{t.decResultLabel}</p>
+                        <p className="result-big">{t.decForeverBig}</p>
                         <p style={{ fontSize: 13, color: 'rgba(245,242,236,.6)', margin: '0 0 16px' }}>
-                          Výnos portfolia ({Math.round(decNavzdy).toLocaleString('cs-CZ')} Kč/měs.) pokryje výběr.
+                          {lang === 'cs'
+                            ? <>Výnos portfolia ({Math.round(decNavzdy).toLocaleString('cs-CZ')} Kč/měs.) pokryje výběr.</>
+                            : <>Portfolio yield ({Math.round(decNavzdy).toLocaleString('en-US')} {t.decPerMonth}) covers your withdrawal.</>}
                         </p>
                       </>
                     )}
                     <p style={{ fontSize: 11, color: 'rgba(245,242,236,.35)', marginTop: 16, lineHeight: 1.55 }}>
-                      Ilustrační výpočet bez inflace a daní. Výběr se během let nemění.
+                      {t.decDisc}
                     </p>
-                    <a className="btn-gold" href="/konzultace" style={{ display: 'inline-block', marginTop: 14 }}>Probrat rentu →</a>
+                    <a className="btn-gold" href="/konzultace" style={{ display: 'inline-block', marginTop: 14 }}>{t.decCta}</a>
                   </div>
                 </div>
               )}
@@ -1871,26 +1959,13 @@ export default function Page() {
             <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.refTitle}</span></span></h2>
           </div>
           <div className="ref-editorial" ref={refScrollRef}>
-            <div className="ref-editorial-card reveal">
-              <span className="ref-guillemet">«</span>
-              <p className="ref-editorial-text">Naši dosavadní spolupráci hodnotíme velmi pozitivně. Oceňujeme vysokou profesionalitu, rychlost, flexibilitu a schopnost přizpůsobit řešení našim individuálním požadavkům. Přístup je precizní a zaměřený na detail.</p>
-              <div className="ref-editorial-author">Denisa a Dalibor</div>
-            </div>
-            <div className="ref-editorial-card reveal delay-1">
-              <span className="ref-guillemet">«</span>
-              <p className="ref-editorial-text">Jsem rád za osobní přístup. Vím kam směřuji a není mi nic nucené ani prodávané.</p>
-              <div className="ref-editorial-author">Radek</div>
-            </div>
-            <div className="ref-editorial-card reveal delay-2">
-              <span className="ref-guillemet">«</span>
-              <p className="ref-editorial-text">Už po první komunikaci s plánem do budoucna nám se ženou spadl kámen ze srdce, že se můžeme mít dobře. Začali jsme žít.</p>
-              <div className="ref-editorial-author">Miroslav</div>
-            </div>
-            <div className="ref-editorial-card reveal delay-3">
-              <span className="ref-guillemet">«</span>
-              <p className="ref-editorial-text">Je to důvěra v mladého člověka, jehož služby budou moci v budoucnu využívat mí potomci. Investování vyžaduje hodně práce v získávání informací a rozvahu. A protože to momentálně není to, co mě naplňuje, rád tuto činnost přenechám odborníkům.</p>
-              <div className="ref-editorial-author">Daneš a rodina</div>
-            </div>
+            {t.refs.map((r, i) => (
+              <div key={i} className={`ref-editorial-card reveal${i > 0 ? ` delay-${i}` : ''}`}>
+                <span className="ref-guillemet">«</span>
+                <p className="ref-editorial-text">{r.text}</p>
+                <div className="ref-editorial-author">{r.author}</div>
+              </div>
+            ))}
           </div>
           <div className="ref-dots" aria-hidden="true">
             {[0, 1, 2, 3].map((i) => (
