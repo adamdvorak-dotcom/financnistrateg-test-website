@@ -7,6 +7,7 @@ import { PenzijkoKalk } from "../PenzijkoKalk";
 import { SverenskyFond } from "../SverenskyFond";
 import { AudioPlayer } from "../AudioPlayer";
 import { HoldingDiag } from "../HoldingDiag";
+import { EtfKalk } from "../EtfKalk";
 
 const CATEGORY_LABELS: Record<string, string> = {
   "rodinny-majetek": "Rodinný majetek",
@@ -1209,6 +1210,403 @@ function ArticleContent({ slug }: { slug: string }) {
             <li id="zdroj-4"><b>Zákon č. 586/1992 Sb.</b>, § 15b — odpočet vkladů na DIP (Dlouhodobý investiční produkt) až 48 000 Kč ročně. Úspora 15 % (základní sazba) až 23 % (vyšší sazba).</li>
           </ol>
         </div>
+      </div>
+    );
+  }
+
+  if (slug === "prodej-firmy-co-s-penezi") {
+    return (
+      <div className="article-body">
+        <p>
+          Přišel za mnou klient. Firma šla za osm milionů, smlouva podepsaná před třemi týdny.
+          Sedl si a řekl: &quot;Peníze jsou na účtu. Co s nimi?&quot;
+        </p>
+        <p>
+          Tohle je moment, na který se deset let dřete. A pak nastane a není připravený skoro nikdo.
+        </p>
+
+        <h2>Nejdřív počkejte</h2>
+        <p>
+          Prvních šest měsíců po prodeji firmy je nejhorší čas na velká investiční rozhodnutí.
+          Emoce ještě neodezněly, nabídky přicházejí odevšad a každý má radu. Banka nabídne
+          strukturované produkty. Kamarád má tip. Tchán chce půjčku.
+        </p>
+        <p>
+          Peníze dejte na spořicí účet nebo do peněžního fondu. Výnos okolo čtyř procent,
+          dostupné do týdne. Za tu dobu nic nezkazíte a získáte čas na rozvahu.
+        </p>
+
+        <h2>Daň: od roku 2026 je to jinak</h2>
+        <p>
+          Pokud jste obchodní podíl drželi déle než pět let, příjem z prodeje je od roku 2026
+          osvobozen od daně z příjmů bez ohledu na výši. Dříve platil limit pět milionů korun,
+          teď neexistuje.
+        </p>
+        <p>
+          Pokud jste prodali dříve nebo podíl drželi kratší dobu, situace je jiná. To je práce
+          pro daňového poradce, ne pro obecnou radu.
+        </p>
+
+        <h2>Nesázejte vše na jednu kartu</h2>
+        <p>
+          Každý druhý klient přijde s nápadem koupit investiční byt. Chápu to. Byt je hmatatelný,
+          vidíte ho, víte, jak funguje. Ale šest sedm milionů v jedné nemovitosti v jednom
+          městě je extrémní koncentrace rizika.
+        </p>
+        <p>
+          Diverzifikace neznamená složitost. Znamená, že když jedna věc selže, nepřijdete o vše.
+        </p>
+
+        <h2>Jak nastavit systém</h2>
+        <p>
+          S klienty po exitu stavíme většinou toto: část jako krátkodobá rezerva na spořicím účtu,
+          část do ETF portfolia s horizontem deset a více let a pokud chcete dál investovat
+          do firem nebo nemovitostí, holding s.r.o. jako šuplík navíc.
+        </p>
+        <p>
+          Nejde o to mít vše optimalizované od prvního dne. Jde o systém, který funguje
+          bez každodenního rozhodování.
+        </p>
+
+        <h2>Proč banka nestačí</h2>
+        <p>
+          Banka vám nabídne produkty, které má. Nezávislý poradce začíná vaší situací,
+          ne produktovým portfoliem. Rozdíl je zásadní, zvláště tehdy, když máte najednou
+          velkou sumu a žádný spěch.
+        </p>
+        <p>
+          Čas máte. Ale ten čas také ubíhá. Každý měsíc peněz, které nepracují správně,
+          je ztracená příležitost.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "sverensky-fond-praha") {
+    return (
+      <div className="article-body">
+        <p>
+          Na golfu, na obědě, po schůzce. Ptají se: &quot;Hele, ten svěřenský fond, to bych
+          měl mít, ne?&quot;
+        </p>
+        <p>
+          Někdy ano. Někdy vůbec ne. Záleží na jedné otázce: co chcete ochránit a před čím.
+        </p>
+
+        <h2>Co svěřenský fond je a co není</h2>
+        <p>
+          Svěřenský fond je právní konstrukce, která odděluje majetek od jeho původního vlastníka.
+          Vložíte majetek do fondu, správce ho spravuje a obmyšlení z něj mají užitek.
+          Vy přestáváte být právním vlastníkem. Majetek nepatří nikomu. Je to účel, ne osoba.
+        </p>
+        <p>
+          Tohle je klíčový bod. Majetek ve fondu není váš a nelze ho snadno postihnout v exekuci.
+          Není vidět v katastru pod vaším jménem. Neprojde standardním dědickým řízením.
+        </p>
+
+        <SverenskyFond />
+
+        <h2>Kdy svěřenský fond dává smysl</h2>
+        <p>
+          Ochrana před věřiteli: majetek vložený v době, kdy jste neměli závazky, je z dosahu
+          věřitelů vzdálen. Retroaktivní přesuny před exekucí jsou napadnutelné a neplatné.
+          Fond musí existovat dříve, než problém nastane.
+        </p>
+        <p>
+          Dědická kontinuita: fond přežije smrt zakladatele bez dědického řízení. Majetek
+          přejde na obmyšlené přesně tak, jak statut nastavil. Bez soudů, bez sporů
+          o podíly, bez čekání.
+        </p>
+        <p>
+          Ochrana při rozvodu: majetek vložený do fondu před manželstvím nebo za specifických
+          podmínek nespadá do SJM. Detaily záleží na konkrétní situaci a době vkladu.
+          Toto je vždy práce pro advokáta.
+        </p>
+
+        <h2>Kdy svěřenský fond nepotřebujete</h2>
+        <p>
+          Pokud váš celkový majetek nepřesáhne patnáct dvacet milionů, administrativní
+          náklady fondu většinou neospravedlní jeho nastavení. Správně sepsaná závěť,
+          nastavené SJM a dobré pojistky dají podobný efekt za podstatně méně.
+        </p>
+        <p>
+          Pokud nemáte děti, vnoučata nebo jiné osoby, pro které chcete majetek strukturovat
+          do dalších generací, fond přidá práci bez odpovídajícího benefitu.
+        </p>
+
+        <h2>Co to stojí a jak to funguje</h2>
+        <p>
+          Nastavení fondu v Praze vyžaduje advokáta a notáře: třicet až šedesát tisíc korun
+          a dva tři měsíce práce. Roční správa u profesionálního správce: deset dvacet tisíc
+          ročně jako minimum. Pokud majetek fondu aktivně pracuje, více.
+        </p>
+        <p>
+          Dobrý fond nastavuje advokát, notář a finanční poradce dohromady. Každý pokrývá
+          jinou část. Žádný sám nestačí.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "holding-sro-osobni-majetek") {
+    return (
+      <div className="article-body">
+        <p>
+          &quot;Kamarád má holding, tak bych ho taky chtěl.&quot; Tohle slyším jednou za čtrnáct dní.
+          Kamarád má s.r.o. pod s.r.o. a vypadá to chytře.
+        </p>
+        <p>
+          Holding může být velmi efektivní nástroj. Nebo zbytečná administrativa za dvacet
+          tisíc ročně navíc. Záleží na jedné věci: co s penězi chcete dělat.
+        </p>
+
+        <HoldingDiag />
+
+        <h2>Jak holding funguje</h2>
+        <p>
+          Holding je mateřská s.r.o., která vlastní vaši provozní firmu. Dividendy z provozní
+          firmy do holdingu jsou osvobozeny od daně, pokud holding vlastní aspoň deset procent
+          dcery nejméně rok. Peníze přejdou bez daňové ztráty.
+        </p>
+        <p>
+          Z holdingu pak investujete do dalšího podnikání, nemovitostí nebo dalších aktiv.
+          Daň platíte až tehdy, když si peníze vezmete osobně.
+        </p>
+
+        <h2>Kdy holding dává smysl</h2>
+        <p>
+          Generujete přebytky, které nechcete okamžitě vybrat. Chcete je reinvestovat
+          do dalších firem nebo nemovitostí. Holding je šuplík: v něm pracuje celá stovka,
+          ne jen osmdesát pět po dividendové dani.
+        </p>
+        <p>
+          Máte nebo plánujete mít víc firem. Holding je přirozené místo, odkud je vlastnit.
+          Čistší struktura, jednodušší prodej jedné z nich.
+        </p>
+        <p>
+          Chcete oddělit provozní riziko od majetku. Pokud provozní firma selže, majetek
+          v holdingu věřitelé firmy nemohou snadno postihnout.
+        </p>
+
+        <h2>Kdy holding nepotřebujete</h2>
+        <p>
+          Vybíráte veškerý zisk jako dividendy každý rok. Pak zaplatíte stejně a máte
+          o jednu firmu víc na správu.
+        </p>
+        <p>
+          Plánujete firmu prodat a máte ji déle než pět let. Od roku 2026 je takový prodej
+          bez daně v jakékoli výši. Z holdingu byste si peníze brali s patnáctiprocentní daní.
+        </p>
+        <p>
+          Roční zisk firmy je nízký. Holding se vyplatí přibližně od okamžiku, kdy byste
+          jinak platili na dividendové dani přes sto padesát tisíc ročně.
+        </p>
+
+        <h2>Co to stojí</h2>
+        <p>
+          Nastavení holdingové struktury s advokátem: třicet až padesát tisíc korun.
+          Roční správa dvou s.r.o.: dvě daňová přiznání, dvě účetní závěrky, větší
+          administrativa. Počítejte s náklady navíc okolo dvaceti tisíc ročně.
+          Struktura se vyplatí, když roční daňová úspora tyto náklady přesáhne s přehledem.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "financni-plan-pro-podnikatele") {
+    return (
+      <div className="article-body">
+        <p>
+          Finanční plán není tabulka v Excelu. Není to ani soubor produktů u jedné banky.
+          Je to odpověď na jednu otázku: co chcete mít za dvacet let a co pro to děláte dnes?
+        </p>
+        <p>
+          Podnikatelé tohle zpravidla neřeší. Jsou zaneprázdněni firmou. A pak jednou přijdou
+          a říkají: &quot;Mám padesát, firma funguje. Ale osobně? Žádný plán.&quot;
+        </p>
+
+        <h2>Krok 1: rezerva mimo firmu</h2>
+        <p>
+          Nejdřív bezpečnost. Osobní likvidní rezerva, která nesouvisí s firmou. Šest měsíců
+          výdajů na spořicím účtu nebo v peněžním fondu. Dostupná do týdne bez dopadu na firmu.
+        </p>
+        <p>
+          Toto chybí devíti z deseti podnikatelů. Firma slouží jako záchranná síť a spořicí
+          účet zároveň. Ale firma není ani jedno.
+        </p>
+
+        <h2>Krok 2: nastavte výplatu správně</h2>
+        <p>
+          Přiměřená mzda z firmy, ne symbolická. Maximální příspěvek firmy na váš DIP, to je
+          až padesát tisíc ročně bez odvodů. Přebytky dividendami, ne v bilanci.
+        </p>
+        <p>
+          Systém musí existovat. Bez systému si vyplácíte podle pocitu a platíte víc,
+          než musíte.
+        </p>
+
+        <h2>Krok 3: investujte osobně</h2>
+        <p>
+          Dividendy, které neutratíte na bydlení a provoz, jdou do investičního portfolia.
+          ETF globálního indexu jako základ, pravidelně, bez přerušení při každém poklesu trhů.
+          Tohle se nastaví jednou a pak pracuje samo.
+        </p>
+
+        <h2>Krok 4: oddělte majetek</h2>
+        <p>
+          Osobní majetek nesmí záviset na osudu firmy. Co má smysl mít osobně, nechte osobně.
+          Firma není vaše penzijní pojistka. Je to nástroj, který může selhat.
+        </p>
+
+        <h2>Krok 5: ochrana</h2>
+        <p>
+          Pojistka na příjmy. Závěť. Plná moc pro případ neschopnosti. Věci, které lidé
+          neřeší, dokud je nepotřebují. A pak je pozdě.
+        </p>
+
+        <h2>Krok 6: co bude po vás</h2>
+        <p>
+          Komu firma připadne. Jak ji ocenit. Jak ji předat dětem nebo prodat cizímu.
+          Je to práce pro advokáta, notáře a poradce dohromady. Ale začíná tím, že si to
+          začnete klást jako otázku dnes.
+        </p>
+
+        <h2>Proč to většina odkládá</h2>
+        <p>
+          Protože je to abstraktní. Firma je konkrétní, každodenní, urgentní. Plán na dvacet
+          let se zdá daleko. Ale čas ubíhá a složený úrok pracuje jen tehdy, když investujete.
+          Každý rok odkladu je rok, o který přicházíte.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "vyber-penez-ze-sro-mzda-dividendy") {
+    return (
+      <div className="article-body">
+        <p>
+          Dva klienti. Podobná firma, podobný zisk. Jeden zaplatí ročně o více než sto padesát
+          tisíc víc. Rozdíl není v žádné kreativitě. Je v tom, jak si nastavili výplatu.
+        </p>
+
+        <h2>Základní logika</h2>
+        <p>
+          Mzda ze s.r.o. je daňový náklad firmy, snižuje základ daně z příjmů právnických
+          osob. Platíte z ní odvody: firma přidá třicet tři a půl procenta ke hrubé mzdě
+          navíc, vy zaplatíte dalších jedenáct a půl procenta. Budujete si sociální nárok
+          a důchod.
+        </p>
+        <p>
+          Dividendy se platí ze zisku po dani z příjmu právnických osob. Zdanění je
+          patnáct procent srážkovou daní, bez jakýchkoliv odvodů. Nevýhoda: jednou ročně
+          po schválení účetní závěrky.
+        </p>
+
+        <div className="nums">
+          <div className="num">
+            <span>Mzda</span>
+            <b>+33,8&nbsp;%</b>
+            <p>přidá firma ke hrubé mzdě navíc. Vy zaplatíte dalších 11,6&nbsp;%.</p>
+          </div>
+          <div className="num">
+            <span>Dividenda</span>
+            <b>15&nbsp;%</b>
+            <p>srážková daň a hotovo. Bez odvodů, bez ohledu na výši.</p>
+          </div>
+          <div className="num navy">
+            <span>DIP od firmy</span>
+            <b>50&nbsp;000&nbsp;Kč</b>
+            <p>ročně může firma poslat na váš DIP bez daně a bez odvodů.</p>
+          </div>
+        </div>
+
+        <h2>Kdy se mzda vyplatí</h2>
+        <p>
+          Pokud je s.r.o. váš primární příjem a chcete neschopenku, nemocenskou a důchodový
+          nárok, mzda dává smysl. Zhruba do hrubé mzdy sto čtyřicet tisíc měsíčně jsou
+          odvody ještě snesitelné.
+        </p>
+        <p>
+          Nad tímto prahem platíte čím dál větší podíl bez toho, aby se vám důchodový nárok
+          dál zvyšoval. Systém má strop.
+        </p>
+
+        <h2>Kdy se vyplatí dividendy</h2>
+        <p>
+          Pokud máte jiné příjmy, kde odvody platíte odjinud: zaměstnání, jiné s.r.o.,
+          příjmy z pronájmu. Patnáct procent z dividendy a hotovo. Platí to bez ohledu
+          na výši: sto tisíc nebo deset milionů, sazba je stejná.
+        </p>
+
+        <h2>Jak to kombinovat</h2>
+        <p>
+          Recept, který používám nejčastěji: přiměřená mzda pro zachování odvodů a sociálního
+          nároku, maximální příspěvek firmy na DIP, přebytky dividendami jednou ročně.
+        </p>
+        <p>
+          Přesná čísla záleží na výši zisku a konkrétní situaci. Ale tohle jsou tři páky,
+          které se dají nastavit rychle a ušetřit statisíce ročně. A zároveň budovat osobní
+          majetek mimo firmu.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "etf-spocitejte-si") {
+    return (
+      <div className="article-body">
+        <p>
+          Složený úrok je jediná síla ve financích, která pracuje i když spíte. Problém je,
+          že se nedá dobře představit. Čísla jsou abstraktní, dokud je nevidíte konkrétně.
+        </p>
+        <p>
+          Tak si je spočítejte.
+        </p>
+
+        <EtfKalk />
+
+        <h2>Co ta čísla znamenají</h2>
+        <p>
+          Pět tisíc měsíčně za dvacet let při sedmiprocentním průměrném výnosu. Vložíte
+          celkem milion dvě stě tisíc. Dostanete zpátky přibližně dva a půl milionu.
+          Víc než polovina je složený úrok: peníze, které nikdy nevložíte, ale vydělá je čas.
+        </p>
+        <p>
+          Tohle není reklama na konkrétní produkt. Je to matematika. Funguje u každého
+          diverzifikovaného ETF portfolia v dostatečně dlouhém horizontu.
+        </p>
+
+        <h2>Kdy to funguje a kdy ne</h2>
+        <p>
+          Funguje tehdy, když nevybíráte předčasně. Každý prodej v poklesu trhu přeruší
+          složený úrok a zamkne ztrátu. Trhy klesají pravidelně: jednou za rok o deset
+          procent, jednou za deset let o třicet. Kdo to vydrží, dostane plný výnos.
+          Kdo prodá v panice, dostane zlomek.
+        </p>
+        <p>
+          Funguje tehdy, když investujete pravidelně. Ne čekáte na správný moment.
+          Pravidelná investice průměruje nákupní cenu a eliminuje chybu načasování.
+        </p>
+        <p>
+          Nefunguje s penězi, které budete potřebovat za dva roky. ETF je nástroj
+          s horizontem deset a více let. Krátkodobé výdaje patří na spořicí účet,
+          ne do portfolia.
+        </p>
+
+        <h2>Co kalkulačka neukáže</h2>
+        <p>
+          Kalkulačka ukáže číslo. Neukáže, jaká výše investice dává smysl v kombinaci
+          s vaší hypotékou, firmou a životními výdaji. Neukáže, jaké ETF koupit ani
+          u jakého brokera. Neukáže, jak to nastavit, aby to vydrželo i při příštím
+          třicetiprocentním propadu.
+        </p>
+        <p>
+          Na tohle je konzultace. A první je zdarma.
+        </p>
+        <Link href="/konzultace" className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+          <span>Probrat konkrétní plán</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </Link>
       </div>
     );
   }
