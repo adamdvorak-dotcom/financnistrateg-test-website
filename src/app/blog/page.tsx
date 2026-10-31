@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { articles, type ArticleCategory } from "./articles";
 import { ReadingPaths } from "./ReadingPaths";
+import { LangButton } from "./LangButton";
+import { FeaturedCard, OwnerCards, BlogListing, BlogSectionLabel } from "./BlogCards";
 
 export const metadata: Metadata = {
   title: "Blog: Investice, DIP, Důchod, Hypotéky, Majetek",
@@ -52,6 +54,7 @@ export default async function BlogPage({
             <span className="nav-logo-efa">, EFA</span>
           </Link>
           <div className="nav-right">
+            <LangButton />
             <Link href="/" className="btn-primary">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 12H5M12 5l-7 7 7 7" />
@@ -104,74 +107,17 @@ export default async function BlogPage({
           {/* ── Featured + 3-grid (no filter only) ── */}
           {!activeCat && (
             <>
-              <Link href={`/blog/${featured.slug}`} className="feat" style={{ marginTop: 32 }}>
-                <div style={{ padding: "52px 48px" }}>
-                  <div className="blog-card-tag" style={{ color: "#C9A260", borderColor: "rgba(201,162,96,.4)" }}>
-                    {featured.tag}
-                  </div>
-                  <h2 style={{ font: "400 36px/1.1 Lora,serif", marginTop: 14, color: "#F5F2EC" }}>
-                    {featured.title}
-                  </h2>
-                  <p style={{ color: "rgba(245,242,236,.65)", fontSize: 15, lineHeight: 1.65, marginTop: 14, maxWidth: "44ch" }}>
-                    {featured.desc}
-                  </p>
-                  <div style={{ marginTop: 30, fontSize: 14, fontWeight: 600, letterSpacing: ".04em", color: "#C9A260" }}>
-                    Číst dál →
-                  </div>
-                </div>
-                <div style={{
-                  background: "radial-gradient(ellipse 80% 80% at 30% 50%, rgba(201,162,96,.18) 0%, transparent 65%), #0D2347",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <svg width="180" height="180" viewBox="0 0 220 220" fill="none" aria-hidden="true">
-                    {[44, 72, 100, 132, 168].map((r, i) => (
-                      <circle key={i} cx="110" cy="110" r={r}
-                        stroke="rgba(201,162,96,.18)" strokeWidth="1"
-                        strokeDasharray={`${r * 0.38} ${r * 0.22}`} />
-                    ))}
-                    <circle cx="110" cy="110" r="28" fill="rgba(201,162,96,.15)" stroke="#C9A260" strokeWidth="1.2" />
-                    <text x="110" y="116" textAnchor="middle" fill="#C9A260"
-                      style={{ font: "400 22px Lora,serif" }}>AD</text>
-                  </svg>
-                </div>
-              </Link>
-
-              <div className="section-eyebrow" style={{ marginTop: 56 }}>Pro majitele firem</div>
-              <div className="g3" style={{ marginTop: 16 }}>
-                {ownerArticles.map((a) => (
-                  <Link key={a.slug} href={`/blog/${a.slug}`} className="blog-g3-card">
-                    <div className="blog-card-tag">{a.tag}</div>
-                    <h3 style={{ font: "400 19px/1.25 Lora,serif", marginTop: 10 }}>{a.title}</h3>
-                    <p style={{ color: "var(--text-2)", fontSize: 13.5, lineHeight: 1.6, marginTop: 8 }}>{a.desc}</p>
-                    <div style={{ marginTop: "auto", paddingTop: 16, fontSize: 13, color: "var(--text-2)" }}>
-                      {a.date} · {a.readTime} min čtení
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
+              <FeaturedCard article={featured} />
+              <BlogSectionLabel cs="Pro majitele firem" en="For business owners" />
+              <OwnerCards articles={ownerArticles} />
               {listArticles.length > 0 && (
-                <div className="section-eyebrow" style={{ marginTop: 56 }}>Další články</div>
+                <BlogSectionLabel cs="Další články" en="More articles" />
               )}
             </>
           )}
 
           {/* ── Article list ── */}
-          <div className="blog-listing" style={{ marginTop: activeCat ? 28 : 16 }}>
-            {listArticles.map((article) => (
-              <Link key={article.slug} href={`/blog/${article.slug}`} className="blog-listing-card">
-                <div className="blog-listing-left">
-                  <div className="blog-card-tag">{article.tag}</div>
-                  <h2 className="blog-listing-title">{article.title}</h2>
-                  <p className="blog-listing-desc">{article.desc}</p>
-                </div>
-                <div className="blog-listing-right">
-                  <span className="blog-card-date">{article.date}</span>
-                  <span className="blog-listing-arrow">→</span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <BlogListing articles={listArticles} activeCat={!!activeCat} />
 
         </div>
       </main>
