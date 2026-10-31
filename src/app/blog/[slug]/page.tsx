@@ -1286,63 +1286,154 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          Na golfu, na obědě, po schůzce. Ptají se: &quot;Hele, ten svěřenský fond, to bych
-          měl mít, ne?&quot;
+          Přišel za mnou klient po obědě. &quot;Hele, ten svěřenský fond, mám ho mít, ne? Kamarád ho má.&quot;
         </p>
         <p>
-          Někdy ano. Někdy vůbec ne. Záleží na jedné otázce: co chcete ochránit a před čím.
+          Projeli jsme situaci. Závěr: fond nepotřeboval. Ale věděl proč a co by se muselo změnit,
+          aby to smysl dávalo. A to je přesně ta věc, kterou chci vysvětlit.
         </p>
 
-        <h2>Co svěřenský fond je a co není</h2>
+        <h2>Co svěřenský fond je</h2>
         <p>
-          Svěřenský fond je právní konstrukce, která odděluje majetek od jeho původního vlastníka.
-          Vložíte majetek do fondu, správce ho spravuje a obmyšlení z něj mají užitek.
-          Vy přestáváte být právním vlastníkem. Majetek nepatří nikomu. Je to účel, ne osoba.
+          Svěřenský fond není firma ani nadace. Je to účelově vyčleněný majetek, který nikomu
+          nepatří jako osobě. Zákon č. 89/2012 Sb., § 1448. Vložíte majetek, správce ho spravuje
+          a obmyšlení z něj mají prospěch. Vy přestáváte být právním vlastníkem.
         </p>
         <p>
-          Tohle je klíčový bod. Majetek ve fondu není váš a nelze ho snadno postihnout v exekuci.
-          Není vidět v katastru pod vaším jménem. Neprojde standardním dědickým řízením.
+          Majetek ve fondu není váš. Nelze ho snadno postihnout v exekuci. Věřitelé ho nevidí
+          v katastru pod vaším jménem. Neprojde standardním dědickým řízením.
+        </p>
+        <p>
+          Ale ochrana není absolutní. § 1467 OZ říká, že pokud správce, zakladatel nebo obmyšlený
+          úmyslně poškodí věřitele zakladatele, jsou zavázáni společně a nerozdílně.
+          Fond nelze zřídit den před exekucí a pak se schovat. Musí existovat preventivně,
+          dávno předtím než problém nastane.
         </p>
 
         <SverenskyFond />
 
-        <h2>Kdy svěřenský fond dává smysl</h2>
+        <h2>Kdo tvoří fond</h2>
         <p>
-          Ochrana před věřiteli: majetek vložený v době, kdy jste neměli závazky, je z dosahu
-          věřitelů vzdálen. Retroaktivní přesuny před exekucí jsou napadnutelné a neplatné.
-          Fond musí existovat dříve, než problém nastane.
+          Tři povinné role: zakladatel, správce a obmyšlený. Zakladatel vymezuje účel,
+          podmínky plnění a obmyšlené ve statutu. Správce spravuje majetek s péčí řádného
+          hospodáře a jedná za fond ve všech právních věcech. Obmyšlený má nárok na plnění
+          za podmínek, které statut nastavil.
         </p>
         <p>
-          Dědická kontinuita: fond přežije smrt zakladatele bez dědického řízení. Majetek
-          přejde na obmyšlené přesně tak, jak statut nastavil. Bez soudů, bez sporů
-          o podíly, bez čekání.
+          Volitelně: protektor, rodinná rada, shromáždění beneficientů. Protektor dohlíží na správce
+          a chrání obmyšlené před jeho chybami nebo zneužitím. Hodí se u rozvětvených rodin
+          nebo asymetrického rozdělení. Shromáždění beneficientů funguje jako valná hromada fondu:
+          jmenuje protektory, schvaluje klíčová rozhodnutí a integruje rodinu do správy.
         </p>
         <p>
-          Ochrana při rozvodu: majetek vložený do fondu před manželstvím nebo za specifických
-          podmínek nespadá do SJM. Detaily záleží na konkrétní situaci a době vkladu.
-          Toto je vždy práce pro advokáta.
-        </p>
-
-        <h2>Kdy svěřenský fond nepotřebujete</h2>
-        <p>
-          Pokud váš celkový majetek nepřesáhne patnáct dvacet milionů, administrativní
-          náklady fondu většinou neospravedlní jeho nastavení. Správně sepsaná závěť,
-          nastavené SJM a dobré pojistky dají podobný efekt za podstatně méně.
-        </p>
-        <p>
-          Pokud nemáte děti, vnoučata nebo jiné osoby, pro které chcete majetek strukturovat
-          do dalších generací, fond přidá práci bez odpovídajícího benefitu.
+          Fond se zapisuje do Evidence svěřenských fondů u krajského soudu podle bydliště správce.
+          Správce je veřejný. Zakladatel, obmyšlený a protektor jsou neveřejní.
+          Soukromý fond trvá maximálně 100 let.
         </p>
 
-        <h2>Co to stojí a jak to funguje</h2>
+        <h2>Proč případ Kellner mění perspektivu</h2>
         <p>
-          Nastavení fondu v Praze vyžaduje advokáta a notáře: třicet až šedesát tisíc korun
-          a dva tři měsíce práce. Roční správa u profesionálního správce: deset dvacet tisíc
-          ročně jako minimum. Pokud majetek fondu aktivně pracuje, více.
+          V březnu 2021 zahynul Petr Kellner při havárii vrtulníku. Majetek přibližně 293 miliard
+          korun. Žádná závěť. Žádný fond ani nadace. Spustilo se klasické dědické řízení na více než rok.
         </p>
         <p>
-          Dobrý fond nastavuje advokát, notář a finanční poradce dohromady. Každý pokrývá
-          jinou část. Žádný sám nestačí.
+          V září 2022 se dohodli: vdova získala přibližně 59 %, čtyři děti po necelých 10 % každé.
+          Vzniklo pět akcionářů PPF, poradní výbor s partnerem dcery. V srpnu 2025 se vdova s dcerami
+          dohodla na vyplacení Petra Kellnera ml. za přibližně 40 miliard.
+        </p>
+        <p>
+          Kellner byl nejbohatší Čech. Nástupnický plán formálně chyběl. Rodinné dynamiky
+          nových partnerů a nevlastních dětí se musely řešit až po smrti, za plnou cenu.
+          To je přesná situace, na kterou svěřenský fond nebo nadace existují.
+        </p>
+
+        <h2>Kdy fond smysl dává</h2>
+        <p>
+          <strong>Ochrana před věřiteli.</strong> Preventivně, v době kdy žádné závazky neexistují.
+          Retroaktivní přesuny jsou napadnutelné přes institut relativní neúčinnosti (§ 589 OZ).
+          Fond musí existovat dávno před problémem.
+        </p>
+        <p>
+          <strong>Rozvod a SJM.</strong> Alternativa k předmanželské smlouvě, která bývá emocionálně
+          problematická a zákonem omezená. Fond pokryje všechny složky majetku, i budoucí.
+          Klíčový rodinný majetek se tak vyloučí z dědické sukcese při rozvodu nebo smrti jednoho z manželů.
+        </p>
+        <p>
+          <strong>Předání rodinné firmy.</strong> Pokud není jasný nástupce nebo se potomci hádají
+          o převzetí. Fond nastaví konkrétní podmínky: dosažené vzdělání, délka praxe, KPI
+          v managementu. Nebo negativní podmínky: fluktuace zaměstnanců, nepřijatelné chování.
+          Firma je v klidu, správce řídí a potomci podmínky teprve splňují nebo nesplňují.
+        </p>
+        <p>
+          <strong>Mezigenerační majetek.</strong> Fond přežije smrt zakladatele bez dědického řízení.
+          Majetek přejde na obmyšlené přesně tak, jak statut nastavil. Aktuální trend jsou výnosy,
+          ne jistina: obmyšlení dostávají plody hospodaření, majetek zůstává konsolidovaný
+          v fondu pro další generace.
+        </p>
+
+        <h2>Vzory, které fungují a které ne</h2>
+        <p>
+          Rockefellerové. John D. Rockefeller st. zřídil první family trust v roce 1934, druhý
+          dynastický v roce 1952. Profesionální správce: Chase Bank, ne rodinný příslušník.
+          Diverzifikované portfolio zahrnující akcie, nemovitosti, soukromé investice a filantropii.
+          Formální rodinná konstituce, rodinné rady, finanční vzdělání od raného věku.
+          Dnes jsou prostředky distribuovány přes 170 dědičcům šesté a sedmé generace.
+        </p>
+        <p>
+          Vanderbiltové. Cornelius Vanderbilt zemřel v roce 1877 jako nejbohatší muž USA.
+          Bez trustu, majetek nejstaršímu synovi. Další generace bez struktury a governance.
+          Při aukci sídla The Breakers v roce 1973 rodina mezi nejbohatšími Američany nebyla.
+          Anglosaské rčení: od košile ke košili za tři generace. Právě takové případy ho vytvořily.
+        </p>
+        <p>
+          Ponaučení: fond sám o sobě nic nezachrání. Je to architektura. Vyžaduje správce,
+          governance a sdílené hodnoty. Bez toho je to jen papír u soudu.
+        </p>
+
+        <h2>Typy fondů a co se hodí kdy</h2>
+        <p>
+          <strong>Rodinný:</strong> zachování rodinného majetku, péče o členy rodiny, motivační
+          schémata pro potomky, eliminace dědické sukcese klíčového majetku.
+        </p>
+        <p>
+          <strong>Osobní (ochranný):</strong> preventivní ochrana osobního majetku před věřiteli.
+          Ochrana není bezmezná, musí respektovat zákonná pravidla.
+        </p>
+        <p>
+          <strong>Testamentární:</strong> zřizuje se pořízením pro případ smrti, vzniká smrtí
+          zůstavitele. Umožňuje vliv zakladatele na nakládání s majetkem i po jeho smrti.
+        </p>
+        <p>
+          <strong>Obchodní:</strong> využití v holdingových strukturách pro ochranu aktiv nebo know-how.
+        </p>
+
+        <h2>Kdy fond nepotřebujete</h2>
+        <p>
+          Celkový majetek pod patnáct dvacet milionů. Náklady na nastavení a správu fondu
+          neodpovídají výsledku. Správně sepsaná závěť a nastavené SJM dají podobný efekt.
+        </p>
+        <p>
+          Nemáte děti ani jiné osoby, pro které chcete strukturovat majetek do dalších generací.
+          Fond přidá administrativu bez odpovídajícího benefitu.
+        </p>
+        <p>
+          Hledáte ochranu před závazky, které již existují. Na to fond neslouží.
+          To je práce pro advokáta a insolvenčního specialistu.
+        </p>
+
+        <h2>Co to stojí v praxi</h2>
+        <p>
+          Nastavení fondu: advokát a notář, třicet až šedesát tisíc korun, dva tři měsíce práce.
+          Statut musí obsahovat označení fondu a majetku, účel, podmínky plnění, dobu trvání
+          a určení obmyšlených. Zakladatel, obmyšlený a protektor zůstávají neveřejní.
+        </p>
+        <p>
+          Roční správa u profesionálního správce: deset až dvacet tisíc jako minimum.
+          Pokud fond aktivně spravuje nemovitosti nebo podíly ve firmách, výrazně více.
+        </p>
+        <p>
+          Dobrý fond nastavují advokát, notář a finanční poradce dohromady.
+          Každý pokrývá jinou část. Sám žádný nestačí.
         </p>
       </div>
     );
