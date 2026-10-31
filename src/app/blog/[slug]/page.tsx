@@ -1713,7 +1713,7 @@ export default async function ArticlePage({
   const { slug } = await params;
 
   if (CATEGORY_LABELS[slug]) {
-    const catArticles = articles.filter((a) => a.category === slug);
+    const catArticles = articles.filter((a) => a.category === slug).reverse();
     const label = CATEGORY_LABELS[slug];
     return (
       <>

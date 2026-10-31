@@ -37,9 +37,10 @@ export default async function BlogPage({
   const featured = articles.find((a) => a.slug === FEATURED)!;
   const ownerArticles = OWNER_3.map((s) => articles.find((a) => a.slug === s)!);
 
-  const listArticles = activeCat
+  const listArticles = (activeCat
     ? articles.filter((a) => a.category === activeCat)
-    : articles.filter((a) => a.slug !== FEATURED && !OWNER_3.includes(a.slug));
+    : articles.filter((a) => a.slug !== FEATURED && !OWNER_3.includes(a.slug))
+  ).slice().reverse();
 
   return (
     <>
