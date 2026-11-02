@@ -369,6 +369,11 @@ function ArticleContent({ slug }: { slug: string }) {
           do cen. Existuje jednodušší cesta: koupit celý trh najednou prostřednictvím ETF
           a nechat složený úrok pracovat za vás.
         </p>
+        <p>
+          Pokud s investováním teprve začínáte, přečtěte si nejdřív{" "}
+          <Link href="/blog/etf-pro-zacatecniky">ETF pro začátečníky: tři kroky, než koupíte první fond</Link>.
+          Tento článek jde hlouběji do mechaniky a daňových nástrojů.
+        </p>
 
         <h2>Co je ETF a proč funguje</h2>
         <p>
@@ -389,6 +394,11 @@ function ArticleContent({ slug }: { slug: string }) {
           jak je využít. Základní nástroj je <strong>časový test tří let</strong>: prodáte-li
           investici nejdříve tři roky po nákupu, zisk z prodeje je osvobozen od daně z příjmů.
           Přesná aplikace závisí na vaší situaci a doporučuji ji konzultovat s daňovým poradcem. Pravidla se mění a detaily záleží.
+        </p>
+        <p>
+          Dalším nástrojem je DIP (Dlouhodobý investiční produkt), který umožňuje daňový odpočet
+          příspěvků až 48 000 Kč ročně ze základu daně. Jak funguje a pro koho se vyplatí:{" "}
+          <Link href="/blog/dip-dlouhodoby-investicni-produkt">DIP: jak ušetřit 7 200 Kč na daních každý rok</Link>.
         </p>
 
         <h2>Než začnete: horizont a plán jsou základ</h2>
@@ -423,6 +433,10 @@ function ArticleContent({ slug }: { slug: string }) {
           investoři zažívají. „Teď je příliš draho." „Počkám na propad." „Až bude
           situace jasnější." Pravidelný plán tyto mentální pasti obchází automaticky.
         </p>
+        <p>
+          Spočítejte si, co z pravidelné investice vyjde za deset, dvacet nebo třicet let:{" "}
+          <Link href="/blog/etf-spocitejte-si">ETF kalkulačka: spočítejte si, co z toho bude</Link>.
+        </p>
 
         <h2>Tři chyby, které investory nejvíce stojí</h2>
         <p>
@@ -441,6 +455,10 @@ function ArticleContent({ slug }: { slug: string }) {
           před deseti lety. Druhý nejlepší je dnes, ale pouze tehdy, kdy máte
           pokrytou likvidní rezervu, jasný horizont a plán, který dokážete dodržet
           i když trh klesne o třetinu.
+        </p>
+        <p>
+          Jak vybrat konkrétní ETF jako český investor a na co se zaměřit při výběru:{" "}
+          <Link href="/blog/jak-vybrat-etf-pro-cecha">Jak vybrat ETF jako český investor: šest kritérií, která rozhodnou</Link>.
         </p>
       </div>
     );
@@ -1698,6 +1716,263 @@ function ArticleContent({ slug }: { slug: string }) {
           <span>Probrat konkrétní plán</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </Link>
+
+        <h2>Další ETF průvodci</h2>
+        <p>
+          Jak investovat do ETF krok za krokem a proč záleží víc na plánu než na načasování:{" "}
+          <Link href="/blog/jak-investovat-do-etf">Jak investovat do ETF: průvodce od nuly</Link>.
+        </p>
+        <p>
+          Tři kroky, které musíte udělat ještě před prvním nákupem:{" "}
+          <Link href="/blog/etf-pro-zacatecniky">ETF pro začátečníky: tři kroky, než koupíte první fond</Link>.
+        </p>
+        <p>
+          Jak vybrat ETF pro český daňový rámec, co je UCITS, TER a proč záleží na akumulačním fondu:{" "}
+          <Link href="/blog/jak-vybrat-etf-pro-cecha">Jak vybrat ETF jako český investor: šest kritérií, která rozhodnou</Link>.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "etf-pro-zacatecniky") {
+    return (
+      <div className="article-body">
+        <p>
+          Každý rok se rozhodne začít investovat do ETF tisíce Čechů. Otevřou si účet u brokera,
+          koupí první fond a pak sledují portfolio každý týden. Buď je v plusu a hledají, co dalšího koupit.
+          Nebo je v mínusu a přemýšlí, jestli neprodají. Oba scénáře jsou špatně.
+        </p>
+        <p>
+          ETF samo o sobě není investiční strategie. Je to nástroj. A jako každý nástroj
+          nefunguje, pokud ho použijete špatně. Tři kroky, které musíte udělat ještě
+          před prvním nákupem.
+        </p>
+
+        <h2>Krok 1: Likvidní rezerva jako základ</h2>
+        <p>
+          Nejčastější chyba začátečníků není špatná volba ETF. Je to investování peněz,
+          které budou potřeba za rok nebo dva.
+        </p>
+        <p>
+          ETF klesne o 30 %. Mezitím přijdete o práci nebo se rozbije auto. Prodáte
+          se ztrátou, protože jiná možnost není. Přesně to zažívali investoři
+          v březnu 2020 nebo v roce 2022. Ti, kdo nemuseli prodávat, se dočkali zotavení.
+          Ti, kdo museli, uzamkli ztrátu.
+        </p>
+        <p>
+          Pravidlo je jednoduché: investujte pouze peníze, které nepotřebujete
+          minimálně deset let. Vše ostatní patří na spořicí účet nebo do fondu peněžního trhu.
+          Tříměsíční rezerva na okamžité výdaje je minimum, šestimísíční je lepší.
+        </p>
+        <p>
+          Jak nastavit rezervu ve vrstvách, aby každá část plnila jiný účel:{" "}
+          <Link href="/blog/financni-poduska-jak-ji-spravne-nastavit">Finanční polštář: proč nestačí nechat peníze na účtu</Link>.
+        </p>
+
+        <h2>Krok 2: Horizont a výše investice</h2>
+        <p>
+          Na otázku „kolik mám investovat?" neexistuje univerzální odpověď. Závisí
+          na výši příjmů, výdajích, závazcích (hypotéka, rodina) a konkrétních cílech.
+          Ale existuje postup, jak to zjistit:
+        </p>
+        <p>
+          Vezměte čistý měsíční příjem. Odečtěte fixní výdaje a splátky. Odečtěte
+          přiměřenou rezervu na variabilní výdaje. Co zbyde, lze rozdělit: část
+          na spořicí účet (krátkodobé cíle), část do investic s horizontem 10 a více let.
+        </p>
+        <p>
+          Začínat lze i s menšími částkami, třeba 500 nebo 1 000 Kč měsíčně.
+          Důležitější než výše je pravidelnost a horizont. Spočítejte si,
+          co z těchto čísel vyjde za dvacet nebo třicet let:{" "}
+          <Link href="/blog/etf-spocitejte-si">ETF kalkulačka: spočítejte si, co z toho bude</Link>.
+        </p>
+
+        <h2>Krok 3: Vybrat typ ETF, pak brokera</h2>
+        <p>
+          Nejčastější chyba číslo dvě: vybrat brokera podle doporučení kamaráda,
+          otevřít účet a pak vybrat první ETF ze seznamu.
+          Správné pořadí je opačné.
+        </p>
+        <p>
+          Nejdřív si rozmyslete, co chcete kupovat. Pro začátečníka to zpravidla
+          znamená jeden globálně diverzifikovaný akciový ETF kopírující světový
+          nebo americký akciový index. Konkrétní výběr závisí na vaší situaci:
+          zda investujete přes DIP, preferujete fond akumulační (dividendy reinvestuje automaticky)
+          nebo výplatní (dividendy vyplácí), a jak dlouhý je váš horizont.
+        </p>
+        <p>
+          Co rozhodně hledat: fond s označením UCITS, roční poplatek (TER) pod 0,25 %
+          a dostatečnou velikostí aktiv pod správou (alespoň 500 milionů eur).
+          Detailní průvodce výběrem pro český daňový rámec:{" "}
+          <Link href="/blog/jak-vybrat-etf-pro-cecha">Jak vybrat ETF jako český investor: šest kritérií, která rozhodnou</Link>.
+        </p>
+        <p>
+          Teprve pak vyberte brokera, který daný fond nabízí za rozumný poplatek
+          a s dostatečnou regulatorní jistotou.
+        </p>
+
+        <h2>Co se děje po prvním nákupu</h2>
+        <p>
+          Nic. Nebo přesněji: nic byste dělat neměli.
+        </p>
+        <p>
+          Pravidelně přidávejte předem stanovenou částku. Ignorujte krátkodobé pohyby trhu.
+          Pokud trh klesne o dvacet procent, je to příležitost koupit levněji, ne důvod
+          se bát. Ceny na burze se mění každý den. Portfolio s horizontem dvacet let
+          by se mělo kontrolovat jednou ročně, ne denně.
+        </p>
+
+        <h2>Tři začátečnické chyby, které přijdou draho</h2>
+        <p>
+          <strong>Čekat na správný moment.</strong> Neexistuje správný moment.
+          Trhy jsou ze své podstaty nepředvídatelné v krátkém horizontu. Historicky
+          jsou pravidelné nákupy lepší strategií než čekání na „dip".
+        </p>
+        <p>
+          <strong>Příliš mnoho ETF najednou.</strong> Deset ETF z podobných indexů
+          není lepší diverzifikace než jedno globální ETF. Je to jen víc práce
+          a víc příležitostí udělat chybu.
+        </p>
+        <p>
+          <strong>Investovat bez DIP, pokud platíte daň z příjmu.</strong>
+          DIP (Dlouhodobý investiční produkt) umožňuje investovat do ETF
+          s daňovým odpočtem až 48 000 Kč ročně. To je roční úspora 7 200 Kč
+          pro každého, kdo platí daň v 15% sazbě. Jak to funguje:{" "}
+          <Link href="/blog/dip-dlouhodoby-investicni-produkt">DIP: jak z investic ušetřit 7 200 Kč na daních každý rok</Link>.
+        </p>
+        <p>
+          Podrobný průvodce mechanikou ETF, proč výběr indexu rozhoduje méně
+          než náklady, a jak přemýšlet o investičním horizontu:{" "}
+          <Link href="/blog/jak-investovat-do-etf">Jak investovat do ETF: průvodce od nuly</Link>.
+        </p>
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Tento článek je vzdělávací a nepředstavuje investiční doporučení.
+          Konkrétní výběr ETF, brokera a výše investice závisí na vaší osobní
+          situaci, toleranci rizika a finančním plánu. Obraťte se na regulovaného investičního poradce.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "jak-vybrat-etf-pro-cecha") {
+    return (
+      <div className="article-body">
+        <p>
+          „Doporučte mi nejlepší ETF." Tuto otázku dostávám každý týden.
+          Problém je, že neexistuje jedno nejlepší ETF pro všechny.
+          Existuje ETF, které je nejlepší pro konkrétní situaci, horizont a daňový režim.
+        </p>
+        <p>
+          Místo konkrétního doporučení, které by bez znalosti vaší situace bylo nezodpovědné,
+          dostanete rámec, jak se rozhodovat. Šest kritérií, která rozhodnou víc
+          než titulek na investičním fóru.
+        </p>
+
+        <h2>Kritérium 1: UCITS je povinné</h2>
+        <p>
+          Jako investor z EU máte zákonem omezenou možnost nakupovat ETF registrovaná
+          mimo Evropu. Americké ETF si přes standardní brokery koupit nemůžete.
+          Důvod je regulatorní: PRIIP nařízení vyžaduje, aby každý fond nabízený
+          retailovým investorům v EU měl tzv. dokument KID (Key Information Document).
+          Americké fondy ho nemají.
+        </p>
+        <p>
+          Praktický dopad: vždy hledejte označení UCITS v názvu nebo dokumentaci fondu.
+          Fondy registrované v Irsku nebo Lucembursku splňují tuto podmínku téměř vždy.
+        </p>
+
+        <h2>Kritérium 2: TER pod 0,25 %</h2>
+        <p>
+          TER (Total Expense Ratio) je roční poplatek za správu fondu,
+          automaticky strhávaný z výnosu. Na první pohled malé číslo
+          v dlouhém horizontu rozhoduje o statisících.
+        </p>
+        <p>
+          Příklad: investujete 5 000 Kč měsíčně po dobu třiceti let, průměrný výnos 7 % p.a.
+          Rozdíl mezi TER 0,07 % a TER 1,5 % je přibližně 1 700 000 Kč.
+          To jsou peníze, které jdou provozovateli fondu, ne vám.
+        </p>
+        <p>
+          Pro indexové ETF kopírující světové nebo americké indexy je TER pod 0,20 %
+          dosažitelné standardně. Vše nad 0,50 % si zaslouží zdůvodnění.
+        </p>
+
+        <h2>Kritérium 3: Akumulační nebo výplatní</h2>
+        <p>
+          Akumulační ETF (označení „Acc" nebo „C") reinvestuje dividendy automaticky
+          zpět do fondu. Výplatní ETF (označení „Dis" nebo „D") dividendy vyplácí
+          na účet.
+        </p>
+        <p>
+          Pro většinu českých investorů s horizontem deset a více let je akumulační
+          varianta výhodnější ze dvou důvodů: automatická reinvestice dividendy plně využívá
+          složený úrok bez nutnosti ručního reinvestování a dividendy
+          z výplatního ETF jsou daněny jako příjem. Naproti tomu zisk z prodeje akumulačního
+          ETF po třech letech je od daně osvobozen díky časovému testu.
+        </p>
+
+        <h2>Kritérium 4: Časový test tří let</h2>
+        <p>
+          Jedním z hlavních daňových nástrojů pro české investory je osvobození
+          od daně z příjmu při prodeji cenných papírů držených déle než tři roky
+          (§ 10 ZDP). Platí pro fyzické osoby, nezávisle na výši zisku.
+        </p>
+        <p>
+          Praktický dopad na výběr ETF: investujete-li do akumulačního ETF a prodáváte
+          vždy nejdříve tři roky po nákupu, platíte nulovou daň z kapitálového zisku.
+          U pravidelného investování to znamená sledovat každou nákupní transakci
+          jako samostatnou položku s vlastním datem.
+        </p>
+        <p>
+          Přesná aplikace závisí na konkrétní situaci. Doporučuji konzultaci
+          s daňovým poradcem, zejména při větších částkách nebo investování přes firmu.
+        </p>
+
+        <h2>Kritérium 5: DIP a daňový odpočet</h2>
+        <p>
+          Pokud investujete přes DIP (Dlouhodobý investiční produkt), vybíráte
+          ETF v rámci seznamu produktů, které váš poskytovatel DIP nabízí.
+          Výměnou za toto omezení dostanete daňový odpočet až 48 000 Kč ročně
+          a možnost příspěvku zaměstnavatele bez odvodů.
+        </p>
+        <p>
+          DIP a klasický brokerský účet se nevylučují: je rozumné investovat část
+          přes DIP kvůli daňové výhodě a část přes klasický účet kvůli volnosti výběru. Více:{" "}
+          <Link href="/blog/dip-dlouhodoby-investicni-produkt">DIP: jak z investic ušetřit 7 200 Kč na daních každý rok</Link>.
+        </p>
+
+        <h2>Kritérium 6: Fyzická replikace a velikost fondu</h2>
+        <p>
+          ETF může index kopírovat fyzicky (skutečně drží akcie ze seznamu)
+          nebo synteticky (přes swapové deriváty). Fyzická replikace je
+          transparentnější a pro většinu začátečníků srozumitelnější.
+        </p>
+        <p>
+          Velikost aktiv pod správou (AUM) by měla být alespoň 500 milionů eur.
+          Malé fondy mají vyšší riziko uzavření nebo sloučení,
+          což může způsobit nechtěnou daňovou událost v nevhodný čas.
+        </p>
+
+        <h2>Co z toho vyplývá</h2>
+        <p>
+          Pro běžného českého retailového investora s horizontem 15 a více let,
+          pravidelným investováním a záměrem využít časový test to typicky
+          znamená: jeden nebo dva akumulační UCITS ETF s TER pod 0,20 %
+          kopírující globální nebo americký akciový index, fyzicky replikované,
+          s aktivy přes miliardu eur.
+        </p>
+        <p>
+          Konkrétní výběr produktu závisí na vaší situaci, brokerovi a dalších faktorech.
+          Pokud nevíte, kde začít, přečtěte si:{" "}
+          <Link href="/blog/etf-pro-zacatecniky">ETF pro začátečníky: tři kroky, než koupíte první fond</Link>.
+          Nebo si výpočet, co z pravidelné investice vyjde, spočítejte na kalkulačce:{" "}
+          <Link href="/blog/etf-spocitejte-si">ETF kalkulačka</Link>.
+        </p>
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Tento článek je vzdělávací a nepředstavuje investiční doporučení.
+          Konkrétní výběr ETF závisí na vaší osobní situaci, toleranci rizika
+          a finančním plánu. Doporučuji konzultaci s regulovaným investičním poradcem.
+        </p>
       </div>
     );
   }
@@ -1821,10 +2096,43 @@ export default async function ArticlePage({
     ],
   };
 
+  const faqLd = slug === "jak-investovat-do-etf" ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Co je ETF a jak funguje?",
+        acceptedAnswer: { "@type": "Answer", text: "ETF (Exchange Traded Fund) je fond obchodovaný na burze, který kopíruje vývoj tržního indexu. Místo výběru jednotlivých akcií koupíte jednou transakcí podíl na tisících firmách z celého světa. Roční správcovský poplatek globálních indexových ETF se typicky pohybuje okolo 0,07–0,22 %, což je výrazně méně než u aktivně spravovaných fondů s poplatky 1,5–2,5 % ročně." },
+      },
+      {
+        "@type": "Question",
+        name: "Jak začít investovat do ETF v Česku?",
+        acceptedAnswer: { "@type": "Answer", text: "Začněte třemi kroky: 1) Zajistěte likvidní rezervu na 3–6 měsíců výdajů na spořicím účtu. 2) Ujasněte si investiční horizont, ETF jsou vhodné pro cíle vzdálené alespoň 10 let. 3) Zvolte si akumulační UCITS ETF s TER pod 0,25 % a nastavte pravidelný plán nákupu. Konkrétní výběr ETF a brokera závisí na vaší situaci. Doporučuji konzultaci s regulovaným investičním poradcem." },
+      },
+      {
+        "@type": "Question",
+        name: "Jaké jsou daňové výhody ETF v Česku?",
+        acceptedAnswer: { "@type": "Answer", text: "Základní výhoda je časový test tří let: prodáte-li investici nejdříve tři roky po nákupu, zisk z prodeje je osvobozen od daně z příjmů fyzických osob (§ 10 ZDP). Další možností je DIP (Dlouhodobý investiční produkt), který umožňuje odpočet příspěvků až 48 000 Kč ročně ze základu daně. Přesná aplikace závisí na vaší situaci a doporučuji konzultaci s daňovým poradcem." },
+      },
+      {
+        "@type": "Question",
+        name: "Kolik peněz potřebuji na začátek investování do ETF?",
+        acceptedAnswer: { "@type": "Answer", text: "U většiny brokerů lze investovat od 1 EUR nebo méně. Důležitější než výchozí částka je pravidelnost: i 500–2 000 Kč měsíčně investovaných konzistentně po dobu 20–30 let vytvoří díky složenému úroku významný majetek. Zásadní je začít co nejdříve, ale jen tehdy, kdy máte pokrytou likvidní rezervu a jasný investiční horizont." },
+      },
+      {
+        "@type": "Question",
+        name: "Co dělat, když ETF klesne o 30 %?",
+        acceptedAnswer: { "@type": "Answer", text: "Nic, pokud máte plán. Propady jsou součástí investování a historicky se globální akciové trhy vždy zotavily. Kdo prodá v propadu a počká na lepší časy, většinou nakoupí zpět výše, než kde prodával. Klíčem je mít před investicí pokrytou likvidní rezervu, aby vás propad nenutil k prodeji v nevhodný moment." },
+      },
+    ],
+  } : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
       <div className="progress" aria-hidden="true" />
       <div className="read-bar" id="readBar" aria-hidden="true" />
       {article.readTime && (
