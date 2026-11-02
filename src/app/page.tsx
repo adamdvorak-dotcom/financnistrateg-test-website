@@ -421,6 +421,18 @@ export default function Page() {
 
   /* Service card expand, handled imperatively to preserve reveal animation */
 
+  /* Calculator field editing — show raw text while user types, commit on blur */
+  const [editField, setEditField] = useState<{ key: string; raw: string } | null>(null);
+  const startEdit = (key: string, raw: string) => setEditField({ key, raw });
+  const updateRaw = (raw: string) => setEditField(prev => prev ? { ...prev, raw } : null);
+  const commitEdit = <T,>(key: string, parse: (s: string) => T | null, set: (v: T) => void) => {
+    if (editField?.key === key) { const v = parse(editField.raw); if (v !== null) set(v); }
+    setEditField(null);
+  };
+  const rawOr = (key: string, fallback: string) => editField?.key === key ? editField.raw : fallback;
+  const parseNum = (s: string) => { const v = parseInt(s.replace(/[^\d]/g, ''), 10); return isNaN(v) ? null : v; };
+  const parseDec = (s: string) => { const v = parseFloat(s.replace(',', '.')); return isNaN(v) || v <= 0 ? null : v; };
+
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [nlState, setNlState] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -750,6 +762,7 @@ export default function Page() {
     const next: Lang = lang === "cs" ? "en" : "cs";
     setLang(next);
     localStorage.setItem("lang", next);
+    window.dispatchEvent(new Event("langchange"));
   };
 
   /* ── Invest calculator ── */
@@ -1556,7 +1569,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.invMonthly}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={invMonthly.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} onChange={(e) => setInvMonthly(parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0)} onBlur={(e) => { const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0; setInvMonthly(Math.round(v / 1000) * 1000 || 1000); }} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('invMonthly', invMonthly.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US'))}
+                        onFocus={() => startEdit('invMonthly', String(invMonthly))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('invMonthly', s => { const v = parseNum(s); return v && v >= 100 ? v : null; }, setInvMonthly)} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
                     <GoldRange value={invMonthly} min={1000} max={200000} step={1000} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} />
@@ -1565,7 +1582,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.invRate}</label>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={invRate} min={0.1} max={30} step={0.1} onChange={(e) => setInvRate(+e.target.value || 0)} />
+                      <input type="text" inputMode="decimal" className="field-input"
+                        value={rawOr('invRate', String(invRate).replace('.', lang === 'cs' ? ',' : '.'))}
+                        onFocus={() => startEdit('invRate', String(invRate))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('invRate', parseDec, v => setInvRate(Math.min(30, v)))} />
                       <span className="field-unit">% p.a.</span>
                     </div>
                     <GoldRange value={invRate} min={1} max={20} step={0.5} onChange={setInvRate} fmtLabel={(v) => v + " %"} />
@@ -1574,7 +1595,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.invYears}</label>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={invYears} min={1} max={50} onChange={(e) => setInvYears(+e.target.value || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('invYears', String(invYears))}
+                        onFocus={() => startEdit('invYears', String(invYears))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('invYears', s => { const v = parseNum(s); return v && v >= 1 ? Math.min(50, v) : null; }, setInvYears)} />
                       <span className="field-unit">{lang === 'cs' ? 'let' : 'yrs'}</span>
                     </div>
                     <GoldRange value={invYears} min={1} max={40} step={1} onChange={setInvYears} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : ' yrs')} />
@@ -1583,12 +1608,18 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.invInit}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={invInit > 0 ? invInit.toLocaleString('cs-CZ') : ''} placeholder="0" onChange={(e) => {
-                        const v = parseInt(e.target.value.replace(/[^\d]/g, ''), 10) || 0;
-                        if (v <= 0) { setInvInitPos(0); return; }
-                        const pos = Math.round(1 + (Math.log10(Math.max(1000, v) / 1000) / Math.log10(50000)) * 99);
-                        setInvInitPos(Math.max(0, Math.min(100, pos)));
-                      }} />
+                      <input type="text" inputMode="numeric" className="field-input" placeholder="0"
+                        value={rawOr('invInit', invInit > 0 ? invInit.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') : '')}
+                        onFocus={() => startEdit('invInit', invInit > 0 ? String(invInit) : '')}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => {
+                          const v = parseNum(editField?.key === 'invInit' ? editField.raw : '') ?? 0;
+                          if (v <= 0) { setInvInitPos(0); } else {
+                            const pos = Math.round(1 + (Math.log10(Math.max(1000, v) / 1000) / Math.log10(50000)) * 99);
+                            setInvInitPos(Math.max(0, Math.min(100, pos)));
+                          }
+                          setEditField(null);
+                        }} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
                     <GoldRange value={invInitPos} min={0} max={100} step={1} onChange={setInvInitPos} fmtLabel={() => invInit > 0 ? invInit.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency : "0"} />
@@ -1696,7 +1727,11 @@ export default function Page() {
                       ))}
                     </div>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={mtgAmt} min={100000} step={50000} onChange={(e) => setMtgAmt(+e.target.value || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('mtgAmt', mtgAmt.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US'))}
+                        onFocus={() => startEdit('mtgAmt', String(mtgAmt))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('mtgAmt', s => { const v = parseNum(s); return v && v >= 100000 ? Math.min(20000000, v) : null; }, setMtgAmt)} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
                     <GoldRange value={mtgAmt} min={500000} max={20000000} step={100000} onChange={setMtgAmt} fmtLabel={(v) => (v / 1000000).toFixed(1) + ' mil. ' + t.currency} />
@@ -1705,7 +1740,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.mtgRate}</label>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={mtgRate} min={0.1} max={20} step={0.1} onChange={(e) => setMtgRate(+e.target.value || 0)} />
+                      <input type="text" inputMode="decimal" className="field-input"
+                        value={rawOr('mtgRate', String(mtgRate).replace('.', lang === 'cs' ? ',' : '.'))}
+                        onFocus={() => startEdit('mtgRate', String(mtgRate))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('mtgRate', parseDec, v => setMtgRate(Math.min(20, v)))} />
                       <span className="field-unit">% p.a.</span>
                     </div>
                     <GoldRange value={mtgRate} min={1} max={15} step={0.1} onChange={setMtgRate} fmtLabel={(v) => v + " %"} />
@@ -1714,7 +1753,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.mtgTerm}</label>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={mtgYrs} min={1} max={40} onChange={(e) => setMtgYrs(+e.target.value || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('mtgYrs', String(mtgYrs))}
+                        onFocus={() => startEdit('mtgYrs', String(mtgYrs))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('mtgYrs', s => { const v = parseNum(s); return v && v >= 1 ? Math.min(40, v) : null; }, setMtgYrs)} />
                       <span className="field-unit">{lang === 'cs' ? 'let' : 'yrs'}</span>
                     </div>
                     <GoldRange value={mtgYrs} min={5} max={40} step={1} onChange={setMtgYrs} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : ' yrs')} />
@@ -1737,7 +1780,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.retDesiredLabel}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retDesiredPension.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} onChange={(e) => setRetDesiredPension(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('retDesiredPension', retDesiredPension.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US'))}
+                        onFocus={() => startEdit('retDesiredPension', String(retDesiredPension))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('retDesiredPension', s => { const v = parseNum(s); return v && v >= 1000 ? Math.min(1000000, v) : null; }, setRetDesiredPension)} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
                     <GoldRange value={retDesiredPension} min={15000} max={1_000_000} step={5000} onChange={setRetDesiredPension} fmtLabel={(v) => v >= 1_000_000 ? '1 mil. ' + t.currency : v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} logStep={(v) => v < 100_000 ? 1_000 : v < 500_000 ? 5_000 : 50_000} />
@@ -1746,7 +1793,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.retAgeLabel}</label>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={retAge} min={20} max={64} onChange={(e) => setRetAge(Math.min(64, Math.max(20, +e.target.value || 35)))} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('retAge', String(retAge))}
+                        onFocus={() => startEdit('retAge', String(retAge))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('retAge', s => { const v = parseNum(s); return v ? Math.min(64, Math.max(20, v)) : null; }, setRetAge)} />
                       <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
                     </div>
                     <GoldRange value={retAge} min={20} max={64} step={1} onChange={setRetAge} fmtLabel={(v) => v + " let"} />
@@ -1755,7 +1806,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.retMissingYrsLabel}</label>
                     <div className="field-input-wrap">
-                      <input type="number" className="field-input" value={retMissingYears} min={0} max={15} onChange={(e) => setRetMissingYears(Math.min(15, Math.max(0, +e.target.value || 0)))} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('retMissingYears', String(retMissingYears))}
+                        onFocus={() => startEdit('retMissingYears', String(retMissingYears))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => commitEdit('retMissingYears', s => { const v = parseInt(s, 10); return isNaN(v) ? null : Math.min(15, Math.max(0, v)); }, setRetMissingYears)} />
                       <span className="field-unit">{lang === "cs" ? "let" : "yrs"}</span>
                     </div>
                     <GoldRange value={retMissingYears} min={0} max={15} step={1} onChange={setRetMissingYears} fmtLabel={(v) => v + (lang === 'cs' ? ' let' : '')} />
@@ -1764,7 +1819,11 @@ export default function Page() {
                   <div>
                     <label className="field-label">{t.retCurrentSavLabel}</label>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retCurrentSavings > 0 ? retCurrentSavings.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') : ""} placeholder="0" onChange={(e) => setRetCurrentSavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input" placeholder="0"
+                        value={rawOr('retCurrentSavings', retCurrentSavings > 0 ? retCurrentSavings.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') : '')}
+                        onFocus={() => startEdit('retCurrentSavings', retCurrentSavings > 0 ? String(retCurrentSavings) : '')}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => { const v = parseNum(editField?.key === 'retCurrentSavings' ? editField.raw : '') ?? 0; setRetCurrentSavings(Math.min(5000000, v)); setEditField(null); }} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
                     <GoldRange value={retCurrentSavings} min={0} max={5000000} step={50000} onChange={setRetCurrentSavings} fmtLabel={(v) => v === 0 ? "0" : (v / 1000).toFixed(0) + (lang === 'cs' ? ' tis. Kč' : 'k CZK')} />
@@ -1778,7 +1837,11 @@ export default function Page() {
                       ))}
                     </div>
                     <div className="field-input-wrap">
-                      <input type="text" inputMode="numeric" className="field-input" value={retMonthlySavings.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US')} onChange={(e) => setRetMonthlySavings(parseInt(e.target.value.replace(/[^\d]/g, ""), 10) || 0)} />
+                      <input type="text" inputMode="numeric" className="field-input"
+                        value={rawOr('retMonthlySavings', retMonthlySavings.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US'))}
+                        onFocus={() => startEdit('retMonthlySavings', String(retMonthlySavings))}
+                        onChange={(e) => updateRaw(e.target.value)}
+                        onBlur={() => { const v = parseNum(editField?.key === 'retMonthlySavings' ? editField.raw : '') ?? 0; setRetMonthlySavings(Math.min(50000, v)); setEditField(null); }} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
                     <GoldRange value={retMonthlySavings} min={0} max={50000} step={1000} onChange={setRetMonthlySavings} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} />
