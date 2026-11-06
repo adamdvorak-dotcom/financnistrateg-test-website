@@ -1573,11 +1573,11 @@ export default function Page() {
                         value={rawOr('invMonthly', invMonthly.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US'))}
                         onFocus={() => startEdit('invMonthly', String(invMonthly))}
                         onChange={(e) => updateRaw(e.target.value)}
-                        onBlur={() => commitEdit('invMonthly', s => { const v = parseNum(s); return v && v >= 100 ? v : null; }, setInvMonthly)} />
+                        onBlur={() => commitEdit('invMonthly', s => { const v = parseNum(s.trim() === '' ? '0' : s); return v !== null ? Math.min(1000000, v) : null; }, setInvMonthly)} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={invMonthly} min={1000} max={200000} step={1000} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} />
-                    <div className="range-meta"><span>500 {t.currency}</span><span>200 000 {t.currency}</span></div>
+                    <GoldRange value={invMonthly} min={0} max={200000} step={1000} onChange={setInvMonthly} fmtLabel={(v) => v.toLocaleString(lang === 'cs' ? 'cs-CZ' : 'en-US') + ' ' + t.currency} />
+                    <div className="range-meta"><span>0 {t.currency}</span><span>200 000 {t.currency}</span></div>
                   </div>
                   <div>
                     <label className="field-label">{t.invRate}</label>
