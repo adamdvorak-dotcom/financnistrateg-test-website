@@ -1098,7 +1098,7 @@ export default function Page() {
                 <span>{t.heroCta}</span>
                 <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
               </a>
-              <a href="/test" className="btn-ghost">
+              <a href="/financni-preventivka" className="btn-ghost">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 <span>{t.heroCtaProcess}</span>
               </a>
@@ -1325,7 +1325,7 @@ export default function Page() {
               <div className="section-eyebrow" style={{color:"rgba(201,162,96,.72)",marginBottom:20}}>{t.prevEye}</div>
               <h3>{t.prevH3}</h3>
               <p style={{marginTop:16}}>{t.prevP}</p>
-              <a href="/test" className="btn-primary" style={{marginTop:32,display:"inline-flex",alignItems:"center",gap:8}}>
+              <a href="/financni-preventivka" className="btn-primary" style={{marginTop:32,display:"inline-flex",alignItems:"center",gap:8}}>
                 <span>{t.prevCta}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>

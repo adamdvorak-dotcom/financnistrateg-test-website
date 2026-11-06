@@ -54,7 +54,7 @@ export async function generateMetadata({
   const article = getArticle(slug);
   if (!article) return {};
   return {
-    title: { absolute: article.title },
+    title: { absolute: article.seoTitle ?? article.title },
     description: article.desc,
     alternates: { canonical: `${BASE}/blog/${slug}` },
     openGraph: {
@@ -1977,6 +1977,168 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "propady-trhu-co-delat") {
+    return (
+      <div className="article-body">
+        <p>
+          Ve čtvrtek 5. listopadu ztratil americký Nasdaq 5,5&nbsp;% a spadl do korekce. Pro index
+          S&amp;P 500 to byl nejhorší den od dubna 2025. Jestli vám teď v hlavě běží otázka „mám to
+          prodat?“, odpověď je skoro vždycky ne. Ale ne vždycky, a o tom je tenhle článek.
+        </p>
+
+        <h2>Co se na trzích právě děje</h2>
+        <p>
+          Prodává se hlavně umělá inteligence a čipy. Investoři začali přepočítávat, jestli se obří
+          investice do AI vůbec vrátí. Po amerických volbách se k tomu přidal strach, že nový Kongres
+          přitáhne šrouby datovým centrům. Nvidia ve čtvrtek ztratila přes 9&nbsp;%, AMD přes 17&nbsp;%
+          a index S&amp;P 500 přišel za jediný den o 2,8 bilionu dolarů tržní hodnoty.
+        </p>
+        <p>
+          Nepřišlo to z čistého nebe. Už koncem října zažil S&amp;P 500 nejhorší den od června, když
+          akcie Intelu spadly o 28,6&nbsp;%, nejvíc od roku 1974. Bitcoin se mezitím, mimo jiné po
+          hackerském útoku na burzu Binance, propadl z více než 86&nbsp;000 dolarů v říjnu na zhruba
+          76&nbsp;000. A trhliny jsou vidět i pod povrchem: nejrizikovější americké firemní dluhopisy
+          s ratingem CCC a nižším mají výnos kolem 18&nbsp;%, nejvíc od roku 2020.
+        </p>
+        <p>
+          Kdo má <Link href="/blog/jak-investovat-do-etf">světový akciový ETF</Link>, má v něm i tyhle
+          firmy, protože patří k největším na světě. Takže ano, týká se to i vás. Jestli máte portfolio
+          rozumně rozložené, je to ale úplně jiný pocit než u někoho, kdo má všechno v Nvidii.
+        </p>
+
+        <h2>Propady k akciím patří, jen to v den propadu nikdo nechce slyšet</h2>
+        <p>
+          Od roku 1980 spadl americký akciový trh během roku od svého maxima v průměru zhruba
+          o 14&nbsp;%. A přesto skončil v plusu přibližně ve třech čtvrtinách let. Propad je cena,
+          kterou platíte za to, že akcie dlouhodobě vydělávají víc než peníze na spořáku.
+        </p>
+        <p>
+          Neznamená to, že se všechno vrátí do týdne. Kdo nakoupil na vrcholu v říjnu 2007, čekal
+          i s dividendami na návrat svých peněz až do března 2012. Americký index se ale zatím po
+          každém propadu dostal na nové maximum.
+        </p>
+        <p>
+          A aby z rozumně rozloženého portfolia zmizelo všech 100&nbsp;%, musely by naráz zkrachovat
+          všechny největší firmy světa. To by vaše portfolio bylo to poslední, co byste řešili.
+        </p>
+
+        <h2>Největší chyba: prodat ve strachu a čekat, až se to uklidní</h2>
+        <p>
+          Prodat teď a nakoupit zpátky, až bude klid, zní rozumně. Háček je v tom, že nejlepší dny
+          na trhu chodí ruku v ruce s těmi nejhoršími. V datech J.P. Morgan přišlo sedm z deseti
+          nejlepších dní indexu S&amp;P 500 za dvacet let do dvou týdnů od deseti nejhorších. A kdo
+          za dvacet let zmeškal jen deset nejlepších dní, měl roční výnos skoro poloviční.
+        </p>
+        <p>
+          Kdo <Link href="/blog/trhy-padaji-co-ted">prodá v panice</Link>, zamkne si ztrátu a snadno
+          prošvihne i odraz. Opatrnost, která vyjde nejdráž.
+        </p>
+
+        <h2>Co dělat, když trh padá</h2>
+
+        <h3>1. Zeptejte se, kdy ty peníze budete potřebovat</h3>
+        <p>
+          Na téhle otázce teď záleží nejvíc. Peníze na barák za dva roky do akcií nepatří, a pokud
+          tam jsou, propad jen ukázal, že plán nebyl domyšlený. Peníze, které nebudete potřebovat
+          patnáct nebo dvacet let, se dnešních titulků bát nemusí. Klientům to říkám takhle:
+          křišťálovou kouli nemáme, ale když přes ETF koupíte největší firmy světa, na dvacetiletém
+          horizontu hraje čas pro vás. Pokud vydržíte.
+        </p>
+
+        <h3>2. Mějte rezervu, ať nikdy nemusíte prodávat</h3>
+        <p>
+          Nejhorší prodej je ten vynucený. Porouchá se auto, firma potřebuje překlenout pár slabších
+          měsíců a jediné volné peníze leží v akciích, které jsou zrovna dvacet procent dole.
+          Prodáváte za nejhorší cenu, jakou šlo chytit. Proto chci, aby klienti měli stranou
+          zhruba <Link href="/blog/financni-poduska-jak-ji-spravne-nastavit">šest měsíčních výdajů</Link>.
+          Leží to nudně na spořáku a přesně v takových týdnech je to k nezaplacení.
+        </p>
+
+        <h3>3. Pravidelné investice nevypínejte</h3>
+        <p>
+          Když v obchodě zlevní všechno o deset procent, nikdo nevybíhá ven s tím, že počká, až zase
+          zdraží. U akcií to lidi dělají běžně. Pokud investujete každý měsíc, propad znamená jen to,
+          že za stejné peníze kupujete víc. Výprodej, jen bez letáků.
+        </p>
+
+        <h3>4. Podívejte se, na čem doopravdy stojíte</h3>
+        <p>
+          Propad je nejlepší rentgen portfolia. Ukáže, kde máte všechno vsazené na jedno jméno nebo
+          jeden příběh. Stačí jedna firma: kdo měl v Intelu polovinu portfolia, byl po tom říjnovém
+          dni najednou o sedminu chudší. A kdo měl poslední roky všechno v AI a čipech, cítí tenhle
+          týden dvojnásob. Rozložené portfolio padá taky, jen nepadá na hubu.
+        </p>
+
+        <h3>5. Vraťte portfolio do poměru, na kterém jste se dohodli</h3>
+        <p>
+          Když akcie spadnou, jejich podíl v portfoliu se zmenší. Kdo má nastavený poměr třeba
+          70&nbsp;procent akcií a 30&nbsp;procent v bezpečnější části, po propadu přesune část peněz
+          z bezpečnější části do akcií a vrátí se na svůj poměr. Zní to jednoduše a v praxi je to to
+          nejtěžší, protože kupujete přesně ve chvíli, kdy se do toho nikomu nechce. Proto je dobré
+          mít ten poměr domluvený dřív, než začne foukat.
+        </p>
+
+        <h2>Co v propadu nedělat</h2>
+        <p>
+          Nekoukejte do aplikace každou hodinu. Červená čísla nezezelenají tím, že na ně budete zírat,
+          jen vás dotlačí k unáhlenému rozhodnutí.
+        </p>
+        <p>
+          Nekupujte na dluh. Dokupovat propad z úvěru nebo s pákou je spolehlivý způsob, jak
+          z dočasné ztráty udělat trvalou.
+        </p>
+        <p>
+          Nenechte se nahnat do „jistoty“. V každém propadu se vyrojí prodejci zlata, kryptoměn nebo
+          dluhopisů s krásným úrokem. Vysoký úrok je odměna za riziko, a nejrizikovější dluhopisy
+          to teď připomínají dost hlasitě.
+        </p>
+
+        <h2>Kdy je propad důvod něco změnit</h2>
+        <p>
+          Ne každý propad se má jen přečkat. Změnu dává smysl řešit, když se změnil váš život.
+          Prodáváte firmu, kupujete nemovitost, blíží se důchod a ty peníze budete brzy potřebovat.
+          Nebo držíte jednotlivou firmu a rozpadl se příběh, kvůli kterému jste ji kupovali.
+        </p>
+        <p>
+          A taky když zjistíte, že kvůli portfoliu nespíte. Pak máte nastavené víc rizika, než unesete.
+          To se dá napravit, jen ideálně s chladnou hlavou a v den, kdy Nasdaq nepadá o pět procent.
+        </p>
+
+        <div className="article-closing">
+          <p>
+            Trh se teď bojí AI, regulace a dluhů. Za půl roku se bude bát něčeho úplně jinačího.
+            Čeho přesně, je skoro jedno. Rozhodne, jestli máte plán, rezervu a nervy ho dodržet.
+          </p>
+          <p>
+            Aplikace vám v takový den nezavolá. Ukáže vám jen červené číslo. Od toho jsem tady já,
+            abych emoce držel na uzdě. I ty svoje.
+          </p>
+        </div>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-06-2026" target="_blank" rel="noopener">TheStreet, 6. 11. 2026</a>: nejhorší den od dubna 2025, tržní hodnota, bitcoin</li>
+            <li><a href="https://www.fool.com/coverage/stock-market-today/2026/11/05/stock-market-today-nov-5-nasdaq-suffers-worst-day-in-18-months-as-ai-trade-comes-under-fire/" target="_blank" rel="noopener">The Motley Fool, 5. 11. 2026</a>: pokles Nasdaqu, Nvidia, AMD, volby a datová centra</li>
+            <li><a href="https://www.stocktitan.net/articles/stock-market-today-live-november-5-2026" target="_blank" rel="noopener">StockTitan s daty CNBC, 5. 11. 2026</a>: Nasdaq v korekci</li>
+            <li><a href="https://www.itv.com/news/2026-10-30/wall-street-drops-to-its-worst-day-since-june-after-the-sell-off-for-tech-stocks-deepens" target="_blank" rel="noopener">AP přes ITV, 30. 10. 2026</a>: nejhorší den od června, Intel, bitcoin</li>
+            <li><a href="https://fred.stlouisfed.org/series/BAMLH0A3HYCEY" target="_blank" rel="noopener">FRED, ICE BofA CCC &amp; Lower US High Yield Effective Yield</a>: výnos dluhopisů s ratingem CCC a nižším</li>
+            <li><a href="https://www.fondshop.cz/povolebni-nadeje-pro-akcie-varovne-signaly-z-ciny-a-dluhopisu" target="_blank" rel="noopener">Fondshop, 1. 11. 2026</a>: srovnání s rokem 2020</li>
+            <li><a href="https://am.jpmorgan.com/us/en/asset-management/per/about-us/media/press-releases/jp-morgan-asset-management-releases-2025-guide-to-retirement" target="_blank" rel="noopener">J.P. Morgan Asset Management, 2025 Guide to Retirement</a>: zmeškání deseti nejlepších dní</li>
+            <li><a href="https://401kspecialistmag.com/folly-of-timing-the-market-explained-in-jpmams-2024-guide-to-retirement/" target="_blank" rel="noopener">401(k) Specialist o J.P. Morgan 2024 Guide to Retirement</a>: nejlepší dny blízko nejhorších</li>
+            <li><a href="https://www.raymondjames.com/fitzcustomwealth/the-optimist-investor-blog/2025/04/22/drawdowns" target="_blank" rel="noopener">Raymond James, 22. 4. 2025</a>: průměrný propad během roku od roku 1980</li>
+            <li><a href="https://advisorpedia.com/strategists/how-do-investors-navigate-market-volatility" target="_blank" rel="noopener">Advisorpedia s daty J.P. Morgan</a>: návrat trhu po roce 2007</li>
+          </ol>
+        </div>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Článek je obecná informace, nikoli investiční doporučení ani nabídka. Investování do akcií
+          nese riziko ztráty a minulé výnosy nezaručují výnosy budoucí. Údaje jsou k 6. 11. 2026.
+        </p>
+      </div>
+    );
+  }
+
   return null;
 }
 
@@ -2200,10 +2362,17 @@ export default async function ArticlePage({
             <div className="article-cta">
               <div className="article-cta-text">
                 <div className="section-eyebrow" style={{ marginBottom: 8 }}>Osobní rozhovor</div>
-                <p>Chcete vědět, jak to vyjde u vás? První konzultace je bez závazků.</p>
+                {article.cta ? (
+                  <>
+                    <p style={{ font: "400 20px/1.35 Lora,Georgia,serif", color: "var(--text-1)", marginBottom: 6 }}>{article.cta.title}</p>
+                    <p>{article.cta.text}</p>
+                  </>
+                ) : (
+                  <p>Chcete vědět, jak to vyjde u vás? První konzultace je bez závazků.</p>
+                )}
               </div>
               <Link href="/konzultace" className="btn-primary">
-                <span>Zahájit rozhovor</span>
+                <span>{article.cta?.button ?? "Zahájit rozhovor"}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </Link>
             </div>

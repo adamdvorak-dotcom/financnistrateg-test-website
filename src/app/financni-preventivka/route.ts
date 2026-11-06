@@ -9,8 +9,11 @@ const html = `<!DOCTYPE html>
 <meta name="description" content="20 tvrzení, 5 oblastí, 5 minut. Zjistěte, kde máte největší mezery v připravenosti firmy a rodiny.">
 <meta property="og:title" content="Finanční preventivka pro majitele firem">
 <meta property="og:description" content="20 tvrzení, 5 oblastí, 5 minut. Zjistěte, kde máte největší mezery.">
-<meta property="og:url" content="https://www.financnistrateg.com/test">
-<link rel="canonical" href="https://www.financnistrateg.com/test">
+<meta property="og:url" content="https://www.financnistrateg.com/financni-preventivka">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.financnistrateg.com/financni-preventivka/opengraph-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.financnistrateg.com/financni-preventivka">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600&display=swap">

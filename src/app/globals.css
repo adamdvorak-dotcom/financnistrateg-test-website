@@ -3066,3 +3066,10 @@ nav.scrolled .nav-logo{font-size:15px}
 .hld-row strong{display:block;font-size:14px;color:#1A1511;margin-bottom:3px}
 .hld-fn{display:block;font-size:11px;color:#999080;line-height:1.5;margin-top:20px;border-top:1px solid #E8E0D4;padding-top:16px}
 @media(max-width:600px){.hld-box{min-width:160px;padding:10px 16px}}
+
+/* ── Article inline links, subheadings, closing ── */
+.article-body p a:not(.fn),.article-body li a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(201,162,96,.5);text-underline-offset:3px;transition:text-decoration-color .15s}
+.article-body p a:not(.fn):hover,.article-body li a:hover{text-decoration-color:currentColor}
+.article-body h3{font:600 19px/1.35 'Lora',Georgia,serif;color:var(--text-1);letter-spacing:-.01em;margin:30px 0 8px}
+.article-closing{margin:48px 0 8px;padding-top:28px;border-top:1px solid rgba(26,21,17,.12)}
+.article-body .article-closing p{font:400 20px/1.55 'Lora',Georgia,serif;color:var(--text-1)}

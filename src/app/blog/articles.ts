@@ -16,6 +16,10 @@ export type Article = {
   author: string;
   readTime?: number;
   tldr?: string[];
+  /** Titulek pro Google, když se má lišit od nadpisu článku */
+  seoTitle?: string;
+  /** Vlastní text výzvy pod článkem místo obecné */
+  cta?: { title: string; text: string; button: string };
 };
 
 export const articles: Article[] = [
@@ -376,6 +380,26 @@ export const articles: Article[] = [
       "TER pod 0,25 % je klíčové kritérium: v třicetiletém horizontu rozhoduje o milionech.",
       "Akumulační ETF je daňově výhodnější než výplatní pro investory využívající tříletý časový test.",
     ],
+  },
+  {
+    slug: "propady-trhu-co-delat",
+    category: "investice",
+    tag: "Trhy",
+    tagEn: "Markets",
+    title: "Akcie padají. Co teď dělat s penězi a co raději ne",
+    titleEn: "Stocks are falling. What to do with your money now, and what not to do",
+    seoTitle: "Akcie padají: co dělat při propadu trhu | Finanční Stratég",
+    desc: "Nasdaq je v korekci a S&P 500 měl nejhorší den od dubna 2025. Co se na trzích děje a jak v propadu reagovat, abyste zbytečně nepřišli o peníze.",
+    descEn: "The Nasdaq is in a correction and the S&P 500 had its worst day since April 2025. What is happening in the markets and how to react to a sell-off without losing money needlessly.",
+    date: "6. listopadu 2026",
+    dateEn: "November 6, 2026",
+    author: "Adam Dvořák, EFA",
+    readTime: 5,
+    cta: {
+      title: "Chcete, abych se na vaše peníze podíval s chladnou hlavou?",
+      text: "Projdeme spolu, na čem stojíte, kdy budete peníze potřebovat a jestli vám tenhle propad v plánu něco mění.",
+      button: "Chci být klientem",
+    },
   },
 ];
 
