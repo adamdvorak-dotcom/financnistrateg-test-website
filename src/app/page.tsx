@@ -115,7 +115,9 @@ const T = {
     dedParentsLabel: "Žijící rodiče", dedAssetLabel: "Váš majetek",
     dedSjmLabel: "Majetek ve společném jmění manželů?", dedSjmYes: "Ano", dedSjmNo: "Ne, mám smlouvu",
     dedClass1: "1. třída dědiců", dedClass2: "2. třída dědiců", dedClass3: "3. třída dědiců",
-    dedNoteGuardian: "Když dědí i rodič, který dítě zastupuje, nebo víc nezletilých sourozenců, jedná za dítě kolizní opatrovník, zpravidla úředník OSPOD.",
+    dedNoteGuardian: "Když dědí i rodič, který dítě zastupuje, nebo víc nezletilých sourozenců, jedná za dítě kolizní opatrovník, zpravidla OSPOD.",
+    dedNoteMinorSame: "Nezletilé dítě dědí stejně jako dospělé. Liší se jen to, kdo za něj jedná a co smí rodič s jeho podílem dělat.",
+    dedForcedShare: "povinný díl",
     dedNoteForced: "I se závětí musíte dětem nechat povinný díl: nezletilým tři čtvrtiny, dospělým čtvrtinu zákonného podílu.",
     dedWarnPartner: "Partner bez svatby vedle dětí nedědí ani korunu, i kdybyste spolu žili dvacet let. Pomůže závěť nebo dědická smlouva.",
     dedNotePartner2: "Podmínka: partner bez svatby dědí ve 2. třídě jen pokud spolu žili aspoň rok ve společné domácnosti (§ 1636 OZ).",
@@ -236,7 +238,9 @@ const T = {
     dedParentsLabel: "Living parents", dedAssetLabel: "Your assets",
     dedSjmLabel: "Assets in joint matrimonial property?", dedSjmYes: "Yes", dedSjmNo: "No, I have a prenup",
     dedClass1: "1st class of heirs", dedClass2: "2nd class of heirs", dedClass3: "3rd class of heirs",
-    dedNoteGuardian: "When a parent also inherits as the child's legal guardian, or when multiple minors inherit, a conflict guardian (usually a social services official) represents each child.",
+    dedNoteGuardian: "When a parent also inherits as the child's legal guardian, or when multiple minors inherit, a conflict guardian (usually the child welfare authority, OSPOD) represents each child.",
+    dedNoteMinorSame: "A minor inherits the same share as an adult child. What differs is who acts for the child and what a parent may do with the child's share.",
+    dedForcedShare: "reserved portion",
     dedNoteForced: "Even with a will, you must leave children their reserved portion: three-quarters of the legal share for minors, one-quarter for adults.",
     dedWarnPartner: "An unmarried partner beside children inherits nothing, even if you lived together for twenty years. Only a will or an inheritance contract can change that.",
     dedNotePartner2: "Condition: an unmarried partner inherits in 2nd class only if they lived together for at least one year in a shared household (§ 1636 CZ Civil Code).",
@@ -851,7 +855,9 @@ export default function Page() {
     decMajetek * Math.pow(1 + decR, m) - (decR > 0 ? decVyber * ((Math.pow(1 + decR, m) - 1) / decR) : decVyber * m)
 
   /* ── Inheritance widget ── */
-  const kdoDedi = () => {
+  // nezl je vyplněné jen u dětí: podle něj se počítá povinný díl (§ 1643 OZ)
+  type Dedic = { kdo: string; castka: number; nezl?: boolean }
+  const kdoDedi = (): { trida: number; dedici: Dedic[] } => {
     const sjm = dedManzel === 'manzelka' || dedManzel === 'manzel'
     const jmeno = dedManzel === 'manzel' ? t.dedNameHusband : dedManzel === 'druh' ? t.dedNamePartner : t.dedNameWife
     const pulkaSJM = sjm && dedSjm ? dedMajetek / 2 : 0
@@ -860,8 +866,10 @@ export default function Page() {
       const dil = D / (dedDeti + (sjm ? 1 : 0))
       return { trida: 1, dedici: [
         ...(sjm ? [{ kdo: jmeno, castka: pulkaSJM + dil }] : []),
-        ...Array.from({ length: dedDeti }, (_, i) => ({
-          kdo: i < dedDeti - dedNezletile ? t.dedNameAdultChild : t.dedNameMinorChild, castka: dil })),
+        ...Array.from({ length: dedDeti }, (_, i) => {
+          const nezl = i >= dedDeti - dedNezletile
+          return { kdo: nezl ? t.dedNameMinorChild : t.dedNameAdultChild, castka: dil, nezl }
+        }),
       ] }
     }
     if (dedManzel || dedRodice > 0) {
@@ -1506,9 +1514,17 @@ export default function Page() {
                       return frac ? <span className="ded-frac">{frac}</span> : null
                     })()}
                   </div>
-                  <span className="ded-castka">{dedFmt(d.castka)}</span>
+                  <div className="ded-right">
+                    <span className="ded-castka">{dedFmt(d.castka)}</span>
+                    {d.nezl !== undefined && (
+                      <span className="ded-povinny">{t.dedForcedShare} {dedFmt(d.castka * (d.nezl ? 0.75 : 0.25))}</span>
+                    )}
+                  </div>
                 </div>
               ))}
+              {dedVysledek.trida === 1 && dedNezletile > 0 && (
+                <p className="ded-pozn">{t.dedNoteMinorSame}</p>
+              )}
               {dedOpatrovnik && (
                 <p className="ded-pozn">{t.dedNoteGuardian}</p>
               )}
