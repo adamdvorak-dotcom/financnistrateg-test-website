@@ -1121,7 +1121,7 @@ function ArticleContent({ slug }: { slug: string }) {
       <div className="article-body">
         <p>
           OSVČ platí sociální pojištění z vyměřovacího základu. Zákon říká, že základ musí být
-          alespoň 55&nbsp;% zisku.<a href="#zdroj-1" className="fn">1</a> Zákonem stanovené
+          alespoň 55&nbsp;% zisku.<a href="#zdroj-1" className="fn">1</a>{" "}Zákonem stanovené
           minimum pro rok 2026 je 17&nbsp;139&nbsp;Kč měsíčně, do konce června 19&nbsp;587&nbsp;Kč.<a href="#zdroj-2" className="fn">2</a>
         </p>
         <p>
@@ -1428,7 +1428,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Kdy fond nepotřebujete</h2>
         <p>
           Celkový majetek pod patnáct dvacet milionů. Náklady na nastavení a správu fondu
-          neodpovídají výsledku. Správně sepsaná závěť a nastavené SJM dají podobný efekt.
+          neodpovídají výsledku. <Link href="/blog/den-kdy-se-nevratite-domu">Správně sepsaná závěť</Link> a nastavené SJM dají podobný efekt.
         </p>
         <p>
           Nemáte děti ani jiné osoby, pro které chcete strukturovat majetek do dalších generací.
@@ -1569,7 +1569,7 @@ function ArticleContent({ slug }: { slug: string }) {
 
         <h2>Krok 5: ochrana</h2>
         <p>
-          Pojistka na příjmy. Závěť. Plná moc pro případ neschopnosti. Věci, které lidé
+          Pojistka na příjmy. <Link href="/blog/den-kdy-se-nevratite-domu">Závěť</Link>. Plná moc pro případ neschopnosti. Věci, které lidé
           neřeší, dokud je nepotřebují. A pak je pozdě.
         </p>
 
@@ -2134,6 +2134,206 @@ function ArticleContent({ slug }: { slug: string }) {
         <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
           Článek je obecná informace, nikoli investiční doporučení ani nabídka. Investování do akcií
           nese riziko ztráty a minulé výnosy nezaručují výnosy budoucí. Údaje jsou k 6. 11. 2026.
+        </p>
+      </div>
+    );
+  }
+
+  if (slug === "den-kdy-se-nevratite-domu") {
+    return (
+      <div className="article-body">
+        <p>
+          Nepříjemná otázka, kterou většina majitelů firem odkládá. Jenže když na ni neodpovíte vy,
+          odpoví za vás notář, banka a zákon. A jejich odpověď se vaší rodině líbit nemusí.
+        </p>
+
+        <h2>Kdo by to vaší rodině řekl</h2>
+        <p>
+          Bankéř ne. Ten se mění každé dva roky a vidí jen to, co máte u jeho banky.
+        </p>
+        <p>
+          Notář taky ne. V dědickém řízení obešle banky, mrkne do katastru a do pár dalších evidencí.
+          Co v nich není, nenajde: účet u zahraničního brokera, kryptoměny, zlato v trezoru, půjčku
+          kamarádovi. Najde to jen ten, kdo o tom ví.
+        </p>
+        <p>
+          Manželka často neví, u kterých bank máte účty, kde leží smlouvy a komu zavolat jako prvnímu.
+          A ve firmě čekají, kdo podepíše výplaty.
+        </p>
+        <p>
+          A nemusí jít jen o nejhorší den. Stačí vážný úraz nebo nemoc, kvůli které na pár měsíců
+          nebudete moct rozhodovat. Otázky jsou stejné, jen je řeší rodina, zatímco vy ležíte
+          v nemocnici.
+        </p>
+
+        <h2>Kdo dědí, když nemáte závěť</h2>
+        <p>
+          Spousta chlapů žije v tom, že všechno připadne manželce. Když máte děti, zákon to vidí jinak.
+        </p>
+        <p>
+          Nejdřív se vypořádá společné jmění manželů. Pokud nemáte manželskou smlouvu, patří manželce
+          tak jako tak polovina všeho, co jste za manželství nabyli, kromě darů a dědictví. Do
+          dědictví jde jen ta vaše polovina a tu zákon rozdělí rovným dílem mezi manželku a děti.
+        </p>
+        <p>
+          Příklad: barák za 12&nbsp;milionů ve společném jmění, manželka a dvě děti. Manželce zůstane
+          její polovina, tedy 6&nbsp;milionů. Vaše polovina se rozdělí na třetiny po 2&nbsp;milionech.
+          Manželka má dohromady 8&nbsp;milionů a každé dítě 2&nbsp;miliony. Z baráku, ve kterém rodina
+          bydlí, jí patří dvě třetiny, ne celý.
+        </p>
+        <p>
+          Když jsou děti nezletilé, je to ještě složitější. Za dítě v dědickém řízení nemůže jednat
+          máma, protože dědí taky. Soud mu proto jmenuje kolizního opatrovníka, zpravidla
+          OSPOD. A kdyby chtěla barák později prodat, k podílu dětí potřebuje souhlas soudu.
+        </p>
+        <p>
+          Žijete bez svatby? Pak partnerka vedle dětí nedědí ani korunu, i kdybyste spolu žili dvacet
+          let. Pomůže závěť nebo dědická smlouva u notáře. A pokud máte životní pojistku, napište ji
+          tam jako obmyšlenou. Jinak plnění dostanou děti, ne ona.
+        </p>
+        <p>
+          Kolik by u vás dostal kdo, si naklikáte v simulátoru{" "}
+          <Link href="/#dedictvi">Kdo dědí bez závěti</Link>. Je to minuta práce a výsledek často
+          překvapí.
+        </p>
+        <p>
+          Závětí to můžete změnit. Jen dětem musíte nechat aspoň povinný díl: nezletilým tři čtvrtiny
+          jejich zákonného podílu, dospělým čtvrtinu.
+        </p>
+
+        <h2>Co se stane s firmou</h2>
+        <p>
+          Firma s vámi nezemře. Ale může zamrznout.
+        </p>
+        <p>
+          Pokud jste jediný jednatel a nikdo další nemá prokuru ani přístup k účtům, nemá za firmu kdo
+          podepsat smlouvu, zaplatit fakturu ani poslat výplaty. Nového jednatele musí zvolit
+          společník. A pokud jste jediný společník vy, je váš podíl v dědickém řízení. Bez správce
+          ze závěti za něj můžou hlasovat jen dědici, a to když se shodnou. Když se neshodnou, soud
+          jmenuje správce. Bez přípravy to trvá týdny, často i měsíce. Dodavatelé, zaměstnanci
+          i banka mezitím čekají.
+        </p>
+        <p>Co pomáhá:</p>
+        <p>
+          <strong>Druhý podpis.</strong> Druhý jednatel nebo prokurista s dispozičním právem
+          k firemním účtům. S advokátem si ověřte, že může jednat sám.
+        </p>
+        <p>
+          <strong>Správce pozůstalosti v notářské závěti.</strong> Ujme se správy, hned jak se dozví
+          o vaší smrti, a ve firmě může vykonávat vaše práva společníka, třeba zvolit nového
+          jednatele. Platně ho jde určit jen u notáře, v závěti psané doma ne.
+        </p>
+        <p>
+          <strong>Pravidla ve společenské smlouvě.</strong> Jestli podíl přejde na dědice, kdo za ně
+          bude hlasovat a jak se vyrovnáte s ostatními společníky. Upravit ji můžete jen zaživa.
+        </p>
+        <p>
+          <strong>Předběžné prohlášení.</strong> Pro případ, kdy kvůli nemoci nebo úrazu nebudete moct
+          rozhodovat. Nejlépe u notáře určíte, kdo bude rozhodovat za vás a jak. Bez něj o tom, kdo
+          vás bude zastupovat, rozhodne soud.
+        </p>
+
+        <h2>Na papíře 55 milionů, na ruce tři a půl</h2>
+        <p>
+          Z čeho rodina v prvních měsících zaplatí hypotéku, školu a pohřeb?
+        </p>
+        <p>
+          V kalkulačce <Link href="/#druha-noha">Kde máte majetek</Link>{" "}má ukázkový majitel na papíře
+          přes 55&nbsp;milionů: firmu za 40, barák za 12, investice za 2 a hotovost za 1,5&nbsp;milionu.
+          Bez prodeje firmy nebo baráku má k dispozici tři a půl. Zbytek je zamčený ve firmě
+          a v baráku.
+        </p>
+        <p>
+          A i ty tři a půl milionu můžou ležet v dědickém řízení, pokud jsou jen na vaše jméno. Banka
+          účet po vaší smrti zmrazí. Pokud jste nikomu nezřídil dispoziční právo platné i po smrti,
+          rodina se k penězům dostane až po skončení dědického řízení.
+        </p>
+        <p>
+          Proto rodina potřebuje <Link href="/blog/financni-poduska-jak-ji-spravne-nastavit">rezervu</Link>,
+          ke které se dostane hned, a životní pojistku s určenou obmyšlenou osobou. Pojistné plnění
+          dostane přímo ten, koho jste určil. Do dědictví nepatří, takže se na konec dědického řízení
+          nečeká.
+        </p>
+        <p>
+          Kalkulačky na webu po vás nechtějí telefon ani e-mail. Počítá se jen ve vašem prohlížeči.
+          A pokud vám vyjde, že skoro všechno máte ve firmě, přečtěte si{" "}
+          <Link href="/blog/firma-a-osobni-majetek">Firma roste. Váš osobní majetek ne.</Link>
+        </p>
+
+        <h2>Jeden člověk. Celý váš obraz.</h2>
+        <p>
+          Právě kvůli takovému dni má můj web nadpis „Jeden člověk. Celý váš obraz.“ Chci být ten, komu vaše rodina
+          v takový den zavolá jako prvnímu. A kdo ví, co dělat.
+        </p>
+        <p>
+          Inspiraci jsem si přivezl ze Švýcarska. Jeden člověk drží celý obraz, od investic
+          po krizový plán. Na webu to mám rozepsané{" "}
+          <Link href="/#services">od cashflow po den, kdy se nevrátíte domů</Link>.
+        </p>
+        <p>
+          Sám to všechno nedělám. Za mnou stojí tým: advokát, notář, daňař, účetní. Vy ale voláte
+          na jedno číslo a já hlídám, aby si všichni rozuměli.
+        </p>
+
+        <h2>Co můžete udělat ještě tento měsíc</h2>
+        <p>
+          <strong>Sepište jednu stránku.</strong> Kde co máte, kdo má k čemu přístup a komu volat jako
+          prvnímu. Účty, investice, pojistky, nemovitosti, podíly i dluhy. Hesla tam nepište, stačí,
+          aby rodina věděla, co existuje a kde hledat.
+        </p>
+        <p>
+          <strong>Řekněte někomu, kde ta stránka leží.</strong> Papír v šuplíku, o kterém nikdo neví,
+          nepomůže nikomu.
+        </p>
+        <p>
+          <strong>Sepište závěť u notáře.</strong> Notář ji zapíše do Centrální evidence závětí, takže
+          ji v dědickém řízení najdou. A rovnou v ní můžete určit správce pozůstalosti.
+        </p>
+        <p>
+          <strong>Dejte firmě druhý podpis.</strong> Druhý jednatel nebo prokurista s přístupem
+          k účtům.
+        </p>
+        <p>
+          <strong>Zkontrolujte jména ve smlouvách.</strong> U životní pojistky a penzijka, koho máte
+          uvedeného pro případ smrti. Po rozvodu nebo narození dítěte tam často zůstane jméno, které
+          už nesedí.
+        </p>
+
+        <h2>Kde začít, když nic nebolí</h2>
+        <p>
+          Nic vás nebolí, a právě proto je dobrá chvíle podívat se, jestli firma běží i bez vás.
+        </p>
+        <p>
+          <Link href="/financni-preventivka">Finanční preventivka</Link> je dvacet tvrzení v pěti
+          oblastech: firma bez majitele, peníze mimo firmu, rodina a dokumenty, daně a struktura
+          a plán odchodu. Za pět minut a po zadání jména a e-mailu uvidíte, kde máte největší mezery,
+          a tři kroky, kterými začít.
+        </p>
+
+        <div className="article-closing">
+          <p>
+            Na tenhle den se nikdo nechystá rád. Ale když přijde, vaše rodina bude hledat číslo,
+            kam zavolat.
+          </p>
+          <p>Chci, aby to číslo bylo moje.</p>
+        </div>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><b>Občanský zákoník (zákon č. 89/2012 Sb.), § 1635</b>: v první třídě dědí děti a manžel, každý stejným dílem.</li>
+            <li><b>Občanský zákoník, § 1636</b>: druhá třída; partner bez svatby dědí, jen když zůstavitel nemá potomky a partner s ním aspoň rok před smrtí žil ve společné domácnosti a pečoval o ni nebo byl na něm závislý výživou.</li>
+            <li><b>Občanský zákoník, § 1643</b>: povinný díl, nezletilý potomek tři čtvrtiny, zletilý čtvrtinu zákonného dědického podílu.</li>
+            <li><b>Občanský zákoník, § 1582</b>: dědickou smlouvou lze povolat za dědice druhou stranu nebo třetí osobu; smlouva musí mít formu veřejné listiny.</li>
+            <li><b>Občanský zákoník, § 1556</b>: správce pozůstalosti povolaný zůstavitelem; povolání vyžaduje formu veřejné listiny.</li>
+            <li><b>Občanský zákoník, § 898</b>: právní jednání o majetku dítěte, která nejsou běžná, schvaluje soud.</li>
+            <li><b>Občanský zákoník, § 2832 odst. 1</b>: obmyšlený nabývá právo na pojistné plnění vznikem pojistné události, plnění proto nepatří do dědictví; bez určeného obmyšleného platí pořadí podle § 2831.</li>
+          </ol>
+        </div>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Článek je obecná informace, nikoli právní ani daňové poradenství. Dědické právo má výjimky
+          a každá rodina je jiná. Konkrétní řešení vždy připravujeme s advokátem nebo notářem.
         </p>
       </div>
     );

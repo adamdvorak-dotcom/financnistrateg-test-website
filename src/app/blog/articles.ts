@@ -401,6 +401,31 @@ export const articles: Article[] = [
       button: "Chci být klientem",
     },
   },
+  {
+    slug: "den-kdy-se-nevratite-domu",
+    category: "rodinny-majetek",
+    tag: "Dědictví",
+    tagEn: "Inheritance",
+    title: "Kdybyste zítra nebyl, kdo by vaší rodině řekl, kde co máte?",
+    titleEn: "If you weren't here tomorrow, who would tell your family where everything is?",
+    seoTitle: "Kdo dědí bez závěti a co se stane s firmou | Finanční Stratég",
+    desc: "Bez závěti rozhodne zákon a firma s jediným jednatelem může na týdny i měsíce zamrznout. Co se stane s majetkem a firmou, když se nevrátíte domů, a co s tím udělat.",
+    descEn: "Without a will the law decides, and a company with a single director can freeze for weeks or months. What happens to your assets and your business if you don't come home, and what to do about it.",
+    date: "6. listopadu 2026",
+    dateEn: "November 6, 2026",
+    author: "Adam Dvořák, EFA",
+    readTime: 6,
+    tldr: [
+      "Bez závěti dělí majetek zákon. S dětmi dostane manželka svou polovinu ze společného jmění a jen díl z té vaší.",
+      "Notář najde, co je v registrech. Účet u zahraničního brokera nebo půjčku kamarádovi najde jen ten, kdo o nich ví.",
+      "Firma s jediným jednatelem může po jeho smrti na týdny i měsíce zamrznout. Pomůže druhý podpis a správce pozůstalosti v notářské závěti.",
+    ],
+    cta: {
+      title: "Chcete, aby vaše rodina v ten den věděla, komu zavolat?",
+      text: "Projdeme spolu, kde co máte, co by se stalo s firmou a co doplnit, aby to fungovalo i bez vás.",
+      button: "Chci mít plán",
+    },
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
