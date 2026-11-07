@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       { source: "/post/:slug", destination: "/blog/:slug", permanent: true },
       // Preventivka se přesunula z /test
       { source: "/test", destination: "/financni-preventivka", permanent: true },
+      { source: "/test/index.html", destination: "/financni-preventivka", permanent: true },
       { source: "/test/:path*", destination: "/financni-preventivka/:path*", permanent: true },
       { source: "/service-page/:slug", destination: "/konzultace", permanent: true },
       { source: "/book-online", destination: "/konzultace", permanent: true },
