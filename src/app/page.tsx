@@ -719,7 +719,7 @@ export default function Page() {
   const heroRef = useRef<HTMLElement>(null);
   const calcTouchX = useRef<number>(0);
   const calcTouchY = useRef<number>(0);
-  const calcTabOrder = ['invest', 'mortgage', 'retirement', 'depletion'] as const;
+  const calcTabOrder = ['invest', 'retirement', 'depletion', 'mortgage'] as const;
   const heroInnerRef = useRef<HTMLDivElement>(null);
 
   /* Hero parallax, content drifts up and fades on scroll */
@@ -1560,7 +1560,6 @@ export default function Page() {
             <div className="calc-header">
               <div className="calc-tabs">
                 <button className={`calc-tab${calcTab === "invest" ? " active" : ""}`} onClick={() => setCalcTab("invest")}>{t.tabInvest}</button>
-                <button className={`calc-tab${calcTab === "mortgage" ? " active" : ""}`} onClick={() => setCalcTab("mortgage")}>{t.tabMortgage}</button>
                 <button className={`calc-tab${calcTab === "retirement" ? " active" : ""}`} onClick={() => setCalcTab("retirement")}>{t.tabRetirement}</button>
                 <button className={`calc-tab${calcTab === "depletion" ? " active" : ""}`} onClick={() => setCalcTab("depletion")}>
                   {t.tabDepletion}
@@ -1569,6 +1568,7 @@ export default function Page() {
                 <a className="calc-tab" href="/renta">
                   {t.tabRenta} ↗ <span className="new-badge">{t.tabNew}</span>
                 </a>
+                <button className={`calc-tab${calcTab === "mortgage" ? " active" : ""}`} onClick={() => setCalcTab("mortgage")}>{t.tabMortgage}</button>
               </div>
             </div>
             <div className="calc-body"
