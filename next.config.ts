@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       })),
       { source: "/post/:slug", destination: "/blog/:slug", permanent: true },
+      // Kalkulačka renty žije na /renta (viz rewrites), .html verze je jen duplicita
+      { source: "/renta.html", destination: "/renta", permanent: true },
       // Preventivka se přesunula z /test
       { source: "/test", destination: "/financni-preventivka", permanent: true },
       { source: "/test/index.html", destination: "/financni-preventivka", permanent: true },
@@ -29,6 +31,10 @@ const nextConfig: NextConfig = {
       { source: "/blog-categories-sitemap.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/pages-sitemap.xml", destination: "/sitemap.xml", permanent: true },
     ];
+  },
+  // Samostatné HTML stránky z /public pod hezkou adresou
+  async rewrites() {
+    return [{ source: "/renta", destination: "/renta.html" }];
   },
 };
 

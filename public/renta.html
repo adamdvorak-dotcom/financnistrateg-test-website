@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kdy vám vyjde renta? · Finanční Stratég</title>
+<meta name="description" content="Zadejte, kolik investujete a jakou rentu chcete. Kalkulačka ukáže pásmo možných výsledků, cenu za čekání a zátěžový test propadu.">
+<meta property="og:title" content="Kdy vám vyjde renta?">
+<meta property="og:description" content="Interaktivní kalkulačka renty. Zadejte svoje čísla a uvidíte, kam se to může vyvinout.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.financnistrateg.com/renta">
+<meta property="og:site_name" content="Finanční Stratég">
+<meta property="og:image" content="https://www.financnistrateg.com/og-renta.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Kdy vám vyjde renta? Kalkulačka Finančního Stratéga.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.financnistrateg.com/og-renta.png">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.financnistrateg.com/renta">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600&display=swap">
+<style>
+  :root{
+    --navy:#0E1C2F; --gold:#C2A15B; --cream:#F6F4EE; --card:#FFFFFF;
+    --ink:#0E1C2F; --ink-2:#4A5260; --ink-3:#7C8491; --line:#E6E2D8; --grid:#EEEBE3;
+    --series-1:#2B5FA8; --series-2:#9C7B26; --surface-1:#FFFFFF;
+    --good:#2F7D4F; --warn:#B26A00; --bad:#B23A3A;
+    --serif: "Lora", Georgia, "Times New Roman", serif;
+    --sans: Inter, "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
+  header{background:var(--navy);color:#fff;border-bottom:2px solid var(--gold)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  header .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-top:28px;padding-bottom:22px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+  h1{font-family:var(--serif);font-weight:500;font-size:34px;margin:6px 0 2px;line-height:1.1}
+  .sub{color:#C9CFDA;font-size:14px;margin:0}
+  .client{font-size:13px;color:#C9CFDA;text-align:right}
+  .client b{display:block;color:#fff;font-size:15px;font-weight:600}
+  main{padding:26px 0 48px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-bottom:18px}
+  .card h2{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 4px}
+  .card .lead{color:var(--ink-2);font-size:14px;margin:0 0 14px}
+  /* controls */
+  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 22px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--ink-2);margin-bottom:4px}
+  .ctl output{flex-shrink:0;white-space:nowrap}
+  .ctl output{font-weight:600;color:var(--ink);font-size:14px;font-variant-numeric:tabular-nums}
+  input[type=range]{width:100%;accent-color:var(--series-1);height:22px;margin:0}
+  .ctl small{display:block;color:var(--ink-3);font-size:12px;margin-top:2px}
+  /* tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .tile .label{font-size:13px;color:var(--ink-2)}
+  .tile .value{font-size:30px;font-weight:600;margin:4px 0 2px;letter-spacing:-.01em}
+  .tile .value.hero{font-size:44px}
+  .tile .note{font-size:12.5px;color:var(--ink-3)}
+  .tile .note.good{color:var(--good)} .tile .note.warn{color:var(--warn)} .tile .note.bad{color:var(--bad)}
+  .meter{height:8px;border-radius:999px;background:#DCE6F5;margin-top:10px;overflow:hidden}
+  .meter i{display:block;height:100%;background:var(--series-1);border-radius:999px}
+  /* charts */
+  .chart{position:relative}
+  svg{display:block;width:100%;height:auto;font-family:var(--sans)}
+  .axis text{fill:var(--ink-3);font-size:11px}
+  .axis line,.grid line{stroke:var(--grid);stroke-width:1}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-2);margin:6px 0 2px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .sw.line{height:2px;border-radius:1px;width:18px}
+  .tip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;font-size:12.5px;padding:8px 10px;border-radius:6px;line-height:1.4;white-space:nowrap;display:none;box-shadow:0 4px 14px rgba(14,28,47,.18)}
+  .tip b{color:var(--gold);font-weight:600}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:820px){.row2{grid-template-columns:1fr}}
+  .bars text.val{fill:var(--ink);font-size:12.5px;font-weight:600}
+  .bars text.cat{fill:var(--ink-2);font-size:12.5px}
+  .bars text.delta{fill:var(--ink-3);font-size:11.5px}
+  .insight{font-size:13.5px;color:var(--ink-2);margin:10px 0 0;padding-top:10px;border-top:1px solid var(--line)}
+  .insight b{color:var(--ink)}
+  button.link{background:none;border:none;color:var(--series-1);font:inherit;font-size:13px;cursor:pointer;padding:0;text-decoration:underline}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  th,td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--ink-2);font-weight:600}
+  .assump{font-size:12.5px;color:var(--ink-3);line-height:1.5}
+  .assump b{color:var(--ink-2)}
+  footer{border-top:1px solid var(--line);padding:18px 0 30px;font-size:12px;color:var(--ink-3)}
+  .pill{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:2px 8px;margin-left:10px;vertical-align:middle}
+  .cta{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .cta h2{color:#fff}.cta .lead{color:#C9CFDA}
+  .ctarow{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:600;text-decoration:none;padding:10px 18px;border-radius:6px}
+  .cta button.link{color:#E7D9B5}
+  footer a{color:inherit}
+  @media print{header{-webkit-print-color-adjust:exact;print-color-adjust:exact} .ctl input{display:none}}
+  a.brand{display:block;text-decoration:none}
+  .back{color:#C9CFDA;text-decoration:none;font-size:13px;border:1px solid rgba(255,255,255,.22);border-radius:6px;padding:7px 12px;white-space:nowrap}
+  .back:hover{color:#fff;border-color:var(--gold)}
+  @media print{.back{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="/">Finanční Stratég</a>
+      <h1>Kdy vám vyjde renta?</h1>
+    </div>
+    <a class="back" href="/">← Zpět na web</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="card" aria-labelledby="c1">
+    <h2 id="c1">Vstupy</h2>
+    <p class="lead">Přednastavené hodnoty jsou jen příklad. Přepište je na svoje.</p>
+    <div class="controls">
+      <div class="ctl"><label for="inMonthly">Pravidelná investice měsíčně <output id="oMonthly"></output></label><input type="range" id="inMonthly" min="0" max="300000" step="5000" value="60000"></div>
+      <div class="ctl"><label for="inLump">Jednorázově každý rok <output id="oLump"></output></label><input type="range" id="inLump" min="0" max="6000000" step="100000" value="1000000"></div>
+      <div class="ctl"><label for="inStart">Startovní investiční majetek <output id="oStart"></output></label><input type="range" id="inStart" min="0" max="30000000" step="250000" value="2000000"></div>
+      <div class="ctl"><label for="inYears">Horizont <output id="oYears"></output></label><input type="range" id="inYears" min="5" max="30" step="1" value="15"></div>
+      <div class="ctl"><label for="inRent">Cílová renta měsíčně (dnešní peníze) <output id="oRent"></output></label><input type="range" id="inRent" min="30000" max="600000" step="10000" value="100000"></div>
+      <div class="ctl"><label for="inRet">Očekávaný výnos p.a. (nominálně) <output id="oRet"></output></label><input type="range" id="inRet" min="3" max="10" step="0.5" value="6.5"><small>Před poplatky. Dlouhodobý průměr globálních akcií se obvykle modeluje 6 až 8 %.</small></div>
+      <div class="ctl"><label for="inFee">Poplatky p.a. <output id="oFee"></output></label><input type="range" id="inFee" min="0" max="2.5" step="0.1" value="0.6"><small>Celkové roční náklady portfolia. Levné ETF 0,2 až 0,5 %, aktivní fondy 1,5 až 2,5 %.</small></div>
+      <div class="ctl"><label for="inVol">Kolísavost p.a. <output id="oVol"></output></label><input type="range" id="inVol" min="5" max="25" step="1" value="15"></div>
+      <div class="ctl"><label for="inInf">Inflace p.a. <output id="oInf"></output></label><input type="range" id="inInf" min="0" max="5" step="0.5" value="2.5"></div>
+      <div class="ctl"><label for="inSwr">Bezpečné čerpání z majetku <output id="oSwr"></output></label><input type="range" id="inSwr" min="3" max="4.5" step="0.25" value="3.5"><small>Kolik procent majetku ročně lze čerpat, aby renta rostla s inflací.</small></div>
+    </div>
+  </section>
+
+  <section class="tiles" aria-label="Klíčová čísla">
+    <div class="tile"><div class="label">Potřebný majetek pro rentu</div><div class="value" id="tTarget">…</div><div class="note" id="tTargetNote">v dnešních penězích</div></div>
+    <div class="tile"><div class="label">Očekávaný majetek na konci horizontu</div><div class="value hero" id="tMedian">…</div><div class="note" id="tMedianNote">medián, v dnešních penězích</div><div class="meter" aria-hidden="true"><i id="meter" style="width:0%"></i></div></div>
+    <div class="tile"><div class="label">Kdy renta vychází</div><div class="value" id="tYear">…</div><div class="note" id="tYearNote"></div></div>
+    <div class="tile"><div class="label">Kolik scénářů z 10 cíl splní</div><div class="value" id="tProb">…</div><div class="note" id="tProbNote">z 1 500 simulovaných vývojů trhu</div></div>
+  </section>
+
+  <section class="card" aria-labelledby="c2">
+    <h2 id="c2">Vývoj majetku v dnešních penězích</h2>
+    <p class="lead">Čára uprostřed je medián. Pásmo kolem ní ukazuje, kam se to může ve slabších a silnějších letech rozjet.</p>
+    <div class="legend">
+      <span><i class="sw line" style="background:var(--series-1)"></i>Medián</span>
+      <span><i class="sw" style="background:var(--series-1);opacity:.32"></i>Polovina scénářů (25 až 75 %)</span>
+      <span><i class="sw" style="background:var(--series-1);opacity:.14"></i>Většina scénářů (10 až 90 %)</span>
+      <span><i class="sw line" style="background:var(--series-2)"></i>Cíl pro rentu</span>
+    </div>
+    <div class="chart" id="fanWrap"><svg id="fan" viewBox="0 0 960 380" role="img" aria-label="Vějířový graf vývoje majetku"></svg><div class="tip" id="fanTip"></div></div>
+    <p class="insight" id="fanInsight"></p>
+    <p class="assump" style="margin:6px 0 0">Jde o modelový výpočet. Skutečný vývoj může být horší než nejhorší zobrazené pásmo.</p>
+    <button class="link" id="toggleTable" aria-expanded="false">Zobrazit jako tabulku</button>
+    <div id="tableWrap" hidden></div>
+  </section>
+
+  <div class="row2">
+    <section class="card" aria-labelledby="c3">
+      <h2 id="c3">Cena za čekání</h2>
+      <p class="lead">Stejné vklady i výnos, jen pozdější začátek.</p>
+      <div class="chart"><svg id="wait" viewBox="0 0 520 200" class="bars" role="img" aria-label="Cena za čekání"></svg></div>
+      <p class="insight" id="waitInsight"></p>
+    </section>
+    <section class="card" aria-labelledby="c4">
+      <h2 id="c4">Zátěžový test: propad o 40 %</h2>
+      <p class="lead">Stejný propad, jiný rok. Proto má plán rezervu a hotovost na nákupy ve slevě.</p>
+      <div class="chart"><svg id="stress" viewBox="0 0 520 200" class="bars" role="img" aria-label="Zátěžový test"></svg></div>
+      <p class="insight" id="stressInsight"></p>
+    </section>
+  </div>
+
+  <section class="card cta" aria-labelledby="c5">
+    <h2 id="c5">Chcete to na svých skutečných číslech?</h2>
+    <p class="lead">Kalkulačka neví nic o vaší firmě, daních, nemovitostech ani státním důchodu. Půl hodiny stačí, abychom zjistili, jestli si sedneme. Nic se na ní neprodává.</p>
+    <div class="ctarow"><a class="btn" href="https://www.financnistrateg.com/konzultace">Domluvit půl hodiny</a><button class="link" id="shareBtn" type="button">Zkopírovat odkaz na tento scénář</button><span id="shareNote" class="assump" aria-live="polite"></span></div>
+  </section>
+
+  <section class="card">
+    <h2>Předpoklady a upozornění</h2>
+    <p class="assump" id="assump"></p>
+    <p class="assump"><b>Jde o model.</b> Simulace pracuje s náhodnými scénáři kolem zadaného výnosu a kolísavosti. Skutečný vývoj může být horší než nejhorší zobrazené pásmo. Výsledky jsou po zadaných poplatcích a před daněmi. Minulá ani simulovaná výkonnost není spolehlivým ukazatelem budoucích výsledků.</p>
+  </section>
+</main>
+<footer><div class="wrap">Adam Dvořák, EFA · IČO 08406804 · vázaný zástupce společnosti BEplan finanční plánování s.r.o., IČO 05779944, registrované u ČNB · <a href="https://www.financnistrateg.com">financnistrateg.com</a> · Obecná ilustrace pro vzdělávací účely, nikoli investiční doporučení ani nabídka. Nástroj neukládá žádné údaje a nepoužívá cookies.</div></footer>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const Y0=new Date().getFullYear();
+  const fmtK=new Intl.NumberFormat('cs-CZ',{maximumFractionDigits:0});
+  const kc=v=>fmtK.format(Math.round(v))+' Kč';
+  const mil=v=>{ if(Math.abs(v)>=1e9) return (v/1e9).toLocaleString('cs-CZ',{maximumFractionDigits:2})+' mld. Kč'; if(Math.abs(v)>=1e6) return (v/1e6).toLocaleString('cs-CZ',{maximumFractionDigits:1})+' mil. Kč'; return kc(v); };
+  const pct=v=>v.toLocaleString('cs-CZ',{maximumFractionDigits:2})+' %';
+
+  // seeded PRNG + normals (deterministic between recomputes)
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  const NP=1500, MAXY=30;
+  // pre-generate standard normals: NP paths × MAXY*12 months
+  const rnd=mulberry32(20261108); const Z=new Float32Array(NP*MAXY*12);
+  for(let i=0;i<Z.length;i+=2){const u=rnd()||1e-9,v=rnd();const r=Math.sqrt(-2*Math.log(u));Z[i]=r*Math.cos(2*Math.PI*v);if(i+1<Z.length)Z[i+1]=r*Math.sin(2*Math.PI*v);}
+
+  const S={};
+  const ctl=[['inMonthly','oMonthly',v=>kc(v)],['inLump','oLump',v=>kc(v)],['inStart','oStart',v=>kc(v)],['inYears','oYears',v=>v+(v>=5?' let':' roky')],['inRent','oRent',v=>kc(v)],['inRet','oRet',v=>pct(v)],['inVol','oVol',v=>pct(v)],['inInf','oInf',v=>pct(v)],['inSwr','oSwr',v=>pct(v)],['inFee','oFee',v=>pct(v)]];
+  function readInputs(){S.monthly=+$('inMonthly').value;S.lump=+$('inLump').value;S.start=+$('inStart').value;S.years=+$('inYears').value;S.rent=+$('inRent').value;S.ret=+$('inRet').value/100;S.vol=+$('inVol').value/100;S.inf=+$('inInf').value/100;S.swr=+$('inSwr').value/100;S.fee=+$('inFee').value/100;S.net=Math.max(-0.5,(1+S.ret)/(1+S.fee)-1);
+    ctl.forEach(([i,o,f])=>{$(o).textContent=f(+$(i).value)});}
+
+  // Monte Carlo: monthly lognormal steps, contributions at month start, lump at year end; values deflated to today's money
+  function simulate(delayYears){
+    const Y=S.years, m=Y*12; const mu=(Math.log(1+S.net)-0.5*S.vol*S.vol)/12, sg=S.vol/Math.sqrt(12);
+    const perYear=Array.from({length:Y+1},()=>new Float64Array(NP));
+    for(let p=0;p<NP;p++){
+      let w=S.start; perYear[0][p]=w; let zi=p*MAXY*12;
+      for(let k=0;k<m;k++){
+        const yr=Math.floor(k/12);
+        if(yr>=delayYears) w+=S.monthly;
+        w*=Math.exp(mu+sg*Z[zi+k]);
+        if((k+1)%12===0){ if(yr>=delayYears) w+=S.lump; perYear[yr+1][p]=w/Math.pow(1+S.inf,yr+1); }
+      }
+    }
+    const q=(arr,f)=>{const a=Float64Array.from(arr).sort();const i=(a.length-1)*f;const lo=Math.floor(i),hi=Math.ceil(i);return a[lo]+(a[hi]-a[lo])*(i-lo)};
+    return perYear.map(a=>({p10:q(a,.10),p25:q(a,.25),p50:q(a,.5),p75:q(a,.75),p90:q(a,.9),raw:a}));
+  }
+  // deterministic path at expected return with optional shock in given year (end of that year), real terms
+  function deterministic(shockYear){
+    const Y=S.years; let w=S.start; const rm=Math.pow(1+S.net,1/12)-1;
+    for(let k=0;k<Y*12;k++){ w+=S.monthly; w*=1+rm; if((k+1)%12===0){ w+=S.lump; const yr=(k+1)/12; if(yr===shockYear) w*=0.6; } }
+    return w/Math.pow(1+S.inf,Y);
+  }
+
+  // ---------- rendering helpers ----------
+  const NS='http://www.w3.org/2000/svg';
+  const el=(n,a={},t)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e};
+  const niceTicks=(max,n=5)=>{const raw=max/n,p=Math.pow(10,Math.floor(Math.log10(raw)));const c=[1,2,2.5,5,10].find(c=>c*p>=raw)*p;const t=[];for(let v=0;v<=max+1e-9;v+=c)t.push(v);return t};
+  const tickLabel=v=>v===0?'0':(v>=1e9?(v/1e9).toLocaleString('cs-CZ',{maximumFractionDigits:1})+' mld.':(v/1e6).toLocaleString('cs-CZ',{maximumFractionDigits:0})+' mil.');
+
+  let last=null;
+  function drawFan(res,target){
+    const svg=$('fan'); svg.innerHTML=''; const cw=Math.max(320,svg.parentNode.clientWidth||960); const narrow=cw<700; const W=cw,H=narrow?Math.round(cw*0.9):Math.round(Math.min(420,Math.max(300,cw*0.4))),L=narrow?52:70,R=narrow?104:120,T=16,B=40; svg.setAttribute('viewBox',`0 0 ${W} ${H}`); const pw=W-L-R, ph=H-T-B; const Y=S.years;
+    const ymax=Math.max(res[Y].p90,target)*1.08; const x=i=>L+pw*i/Y, y=v=>T+ph-ph*v/ymax;
+    const g=el('g',{class:'grid'}); const ticks=niceTicks(ymax,5); ticks.forEach(v=>{g.appendChild(el('line',{x1:L,x2:L+pw,y1:y(v),y2:y(v)}));}); svg.appendChild(g);
+    const ax=el('g',{class:'axis'}); ticks.forEach(v=>ax.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},tickLabel(v))));
+    const startYear=Y0; const step=narrow?Math.max(1,Math.ceil(Y/4)):(Y>20?5:(Y>10?2:1)); for(let i=0;i<=Y;i+=step) ax.appendChild(el('text',{x:x(i),y:T+ph+22,'text-anchor':'middle'},String(startYear+i)));
+    ax.appendChild(el('line',{x1:L,x2:L+pw,y1:T+ph,y2:T+ph})); svg.appendChild(ax);
+    const band=(lo,hi,op)=>{let d='';for(let i=0;i<=Y;i++)d+=(i?'L':'M')+x(i)+','+y(res[i][hi]);for(let i=Y;i>=0;i--)d+='L'+x(i)+','+y(res[i][lo]);return el('path',{d:d+'Z',fill:'var(--series-1)','fill-opacity':op})};
+    svg.appendChild(band('p10','p90',.14)); svg.appendChild(band('p25','p75',.22));
+    let d='';for(let i=0;i<=Y;i++)d+=(i?'L':'M')+x(i)+','+y(res[i].p50); svg.appendChild(el('path',{d,fill:'none',stroke:'var(--series-1)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    // target line
+    svg.appendChild(el('line',{x1:L,x2:L+pw,y1:y(target),y2:y(target),stroke:'var(--series-2)','stroke-width':2}));
+    if(narrow){svg.appendChild(el('text',{x:L+pw-2,y:y(target)-6,fill:'var(--ink-2)','font-size':11,'text-anchor':'end'},'Cíl '+mil(target)));}else{svg.appendChild(el('text',{x:L+pw+8,y:y(target)+4,fill:'var(--ink-2)','font-size':12},'Cíl '+mil(target)));}
+    // end labels (selective): median, p90, p10 with simple collision avoidance
+    const labels=[{k:'p90',t:'Optimistický'},{k:'p50',t:'Medián'},{k:'p10',t:'Pesimistický'}].map(o=>({...o,v:res[Y][o.k],yy:y(res[Y][o.k])}));
+    labels.sort((a,b)=>a.yy-b.yy); for(let i=1;i<labels.length;i++) if(labels[i].yy-labels[i-1].yy<28) labels[i].yy=labels[i-1].yy+28;
+    const ty=y(target); labels.forEach(o=>{ if(Math.abs(o.yy-ty)<14) o.yy= o.yy<ty? ty-16 : ty+16; });
+    labels.forEach(o=>{svg.appendChild(el('circle',{cx:x(Y),cy:y(o.v),r:4,fill:'var(--series-1)',stroke:'var(--surface-1)','stroke-width':2}));
+      svg.appendChild(el('text',{x:L+pw+8,y:o.yy-2,fill:'var(--ink)','font-size':narrow?11.5:12.5,'font-weight':600},mil(o.v)));
+      svg.appendChild(el('text',{x:L+pw+8,y:o.yy+11,fill:'var(--ink-3)','font-size':narrow?10:11},o.t));});
+    // hover layer
+    const cross=el('line',{x1:0,x2:0,y1:T,y2:T+ph,stroke:'var(--ink-3)','stroke-width':1,opacity:0}); svg.appendChild(cross);
+    const dot=el('circle',{r:5,fill:'var(--series-1)',stroke:'var(--surface-1)','stroke-width':2,opacity:0}); svg.appendChild(dot);
+    const hit=el('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent'}); svg.appendChild(hit);
+    const tip=$('fanTip'), wrap=$('fanWrap');
+    const show=ev=>{const r=svg.getBoundingClientRect();const px=(ev.clientX-r.left)*W/r.width;let i=Math.round((px-L)/pw*Y);i=Math.max(0,Math.min(Y,i));
+      cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));cross.setAttribute('opacity',1);dot.setAttribute('cx',x(i));dot.setAttribute('cy',y(res[i].p50));dot.setAttribute('opacity',1);
+      tip.style.display='block';tip.innerHTML=`<b>${startYear+i}</b> · rok ${i}<br>Optimistický (90 %): ${mil(res[i].p90)}<br>Medián: ${mil(res[i].p50)}<br>Pesimistický (10 %): ${mil(res[i].p10)}`;
+      const wr=wrap.getBoundingClientRect(); let lx=(ev.clientX-wr.left)+14, ly=(ev.clientY-wr.top)-10; if(lx+tip.offsetWidth>wr.width) lx-=tip.offsetWidth+28; tip.style.left=lx+'px';tip.style.top=ly+'px';};
+    const hide=()=>{cross.setAttribute('opacity',0);dot.setAttribute('opacity',0);tip.style.display='none'};
+    hit.addEventListener('mousemove',show);hit.addEventListener('mouseleave',hide);hit.addEventListener('touchmove',e=>{show(e.touches[0]);e.preventDefault()},{passive:false});hit.addEventListener('touchend',hide);
+  }
+
+  function hbars(svgId,rows,opts={}){
+    const svg=$(svgId); svg.innerHTML=''; const cw=Math.max(280,svg.parentNode.clientWidth||520); const narrow=cw<560;
+    const W=cw, T=14; const L=narrow?8:Math.min(180,Math.round(cw*0.33)); const R=narrow?150:Math.min(120,Math.round(cw*0.26));
+    const rowH=narrow?60:52; const H=T+rows.length*rowH+6; svg.setAttribute('viewBox',`0 0 ${W} ${H}`); const pw=W-L-R;
+    const max=Math.max(...rows.map(r=>r.v)); const bw=v=>pw*v/max;
+    if(!narrow) svg.appendChild(el('line',{x1:L,x2:L,y1:T,y2:H-6,stroke:'var(--grid)'}));
+    rows.forEach((r,i)=>{const top=T+rowH*i; const w=Math.max(0,bw(r.v)); const by=narrow?top+22:top+rowH/2-11; const cy=by+11;
+      if(narrow) svg.appendChild(el('text',{x:L,y:top+12,class:'cat'},r.label)); else svg.appendChild(el('text',{x:L-10,y:cy+4,'text-anchor':'end',class:'cat'},r.label));
+      const p=el('path',{d:`M${L},${by} H${L+Math.max(w,4)-4} a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 H${L} Z`,fill:r.fill||'var(--series-1)'}); svg.appendChild(p);
+      svg.appendChild(el('text',{x:L+w+8,y:cy+4,class:'val'},mil(r.v)));
+      if(r.delta!=null&&i>0) svg.appendChild(el('text',{x:L+w+8,y:cy+18,class:'delta'},r.delta));
+      p.appendChild(el('title',{},`${r.label}: ${kc(r.v)}`));
+    });
+  }
+
+  function recompute(){
+    readInputs();
+    const target=S.rent*12/S.swr;
+    const res=simulate(0); last={res,target};
+    const Y=S.years, med=res[Y].p50;
+    $('tTarget').textContent=mil(target); $('tTargetNote').textContent=`renta ${kc(S.rent)}/měs. při čerpání ${pct(S.swr*100)}`;
+    $('tMedian').textContent=mil(med);
+    const ratio=med/target; $('meter').style.width=Math.min(100,ratio*100).toFixed(1)+'%';
+    $('tMedianNote').textContent=ratio>=1?`${Math.round(ratio*100)} % cíle · nad cílem`:`${Math.round(ratio*100)} % cíle · chybí ${mil(target-med)}`;
+    $('tMedianNote').className='note '+(ratio>=1?'good':ratio>=.8?'warn':'bad');
+    let reach=null; for(let i=0;i<=Y;i++){ if(res[i].p50>=target){reach=i;break;} }
+    if(reach!==null){$('tYear').textContent=String(Y0+reach);$('tYearNote').textContent=reach===0?'cíl už je splněn':`za ${reach} ${reach===1?'rok':reach<5?'roky':'let'} (medián)`;}
+    else{ // extrapolate roughly using median growth of last 5 years
+      const g=Math.pow(res[Y].p50/Math.max(1,res[Math.max(0,Y-5)].p50),1/Math.min(5,Y))-1; let v=res[Y].p50,k=Y; while(v<target&&k<60&&g>0){v*=1+g;k++;}
+      $('tYear').textContent=k<60?`≈ ${Y0+k}`:'mimo dosah'; $('tYearNote').textContent=k<60?`odhad, pokud by vklady pokračovaly ještě ${k-Y} ${(k-Y)===1?'rok':(k-Y)<5?'roky':'let'}`:'při těchto vstupech renta nevychází';}
+    const prob=res[Y].raw.reduce((a,v)=>a+(v>=target?1:0),0)/NP; const outOf10=Math.round(prob*10);
+    $('tProb').textContent=`${outOf10} z 10`; $('tProbNote').textContent=`${Math.round(prob*100)} % z 1 500 simulovaných vývojů trhu`;
+    drawFan(res,target);
+    $('fanInsight').innerHTML=`V polovině scénářů skončíte nad <b>${mil(med)}</b>; v jednom z deseti horších pod <b>${mil(res[Y].p10)}</b>. ${ratio>=1?'Cíl pro rentu drží i většina slabších scénářů.':'Pokud má renta vyjít spolehlivěji, pomůže delší horizont, vyšší vklad, nebo nižší cílová renta. Posuňte si to.'}`;
+    // waiting cost
+    const base=med; const d1=simulate(1)[Y].p50, d3=simulate(3)[Y].p50, d5=simulate(5)[Y].p50;
+    const dl=v=>`−${mil(base-v)} (${Math.round((1-v/base)*100)} %)`;
+    hbars('wait',[{label:'Začít hned',v:base},{label:'Začít za rok',v:d1,delta:dl(d1)},{label:'Začít za 3 roky',v:d3,delta:dl(d3)},{label:'Začít za 5 let',v:d5,delta:dl(d5)}]);
+    $('waitInsight').innerHTML=`Rok váhání vás na konci stojí zhruba <b>${mil(base-d1)}</b>. Vklady jsou stejné, chybí jen první rok úročení.`;
+    // stress
+    const s0=deterministic(0), sEarly=deterministic(1), sLate=deterministic(Math.max(2,Y-1));
+    hbars('stress',[{label:'Bez krize',v:s0},{label:'Krize v 1. roce',v:sEarly,delta:dl2(s0,sEarly)},{label:`Krize v ${Y-1}. roce`,v:sLate,delta:dl2(s0,sLate)}]);
+    function dl2(a,b){return `−${mil(a-b)} (${Math.round((1-b/a)*100)} %)`}
+    $('stressInsight').innerHTML=`Propad o 40 % v prvním roce vás stojí <b>${mil(s0-sEarly)}</b>, těsně před cílem <b>${mil(s0-sLate)}</b>. Proto se s blížící se rentou mění složení majetku a proto je v plánu rezerva, ze které se v poklesu nakupuje ve slevě.`;
+    $('assump').innerHTML=`<b>Vstupy:</b> start ${kc(S.start)}, ${kc(S.monthly)} měsíčně a ${kc(S.lump)} ročně po dobu ${Y} let; očekávaný výnos ${pct(S.ret*100)} p.a. před poplatky, poplatky ${pct(S.fee*100)} p.a. (čistý výnos ${pct(S.net*100)}), kolísavost ${pct(S.vol*100)} (lognormální model, 1 500 scénářů), inflace ${pct(S.inf*100)}; hodnoty přepočtené na dnešní kupní sílu. Cílový majetek = roční renta ÷ ${pct(S.swr*100)}. Daně, státní důchod, firma ani nemovitosti v tomto zjednodušeném modelu nejsou.`;
+    renderTable();
+  }
+  function renderTable(){ const w=$('tableWrap'); if(w.hidden||!last) return; const {res}=last; let h='<table><thead><tr><th>Rok</th><th>Pesimistický (10 %)</th><th>Medián</th><th>Optimistický (90 %)</th></tr></thead><tbody>';
+    for(let i=0;i<=S.years;i++) h+=`<tr><td>${Y0+i}</td><td>${kc(res[i].p10)}</td><td>${kc(res[i].p50)}</td><td>${kc(res[i].p90)}</td></tr>`; w.innerHTML=h+'</tbody></table>'; }
+  $('toggleTable').addEventListener('click',()=>{const w=$('tableWrap');w.hidden=!w.hidden;$('toggleTable').textContent=w.hidden?'Zobrazit jako tabulku':'Skrýt tabulku';$('toggleTable').setAttribute('aria-expanded',String(!w.hidden));renderTable();});
+  const IDS=['inMonthly','inLump','inStart','inYears','inRent','inRet','inVol','inInf','inSwr','inFee'];
+  function writeHash(){const q=IDS.map(id=>id.slice(2).toLowerCase()+'='+$(id).value).join('&');history.replaceState(null,'','#'+q);}
+  function readHash(){if(!location.hash)return;const q=new URLSearchParams(location.hash.slice(1));IDS.forEach(id=>{const k=id.slice(2).toLowerCase();if(q.has(k)){const el=$(id);const v=+q.get(k);if(!isNaN(v))el.value=Math.min(+el.max,Math.max(+el.min,v));}});}
+  readHash(); window.addEventListener('hashchange',()=>{readHash();recompute();});
+  let raf=null; document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{recompute();writeHash();})}));
+  $('shareBtn').addEventListener('click',async()=>{writeHash();try{await navigator.clipboard.writeText(location.href);$('shareNote').textContent='Odkaz zkopírován.';}catch(e){$('shareNote').textContent=location.href;}});
+  recompute();
+  let rz=null; window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(recompute,150)});
+})();
+</script>
+</body>
+</html>

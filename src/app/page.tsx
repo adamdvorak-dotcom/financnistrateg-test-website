@@ -86,6 +86,7 @@ const T = {
     invMillSuffix: "mil. Kč", invExact: "přesně", invRentaMonth: "měsíčně renty",
     invRentaHint: "Pravidlo palce: milion udělá zhruba 5 000 Kč měsíčně.",
     invRentaCta: "Spočítat celý důchod →",
+    rentaMore: "Kdy vám vyjde renta? Podrobná kalkulačka →",
     /* retirement calc result */
     retResultLabel: "Váš měsíční příjem v důchodu", retOfTarget: "z",
     retStateBar: "Stát", retOnTrack: "Portfolio pokryje váš cíl celé. Jste na dobré cestě.",
@@ -209,6 +210,7 @@ const T = {
     invMillSuffix: "mil. CZK", invExact: "exact", invRentaMonth: "monthly income",
     invRentaHint: "Rule of thumb: a million generates roughly 5,000 CZK per month.",
     invRentaCta: "Calculate full retirement →",
+    rentaMore: "When will your target income work out? Detailed calculator (Czech) →",
     /* retirement calc result */
     retResultLabel: "Your monthly retirement income", retOfTarget: "of",
     retStateBar: "State", retOnTrack: "Portfolio covers your target in full. You're on track.",
@@ -1683,6 +1685,7 @@ export default function Page() {
                             <button type="button" className="link-gold" onClick={() => setCalcTab('retirement')}>
                               {t.invRentaCta}
                             </button>
+                            <a className="link-gold" href="/renta" style={{ display: 'block', marginTop: 12 }}>{t.rentaMore}</a>
                           </div>
                         ) : null
                       })()}
@@ -1886,6 +1889,7 @@ export default function Page() {
                       {t.retOnTrack}
                     </p>
                   )}
+                  <a className="link-gold" href="/renta" style={{ display: 'inline-block', marginTop: 14 }}>{t.rentaMore}</a>
                   <p style={{ fontSize: 11, color: "var(--text-3)", marginTop: 16, lineHeight: 1.55 }}>{t.retDisclaimer}</p>
                 </div>
               </div>
