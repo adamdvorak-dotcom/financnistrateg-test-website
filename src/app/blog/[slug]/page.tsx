@@ -1285,6 +1285,10 @@ function ArticleContent({ slug }: { slug: string }) {
           Nejde o to mít vše optimalizované od prvního dne. Jde o systém, který funguje
           bez každodenního rozhodování.
         </p>
+        <p>
+          Jestli z takového majetku vyjde renta, jakou chcete, a co s plánem udělá propad trhu
+          o 40&nbsp;%, si spočítáte v <a href="/renta">kalkulačce renty</a>.
+        </p>
 
         <h2>Proč banka nestačí</h2>
         <p>
@@ -1729,6 +1733,11 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>
           Jak vybrat ETF pro český daňový rámec, co je UCITS, TER a proč záleží na akumulačním fondu:{" "}
           <Link href="/blog/jak-vybrat-etf-pro-cecha">Jak vybrat ETF jako český investor: šest kritérií, která rozhodnou</Link>.
+        </p>
+        <p>
+          Kdy z pravidelného investování vyjde renta, včetně slabších a silnějších let a zátěžového
+          testu propadu:{" "}
+          <a href="/renta">Kalkulačka renty</a>.
         </p>
       </div>
     );

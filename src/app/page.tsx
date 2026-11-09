@@ -52,7 +52,7 @@ const T = {
     invResultLabel: "Celková hodnota portfolia", currency: "Kč", invDep: "Celkové vklady", invProfit: "Výnos", invMult: "Násobek vkladů",
     mtgAmt: "Výše hypotéky", mtgRate: "Úroková sazba", mtgTerm: "Délka splatnosti",
     mtgResultLabel: "Měsíční splátka", mtgTotal: "Celkem zaplatíte", mtgInt: "Úroky celkem", mtgPct: "Podíl úroků",
-    tabRetirement: "Důchodová kalkulačka",
+    tabRetirement: "Důchodová kalkulačka", tabRenta: "Kdy vyjde renta",
     retAgeLabel: "Váš věk", retMissingYrsLabel: "Chybějící roky pojištění", retCurrentSavLabel: "Současné úspory", retMonthlySavLabel: "Měsíční spoření", retDesiredLabel: "Požadovaná renta v důchodu",
     retStatePensionLabel: "Průměrný státní důchod", retMissingEffectLabel: "Vliv chybějících let", retYourPensionLabel: "Váš státní důchod",
     retPortfolioValLabel: "Hodnota portfolia při důchodu", retPortfolioIncLabel: "Příjem z portfolia / měs.",
@@ -176,7 +176,7 @@ const T = {
     invResultLabel: "Total Portfolio Value", currency: "CZK", invDep: "Total Deposits", invProfit: "Return", invMult: "Return Multiplier",
     mtgAmt: "Mortgage Amount", mtgRate: "Interest Rate", mtgTerm: "Loan Term",
     mtgResultLabel: "Monthly Payment", mtgTotal: "Total Payment", mtgInt: "Total Interest", mtgPct: "Interest Share",
-    tabRetirement: "Retirement Calculator",
+    tabRetirement: "Retirement Calculator", tabRenta: "Income goal (CZ)",
     retAgeLabel: "Your age", retMissingYrsLabel: "Missing insurance years", retCurrentSavLabel: "Current savings", retMonthlySavLabel: "Monthly savings", retDesiredLabel: "Desired monthly pension",
     retStatePensionLabel: "Average state pension", retMissingEffectLabel: "Effect of missing years", retYourPensionLabel: "Your state pension",
     retPortfolioValLabel: "Portfolio value at retirement", retPortfolioIncLabel: "Portfolio income / month",
@@ -1563,8 +1563,12 @@ export default function Page() {
                 <button className={`calc-tab${calcTab === "mortgage" ? " active" : ""}`} onClick={() => setCalcTab("mortgage")}>{t.tabMortgage}</button>
                 <button className={`calc-tab${calcTab === "retirement" ? " active" : ""}`} onClick={() => setCalcTab("retirement")}>{t.tabRetirement}</button>
                 <button className={`calc-tab${calcTab === "depletion" ? " active" : ""}`} onClick={() => setCalcTab("depletion")}>
-                  {t.tabDepletion} <span className="new-badge">{t.tabNew}</span>
+                  {t.tabDepletion}
                 </button>
+                {/* Kalkulačka renty je samostatná stránka (public/renta.html) */}
+                <a className="calc-tab" href="/renta">
+                  {t.tabRenta} ↗ <span className="new-badge">{t.tabNew}</span>
+                </a>
               </div>
             </div>
             <div className="calc-body"
