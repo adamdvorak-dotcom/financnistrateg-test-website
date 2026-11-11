@@ -525,7 +525,8 @@ function ArticleContent({ slug }: { slug: string }) {
           Dostupné instrumenty: akcie, ETF, podílové fondy, bez konzervativních omezení.
           Doporučuji globální akumulační ETF (VWCE nebo IWDA), které reinvestují dividendy
           a maximálně využívají složený úrok v dlouhém horizontu. Neplaťte poplatky za
-          aktivní správu, pokud to nepotřebujete.
+          aktivní správu, pokud to nepotřebujete. Podle čeho ETF vybírat:{" "}
+          <Link href="/blog/jak-vybrat-etf-pro-cecha">Jak vybrat ETF jako český investor: šest kritérií, která rozhodnou</Link>.
         </p>
 
         <h2>DIP vs. penzijní spoření: kdo vyhraje?</h2>
@@ -818,7 +819,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>
           Čím dříve začnete, tím lépe. Složený úrok pracuje nejlépe v dlouhém horizontu
           a i malé měsíční částky mohou po 20–30 letech tvořit zásadní rozdíl. Pokud
-          nevíte, kde začít, nebo chcete nastavit strategii na míru, ozvěte se . Rád
+          nevíte, kde začít, nebo chcete nastavit strategii na míru, ozvěte se. Rád
           vám pomohu sestavit konkrétní plán.
         </p>
       </div>
@@ -1771,7 +1772,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>
           Pravidlo je jednoduché: investujte pouze peníze, které nepotřebujete
           minimálně deset let. Vše ostatní patří na spořicí účet nebo do fondu peněžního trhu.
-          Tříměsíční rezerva na okamžité výdaje je minimum, šestimísíční je lepší.
+          Tříměsíční rezerva na okamžité výdaje je minimum, šestiměsíční je lepší.
         </p>
         <p>
           Jak nastavit rezervu ve vrstvách, aby každá část plnila jiný účel:{" "}
@@ -2075,7 +2076,8 @@ function ArticleContent({ slug }: { slug: string }) {
           Propad je nejlepší rentgen portfolia. Ukáže, kde máte všechno vsazené na jedno jméno nebo
           jeden příběh. Stačí jedna firma: kdo měl v Intelu polovinu portfolia, byl po tom říjnovém
           dni najednou o sedminu chudší. A kdo měl poslední roky všechno v AI a čipech, cítí tenhle
-          týden dvojnásob. Rozložené portfolio padá taky, jen nepadá na hubu.
+          týden dvojnásob. Rozložené portfolio padá taky, jen nepadá na hubu. Jak ho rozložit pomocí ETF, popisuji
+          v článku <Link href="/blog/jak-vybrat-etf-pro-cecha">jak vybrat ETF jako český investor</Link>.
         </p>
 
         <h3>5. Vraťte portfolio do poměru, na kterém jste se dohodli</h3>
