@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Podmínky užití | Adam Dvořák, EFA",
   description: "Podmínky užití webu Adam Dvořák, EFA, nezávislý finanční poradce.",
+  alternates: { canonical: "https://www.financnistrateg.com/terms" },
 };
 
 export default function TermsPage() {

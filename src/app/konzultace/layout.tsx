@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Vyberte si termín v kalendáři, online nebo v kanceláři v Praze 1. " +
     "Probereme firmu, majetek a rodinu a řeknu vám rovnou, jestli vám můžu pomoct.",
+  alternates: { canonical: "https://www.financnistrateg.com/konzultace" },
 };
 
 export default function KonzultaceLayout({ children }: { children: React.ReactNode }) {

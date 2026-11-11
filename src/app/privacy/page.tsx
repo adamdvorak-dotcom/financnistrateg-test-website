@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Ochrana osobních údajů | Adam Dvořák, EFA",
   description: "Zásady ochrany osobních údajů a informace o zpracování osobních dat na webu Adam Dvořák, EFA.",
+  alternates: { canonical: "https://www.financnistrateg.com/privacy" },
 };
 
 export default function PrivacyPage() {
