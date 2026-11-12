@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       })),
       { source: "/post/:slug", destination: "/blog/:slug", permanent: true },
+      // Starší článek o propadech je sloučený do nového
+      { source: "/blog/trhy-padaji-co-ted", destination: "/blog/propady-trhu-co-delat", permanent: true },
       // Kalkulačka renty žije na /renta (viz rewrites), .html verze je jen duplicita
       { source: "/renta.html", destination: "/renta", permanent: true },
       // Preventivka se přesunula z /test

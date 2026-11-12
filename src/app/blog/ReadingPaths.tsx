@@ -10,7 +10,7 @@ interface Article {
 
 const CESTY: { label: string; slugs: string[] }[] = [
   { label: "Mám firmu",           slugs: ["firma-a-osobni-majetek", "kolik-si-vyplacet-ze-sro", "dip-dlouhodoby-investicni-produkt"] },
-  { label: "Začínám investovat",  slugs: ["financni-poduska-jak-ji-spravne-nastavit", "jak-investovat-do-etf", "trhy-padaji-co-ted"] },
+  { label: "Začínám investovat",  slugs: ["financni-poduska-jak-ji-spravne-nastavit", "jak-investovat-do-etf", "propady-trhu-co-delat"] },
   { label: "Řeším důchod",        slugs: ["jak-se-pocita-duchod-v-cr", "penzijni-sporeni-vs-investice", "osvc-duchod-proc-jste-na-tom-hur"] },
 ];
 

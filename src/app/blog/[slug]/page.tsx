@@ -706,71 +706,98 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          Mimořádná splátka hypotéky vyvolává silnou emoci: dluh mizí, úroky klesají,
-          a člověk spí klidněji. Matematika ale ne vždy souhlasí s emocí. Než pošlete
-          bance extra peníze, stojí za to počítat.
+          Mimořádná splátka hypotéky vyvolává silnou emoci: dluh mizí, úroky klesají
+          a člověk spí klidněji. Matematika ale s emocí ne vždy souhlasí. Než pošlete
+          bance peníze navíc, stojí za to počítat.
         </p>
 
         <h2>Základní matematika rozhodnutí</h2>
         <p>
-          Mimořádná splátka hypotéky přináší <strong>zaručený výnos rovný výši vaší
-          úrokové sazby</strong>. Při sazbě 4,5 % p.a. je to garantovaných 4,5 %, bez rizika, bez volatility. Otázka pak zní: dokážete najít investici
-          s vyšším výnosem? Historický průměrný výnos globálních akciových indexů
-          je 7–10 % p.a. (před inflací). Ve velmi dlouhém horizontu (a s ochotou přijmout krátkodobé výkyvy) odpověď zní: zpravidla ano.
+          Mimořádná splátka přináší <strong>jistý výnos rovný úrokové sazbě hypotéky</strong>.
+          Při sazbě 4,5&nbsp;% ročně je to 4,5&nbsp;%, bez rizika a bez výkyvů. Otázka pak zní,
+          jestli peníze jinde vydělají víc. Globální akciové indexy historicky vynášely
+          zhruba 7 až 10&nbsp;% ročně před inflací. Zaručené to ale není a cestou se počítá
+          i s roky, kdy portfolio padá o desítky procent.
         </p>
         <p>
-          Pravidlo: pokud je vaše hypoteční sazba nižší než očekávaný výnos
-          z investic, matematicky vychází lépe investovat. Pokud je sazba vyšší
-          (typicky nad 6–7 %), je extra splátka smysluplnější.
+          Pravidlo: když je sazba hypotéky výrazně nižší než výnos, který čekáte od investic
+          s horizontem 10 a více let, vychází matematicky lépe investovat. Čím víc se sazba
+          k očekávanému výnosu blíží, tím víc dává smysl splácet.
         </p>
 
-        <h2>Kdy extra splátka rozhodně dává smysl</h2>
+        <h2>Kdy mimořádná splátka dává smysl</h2>
         <ul>
-          <li><strong>Blížíte se konci fixace nebo splatnosti</strong>, zbývají-li 3–5 let,
-            efekt složeného úroku z investic je omezený. Splátka jistiny sníží zbývající
-            úroky efektivněji.</li>
-          <li><strong>Máte averzi k dluhu</strong>, psychologická hodnota „vlastnit bydlení
-            bez dluhů" je legitimní a má svou cenu. Není potřeba ji ignorovat.</li>
-          <li><strong>Refinancujete</strong>, nižší jistina při refinancování zlepší vaši
-            pozici vůči bance a může přinést lepší sazbu.</li>
-          <li><strong>Dostali jste jednorázový příjem</strong> (dědictví, bonus, prodej aktiv). Lepší než nechat peníze ladem.</li>
+          <li><strong>Blíží se konec splatnosti.</strong> Zbývá-li pár let, investice nestihnou
+          naplno využít složené úročení. Snížení jistiny ušetří úroky jistě.</li>
+          <li><strong>Dluh vás tíží.</strong> Klidný spánek bez hypotéky je legitimní hodnota
+          a má svou cenu. Není potřeba ho ignorovat.</li>
+          <li><strong>Končí fixace a refinancujete.</strong> Nižší jistina vylepší vaši
+          vyjednávací pozici u banky a může přinést lepší sazbu.</li>
+          <li><strong>Dostali jste jednorázový příjem</strong>, třeba dědictví, bonus nebo
+          peníze z prodeje. Lepší než je nechat ležet na účtu.</li>
         </ul>
 
-        <h2>Pravidla pro mimořádné splátky bez sankce (2026)</h2>
+        <h2>Kdy splatit bez poplatku</h2>
         <p>
-          Zákon umožňuje každý rok splatit mimořádně až <strong>25 % jistiny bez poplatku</strong>,
-          ale pouze v okně <strong>1 měsíc před výročím</strong> uzavření smlouvy. Mimo toto
-          okno si banka může účtovat administrativní poplatek . Od roku 2025 se tato pravidla
-          zpřísnila, konkrétní podmínky si ověřte ve své smlouvě.
+          Hypotéku můžete podle zákona o spotřebitelském úvěru splatit kdykoli, zcela nebo
+          zčásti. Bez jakékoli náhrady bance to jde v těchto chvílích:
         </p>
+        <ul>
+          <li><strong>Ke konci fixace.</strong> Banka vám nejpozději tři měsíce před koncem fixace
+          pošle novou sazbu. Do tří měsíců od tohoto oznámení můžete splatit libovolnou částku.
+          Lhůta běží od dopisu, ne od konce fixace, tak si datum dopisu pohlídejte. Pokud
+          plánujete velkou splátku, je to ideální moment.</li>
+          <li><strong>Jednou ročně až 25&nbsp;% celkové výše úvěru</strong>, tedy původně půjčené
+          částky, ne zbývajícího dluhu. Musí to být v měsíci před výročím uzavření smlouvy.
+          Rozhoduje výročí smlouvy, ne fixace.</li>
+          <li><strong>Při úmrtí, dlouhodobé nemoci nebo invaliditě</strong> vás nebo vašeho
+          manžela či partnera, pokud to výrazně zhorší schopnost splácet.</li>
+          <li><strong>Při prodeji nemovitosti</strong>, kterou je hypotéka zajištěná, pokud od
+          podpisu smlouvy uplynuly aspoň dva roky.</li>
+          <li><strong>Při vypořádání společného jmění manželů</strong>, typicky po rozvodu, za
+          stejné podmínky dvou let od podpisu smlouvy.</li>
+          <li><strong>Kdykoli, pokud nemáte fixaci</strong>, tedy u variabilní sazby.</li>
+        </ul>
         <p>
-          Zdarma a bez omezení: <strong>konec fixačního období</strong> . Tehdy můžete splatit
-          libovolnou výši. Toto je ideální moment pro velkou splátku, pokud ji plánujete.
-          Dále jsou bez sankcí povoleny splátky při tzv. „životních událostech": rozvod, smrt
-          dlužníka, ztráta zaměstnání nebo vážná nemoc.
+          Mimo tyto situace smí banka chtít náhradu nákladů, které jí předčasným splacením
+          vznikly, a zákon její výši omezuje. Pozor na starší hypotéky: pokud vám pořád běží
+          fixace sjednaná před zářím 2024, nová pravidla včetně 25&nbsp;% k výročí pro vás
+          začnou platit až od další fixace. Do té doby rozhoduje vaše smlouva. Než pošlete
+          velkou částku, zeptejte se banky na konkrétní číslo.
         </p>
 
-        <h2>Pozor: úroky z hypotéky nejsou daňově odečitatelné</h2>
+        <h2>Nezapomeňte na odpočet úroků z daní</h2>
         <p>
-          Na rozdíl od mnoha zemí EU platí v Česku, že úroky z hypotéky na primární bydlení
-          <strong> nejsou daňově odečitatelné</strong>, s výjimkou smluv sjednaných do
-          31. 12. 2020, kde odpočet až 150 000 Kč ročně stále platí. Máte-li starší
-          hypotéku s tímto odpočtem, vaše efektivní úroková sazba je nižší . Kalkulujte
-          s ní, ne s nominální sazbou.
+          Úroky z hypotéky na vlastní bydlení si můžete odečíst od základu daně. Pokud jste
+          bydlení pořídili od roku 2021, odečtete nejvýš 150&nbsp;000&nbsp;Kč ročně za celou
+          domácnost. U bydlení pořízeného dřív je limit 300&nbsp;000&nbsp;Kč. Rozhoduje, kdy jste
+          bydlení pořídili, ne kdy jste podepsali úvěrovou smlouvu. Limity se nesčítají. Při 15% dani tak stát efektivně vrací 15&nbsp;% zaplacených
+          úroků a skutečná cena vaší hypotéky je nižší než sazba ve smlouvě. Při sazbě
+          4,5&nbsp;% je to zhruba 3,8&nbsp;%. Platí to ale jen pro úroky do limitu a jen tehdy,
+          když daň opravdu platíte. Pokud zaplatíte na úrocích víc, než kolik dovolí limit,
+          ušetří vám každá koruna mimořádné splátky plných 4,5&nbsp;%. Jak to vychází přesně
+          u vás, spočítá daňař nebo účetní.
         </p>
 
         <h2>Kombinovaná strategie: splácet i investovat</h2>
         <p>
-          Nejlepší výsledky přináší kombinace obou přístupů. Příklad: při sazbě 4,5 %
-          a disponibilních 10 000 Kč/měsíc nad rámec povinné splátky . Investujte 7 000 Kč
-          do ETF, 3 000 Kč pošlete jako mimořádnou splátku. Poměr upravujte podle aktuální
-          výše sazeb a vývoje portfolia.
+          Často nejlépe funguje kombinace obou cest. Příklad: při sazbě 4,5&nbsp;% vám každý
+          měsíc zbývá 10&nbsp;000&nbsp;Kč nad rámec povinné splátky. 7&nbsp;000&nbsp;Kč posíláte
+          do ETF a 3&nbsp;000&nbsp;Kč si odkládáte na mimořádnou splátku k výročí smlouvy.
+          Poměr upravujete podle výše sazby a vývoje portfolia.
         </p>
         <p>
-          Klíčový princip: <strong>nepřerušujte investice kvůli hypotéce</strong>. Čas
-          strávený na trhu je nejdůležitější proměnná složeného úroku. Deset let bez
-          investování ve prospěch „splacení hypotéky nejdříve" může stát více, než kolik
-          ušetříte na úrocích.
+          Klíčový princip: <strong>nepřerušujte investice kvůli hypotéce</strong>. Čas strávený
+          na trhu je nejdůležitější proměnná složeného úročení. Deset let bez investování
+          ve prospěch „nejdřív splatit hypotéku“ může stát víc, než kolik ušetříte na úrocích.
+          Jak dlouhá fixace se hodí právě vám, rozebírám v článku{" "}
+          <Link href="/blog/fixace-hypoteky-jak-se-rozhodnout">Fixace hypotéky: 3, 5 nebo 10 let?</Link>
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Zdroje: zákon č. 257/2016 Sb., o spotřebitelském úvěru, § 117 (předčasné splacení);
+          zákon č. 586/1992 Sb., o daních z příjmů, § 15 odst. 3 a 4 (odpočet úroků). Článek je
+          vzdělávací a nepředstavuje investiční ani úvěrové doporučení.
         </p>
       </div>
     );
@@ -897,70 +924,6 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
-  if (slug === "trhy-padaji-co-ted") {
-    return (
-      <div className="article-body">
-        <p>
-          V březnu 2020 mi jeden klient napsal: &quot;Mám prodat, dokud něco zbývá?&quot;
-        </p>
-        <p>
-          Trhy za tři týdny spadly o pětatřicet procent. Celý svět zavřený, žádný konec v nedohlednu.
-          Neměl prodat. Bylo to tehdy jedno z nejtěžších doporučení, které jsem kdy dával.
-        </p>
-
-        <h2>Proč nás trhy děsí</h2>
-        <p>
-          Mozek vnímá ztrátu zhruba dvakrát silněji než stejně velký zisk. Takže když portfolio
-          klesne o dvacet procent, bolí to asi tak jako by vám někdo vzal čtyřicet. Není to slabost,
-          je to biologie.
-        </p>
-        <p>
-          Problém nastane, když tenhle pocit přeložíte do akce. Prodáváte ve ztrátě, zamykáte ztrátu,
-          a pak sledujete, jak trh za rok je zpátky výše.
-        </p>
-
-        <h2>Co říkají čísla</h2>
-        <p>
-          Od roku 1928 zažily americké akcie průměrně jeden pokles o deset procent každý rok. Jednou
-          za tři roky pokles o dvacet. A jednou za deset let skutečnou krizi.
-        </p>
-        <p>
-          Každý z těch poklesů pak byl překonán. Ne vždy za rok, ne vždy elegantně. Ale překonán byl.
-        </p>
-        <p>
-          Kdo prodal v březnu 2020, realizoval ztrátu třicet pět procent. Kdo nic nedělal, byl do
-          konce roku na nule. Kdo v březnu přikoupil, vydělal přes padesát procent za devět měsíců.
-        </p>
-
-        <h2>Co říkám klientům při pádu trhů</h2>
-        <p>
-          Dvě věci.
-        </p>
-        <p>
-          Za prvé: kontext. Posílám čísla: jak vypadalo portfolio před rokem, jak vypadá teď,
-          jak by vypadalo historicky za rok od propadu. Ne sliby, jen data.
-        </p>
-        <p>
-          Za druhé: připomínám plán. Kolik měsíců výdajů mají jako hotovostní rezervu. Kolik let
-          do doby, kdy peníze reálně potřebují. Kdo má deset let do důchodu, toho propad v roce jedna
-          skoro nezajímá. Kdo plánuje vybírat za dva roky, pro toho jsme to od začátku nastavili jinak.
-        </p>
-
-        <h2>Plán funguje jen tehdy, když ho dodržíte</h2>
-        <p>
-          Největší nepřítel investic nejsou trhy. Jste to vy ve chvíli paniky.
-        </p>
-        <p>
-          Tohle nezní hezky, ale je to pravda. Proto má smysl mít plán napsaný, odsouhlasený
-          a připomínaný v klidu, ne ve chvíli, kdy Bloomberg píše o apokalypse.
-        </p>
-        <p>
-          Moje práce při každém propadu je připomenout vám ten plán. A případně přikoupit.
-          Proto je dobré mít část peněz připravenou přesně na ten okamžik.
-        </p>
-      </div>
-    );
-  }
 
   if (slug === "kolik-si-vyplacet-ze-sro") {
     return (
@@ -2040,8 +2003,18 @@ function ArticleContent({ slug }: { slug: string }) {
           za dvacet let zmeškal jen deset nejlepších dní, měl roční výnos skoro poloviční.
         </p>
         <p>
-          Kdo <Link href="/blog/trhy-padaji-co-ted">prodá v panice</Link>, zamkne si ztrátu a snadno
-          prošvihne i odraz. Opatrnost, která vyjde nejdráž.
+          Proč to lidi přesto dělají? Mozek vnímá ztrátu zhruba dvakrát silněji než stejně velký
+          zisk. Když portfolio klesne o dvacet procent, bolí to zhruba dvakrát víc, než kolik by
+          vás potěšil stejně velký růst. Za slabost to nepovažujte, takhle reaguje skoro každý. Problém nastane, až ten pocit přeložíte do akce.
+          Kdo prodá v panice, zamkne si ztrátu a snadno prošvihne i odraz. Opatrnost, která
+          vyjde nejdráž.
+        </p>
+        <p>
+          Vzpomeňte si na březen 2020. Americké akcie za pět týdnů spadly zhruba o třetinu, svět
+          byl zavřený a konec nebyl v dohledu. Kolikrát jste si tehdy položili otázku, jestli
+          neprodat, dokud něco zbývá? Index S&amp;P 500 byl v srpnu téhož roku zpátky na svém
+          maximu. V březnu to ale vědět nikdo nemohl a po propadech v letech 2000 a 2008 trvala
+          cesta zpátky roky.
         </p>
 
         <h2>Co dělat, když trh padá</h2>
