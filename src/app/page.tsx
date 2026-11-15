@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { articles } from "./blog/articles";
 import { TymDiag } from "./TymDiag";
+import { HeroRotate } from "./HeroRotate";
+import { ZmenaPlan } from "./ZmenaPlan";
 import { PrevRing } from "./PrevRing";
 
 /* ── Quote band aphorisms ── */
@@ -1153,7 +1155,7 @@ export default function Page() {
             <canvas ref={contourCanvasRef} className="hero-contour" aria-hidden="true" />
             <h1 className="hero-title" data-reveal>
               <span className="line"><span className="line-inner">{lang === "cs" ? h1Cs1 : h1En1}</span></span>
-              <span className="line"><span className="line-inner"><em>{lang === "cs" ? h1Cs2 : h1En2}</em></span></span>
+              <span className="line"><span className="line-inner"><em><HeroRotate lang={lang} first={lang === "cs" ? h1Cs2 : h1En2} /></em></span></span>
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
             <div className="hero-actions">
@@ -1378,6 +1380,13 @@ export default function Page() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Co se změní ── */}
+      <section className="section-wrap">
+        <div className="container">
+          <ZmenaPlan lang={lang} />
         </div>
       </section>
 

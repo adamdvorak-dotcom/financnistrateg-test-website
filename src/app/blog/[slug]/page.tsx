@@ -7,6 +7,8 @@ import { categories, getCategory } from "../categories";
 import { CategoryChips } from "../CategoryChips";
 import { FaqAccordion } from "../FaqAccordion";
 import { ArticleToc } from "../ArticleToc";
+import { ArticleHints } from "../ArticleHints";
+import { PullQuote } from "../PullQuote";
 import { DipKalk } from "../DipKalk";
 import { PenzijkoKalk } from "../PenzijkoKalk";
 import { SverenskyFond } from "../SverenskyFond";
@@ -308,9 +310,7 @@ function ArticleContent({ slug }: { slug: string }) {
           Při demografickém vývoji v Česku je zřejmé, že poměr přispívajících
           ku příjemcům se bude dál zhoršovat.
         </p>
-        <p>
-          Státní důchod je záchranná síť. Není to plán.
-        </p>
+        <PullQuote a="Státní důchod je záchranná síť." b="Není to plán." />
         <p>
           Plán je vědět, kolik budete mít ze státu, kolik z vlastních úspor
           a z čeho budete čerpat jako první, a v jakém pořadí. To je přesně
@@ -975,10 +975,7 @@ function ArticleContent({ slug }: { slug: string }) {
           ale prodá za tolik, za kolik ji někdo koupí, ne za tolik, za kolik ji oceňujete vy.
           A najít kupce, který zaplatí dobrou cenu, často trvá roky, pokud vůbec přijde.
         </p>
-        <p>
-          Stavět důchod na exitu je jako stavět golfovou sezonu na hole in one. Občas to přijde.
-          Naplánovat se to nedá.
-        </p>
+        <PullQuote a="Stavět důchod na exitu je jako stavět golfovou sezonu na hole in one." b="Občas to přijde. Naplánovat se to nedá." />
 
         <h2>Co dělá systém za patnáct let</h2>
         <p>
@@ -1346,9 +1343,7 @@ function ArticleContent({ slug }: { slug: string }) {
           přicházíte. Kdo začne investovat tisícikorunu měsíčně ve třiceti, má za pětatřicet
           let přibližně třikrát víc než ten, kdo začne ve čtyřiceti pěti.
         </p>
-        <p>
-          Nejhorší odpověď je počkat na lepší dobu.
-        </p>
+        <PullQuote a="Nejhorší odpověď je počkat na lepší dobu." />
 
         <div className="sources" id="zdroje">
           <ol>
@@ -1417,9 +1412,7 @@ function ArticleContent({ slug }: { slug: string }) {
           3&nbsp;%, jak ukazuji v článku{" "}
           <Link href="/blog/investicni-byt-napocitam-to">Investiční byt na hypotéku</Link>.
         </p>
-        <p>
-          Diverzifikace neznamená složitost. Znamená, že když jedna věc selže, nepřijdete o všechno.
-        </p>
+        <PullQuote a="Diverzifikace neznamená složitost." b="Znamená, že když jedna věc selže, nepřijdete o všechno." />
 
         <h2>Jak nastavit systém</h2>
         <p>
@@ -2078,9 +2071,7 @@ function ArticleContent({ slug }: { slug: string }) {
         </p>
 
         <h2>Co se děje po prvním nákupu</h2>
-        <p>
-          Nic. Nebo přesněji: nic byste dělat neměli.
-        </p>
+        <PullQuote a="Nic." b="Nebo přesněji: nic byste dělat neměli." />
         <p>
           Pravidelně přidávejte předem stanovenou částku. Ignorujte krátkodobé pohyby trhu.
           Pokud trh klesne o dvacet procent, je to příležitost koupit levněji, ne důvod
@@ -2479,9 +2470,7 @@ function ArticleContent({ slug }: { slug: string }) {
         </p>
 
         <h2>Co se stane s firmou</h2>
-        <p>
-          Firma s vámi nezemře. Ale může zamrznout.
-        </p>
+        <PullQuote a="Firma s vámi nezemře." b="Ale může zamrznout." />
         <p>
           Pokud jste jediný jednatel a nikdo další nemá prokuru ani přístup k účtům, nemá za firmu kdo
           podepsat smlouvu, zaplatit fakturu ani poslat výplaty. Nového jednatele musí zvolit
@@ -2626,7 +2615,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>Huang odcházel z&nbsp;firmy, která má správní radu, armádu právníků a&nbsp;finanční ředitelku, kterou jde přes noc posadit do čela. Vaše firma má nejspíš vás. A&nbsp;pak dlouho nic.</p>
 
         <h2>Teď si hrajeme na kdyby</h2>
-        <p>Zítra ráno nepřijdete do práce, protože se vám něco stalo. Kdo u&nbsp;vás pak podepíše výplaty?</p>
+        <PullQuote a="Zítra ráno nepřijdete do práce, protože se vám něco stalo." b={"Kdo u\u00a0vás pak podepíše výplaty?"} />
         <p>Když v&nbsp;Česku zemře jediný jednatel, firma najednou nemá statutára. Nového musí do měsíce zvolit valná hromada, a&nbsp;když to nestihne, jmenuje ho na návrh soud. V&nbsp;krajním případě může soud firmu i&nbsp;zrušit a&nbsp;poslat do likvidace.</p>
         <p>Jenže když jste byli jednatel i&nbsp;majitel zároveň, rozhodují za váš podíl do konce dědického řízení dědicové společně, takže se musí shodnout. Když se neshodnou, může soud jmenovat správce pozůstalosti, a&nbsp;to celé může trvat déle než měsíc. Mezitím nemá kdo podepsat smlouvy ani platby a&nbsp;banka může přístup k&nbsp;účtům omezit. Výplaty, nájem a&nbsp;dodavatelé ale čekat nebudou. A&nbsp;to už je průser.</p>
         <p>Doma to není o&nbsp;moc lepší. Manželka nebo manžel se k&nbsp;penězům na vašem osobním účtu dostane naplno až po dědickém řízení. A&nbsp;běžné dispoziční právo po vaší smrti obvykle zaniká, pokud jste si v&nbsp;bance předem nenastavili, že má platit i&nbsp;potom. Ne každá banka to umožňuje.</p>
@@ -2836,6 +2825,13 @@ export default async function ArticlePage({
     .concat(candidates.filter(a => a.category !== article.category))
     .slice(0, 2);
 
+  // Podklady pro náhled článku u odkazu v textu (krátké, ať stránku zbytečně nenafukují)
+  const linkMeta = Object.fromEntries(
+    articles
+      .filter((a) => a.slug !== slug)
+      .map((a) => [a.slug, { t: a.title, g: a.tag, d: a.desc.length > 130 ? a.desc.slice(0, 127).trimEnd() + "…" : a.desc, m: a.readTime }])
+  );
+
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -2972,7 +2968,8 @@ export default async function ArticlePage({
               </div>
             )}
             <ArticleToc />
-            <ArticleContent slug={slug} />
+            <ArticleContent key={slug} slug={slug} />
+            <ArticleHints key={`hints-${slug}`} links={linkMeta} />
 
             {/* Otázky ze strukturovaných dat musí být vidět i na stránce, jinak je Google bere jako skrytý obsah */}
             {faqLd && (
