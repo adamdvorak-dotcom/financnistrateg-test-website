@@ -380,6 +380,13 @@ export default function Page() {
   const [curtainPhase, setCurtainPhase] = useState<"hidden" | "visible" | "exiting">("hidden");
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement" | "depletion">("invest");
   const [refDot, setRefDot] = useState(0);
+  /* Maketa plánu: rozevřený vějíř, jestli zařízení umí najetí myší a jestli na ní myš právě je */
+  const planRef = useRef<HTMLDivElement>(null);
+  const [planOpen, setPlanOpen] = useState(false);
+  const planHoverable = useRef(false);
+  const planHovered = useRef(false);
+  const planEnter = () => { planHovered.current = true; if (planHoverable.current) setPlanOpen(true); };
+  const planLeave = () => { planHovered.current = false; if (planHoverable.current) setPlanOpen(false); };
   const refScrollRef = useRef<HTMLDivElement>(null);
   const dustCanvasRef = useRef<HTMLCanvasElement>(null);
   const contourCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -558,6 +565,27 @@ export default function Page() {
       document.body.style.overflow = "";
     }, 2350);
     return () => { clearTimeout(t1); clearTimeout(t2); document.body.style.overflow = ""; };
+  }, []);
+
+  /* Maketa plánu: listy leží složené na sobě a rozevřou se do vějíře. Na počítači se vějíř při prvním
+     zobrazení na chvíli ukáže a pak reaguje na najetí myší, na dotykových zařízeních zůstane rozevřený.
+     Při omezeném pohybu se nic nespouští: styly pak ukazují rozevřený vějíř rovnou. */
+  useEffect(() => {
+    const el = planRef.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    planHoverable.current = window.matchMedia("(hover: hover)").matches;
+    let t: number | undefined;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      setPlanOpen(true);
+      if (planHoverable.current) {
+        t = window.setTimeout(() => { if (!planHovered.current) setPlanOpen(false); }, 2400);
+      }
+    }, { threshold: 0.55 });
+    io.observe(el);
+    return () => { io.disconnect(); window.clearTimeout(t); };
   }, []);
 
   /* Scroll reveal */
@@ -1259,7 +1287,7 @@ export default function Page() {
                 ))}
               </ol>
             </div>
-            <div className="stack" data-reveal>
+            <div ref={planRef} className={planOpen ? "stack open" : "stack"} onMouseEnter={planEnter} onMouseLeave={planLeave}>
               {/* p1: cover — gradient style matching real FP document */}
               <div className="page p1" style={{background:"linear-gradient(125deg,#9E93CA 0%,#E8E3D5 50%,#C5B870 100%)",color:"#fff"}}>
                 <div style={{fontSize:9,letterSpacing:2.5,textTransform:"uppercase",color:"rgba(255,255,255,.6)",marginBottom:16}}>Finanční plán</div>
@@ -1278,7 +1306,7 @@ export default function Page() {
                   <polyline className="plan-krivka" pathLength={1} points="0,38 23,30 46,34 69,16 92,22 115,10 138,14" fill="none" stroke="rgba(201,162,96,.7)" strokeWidth="1.5" strokeLinejoin="round"/>
                 </svg>
                 {[1,.88,1,.72,.9,.6].map((w,i) => (
-                  <div key={i} className="plan-radek" style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`,transitionDelay:`${500+i*70}ms`}}/>
+                  <div key={i} className="plan-radek" style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`,transitionDelay:`${350+i*60}ms`}}/>
                 ))}
               </div>
               {/* p3: chapter with text */}
@@ -1286,7 +1314,7 @@ export default function Page() {
                 <div style={{fontSize:9,letterSpacing:2,textTransform:"uppercase",color:"#C9A260",marginBottom:8}}>Kapitola 04</div>
                 <div style={{fontFamily:"Lora,serif",fontSize:15,fontWeight:500,marginBottom:14,color:"#1A1511"}}>Daňová optimalizace</div>
                 {[1,.9,.95,.7,1,.85,.65,.8].map((w,i) => (
-                  <div key={i} className="plan-radek" style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`,transitionDelay:`${500+i*70}ms`}}/>
+                  <div key={i} className="plan-radek" style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`,transitionDelay:`${350+i*60}ms`}}/>
                 ))}
               </div>
             </div>

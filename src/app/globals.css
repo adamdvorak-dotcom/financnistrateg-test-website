@@ -2693,20 +2693,23 @@ nav.scrolled .nav-logo{font-size:15px}
 
 /* ── Plan stack ── */
 .plan{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:center}
-.stack{position:relative;height:500px;perspective:1600px}
+.stack{position:relative;height:500px}
 .page{position:absolute;width:300px;height:400px;border-radius:6px;background:#FCFBF8;padding:30px 22px 30px 140px;
   box-shadow:0 30px 60px rgba(26,21,17,.18),0 2px 8px rgba(26,21,17,.08);display:flex;flex-direction:column}
-.page.p1{left:0;top:60px;padding:34px 30px;transform:rotateY(-16deg) rotateX(4deg) rotateZ(-2deg)}
-.page.p2{left:170px;top:30px;transform:rotateY(-12deg) rotateX(4deg) rotateZ(1deg)}
-.page.p3{left:340px;top:0;transform:rotateY(-10deg) rotateX(4deg) rotateZ(3.5deg)}
+/* Všechny listy leží na jednom místě a liší se jen posunem a natočením, titulní list je navrchu.
+   Tady je rozevřený vějíř: tak maketa vypadá i bez JavaScriptu a při omezeném pohybu. */
+.page{left:178px;top:50px}
+.page.p1{z-index:3;padding:34px 30px;transform:translate(-155px,10px) rotate(-7deg)}
+.page.p2{z-index:2;transform:translate(0,-26px);box-shadow:0 44px 80px rgba(26,21,17,.22),0 2px 8px rgba(26,21,17,.08)}
+.page.p3{z-index:1;transform:translate(155px,10px) rotate(7deg)}
 /* Tři listy jsou dohromady široké 656 px a pod 1366 px přesahovaly okraj stránky, takže se web
    posouval do strany. Maketa se proto po krocích zmenšuje podle místa, které má vpravo k dispozici.
    Záporný okraj dole ubírá prázdné místo, které po zmenšení zbude (výška makety je 500 px). */
 @media(max-width:1365px){
   .stack{--s:.92;transform:scale(var(--s));transform-origin:left top;margin-bottom:calc(-500px * (1 - var(--s)))}
 }
-/* Zmenšená maketa už není vyšší než text vlevo, a ten by se jinak dotýkal další sekce */
-@media(min-width:701px) and (max-width:1365px){.plan{padding-bottom:40px}}
+/* Rozevřený vějíř sahá skoro ke spodnímu okraji makety, bez mezery by se dotýkal další sekce */
+@media(min-width:701px){.plan{padding-bottom:40px}}
 @media(max-width:1279px){.stack{--s:.86}}
 @media(max-width:1199px){.stack{--s:.78}}
 @media(max-width:1099px){.stack{--s:.72}}
@@ -2714,32 +2717,30 @@ nav.scrolled .nav-logo{font-size:15px}
 @media(max-width:899px){.stack{--s:.55}}
 @media(max-width:799px){.stack{--s:.48}}
 @media(max-width:700px){.plan{grid-template-columns:minmax(0,1fr);overflow:hidden}
-  .stack{width:640px;transform:scale(.52);transform-origin:left top;margin-bottom:-235px}}
-/* Maketa se rozevře, když se objeví na obrazovce: listy začínají složené na sobě a rozjedou se
-   do výchozí polohy, graf se dokreslí a řádky textu dorostou. Koncová poloha je stejná jako dřív,
-   takže se šířka makety nemění. */
-.page{transition:transform 1s var(--ease-out),box-shadow .6s var(--ease-out)}
-.page.p2{transition-delay:.08s}
-.page.p3{transition-delay:.16s}
-html.fx .stack[data-reveal]:not(.is-in) .page.p1{transform:translate(150px,-24px) rotateY(-13deg) rotateX(4deg) rotateZ(0deg)}
-html.fx .stack[data-reveal]:not(.is-in) .page.p2{transform:translate(0,4px) rotateY(-12deg) rotateX(4deg) rotateZ(1deg)}
-html.fx .stack[data-reveal]:not(.is-in) .page.p3{transform:translate(-150px,32px) rotateY(-11deg) rotateX(4deg) rotateZ(2deg)}
-.plan-krivka{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--ease-out) .5s}
-.plan-plocha{transition:opacity .8s ease 1.2s}
+  .stack{width:640px;transform:scale(.52);transform-origin:left top;margin-bottom:-215px}}
+/* V klidu jsou listy složené na sobě a lehce se vznášejí. Třídu „open" přidává stránka: na počítači
+   při najetí myší (a jednou na ukázku, když se maketa objeví), na dotykových zařízeních po zobrazení natrvalo.
+   Rozevřený vějíř je široký 657 px, stejně jako dřívější maketa, takže zmenšování výše platí dál. */
+.page{transition:transform .8s var(--ease-out),box-shadow .8s var(--ease-out)}
+.page.p2{transition-delay:.04s}
+.page.p3{transition-delay:.08s}
+html.fx .stack:not(.open) .page{box-shadow:0 18px 40px rgba(26,21,17,.14),0 2px 8px rgba(26,21,17,.08)}
+html.fx .stack:not(.open) .page.p1{transform:translate(-14px,-4px) rotate(-4deg)}
+html.fx .stack:not(.open) .page.p2{transform:translate(6px,0) rotate(2deg)}
+html.fx .stack:not(.open) .page.p3{transform:translate(26px,8px) rotate(7deg)}
+@keyframes plan-vznaseni{to{translate:0 -8px}}
+.stack{transition:translate .5s var(--ease-out)}
+html.fx .stack:not(.open){animation:plan-vznaseni 4s ease-in-out infinite alternate}
+/* Graf se dokreslí a řádky textu dorostou pokaždé, když se vějíř rozevře */
+.plan-krivka{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.2s var(--ease-out) .35s}
+.plan-plocha{transition:opacity .7s ease .9s}
 .plan-radek{transform-origin:left;transition:transform .7s var(--ease-out)}
-html.fx .stack[data-reveal]:not(.is-in) .plan-krivka{stroke-dashoffset:1}
-html.fx .stack[data-reveal]:not(.is-in) .plan-plocha{opacity:0}
-html.fx .stack[data-reveal]:not(.is-in) .plan-radek{transform:scaleX(0)}
-/* Při najetí myší se listy ještě trochu rozestoupí. Doprava se neposouvá nic, aby maketa nepřetekla. */
-@media(hover:hover){
-  .stack.is-in:hover .page{transition-delay:0s;transition-duration:.6s}
-  .stack.is-in:hover .page.p1{transform:translate(-26px,10px) rotateY(-16deg) rotateX(4deg) rotateZ(-4deg)}
-  .stack.is-in:hover .page.p2{transform:translate(-8px,-20px) rotateY(-12deg) rotateX(4deg) rotateZ(1deg);
-    box-shadow:0 44px 80px rgba(26,21,17,.24),0 2px 8px rgba(26,21,17,.08)}
-  .stack.is-in:hover .page.p3{transform:translate(0,-8px) rotateY(-10deg) rotateX(4deg) rotateZ(3.5deg)}
-}
+html.fx .stack:not(.open) .plan-krivka{stroke-dashoffset:1;transition-delay:0s}
+html.fx .stack:not(.open) .plan-plocha{opacity:0;transition-delay:0s}
+html.fx .stack:not(.open) .plan-radek{transform:scaleX(0)}
 @media (prefers-reduced-motion: reduce){
-  .page,.plan-krivka,.plan-plocha,.plan-radek{transition:none}
+  .page,.stack,.plan-krivka,.plan-plocha,.plan-radek{transition:none}
+  html.fx .stack:not(.open){animation:none}
 }
 
 /* ── Updated badge ── */
