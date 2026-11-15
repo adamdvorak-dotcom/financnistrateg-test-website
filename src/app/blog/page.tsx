@@ -5,6 +5,7 @@ import { ReadingPaths } from "./ReadingPaths";
 import { LangButton } from "./LangButton";
 import { CategoryChips } from "./CategoryChips";
 import { FeaturedCard, OwnerCards, BlogListing, BlogSectionLabel } from "./BlogCards";
+import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
   title: "Blog: Investice, DIP, Důchod, Hypotéky, Majetek",
@@ -91,20 +92,7 @@ export default function BlogPage() {
       </main>
 
       {/* ── Footer ── */}
-      <footer>
-        <div className="container footer-inner">
-          <div className="footer-logo">
-            Adam <span>Dvořák</span> · <span>Finanční Stratég</span>
-          </div>
-          <div className="footer-copy">
-            © 2026 Adam Dvořák, EFA. <span>Registrován u ČNB.</span>
-          </div>
-          <div className="footer-links">
-            <Link href="/">Hlavní stránka</Link>
-            <Link href="/konzultace">Kontakt</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

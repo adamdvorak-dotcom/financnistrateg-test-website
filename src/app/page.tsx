@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import { articles } from "./blog/articles";
-import { TymDiag } from "./TymDiag";
+import { TymOrbit } from "./TymOrbit";
 import { HeroRotate } from "./HeroRotate";
 import { ZmenaPlan } from "./ZmenaPlan";
 import { PrevRing } from "./PrevRing";
+import { SiteFooter } from "./SiteFooter";
 
 /* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
@@ -2086,25 +2087,21 @@ export default function Page() {
       </section>
 
       {/* ── Tým ── */}
-      <section style={{ padding: '80px 0' }}>
-        <div className="container">
-          <div className="tym">
-            <div>
-              <div className="section-eyebrow">{t.tymEye}</div>
-              <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 20 }}>
-                {t.tymH2a} <em>{t.tymH2b}</em>
-              </h2>
-              <p style={{ color: 'var(--text-2)', fontSize: 15, maxWidth: '42ch', marginBottom: 28 }}>
-                {t.tymSub}
-              </p>
-              <ol className="tym-body">
-                <li><b>{t.tymLi1b}</b> {t.tymLi1t}</li>
-                <li><b>{t.tymLi2b}</b> {t.tymLi2t}</li>
-                <li><b>{t.tymLi3b}</b> {t.tymLi3t}</li>
-              </ol>
-            </div>
-            <TymDiag lang={lang} />
+      <section className="tym-sekce">
+        <div className="container tym-o">
+          <div>
+            <div className="section-eyebrow">{t.tymEye}</div>
+            <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 16 }}>
+              {t.tymH2a} <em>{t.tymH2b}</em>
+            </h2>
+            <p className="tym-o-sub">{t.tymSub}</p>
+            <ol className="tym-o-list">
+              <li><i>01</i><span><b>{t.tymLi1b}</b> {t.tymLi1t}</span></li>
+              <li><i>02</i><span><b>{t.tymLi2b}</b> {t.tymLi2t}</span></li>
+              <li><i>03</i><span><b>{t.tymLi3b}</b> {t.tymLi3t}</span></li>
+            </ol>
           </div>
+          <TymOrbit lang={lang} />
         </div>
       </section>
 
@@ -2328,31 +2325,11 @@ export default function Page() {
                   ? "Ukážu vám, jak pracuji. Chci hlavně slyšet vás, co řešíte, co nefunguje. Primárně si musíme sednout."
                   : "I'll show you how I work. Mostly I want to hear you: what you're dealing with, what isn't working. We just need to click."}
               </p>
-              <button
-                className="btn-primary bk-btn btn-shine"
-                onClick={() => {
-                  // Calendly se načítá až po kliknutí, ať nebrzdí první vykreslení stránky
-                  const open = () => {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    (window as any).Calendly?.initPopupWidget({
-                      url: "https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1&primary_color=C9A260&text_color=1A1511&background_color=F0EBE0",
-                    });
-                  };
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  if ((window as any).Calendly) return open();
-                  const css = document.createElement("link");
-                  css.rel = "stylesheet";
-                  css.href = "https://assets.calendly.com/assets/external/widget.css";
-                  document.head.appendChild(css);
-                  const js = document.createElement("script");
-                  js.src = "https://assets.calendly.com/assets/external/widget.js";
-                  js.onload = open;
-                  document.head.appendChild(js);
-                }}
-              >
+              {/* Termín se vybírá ve vlastním kalendáři na stránce Konzultace */}
+              <a href="/konzultace#rezervace" className="btn-primary bk-btn btn-shine">
                 <span>{lang === "cs" ? "Vybrat termín" : "Pick a slot"}</span>
                 <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -2385,18 +2362,7 @@ export default function Page() {
       </section>
 
       {/* ── Footer ── */}
-      <footer>
-        <div className="container footer-inner">
-          <div className="footer-logo">Adam <span>Dvořák</span> · <span>{t.footerTagline}</span></div>
-          <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>{t.footerReg}</span></div>
-          <div className="footer-links">
-            <a href="/privacy" className="link-draw">{t.footerPrivacy}</a>
-            <a href="/terms" className="link-draw">{t.footerTerms}</a>
-            <a href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" className="link-draw" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="#contact">{t.navContact}</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} />
 
       {/* ── Floating contact pill (desktop) ── */}
       <a

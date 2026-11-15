@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Script from "next/script";
+import { Rezervace } from "./Rezervace";
+import { SiteFooter } from "../SiteFooter";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
@@ -81,18 +82,12 @@ export default function KonzultacePage() {
         </div>
       </section>
 
-      {/* ── Calendly ── */}
-      <section style={{ paddingBottom: 0 }}>
+      {/* ── Rezervace termínu ── */}
+      <section id="rezervace" style={{ paddingBottom: 0, scrollMarginTop: 90 }}>
         <div className="container">
           <div className="section-eyebrow" style={{ marginBottom: 20 }}>Rezervace termínu</div>
-          <div
-            className="calendly-inline-widget"
-            data-url="https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1"
-            style={{ minWidth: 320, height: 700 }}
-          />
+          <Rezervace />
         </div>
-        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" precedence="default" />
-        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       </section>
 
       {/* ── Contact form ── */}
@@ -200,17 +195,7 @@ export default function KonzultacePage() {
       </section>
 
       {/* ── Footer ── */}
-      <footer>
-        <div className="container footer-inner">
-          <div className="footer-logo">Adam <span>Dvořák</span> · <span>Finanční Stratég</span></div>
-          <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>Registrován u ČNB.</span></div>
-          <div className="footer-links">
-            <Link href="/">Hlavní stránka</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/privacy">Ochrana osobních údajů</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CookieReset from "@/components/CookieReset";
+import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
   // Příponu „| Adam Dvořák, EFA" doplní šablona titulku v layoutu
@@ -79,9 +80,9 @@ export default function PrivacyPage() {
                 e-mail. Údaje uchovávám do odvolání souhlasu.
               </p>
               <p>
-                <strong>Rezervace schůzky</strong>: když si vyberete termín přes Calendly, zadáváte
-                jméno, e-mail a případně poznámku přímo do služby Calendly. Použiji je k domluvě
-                a konání schůzky.
+                <strong>Rezervace schůzky</strong>: když si vyberete termín, jméno, e-mail a případně
+                telefon a téma schůzky předávám službě Calendly, která rezervaci eviduje a pošle vám
+                pozvánku. Použiji je k domluvě a konání schůzky.
               </p>
               <p>
                 <strong>Technický provoz webu</strong>: při každé návštěvě zpracovává hosting
@@ -153,17 +154,7 @@ export default function PrivacyPage() {
         </div>
       </main>
 
-      <footer>
-        <div className="container footer-inner">
-          <div className="footer-logo">Adam <span>Dvořák</span> · <span>Finanční Stratég</span></div>
-          <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>Registrován u ČNB. IČO 08406804.</span></div>
-          <div className="footer-links">
-            <Link href="/">Hlavní stránka</Link>
-            <Link href="/terms">Podmínky užití</Link>
-            <Link href="/konzultace">Kontakt</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

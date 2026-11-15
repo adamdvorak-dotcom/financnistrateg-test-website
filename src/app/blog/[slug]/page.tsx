@@ -15,6 +15,7 @@ import { SverenskyFond } from "../SverenskyFond";
 import { AudioPlayer } from "../AudioPlayer";
 import { HoldingDiag } from "../HoldingDiag";
 import { EtfKalk } from "../EtfKalk";
+import { SiteFooter } from "../../SiteFooter";
 
 export function generateStaticParams() {
   return [
@@ -2801,17 +2802,7 @@ export default async function ArticlePage({
             )}
           </div>
         </main>
-        <footer>
-          <div className="container footer-inner">
-            <div className="footer-logo">Adam <span>Dvořák</span> · <span>Finanční Stratég</span></div>
-            <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>Registrován u ČNB.</span></div>
-            <div className="footer-links">
-              <Link href="/">Hlavní stránka</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/konzultace">Kontakt</Link>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
       </>
     );
   }
@@ -3046,17 +3037,7 @@ export default async function ArticlePage({
       </div>
 
       {/* ── Footer ── */}
-      <footer>
-        <div className="container footer-inner">
-          <div className="footer-logo">Adam <span>Dvořák</span> · <span>Finanční Stratég</span></div>
-          <div className="footer-copy">© 2026 Adam Dvořák, EFA. <span>Registrován u ČNB.</span></div>
-          <div className="footer-links">
-            <Link href="/">Hlavní stránka</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/konzultace">Kontakt</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* ── Sticky CTA bar ── */}
       <div className="cta-bar" id="ctaBar">

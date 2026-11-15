@@ -34,12 +34,14 @@ const T = {
 
 export function ZmenaPlan({ lang = "cs" }: { lang?: "cs" | "en" }) {
   const [stav, setStav] = useState<0 | 1>(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const rowsRef = useRef<HTMLUListElement>(null);
   const rucne = useRef(false);
   const t = T[lang];
 
   useEffect(() => {
-    const el = ref.current;
+    // Hlídá se jen seznam řádků, ne celá sekce: ta je na mobilu vyšší než nízké okno
+    // a polovina z ní by se do něj nemusela vejít nikdy.
+    const el = rowsRef.current;
     if (!el || !("IntersectionObserver" in window)) return;
     let tid: ReturnType<typeof setTimeout> | undefined;
     const io = new IntersectionObserver(
@@ -50,7 +52,7 @@ export function ZmenaPlan({ lang = "cs" }: { lang?: "cs" | "en" }) {
           if (!rucne.current) setStav(1);
         }, 1400);
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     io.observe(el);
     return () => {
@@ -65,7 +67,7 @@ export function ZmenaPlan({ lang = "cs" }: { lang?: "cs" | "en" }) {
   };
 
   return (
-    <div ref={ref} className={`zmena c${stav}`}>
+    <div className={`zmena c${stav}`}>
       <div>
         <div className="section-eyebrow">{t.eye}</div>
         <h2 className="section-title-lg" style={{ marginTop: 12 }}>{t.title}</h2>
@@ -75,7 +77,7 @@ export function ZmenaPlan({ lang = "cs" }: { lang?: "cs" | "en" }) {
           <button type="button" aria-pressed={stav === 1} onClick={vyber(1)}>{t.s}</button>
         </div>
       </div>
-      <ul className="zmena-rows">
+      <ul ref={rowsRef} className="zmena-rows">
         {t.rows.map(([a, b], i) => (
           <li key={i} style={{ "--i": i } as React.CSSProperties}>
             <span className="zmena-ic" aria-hidden="true">

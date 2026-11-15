@@ -1,0 +1,77 @@
+import { NextRequest, NextResponse } from "next/server";
+import { calendlyConfigured, createBooking, getEventType, slotUrl } from "@/lib/calendly";
+
+/* Zápis rezervace z vlastního kalendáře do Calendly. */
+
+// Nejvýš 5 pokusů z jedné IP adresy za 10 minut (v rámci jedné instance serveru)
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_PER_WINDOW = 5;
+const hits = new Map<string, number[]>();
+
+function tooMany(ip: string) {
+  const now = Date.now();
+  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+  recent.push(now);
+  hits.set(ip, recent);
+  return recent.length > MAX_PER_WINDOW;
+}
+
+const text = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+
+    // Skryté pole vyplňují jen roboti: tváříme se, že vše prošlo
+    if (body.web) return NextResponse.json({ ok: true });
+
+    const start = text(body.start, 40);
+    const name = text(body.name, 120);
+    const email = text(body.email, 160);
+    const phone = text(body.phone, 40);
+    const tema = text(body.tema, 200);
+    const misto = text(body.misto, 40);
+
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Vyplňte prosím jméno a platný e-mail." }, { status: 400 });
+    }
+    const kdy = new Date(start);
+    if (!start || Number.isNaN(kdy.getTime()) || kdy.getTime() < Date.now()) {
+      return NextResponse.json({ error: "Tenhle termín už není k dispozici.", obsazeno: true }, { status: 409 });
+    }
+
+    if (process.env.NODE_ENV === "development" && body.ukazka === true) {
+      return NextResponse.json({ ok: true, ukazka: true });
+    }
+
+    if (!calendlyConfigured()) {
+      return NextResponse.json({ error: "Rezervace teď není dostupná." }, { status: 503 });
+    }
+
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+    if (tooMany(ip)) {
+      return NextResponse.json({ error: "Příliš mnoho pokusů, zkuste to prosím za chvíli." }, { status: 429 });
+    }
+
+    const et = await getEventType();
+    if (!et) return NextResponse.json({ error: "Rezervace teď není dostupná." }, { status: 503 });
+
+    const r = await createBooking(et, { start: kdy.toISOString(), name, email, phone, tema, misto });
+    if (r.ok) return NextResponse.json({ ok: true });
+
+    console.error("Calendly booking error:", r.status, JSON.stringify(r.data).slice(0, 600));
+    const zprava = JSON.stringify(r.data).toLowerCase();
+    // Termín mezitím obsadil někdo jiný
+    if (r.status === 400 && /not available|no longer|already|unavailable|invalid start/.test(zprava)) {
+      return NextResponse.json({ error: "Tenhle termín mezitím někdo obsadil. Vyberte prosím jiný.", obsazeno: true }, { status: 409 });
+    }
+    // Cokoli jiného (denní limit, nastavení typu schůzky…): nabídneme stejný čas přímo na Calendly
+    return NextResponse.json(
+      { error: "Rezervaci se nepodařilo zapsat.", nahradni: slotUrl(et, kdy.toISOString()) },
+      { status: 502 }
+    );
+  } catch (err) {
+    console.error("Rezervace error:", err);
+    return NextResponse.json({ error: "Rezervaci se nepodařilo zapsat." }, { status: 500 });
+  }
+}
