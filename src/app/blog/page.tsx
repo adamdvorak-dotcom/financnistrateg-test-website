@@ -1,25 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { articles, type ArticleCategory } from "./articles";
+import { articles } from "./articles";
 import { ReadingPaths } from "./ReadingPaths";
 import { LangButton } from "./LangButton";
+import { CategoryChips } from "./CategoryChips";
 import { FeaturedCard, OwnerCards, BlogListing, BlogSectionLabel } from "./BlogCards";
 
 export const metadata: Metadata = {
   title: "Blog: Investice, DIP, Důchod, Hypotéky, Majetek",
   description:
     "Praktické články o investicích, ETF, DIP, penzijním spoření, hypotékách a správě majetku od nezávislého finančního poradce z Prahy. Srozumitelně, bez žargonu.",
-  alternates: { canonical: "https://www.financnistrateg.com/blog" },
+  alternates: {
+    canonical: "https://www.financnistrateg.com/blog",
+    types: { "application/rss+xml": "https://www.financnistrateg.com/feed.xml" },
+  },
 };
-
-const chips: { id: ArticleCategory | "vse"; label: string }[] = [
-  { id: "vse", label: "Vše" },
-  { id: "rodinny-majetek", label: "Rodinný majetek" },
-  { id: "investice", label: "Investice" },
-  { id: "strategie", label: "Strategie" },
-  { id: "financovani", label: "Hypotéky" },
-  { id: "duchod", label: "Důchod" },
-];
 
 const FEATURED = "firma-a-osobni-majetek";
 const OWNER_3 = [
@@ -28,21 +23,16 @@ const OWNER_3 = [
   "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele",
 ];
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ cat?: string }>;
-}) {
-  const { cat } = await searchParams;
-  const activeCat = (cat as ArticleCategory | undefined) ?? null;
-
+// Kategorie mají vlastní adresy /blog/<kategorie>, proto stránka nečte parametry z adresy
+// a může se vygenerovat staticky.
+export default function BlogPage() {
   const featured = articles.find((a) => a.slug === FEATURED)!;
   const ownerArticles = OWNER_3.map((s) => articles.find((a) => a.slug === s)!);
 
-  const listArticles = (activeCat
-    ? articles.filter((a) => a.category === activeCat)
-    : articles.filter((a) => a.slug !== FEATURED && !OWNER_3.includes(a.slug))
-  ).slice().reverse();
+  const listArticles = articles
+    .filter((a) => a.slug !== FEATURED && !OWNER_3.includes(a.slug))
+    .slice()
+    .reverse();
 
   return (
     <>
@@ -82,42 +72,20 @@ export default async function BlogPage({
         <div className="container">
 
           {/* ── Category chips ── */}
-          <div className="chips">
-            {chips.map((chip) => {
-              const count =
-                chip.id === "vse"
-                  ? articles.length
-                  : articles.filter((a) => a.category === chip.id).length;
-              const isOn = chip.id === "vse" ? !activeCat : activeCat === chip.id;
-              return (
-                <Link
-                  key={chip.id}
-                  href={chip.id === "vse" ? "/blog" : `/blog?cat=${chip.id}`}
-                  className={isOn ? "on" : ""}
-                >
-                  {chip.label}
-                  <span style={{ marginLeft: 5, opacity: 0.55, fontSize: 11 }}>{count}</span>
-                </Link>
-              );
-            })}
-          </div>
+          <CategoryChips active={null} />
 
           <ReadingPaths articles={articles.map(a => ({ slug: a.slug, title: a.title, readTime: a.readTime }))} />
 
-          {/* ── Featured + 3-grid (no filter only) ── */}
-          {!activeCat && (
-            <>
-              <FeaturedCard article={featured} />
-              <BlogSectionLabel cs="Pro majitele firem" en="For business owners" />
-              <OwnerCards articles={ownerArticles} />
-              {listArticles.length > 0 && (
-                <BlogSectionLabel cs="Další články" en="More articles" />
-              )}
-            </>
+          {/* ── Featured + 3-grid ── */}
+          <FeaturedCard article={featured} />
+          <BlogSectionLabel cs="Pro majitele firem" en="For business owners" />
+          <OwnerCards articles={ownerArticles} />
+          {listArticles.length > 0 && (
+            <BlogSectionLabel cs="Další články" en="More articles" />
           )}
 
           {/* ── Article list ── */}
-          <BlogListing articles={listArticles} activeCat={!!activeCat} />
+          <BlogListing articles={listArticles} activeCat={false} />
 
         </div>
       </main>

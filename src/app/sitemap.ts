@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { articles } from "./blog/articles";
+import { categories } from "./blog/categories";
 
 const BASE = "https://www.financnistrateg.com";
 
@@ -21,12 +22,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Stránka kategorie se mění, když v ní přibude nebo se upraví článek
+  const categoryUrls: MetadataRoute.Sitemap = categories.map((c) => {
+    const dates = articles
+      .filter((a) => a.category === c.id)
+      .map((a) => czechDateToDate(a.updated ?? a.date).getTime());
+    return {
+      url: `${BASE}/blog/${c.id}`,
+      lastModified: dates.length ? new Date(Math.max(...dates)) : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.5,
+    };
+  });
+
   return [
     { url: BASE, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
     { url: `${BASE}/konzultace`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/financni-preventivka`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/renta`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    ...categoryUrls,
     ...articleUrls,
   ];
 }

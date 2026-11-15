@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Ochrana osobních údajů | Adam Dvořák, EFA",
+  // Příponu „| Adam Dvořák, EFA" doplní šablona titulku v layoutu
+  title: "Ochrana osobních údajů",
   description: "Zásady ochrany osobních údajů a informace o zpracování osobních dat na webu Adam Dvořák, EFA.",
   alternates: { canonical: "https://www.financnistrateg.com/privacy" },
 };

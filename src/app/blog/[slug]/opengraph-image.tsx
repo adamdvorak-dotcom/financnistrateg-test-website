@@ -2,13 +2,19 @@ import { ImageResponse } from 'next/og'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { getArticle } from '@/app/blog/articles'
+import { getCategory } from '@/app/blog/categories'
 
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
+export const alt = 'Článek na blogu Finanční Stratég, Adam Dvořák, EFA'
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const article = getArticle(slug)
+  const category = getCategory(slug)
+  // Stránka kategorie používá stejnou šablonu jako článek: nahoře „Blog", uprostřed název kategorie
+  const article = category
+    ? { tag: 'Blog', title: category.seoTitle, readTime: undefined }
+    : getArticle(slug)
   const lora = await readFile(join(process.cwd(), 'assets/Lora-Medium.ttf'))
 
   return new ImageResponse(

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Podmínky užití | Adam Dvořák, EFA",
+  // Příponu „| Adam Dvořák, EFA" doplní šablona titulku v layoutu
+  title: "Podmínky užití",
   description: "Podmínky užití webu Adam Dvořák, EFA, nezávislý finanční poradce.",
   alternates: { canonical: "https://www.financnistrateg.com/terms" },
 };
