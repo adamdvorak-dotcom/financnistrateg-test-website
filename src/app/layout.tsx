@@ -33,7 +33,10 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: BASE,
+    types: { "application/rss+xml": `${BASE}/feed.xml` },
   },
+  // Obrázek pro sdílení (1200×630) generuje src/app/opengraph-image.tsx,
+  // proto tu žádný není: uvedený by ho přebil.
   openGraph: {
     title: "Finanční stratég a poradce, Praha | Adam Dvořák, EFA",
     description:
@@ -42,21 +45,12 @@ export const metadata: Metadata = {
     siteName: "Finanční Stratég",
     locale: "cs_CZ",
     type: "website",
-    images: [
-      {
-        url: "/adam-dvorak-hero.jpg",
-        width: 1200,
-        height: 800,
-        alt: "Adam Dvořák, EFA | nezávislý finanční poradce Praha",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Finanční stratég a poradce, Praha | Adam Dvořák, EFA",
     description:
       "Finanční stratég pro majitele firem, lékaře a advokáty v Praze. Investice, DIP, krizový plán a předání majetku. Osmý rok v oboru.",
-    images: ["/adam-dvorak-hero.jpg"],
   },
   robots: {
     index: true,
@@ -70,20 +64,35 @@ export const metadata: Metadata = {
   },
 };
 
+const PERSON_ID = `${BASE}/#adam-dvorak`;
+const BUSINESS_ID = `${BASE}/#financni-strateg`;
+
+// Název webu, který Google ukazuje nad výsledkem hledání
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${BASE}/#web`,
+  name: "Finanční Stratég",
+  alternateName: "Adam Dvořák, EFA",
+  url: BASE,
+  inLanguage: "cs",
+  publisher: { "@id": BUSINESS_ID },
+};
+
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": PERSON_ID,
   name: "Adam Dvořák",
+  image: `${BASE}/adam-dvorak-about.jpg`,
   alternateName: "Adam Dvořák EFA",
   jobTitle: "Nezávislý finanční poradce, EFA",
   description: "Nezávislý finanční poradce pro podnikatele a majitele firem v Praze. Osmý rok v oboru, přes 165 milionů Kč pod správou.",
   url: BASE,
-  sameAs: [
-    "https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/",
-    "https://financnistrateg.com",
-    "https://www.financnistrateg.com",
-  ],
+  // sameAs patří jen profilům jinde na internetu, ne vlastnímu webu
+  sameAs: ["https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/"],
   email: "adamdvorak@financnistrateg.com",
+  telephone: "+420731147911",
   knowsAbout: [
     "Finanční plánování Praha",
     "Investiční poradenství",
@@ -106,17 +115,25 @@ const personLd = {
     addressRegion: "Praha",
     addressCountry: "CZ",
   },
-  worksFor: {
-    "@type": "Organization",
-    name: "Finanční Stratég",
-    url: BASE,
-  },
+  worksFor: { "@id": BUSINESS_ID },
 };
 
 const serviceLd = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
+  "@id": BUSINESS_ID,
   name: "Finanční Stratég | Finanční poradce Praha",
+  image: `${BASE}/adam-dvorak-about.jpg`,
+  logo: `${BASE}/icon-512.png`,
+  telephone: "+420731147911",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Salvátorská 931/8",
+    addressLocality: "Praha 1",
+    postalCode: "110 00",
+    addressCountry: "CZ",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 50.0884, longitude: 14.4188 },
   alternateName: ["Adam Dvořák EFA finanční poradce Praha", "Finanční poradce Praha"],
   description: "Nezávislé finanční poradenství pro podnikatele a majitele firem v Praze. Investice, ETF, DIP, penzijní spoření, správa a ochrana majetku. První konzultace zdarma.",
   url: BASE,
@@ -134,12 +151,7 @@ const serviceLd = {
     "Daňová optimalizace",
     "Ochrana majetku",
   ],
-  provider: {
-    "@type": "Person",
-    name: "Adam Dvořák",
-    jobTitle: "EFA (European Financial Advisor)",
-  },
-  priceRange: "Bezplatná první konzultace",
+  founder: { "@id": PERSON_ID },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Finanční poradenství Praha",
@@ -160,7 +172,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs" className="light">
+    // Skript níže přidá na <html> třídu „js" dřív, než se stránka oživí. React by to jinak
+    // ve vývojovém režimu hlásil jako neshodu, proto se u tohoto prvku neporovnává.
+    <html lang="cs" className="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -169,7 +183,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400&display=swap"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}

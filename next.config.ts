@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       })),
       { source: "/post/:slug", destination: "/blog/:slug", permanent: true },
+      // Adresa bez /blog, kterou má pořád v indexu Seznam
+      {
+        source: "/jak-efektivne-spravovat-sverenske-fondy",
+        destination: "/blog/jak-efektivne-spravovat-sverenske-fondy",
+        permanent: true,
+      },
       // Starší článek o propadech je sloučený do nového
       { source: "/blog/trhy-padaji-co-ted", destination: "/blog/propady-trhu-co-delat", permanent: true },
       // Kalkulačka renty žije na /renta (viz rewrites), .html verze je jen duplicita
@@ -37,6 +43,20 @@ const nextConfig: NextConfig = {
   // Samostatné HTML stránky z /public pod hezkou adresou
   async rewrites() {
     return [{ source: "/renta", destination: "/renta.html" }];
+  },
+  // Bezpečnostní hlavičky pro všechny stránky
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
+      },
+    ];
   },
 };
 

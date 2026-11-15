@@ -52,7 +52,7 @@ export function OwnerCards({ articles }: { articles: Article[] }) {
           </p>
           <div style={{ marginTop: "auto", paddingTop: 16, fontSize: 13, color: "var(--text-2)" }}>
             {lang === "en" ? (a.dateEn || a.date) : a.date}
-            {a.readTime ? ` · ${a.readTime} min read` : ""}
+            {a.readTime ? ` · ${a.readTime} ${lang === "en" ? "min read" : "min čtení"}` : ""}
           </div>
         </Link>
       ))}

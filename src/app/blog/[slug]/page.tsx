@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { articles, getArticle } from "../articles";
+import { categories, getCategory } from "../categories";
+import { CategoryChips } from "../CategoryChips";
 import { DipKalk } from "../DipKalk";
 import { PenzijkoKalk } from "../PenzijkoKalk";
 import { SverenskyFond } from "../SverenskyFond";
@@ -9,24 +12,16 @@ import { AudioPlayer } from "../AudioPlayer";
 import { HoldingDiag } from "../HoldingDiag";
 import { EtfKalk } from "../EtfKalk";
 
-const CATEGORY_LABELS: Record<string, string> = {
-  "rodinny-majetek": "Rodinný majetek",
-  "investice": "Investice",
-  "strategie": "Strategie",
-  "financovani": "Financování",
-  "duchod": "Důchod",
-};
-
-const CATEGORY_IDS = Object.keys(CATEGORY_LABELS);
-
 export function generateStaticParams() {
   return [
     ...articles.map((a) => ({ slug: a.slug })),
-    ...CATEGORY_IDS.map((id) => ({ slug: id })),
+    ...categories.map((c) => ({ slug: c.id })),
   ];
 }
 
 const BASE = "https://www.financnistrateg.com";
+const FEED = `${BASE}/feed.xml`;
+const LINKEDIN = "https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/";
 
 const CZECH_MONTHS: Record<string, string> = {
   ledna: "01", února: "02", března: "03", dubna: "04",
@@ -45,40 +40,58 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  if (CATEGORY_LABELS[slug]) {
+  const category = getCategory(slug);
+  if (category) {
     return {
-      title: `${CATEGORY_LABELS[slug]} · Blog`,
-      alternates: { canonical: `${BASE}/blog/${slug}` },
+      title: category.seoTitle,
+      description: category.desc,
+      alternates: {
+        canonical: `${BASE}/blog/${slug}`,
+        types: { "application/rss+xml": FEED },
+      },
+      openGraph: {
+        title: category.seoTitle,
+        description: category.desc,
+        url: `${BASE}/blog/${slug}`,
+        siteName: "Finanční Stratég",
+        locale: "cs_CZ",
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: category.seoTitle,
+        description: category.desc,
+      },
     };
   }
   const article = getArticle(slug);
   if (!article) return {};
+  // Popisek pro vyhledávače se může lišit od delšího textu na kartě článku
+  const description = article.seoDesc ?? article.desc;
+  // Obrázek pro sdílení se bere z opengraph-image.tsx v této složce. Kdyby tu byl uvedený
+  // jiný, přebil by ho a všechny články by sdílely stejnou fotku.
   return {
     title: { absolute: article.seoTitle ?? article.title },
-    description: article.desc,
-    alternates: { canonical: `${BASE}/blog/${slug}` },
+    description,
+    alternates: {
+      canonical: `${BASE}/blog/${slug}`,
+      types: { "application/rss+xml": FEED },
+    },
     openGraph: {
       title: article.title,
-      description: article.desc,
+      description,
       url: `${BASE}/blog/${slug}`,
       siteName: "Finanční Stratég",
       locale: "cs_CZ",
       type: "article",
       authors: [article.author],
-      images: [
-        {
-          url: "/adam-dvorak-hero.jpg",
-          width: 1200,
-          height: 800,
-          alt: article.title,
-        },
-      ],
+      publishedTime: czechDateToISO(article.date),
+      modifiedTime: czechDateToISO(article.updated ?? article.date),
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
-      description: article.desc,
-      images: ["/adam-dvorak-hero.jpg"],
+      description,
     },
   };
 }
@@ -141,7 +154,7 @@ function ArticleContent({ slug }: { slug: string }) {
       <div className="article-body">
         <p>
           Podnikatelé dnes čelí stále složitějšímu finančnímu prostředí. Nestačí jen
-          vydělávat, klíčové je také efektivně spravovat vydělanné bohatství a investice.
+          vydělávat, klíčové je také efektivně spravovat vydělané bohatství a investice.
           Moderní wealth management přináší přístupy, které ještě před deseti lety nebyly
           dostupné. Co jsou aktuální trendy a proč byste je měli sledovat?
         </p>
@@ -2333,11 +2346,22 @@ export default async function ArticlePage({
 }) {
   const { slug } = await params;
 
-  if (CATEGORY_LABELS[slug]) {
+  const category = getCategory(slug);
+  if (category) {
     const catArticles = articles.filter((a) => a.category === slug).reverse();
-    const label = CATEGORY_LABELS[slug];
+    const label = category.label;
+    const categoryBreadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Finanční Stratég", item: BASE },
+        { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
+        { "@type": "ListItem", position: 3, name: label, item: `${BASE}/blog/${slug}` },
+      ],
+    };
     return (
       <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryBreadcrumbLd) }} />
         <nav>
           <div className="container nav-inner">
             <Link href="/" className="nav-logo">
@@ -2346,7 +2370,7 @@ export default async function ArticlePage({
             <div className="nav-right" style={{ gap: 10 }}>
               <Link href="/blog" className="btn-ghost" style={{ fontSize: 14 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                <span>Všechny kategorie</span>
+                <span>Všechny články</span>
               </Link>
               <Link href="/" className="btn-primary">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
@@ -2355,16 +2379,22 @@ export default async function ArticlePage({
             </div>
           </div>
         </nav>
-        <section style={{ padding: "80px 0 48px" }}>
+        <section style={{ padding: "80px 0 40px" }}>
           <div className="container">
             <div className="section-eyebrow">Blog</div>
-            <h1 className="section-title-lg" style={{ marginTop: 12, marginBottom: 0 }}>
+            <h1 className="section-title-lg" style={{ marginTop: 12, marginBottom: 16 }}>
               {label}
             </h1>
+            <p style={{ color: "var(--text-2)", fontSize: 16, maxWidth: 560 }}>
+              {category.desc}
+            </p>
           </div>
         </section>
         <main style={{ paddingBottom: 80 }}>
           <div className="container">
+            <div style={{ marginBottom: 28 }}>
+              <CategoryChips active={category.id} />
+            </div>
             {catArticles.length === 0 ? (
               <p style={{ color: "var(--text-3)", fontSize: 15, borderTop: "1px solid var(--border)", paddingTop: 28 }}>
                 Články připravuji . Sledujte mě brzy.
@@ -2406,28 +2436,36 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const related = articles
-    .filter(a => a.slug !== slug && a.category === article.category)
-    .slice(0, 2)
-    .concat(articles.filter(a => a.slug !== slug && a.category !== article.category))
+  // Starší obecné texty pod články nenabízíme
+  const notRecommended = ["jak-efektivne-spravovat-sverenske-fondy", "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele"];
+  const candidates = articles.filter(a => a.slug !== slug && !notRecommended.includes(a.slug)).reverse();
+  const related = candidates
+    .filter(a => a.category === article.category)
+    .concat(candidates.filter(a => a.category !== article.category))
     .slice(0, 2);
 
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: article.title,
-    description: article.desc,
+    description: article.seoDesc ?? article.desc,
     url: `${BASE}/blog/${slug}`,
     datePublished: czechDateToISO(article.date),
-    ...(article.updated ? { dateModified: czechDateToISO(article.updated) } : {}),
-    author: { "@type": "Person", name: "Adam Dvořák", url: BASE },
+    dateModified: czechDateToISO(article.updated ?? article.date),
+    author: {
+      "@type": "Person",
+      "@id": `${BASE}/#adam-dvorak`,
+      name: "Adam Dvořák",
+      url: BASE,
+      sameAs: [LINKEDIN],
+    },
     publisher: {
       "@type": "Organization",
       name: "Finanční Stratég",
       url: BASE,
-      logo: { "@type": "ImageObject", url: `${BASE}/adam-dvorak-hero.jpg` },
+      logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png`, width: 512, height: 512 },
     },
-    image: { "@type": "ImageObject", url: `${BASE}/adam-dvorak-hero.jpg`, width: 1200, height: 800 },
+    image: { "@type": "ImageObject", url: `${BASE}/blog/${slug}/opengraph-image`, width: 1200, height: 630 },
     inLanguage: "cs",
     mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE}/blog/${slug}` },
   };
@@ -2542,6 +2580,33 @@ export default async function ArticlePage({
               </div>
             )}
             <ArticleContent slug={slug} />
+
+            {/* Otázky ze strukturovaných dat musí být vidět i na stránce, jinak je Google bere jako skrytý obsah */}
+            {faqLd && (
+              <div className="article-body">
+                <h2>Časté otázky</h2>
+                {faqLd.mainEntity.map((q) => (
+                  <div key={q.name}>
+                    <h3>{q.name}</h3>
+                    <p>{q.acceptedAnswer.text}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="author-box">
+              <Image src="/adam-dvorak-about.jpg" alt="Adam Dvořák, EFA" width={64} height={64} className="author-box-photo" />
+              <div>
+                <b>Adam Dvořák, EFA</b>
+                <p>
+                  Finanční stratég pro majitele firem a jejich rodiny. Finance dělám osmým rokem, mám evropskou
+                  kvalifikaci EFA. Registrován u ČNB, IČO 08406804.
+                </p>
+                <a href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                {" · "}
+                <Link href="/#about">Více o mně</Link>
+              </div>
+            </div>
 
             <div className="article-cta">
               <div className="article-cta-text">

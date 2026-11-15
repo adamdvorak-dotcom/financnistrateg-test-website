@@ -3075,3 +3075,29 @@ nav.scrolled .nav-logo{font-size:15px}
 .article-body h3{font:600 19px/1.35 'Lora',Georgia,serif;color:var(--text-1);letter-spacing:-.01em;margin:30px 0 8px}
 .article-closing{margin:48px 0 8px;padding-top:28px;border-top:1px solid rgba(26,21,17,.12)}
 .article-body .article-closing p{font:400 20px/1.55 'Lora',Georgia,serif;color:var(--text-1)}
+
+/* Box o autorovi pod článkem */
+.author-box{display:flex;gap:16px;align-items:flex-start;margin:48px 0 0;padding:20px 22px;border:1px solid rgba(26,21,17,.1);border-radius:16px;background:rgba(255,255,255,.35)}
+.author-box-photo{width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.author-box b{display:block;font:600 15px/1.3 Inter,sans-serif;color:var(--text-1)}
+.author-box p{margin:6px 0 8px;font-size:14px;line-height:1.6;color:var(--text-2)}
+.author-box a{font-size:14px;font-weight:500;color:var(--accent);text-decoration:underline;text-decoration-color:rgba(201,162,96,.5);text-underline-offset:3px}
+/* Audit 11/2026 */
+.article-body p,.article-body li{hyphens:manual}
+.cookie-banner{background:#F5F2EC;box-shadow:0 8px 40px rgba(12,31,58,.25)}
+.office-map .lbl{white-space:nowrap}
+.ded-ticks span{white-space:nowrap}
+@media (max-width: 899px){footer{padding-bottom:calc(48px + 72px + env(safe-area-inset-bottom,0px))}}
+@media (max-width: 640px){
+  .calc-result .result-big{white-space:nowrap;word-break:normal;overflow-wrap:normal;font-size:clamp(22px,7vw,34px)}
+  .calc-result .result-big small{font-size:15px;margin-left:5px}
+  .tnd-ring-vy{width:62px;height:62px}
+  .tnd-ring-vy em{font-size:16px}
+  .tnd-ring-ad{width:50px;height:50px}
+  .tnd-ring-ad em{font-size:15px}
+}
+@media (max-width: 480px){.scale-mid{display:none}}
+@media (max-width: 400px){.office-map .lbl{font-size:11px;padding:7px 9px}}
+
+.form-privacy{margin:12px 0 0;font-size:12.5px;line-height:1.5;color:var(--text-2)}
+.form-privacy a,.nl-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}

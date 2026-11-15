@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Script from "next/script";
 import { articles } from "./blog/articles";
 import { TymDiag } from "./TymDiag";
 
@@ -349,7 +348,7 @@ function GoldRange({ value, min, max, step, onChange, fmtLabel, logStep }: {
   const label = fmtLabel ? fmtLabel(value) : value.toLocaleString("cs-CZ");
   return (
     <div className="gold-range-outer" style={{ "--pct": `${pct.toFixed(1)}%` } as React.CSSProperties}>
-      <div className="gold-bubble" style={{ left: `${pct.toFixed(1)}%` }}>{label}</div>
+      <div className="gold-bubble" style={{ left: `${pct.toFixed(1)}%`, transform: `translateX(-${pct.toFixed(1)}%)` }}>{label}</div>
       {logStep ? (
         <input type="range" min={0} max={1000} step={1} value={pos!}
           onChange={(e) => { const p = +e.target.value; const v = min * Math.pow(max / min, p / 1000); const k = logStep(v); onChange(Math.min(max, Math.round(v / k) * k)); }} />
@@ -821,7 +820,20 @@ export default function Page() {
   const nohaFmt = (x: number) =>
     x.toLocaleString('cs-CZ', { minimumFractionDigits: 0, maximumFractionDigits: 1 })
   const nohaDil = (x: number) => `${noha > 0 ? (x / noha) * 100 : 0}%`
-  const nohaPct = (x: number) => `${noha > 0 ? Math.round((x / noha) * 100) : 0} %`
+  // Podíly zaokrouhlené metodou největšího zbytku, aby dávaly dohromady 100 %
+  const [pFirma, pNem, pInv, pHot] = (() => {
+    const xs = [firma, nem, inv, hot]
+    if (noha <= 0) return [0, 0, 0, 0]
+    const raw = xs.map(x => (x / noha) * 100)
+    const out = raw.map(Math.floor)
+    let rest = 100 - out.reduce((a, b) => a + b, 0)
+    for (const i of raw.map((r, i) => i).sort((a, b) => (raw[b] - out[b]) - (raw[a] - out[a]))) {
+      if (rest <= 0) break
+      out[i]++; rest--
+    }
+    return out
+  })()
+  const nohaPct = (p: number) => `${p} %`
 
   /* Pension result redesign */
   const pCil = retDesiredPension            // target monthly income in retirement
@@ -922,6 +934,7 @@ export default function Page() {
           email: fd.get("email"),
           topic: fd.get("topic"),
           message: fd.get("message"),
+          web: fd.get("web"),
         }),
       });
       const data = await res.json();
@@ -979,59 +992,8 @@ export default function Page() {
     nlState === "error" ? (lang === "cs" ? "✕ Chyba" : "✕ Error") :
     t.nlBtn;
 
-  const faqLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Co je DIP (Dlouhodobý investiční produkt) a pro koho je určený?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "DIP je od roku 2024 nový způsob daňově zvýhodněného investování v Česku. Umožňuje investovat do akcií, ETF a dluhopisů a odečíst si z daňového základu až 48 000 Kč ročně, daňová úspora až 7 200 Kč. Zaměstnavatel může navíc přispět až 50 000 Kč ročně zcela bez daní a odvodů. Podmínkou je investiční horizont minimálně 10 let a věk nejméně 60 let při výběru. DIP je vhodný pro OSVČ, jednatele i zaměstnance s delším investičním horizontem.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Jak funguje penzijní spoření (třetí pilíř) v Česku?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Penzijní spoření (DPS, Doplňkové penzijní spoření) je státem podporovaný spořicí produkt. Na příspěvky nad 500 Kč měsíčně přidává stát až 340 Kč měsíčně. Příspěvky nad 12 000 Kč ročně lze odečíst z daňového základu, odpočet až 24 000 Kč/rok. Zaměstnavatel může přispívat až 50 000 Kč ročně bez sociálního a zdravotního pojištění. Nevýhodou jsou nižší očekávané výnosy oproti vlastnímu ETF portfoliu, proto ho doporučuji kombinovat s DIP.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Jak začít investovat v Česku, první kroky?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Prvním krokem je definovat cíl a investiční horizont, na jak dlouho investujete a co chcete investováním dosáhnout. Pro horizont 10 a více let jsou vhodné globální indexové ETF, které kopírují světové trhy za nízké poplatky (pod 0,2 % ročně) a historicky vynáší 7–10 % ročně. Doporučuji začít pravidelnými měsíčními vklady místo jednorázové investice. V Česku lze investovat přes DIP s daňovým odpočtem nebo přímo přes brokerské platformy.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Proč si vybrat nezávislého finančního poradce místo bankovního poradce?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Nezávislý finanční poradce je odměňován honorářem od klienta, ne provizemi za prodané produkty. To eliminuje konflikt zájmů: doporučuje to, co je pro vás skutečně nejlepší. Bankovní poradce nabízí jen produkty své banky a je motivován prodejem. Nezávislý poradce vybírá z celého trhu, řeší celkový finanční plán a sleduje vaše cíle dlouhodobě.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Jak ochránit rodinný majetek a nastavit dědictví pro podnikatele?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Pro podnikatele je klíčové oddělit osobní majetek od firmy, většina majitelů firem má vše v podniku, což je riziko. Doporučuji kombinaci: svěřenský fond pro ochranu majetku rodině, notářská závěť se správcem pozůstalosti, manželská smlouva pro oddělení podílu ve firmě od SJM, a pravidelné vyplácení dividend do osobního portfolia mimo firmu. Cílem je, aby rodina nebyla závislá na osudu jedné firmy.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
       {curtainPhase !== "hidden" && (
         <div className={`curtain${curtainPhase === "exiting" ? " curtain-exit" : ""}`} aria-hidden="true">
           <canvas ref={dustCanvasRef} className="dust-canvas" />
@@ -1071,7 +1033,7 @@ export default function Page() {
       {/* ── Navbar ── */}
       <nav>
         <div className="container nav-inner">
-          <a href="#" className="nav-logo">
+          <a href="/" className="nav-logo">
             <span className="nav-logo-name">Adam Dvořák</span><span className="nav-logo-efa">, EFA</span>
           </a>
           <ul className="nav-links">
@@ -1403,28 +1365,28 @@ export default function Page() {
               <span>{t.nohaTotal}</span>
               <b>{nohaFmt(noha)} {t.invMillSuffix}</b>
             </div>
-            <div className="pruh" role="img" aria-label={`${t.nohaFirmaLbl} ${nohaPct(firma)}, ${t.nohaNemLbl} ${nohaPct(nem)}, ${t.nohaInvLbl} ${nohaPct(inv)}, ${t.nohaHotLbl} ${nohaPct(hot)}`}>
+            <div className="pruh" role="img" aria-label={`${t.nohaFirmaLbl} ${nohaPct(pFirma)}, ${t.nohaNemLbl} ${nohaPct(pNem)}, ${t.nohaInvLbl} ${nohaPct(pInv)}, ${t.nohaHotLbl} ${nohaPct(pHot)}`}>
               <i className="firma" style={{ width: nohaDil(firma) }} />
               <i className="nem" style={{ width: nohaDil(nem) }} />
               <i className="inv" style={{ width: nohaDil(inv) }} />
               <i className="hot" style={{ width: nohaDil(hot) }} />
             </div>
             <div className="pruh-legend">
-              <span className="l-firma">{t.nohaFirmaLbl} {nohaPct(firma)}</span>
-              <span className="l-nem">{t.nohaNemLbl} {nohaPct(nem)}</span>
-              <span className="l-inv">{t.nohaInvLbl} {nohaPct(inv)}</span>
-              <span className="l-hot">{t.nohaHotLbl} {nohaPct(hot)}</span>
+              <span className="l-firma">{t.nohaFirmaLbl} {nohaPct(pFirma)}</span>
+              <span className="l-nem">{t.nohaNemLbl} {nohaPct(pNem)}</span>
+              <span className="l-inv">{t.nohaInvLbl} {nohaPct(pInv)}</span>
+              <span className="l-hot">{t.nohaHotLbl} {nohaPct(pHot)}</span>
             </div>
             <div className="karty">
               <div>
                 <small>{t.nohaOutside}</small>
                 <b>{nohaFmt(nohaMimo)} mil.</b>
-                <span>{nohaPct(nohaMimo)} {t.nohaOfAssets}</span>
+                <span>{nohaPct(pNem + pInv + pHot)} {t.nohaOfAssets}</span>
               </div>
               <div className="navy">
                 <small>{t.nohaLiquid}</small>
                 <b>{nohaFmt(nohaMin)} mil.</b>
-                <span>{nohaPct(nohaMin)} {t.nohaNoSale}</span>
+                <span>{nohaPct(pInv + pHot)} {t.nohaNoSale}</span>
               </div>
             </div>
             <blockquote className="noha-quote">{t.nohaQuote}</blockquote>
@@ -1654,7 +1616,7 @@ export default function Page() {
                         { pos: 85, label: "10 mil." },
                         { pos: 100, label: "50 mil." },
                       ] as { pos: number; label: string }[]).map(({ pos, label }) => (
-                        <span key={pos} style={{
+                        <span key={pos} className={pos === 85 ? "scale-mid" : undefined} style={{
                           position: "absolute",
                           left: `${pos}%`,
                           transform: pos === 100 ? "translateX(-100%)" : pos > 0 ? "translateX(-50%)" : "none",
@@ -1757,7 +1719,7 @@ export default function Page() {
                         onBlur={() => commitEdit('mtgAmt', s => { const v = parseNum(s); return v && v >= 100000 ? Math.min(20000000, v) : null; }, setMtgAmt)} />
                       <span className="field-unit">{t.currency}</span>
                     </div>
-                    <GoldRange value={mtgAmt} min={500000} max={20000000} step={100000} onChange={setMtgAmt} fmtLabel={(v) => (v / 1000000).toFixed(1) + ' mil. ' + t.currency} />
+                    <GoldRange value={mtgAmt} min={500000} max={20000000} step={100000} onChange={setMtgAmt} fmtLabel={(v) => (v / 1000000).toLocaleString((lang === 'cs' ? 'cs-CZ' : 'en-US'), { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' mil. ' + t.currency} />
                     <div className="range-meta"><span>500 000</span><span>20 mil.</span></div>
                   </div>
                   <div>
@@ -1770,7 +1732,7 @@ export default function Page() {
                         onBlur={() => commitEdit('mtgRate', parseDec, v => setMtgRate(Math.min(20, v)))} />
                       <span className="field-unit">% p.a.</span>
                     </div>
-                    <GoldRange value={mtgRate} min={1} max={15} step={0.1} onChange={setMtgRate} fmtLabel={(v) => v + " %"} />
+                    <GoldRange value={mtgRate} min={1} max={15} step={0.1} onChange={setMtgRate} fmtLabel={(v) => v.toLocaleString((lang === 'cs' ? 'cs-CZ' : 'en-US'), { maximumFractionDigits: 1 }) + " %"} />
                     <div className="range-meta"><span>1 %</span><span>15 %</span></div>
                   </div>
                   <div>
@@ -1789,11 +1751,11 @@ export default function Page() {
                 </div>
                 <div className="calc-result">
                   <div className="result-label">{t.mtgResultLabel}</div>
-                  <div className="result-big"><span>{t.currency}</span> <SlotNum key={fmt(mMo, lang)} value={fmt(mMo, lang)} /></div>
+                  <div className="result-big"><SlotNum key={fmt(mMo, lang)} value={fmt(mMo, lang)} /> <span>{t.currency}</span></div>
                   <div className="result-divider" />
                   <div className="result-row"><span className="result-row-k">{t.mtgTotal}</span><span className="result-row-v">{fmt(mTotal, lang)} {t.currency}</span></div>
                   <div className="result-row"><span className="result-row-k">{t.mtgInt}</span><span className="result-row-v neg">{fmt(mInt, lang)} {t.currency}</span></div>
-                  <div className="result-row"><span className="result-row-k">{t.mtgPct}</span><span className="result-row-v">{mtgAmt > 0 ? mPct.toFixed(1) + " %" : "0 %"}</span></div>
+                  <div className="result-row"><span className="result-row-k">{t.mtgPct}</span><span className="result-row-v">{mtgAmt > 0 ? mPct.toLocaleString((lang === 'cs' ? 'cs-CZ' : 'en-US'), { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " %" : "0 %"}</span></div>
                   <div className="progress-track"><div className="progress-fill" style={{ width: Math.min(100, mPct) + "%", background: mBarColor }} /></div>
                 </div>
               </div>
@@ -2024,6 +1986,9 @@ export default function Page() {
                   <span>{lang === "cs" ? "Kč ve správě" : "CZK under management"}</span>
                 </div>
               </div>
+              <a className="link-gold" href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 20 }}>
+                {lang === "cs" ? "Profil na LinkedInu →" : "LinkedIn profile →"}
+              </a>
               <span className="sign" data-reveal>Adam Dvořák</span>
             </div>
           </div>
@@ -2174,6 +2139,9 @@ export default function Page() {
 
             <div className="contact-form-wrap">
               <form onSubmit={handleFormSubmit}>
+                <label aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, overflow: "hidden" }}>
+                  Web<input type="text" name="web" tabIndex={-1} autoComplete="off" />
+                </label>
                 <div className="form-grid">
                   <div className="form-field float-field" style={{ marginBottom: 0 }}>
                     <input id="f-name" name="name" type="text" className="form-input" placeholder=" " required />
@@ -2216,6 +2184,10 @@ export default function Page() {
                     </>
                   )}
                 </button>
+                <p className="form-privacy">
+                  {lang === "cs" ? "Údaje použiji jen k odpovědi na vaši zprávu. " : "I will only use your details to reply to your message. "}
+                  <a href="/privacy">{lang === "cs" ? "Jak s nimi zacházím" : "How I handle them"}</a>
+                </p>
                 {formState === "idle" && (
                   <div className="trust" style={{marginTop:14}}>
                     <span>{lang === "cs" ? "Odpovídám do 24 hodin" : "I reply within 24 hours"}</span>
@@ -2268,12 +2240,23 @@ export default function Page() {
               <button
                 className="btn-primary bk-btn"
                 onClick={() => {
-                  if (typeof window !== "undefined") {
+                  // Calendly se načítá až po kliknutí, ať nebrzdí první vykreslení stránky
+                  const open = () => {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     (window as any).Calendly?.initPopupWidget({
                       url: "https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1&primary_color=C9A260&text_color=1A1511&background_color=F0EBE0",
                     });
-                  }
+                  };
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  if ((window as any).Calendly) return open();
+                  const css = document.createElement("link");
+                  css.rel = "stylesheet";
+                  css.href = "https://assets.calendly.com/assets/external/widget.css";
+                  document.head.appendChild(css);
+                  const js = document.createElement("script");
+                  js.src = "https://assets.calendly.com/assets/external/widget.js";
+                  js.onload = open;
+                  document.head.appendChild(js);
                 }}
               >
                 <span>{lang === "cs" ? "Vybrat termín" : "Pick a slot"}</span>
@@ -2282,7 +2265,6 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       </section>
 
       {/* ── Newsletter ── */}
@@ -2307,7 +2289,7 @@ export default function Page() {
               {nlState === "sending" ? t.nlSending : nlState === "done" ? t.nlDone : t.nlBtn}
             </button>
           </form>
-          <p className="nl-note">{t.nlNote}</p>
+          <p className="nl-note">{t.nlNote} <a href="/privacy">{lang === "cs" ? "Ochrana osobních údajů" : "Privacy policy"}</a></p>
         </div>
       </section>
 
@@ -2319,6 +2301,7 @@ export default function Page() {
           <div className="footer-links">
             <a href="/privacy" className="link-draw">{t.footerPrivacy}</a>
             <a href="/terms" className="link-draw">{t.footerTerms}</a>
+            <a href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" className="link-draw" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="#contact">{t.navContact}</a>
           </div>
         </div>
@@ -2330,7 +2313,7 @@ export default function Page() {
         className={`float-pill${pillVisible ? " show" : ""}`}
         aria-label={lang === "cs" ? "Napište mi" : "Contact me"}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
         <span className="float-pill-label">{lang === "cs" ? "Napište mi" : "Contact me"}</span>
       </a>
 

@@ -115,6 +115,7 @@ body:not(.started) .mobilebar { display: none !important; }
 .item-note { display: block; margin-top: 4px; font-size: 13px; line-height: 1.4; color: var(--muted); }
 .opts { display: flex; gap: 6px; }
 .opt-card { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; padding: 9px 12px; border: 1px solid rgba(26,21,17,.18); border-radius: 999px; cursor: pointer; background: var(--sheet); user-select: none; transition: border-color 0.15s, background 0.15s, color 0.15s; font-weight: 500; }
+.ex-opt { font: inherit; color: inherit; }
 .opt-card input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
 .opt-circ { display: none; }
 .opt-txt { font-size: 13px; color: inherit; }
@@ -190,7 +191,7 @@ body:not(.started) .mobilebar { display: none !important; }
 @keyframes btn-sweep { from { transform: translateX(-150%); } to { transform: translateX(250%); } }
 @keyframes draw-chk { to { stroke-dashoffset: 0; } }
 #topBar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); width: 0%; z-index: 100; transition: width 0.4s ease; pointer-events: none; }
-.progress-pill { display: inline-flex; align-items: center; background: var(--gold-soft); border: 1px solid rgba(201,162,96,0.25); border-radius: 100px; padding: 5px 14px; margin: 16px 0 28px; font-size: 12px; font-weight: 600; color: var(--gold-deep); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+.progress-pill { display: inline-block; background: var(--gold-soft); border: 1px solid rgba(201,162,96,0.25); border-radius: 100px; padding: 5px 14px; margin: 16px 0 28px; font-size: 12px; font-weight: 600; color: var(--gold-deep); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .thanks { font-size: 14px; color: var(--ink); margin: 0 0 12px; padding: 8px 10px; border-radius: var(--radius); background: var(--gold-soft); }
 .thanks:focus { outline: none; }
@@ -226,9 +227,9 @@ body:not(.started) .mobilebar { display: none !important; }
         </div>
         <p class="item-text" style="margin:0">Firma vydrží dva měsíce bez mého telefonu.</p>
         <div class="opts ex-opts">
-          <span class="opt-card"><span class="opt-txt">Ano</span></span>
-          <span class="opt-card"><span class="opt-txt">Částečně</span></span>
-          <span class="opt-card"><span class="opt-txt">Ne</span></span>
+          <button type="button" class="opt-card ex-opt" data-v="2"><span class="opt-txt">Ano</span></button>
+          <button type="button" class="opt-card ex-opt" data-v="1"><span class="opt-txt">Částečně</span></button>
+          <button type="button" class="opt-card ex-opt" data-v="0"><span class="opt-txt">Ne</span></button>
         </div>
       </div>
       <button class="btn solid large" id="gateStart" type="button">Zahájit preventivku →</button>
@@ -434,6 +435,15 @@ body:not(.started) .mobilebar { display: none !important; }
     if (first) { first.focus(); }
   }
   document.getElementById("gateStart").addEventListener("click", function() { document.body.classList.add("started"); showQuiz(); });
+  // Odpověď v ukázce rovnou spustí test a zapíše se jako odpověď na první tvrzení
+  document.querySelectorAll(".ex-opt").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.body.classList.add("started");
+      showQuiz();
+      var r = document.getElementById("q1-1-" + b.getAttribute("data-v"));
+      if (r) { r.checked = true; r.dispatchEvent(new Event("change", { bubbles: true })); r.focus(); }
+    });
+  });
   function render() {
     var locked = !state.unlocked;
     var total = 0, count = 0, cands = [];

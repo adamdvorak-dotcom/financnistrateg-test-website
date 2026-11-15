@@ -28,6 +28,7 @@ export default function KonzultacePage() {
           email:   fd.get("email"),
           topic:   fd.get("topic"),
           message: fd.get("message"),
+          web: fd.get("web"),
         }),
       });
       setFormState(res.ok ? "sent" : "error");
@@ -90,6 +91,7 @@ export default function KonzultacePage() {
             style={{ minWidth: 320, height: 700 }}
           />
         </div>
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" precedence="default" />
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       </section>
 
@@ -139,6 +141,9 @@ export default function KonzultacePage() {
 
             <div className="contact-form-wrap">
               <form onSubmit={handleSubmit}>
+                <label aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, overflow: "hidden" }}>
+                  Web<input type="text" name="web" tabIndex={-1} autoComplete="off" />
+                </label>
                 <div className="form-grid">
                   <div className="form-field" style={{ marginBottom: 0 }}>
                     <label className="form-label">Jméno</label>
@@ -175,6 +180,9 @@ export default function KonzultacePage() {
                   <span>{btnText}</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
+                <p className="form-privacy">
+                  Údaje použiji jen k odpovědi na vaši zprávu. <a href="/privacy">Jak s nimi zacházím</a>
+                </p>
                 {formState === "sent" && (
                   <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: "var(--r-sm)", color: "#22c55e", fontSize: 14, fontWeight: 500, lineHeight: 1.5 }}>
                     ✓ Děkuji! Zpráva dorazila. Ozvu se vám co nejdříve, obvykle do 24 hodin.
