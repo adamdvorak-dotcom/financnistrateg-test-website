@@ -5,6 +5,7 @@ import { articles } from "./blog/articles";
 import { TymOrbit } from "./TymOrbit";
 import { HeroRotate } from "./HeroRotate";
 import { ZmenaPlan } from "./ZmenaPlan";
+import { NewsletterBox } from "./NewsletterBox";
 import { PrevRing } from "./PrevRing";
 import { SiteFooter } from "./SiteFooter";
 
@@ -454,8 +455,6 @@ export default function Page() {
 
   /* Form state */
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [nlState, setNlState] = useState<"idle" | "sending" | "done" | "error">("idle");
-  const [nlEmail, setNlEmail] = useState("");
 
   /* Aphorism cycling */
   const [aphoIdx, setAphoIdx] = useState(0);
@@ -1039,43 +1038,11 @@ export default function Page() {
     }
   };
 
-  const handleNlSubmit = async (e: { preventDefault(): void }) => {
-    e.preventDefault();
-    if (nlState !== "idle") return;
-    setNlState("sending");
-    try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: nlEmail }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setNlState("done");
-        setNlEmail("");
-        setTimeout(() => setNlState("idle"), 4000);
-      } else {
-        console.error("Chyba newsletteru:", data);
-        setNlState("error");
-        setTimeout(() => setNlState("idle"), 4000);
-      }
-    } catch (err) {
-      console.error("Chyba sítě:", err);
-      setNlState("error");
-      setTimeout(() => setNlState("idle"), 4000);
-    }
-  };
-
   const formBtnText =
     formState === "sending" ? t.formSending :
     formState === "sent" ? t.formSent :
     formState === "error" ? (lang === "cs" ? "✕ Chyba, zkuste znovu" : "✕ Error, try again") :
     t.fSubmit;
-  const nlBtnText =
-    nlState === "sending" ? t.nlSending :
-    nlState === "done" ? t.nlDone :
-    nlState === "error" ? (lang === "cs" ? "✕ Chyba" : "✕ Error") :
-    t.nlBtn;
 
   return (
     <>
@@ -2337,27 +2304,11 @@ export default function Page() {
 
       {/* ── Newsletter ── */}
       <section id="newsletter" className="section-wrap">
-        <div className="container nl-wrap reveal">
-          <div className="section-eyebrow">{t.nlEye}</div>
-          <h2 className="nl-title">{t.nlTitle}</h2>
-          <p className="nl-sub">{t.nlSub}</p>
-          <form className="nl-form" onSubmit={handleNlSubmit} noValidate>
-            <label htmlFor="nl-email" className="sr-only">{lang === "cs" ? "E-mailová adresa" : "Email address"}</label>
-            <input
-              id="nl-email"
-              type="email"
-              className="nl-input"
-              placeholder={t.nlPh}
-              value={nlEmail}
-              onChange={(e) => setNlEmail(e.target.value)}
-              required
-              disabled={nlState === "sending" || nlState === "done"}
-            />
-            <button type="submit" className="btn-primary nl-btn" disabled={nlState === "sending" || nlState === "done"}>
-              {nlState === "sending" ? t.nlSending : nlState === "done" ? t.nlDone : t.nlBtn}
-            </button>
-          </form>
-          <p className="nl-note">{t.nlNote} <a href="/privacy">{lang === "cs" ? "Ochrana osobních údajů" : "Privacy policy"}</a></p>
+        <div className="container reveal">
+          <NewsletterBox
+            lang={lang}
+            t={{ eye: t.nlEye, title: t.nlTitle, sub: t.nlSub, ph: t.nlPh, btn: t.nlBtn, sending: t.nlSending, note: t.nlNote }}
+          />
         </div>
       </section>
 

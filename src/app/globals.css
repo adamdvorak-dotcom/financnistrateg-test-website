@@ -3743,3 +3743,90 @@ button.rez-c.on{background:#0C1F3A;color:#F5F2EC;transform:none}
   .rez-ceka,.rez-pn,.rez-z,.rez-chk circle,.rez-chk path{animation:none}
   .rez-c,.rez-den,.rez-z,.rez-vas{transition:none}
 }
+
+/* ── Newsletter s obálkou ── */
+@keyframes nlb-kruh{from{stroke-dashoffset:214}to{stroke-dashoffset:0}}
+@keyframes nlb-fajfka{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+@keyframes nlb-dik{from{opacity:0;transform:translateY(14px)}}
+#newsletter{padding:40px 0 88px;border-top:0}
+.nlb{display:flex;align-items:center;gap:44px;padding:44px 56px;border-radius:24px;background:#0C1F3A;color:#F5F2EC;overflow:hidden}
+.nlb-text{flex:1;min-width:0}
+.nlb .section-eyebrow{color:#C9A260}
+.nlb-title{margin:12px 0 0;font:400 clamp(28px,3.4vw,38px)/1.15 'Lora',Georgia,serif;color:#F5F2EC}
+.nlb-sub{margin:14px 0 22px;max-width:56ch;font-size:15px;line-height:1.6;color:#C9D1DF}
+.nlb-form{display:flex;gap:10px;max-width:520px;transition:opacity .4s}
+.nlb-form input{flex:1;min-width:0;height:52px;padding:0 16px;border:1px solid rgba(245,242,236,.3);border-radius:12px;
+  background:rgba(245,242,236,.06);color:#F5F2EC;font:400 16px/1 Inter,system-ui,sans-serif;outline:none;transition:border-color .2s}
+.nlb-form input::placeholder{color:#9FAABD}
+.nlb-form input:focus{border-color:#C9A260}
+.nlb-form button{flex:none;height:52px;padding:0 22px;border:0;border-radius:12px;background:#C9A260;color:#1A1511;
+  font:600 15px/1 Inter,system-ui,sans-serif;cursor:pointer;transition:background .25s,transform .15s}
+.nlb-form button:hover:not(:disabled){background:#D9B678}
+.nlb-form button:active:not(:disabled){transform:scale(.97)}
+.nlb-form button:focus-visible{outline:2px solid #F5F2EC;outline-offset:2px}
+.nlb.f1 .nlb-form,.nlb.f2 .nlb-form{opacity:.35}
+.nlb-chyba{margin:10px 0 0;font-size:14px;color:#F2B8A8}
+.nlb-note{margin:12px 0 0;font-size:13px;color:#9FAABD}
+.nlb-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.nlb-scena{position:relative;flex:none;width:270px;height:290px}
+.nlb-ob{position:absolute;left:15px;top:112px;width:240px;height:150px;
+  transition:transform .8s cubic-bezier(.5,0,.8,.4) 1.05s,opacity .5s ease 1.35s}
+.nlb.f1 .nlb-ob,.nlb.f2 .nlb-ob{transform:translate(420px,-120px) rotate(14deg);opacity:0}
+.nlb-zad{position:absolute;inset:0;border-radius:10px;background:#D9CFBD}
+.nlb-dopis{position:absolute;left:20px;top:-84px;width:200px;height:150px;box-sizing:border-box;padding:18px 16px;border-radius:8px;
+  background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.2);transition:transform .55s cubic-bezier(.5,0,.3,1)}
+.nlb.f1 .nlb-dopis,.nlb.f2 .nlb-dopis{transform:translateY(84px)}
+.nlb-dopis b{display:block;margin-bottom:8px;font:400 10px/1.4 'DM Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;color:#7A5C35}
+.nlb-dopis span{display:block;margin-bottom:10px;font:400 15px/1.3 'Lora',Georgia,serif;color:#1A1511;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nlb-dopis i{display:block;height:6px;margin-bottom:7px;border-radius:3px;background:rgba(26,21,17,.12)}
+.nlb-pred{position:absolute;inset:0;border-radius:10px;background:#FBF9F5;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%)}
+.nlb-pred2{position:absolute;inset:0;border-radius:10px;background:#EFE8DA;clip-path:polygon(0 100%,50% 52%,100% 100%)}
+.nlb-klopa{position:absolute;left:0;top:0;width:240px;height:88px;background:#E6DCCB;clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;transform:rotateX(180deg);transition:transform .45s cubic-bezier(.4,0,.2,1) .5s,background .1s linear .7s}
+.nlb.f1 .nlb-klopa,.nlb.f2 .nlb-klopa{transform:rotateX(0deg);z-index:5;background:#F1EADC}
+.nlb-dik{position:absolute;left:0;top:62px;width:270px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.nlb.f2 .nlb-dik{animation:nlb-dik .6s var(--ease-out)}
+.nlb-dik strong{font:400 26px/1.2 'Lora',Georgia,serif}
+.nlb-dik span{font-size:14px;line-height:1.5;color:#C9D1DF}
+.nlb-dik circle{fill:none;stroke:#C9A260;stroke-width:3;stroke-dasharray:214;animation:nlb-kruh .7s var(--ease-out) backwards}
+.nlb-dik path{fill:none;stroke:#F5F2EC;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;animation:nlb-fajfka .4s ease .5s backwards}
+@media(max-width:860px){
+  .nlb{flex-direction:column;align-items:stretch;gap:8px;padding:34px 24px 20px}
+  .nlb-form{flex-direction:column;max-width:none}
+  .nlb-form input{flex:none;width:100%;box-sizing:border-box}
+  .nlb-form button{width:100%}
+  .nlb-scena{align-self:center;height:270px}
+  /* po odeslání už obálka nepřekáží, poděkování může být hned pod formulářem */
+  .nlb.f2 .nlb-scena{height:190px}
+  .nlb.f2 .nlb-dik{top:16px}
+  #newsletter{padding:24px 0 56px}
+}
+@media (prefers-reduced-motion: reduce){
+  .nlb-ob,.nlb-dopis,.nlb-klopa,.nlb-form{transition:none}
+  .nlb.f2 .nlb-dik,.nlb-dik circle,.nlb-dik path{animation:none}
+}
+
+/* ── Spodní lišta na mobilu ── */
+/* obecná pravidla pro <nav> (pevná horní lišta) se tady ruší */
+nav.mtabs{display:none}
+@media(max-width:899px){
+  nav.mtabs{position:fixed;top:auto;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:250;
+    display:flex;max-width:440px;height:68px;margin:0 auto;border:0;border-radius:24px;background:#0C1F3A;
+    -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 18px 40px -8px rgba(12,31,58,.5)}
+  .mtabs-ind{position:absolute;left:calc(var(--i) * 25% + 12.5% - 28px);top:8px;width:56px;height:32px;border-radius:16px;background:#C9A260;
+    transition:left .5s cubic-bezier(.3,1.3,.5,1),opacity .3s}
+  .mtabs.bez .mtabs-ind{opacity:0}
+  .mtabs a{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:12px;
+    color:#C9D1DF;font:500 11px/1 Inter,system-ui,sans-serif;text-decoration:none;transition:color .3s;-webkit-tap-highlight-color:transparent}
+  .mtabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+    transition:transform .45s cubic-bezier(.3,1.5,.5,1),color .3s}
+  .mtabs a.on{color:#F5F2EC}
+  .mtabs a.on svg{color:#0C1F3A;transform:scale(1.08)}
+  .mtabs a:focus-visible{outline:2px solid #F5F2EC;outline-offset:-4px;border-radius:20px}
+  /* dřívější spodní lištu s tlačítkem a plovoucí tlačítko lišta nahrazuje */
+  .cta-bar,.float-pill{display:none !important}
+  footer.pata{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  /* cookie lišta sedí nad spodní lištou, ať se nepřekrývají */
+  .cookie-banner{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion: reduce){.mtabs-ind,.mtabs svg{transition:none}}

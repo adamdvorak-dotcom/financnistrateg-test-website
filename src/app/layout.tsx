@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
+import { MobileTabs } from "@/components/MobileTabs";
 import TrackingScripts from "@/components/TrackingScripts";
 
 const BASE = "https://www.financnistrateg.com";
@@ -198,6 +199,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <MobileTabs />
         <CookieBanner />
         <TrackingScripts />
       </body>
