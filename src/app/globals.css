@@ -3115,3 +3115,20 @@ nav.scrolled .nav-logo{font-size:15px}
 
 .form-privacy{margin:12px 0 0;font-size:12.5px;line-height:1.5;color:var(--text-2)}
 .form-privacy a,.nl-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+/* Převzaté články: perex, „Pro vás“, závěrečná výzva */
+.article-body .lead{font:400 20px/1.6 'Lora',Georgia,serif;color:var(--text-1);margin-bottom:28px}
+.article-body .takeaway{padding:2px 0 2px 16px;border-left:2px solid rgba(201,162,96,.55)}
+.article-body .takeaway strong{color:#8a6a2f;font-weight:600}
+.article-body .cta-line{margin-top:32px;font:400 19px/1.55 'Lora',Georgia,serif;color:var(--text-1)}
+.article-body .disclaimer-line{font-size:14px;font-style:italic;color:var(--text-2)}
+.sources li a{color:inherit;text-decoration:underline;text-decoration-color:rgba(26,21,17,.25);text-underline-offset:3px}
+/* Seznamy v textu článku (preflight je jinak vypíná) */
+.article-body ul,.article-body ol{margin:0 0 1.3em;padding-left:1.4em}
+.article-body ul{list-style:disc}
+.article-body ol{list-style:decimal}
+.article-body li{margin:.45em 0;font-size:17px;line-height:1.7}
+.article-body li::marker{color:var(--accent);font-weight:600}
+.article-body .sources ol{list-style:none;padding-left:0;margin:0}
+.article-body .sources li{margin:0;font:400 13.5px/1.5 Inter,sans-serif}
+.article-body .sources li::marker{content:none}

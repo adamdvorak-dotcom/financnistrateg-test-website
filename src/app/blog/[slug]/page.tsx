@@ -2614,6 +2614,120 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "nastupnictvi-ve-firme-nvidie") {
+    return (
+      <div className="article-body">
+        <p className="lead">Jensen Huang přes třicet let vedl Nvidii, jednu z&nbsp;nejhodnotnějších firem světa. Ve čtvrtek 12.&nbsp;listopadu z&nbsp;ní odešel ze dne na den a&nbsp;nástupce nikdy nejmenoval. Co by se stalo s&nbsp;vaší firmou, kdybyste zítra vypadli vy?</p>
+        <h2>Co se stalo v&nbsp;Nvidii</h2>
+        <p>Koncem října napsal New York Times, že se Huang podle amerických tajných služeb údajně stal terčem čínské rozvědky. Čína to odmítá. Správní rada 8.&nbsp;listopadu spustila nezávislé vyšetřování a&nbsp;akcie druhý den spadly o&nbsp;víc než 4&nbsp;%.</p>
+        <p>O&nbsp;čtyři dny později <a href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm" target="_blank" rel="noopener noreferrer">Nvidia oznámila</a>, že Huang s&nbsp;okamžitou platností odchází z&nbsp;funkce generálního ředitele i&nbsp;ze správní rady. Firmu prozatím vede finanční ředitelka Colette Kress, která si finance nechává k&nbsp;tomu. Nástupce Huang za celé ty roky nejmenoval, takže ho teď správní rada hledá uvnitř firmy i&nbsp;venku.</p>
+        <p>Huang odcházel z&nbsp;firmy, která má správní radu, armádu právníků a&nbsp;finanční ředitelku, kterou jde přes noc posadit do čela. Vaše firma má nejspíš vás. A&nbsp;pak dlouho nic.</p>
+
+        <h2>Teď si hrajeme na kdyby</h2>
+        <p>Zítra ráno nepřijdete do práce, protože se vám něco stalo. Kdo u&nbsp;vás pak podepíše výplaty?</p>
+        <p>Když v&nbsp;Česku zemře jediný jednatel, firma najednou nemá statutára. Nového musí do měsíce zvolit valná hromada, a&nbsp;když to nestihne, jmenuje ho na návrh soud. V&nbsp;krajním případě může soud firmu i&nbsp;zrušit a&nbsp;poslat do likvidace.</p>
+        <p>Jenže když jste byli jednatel i&nbsp;majitel zároveň, rozhodují za váš podíl do konce dědického řízení dědicové společně, takže se musí shodnout. Když se neshodnou, může soud jmenovat správce pozůstalosti, a&nbsp;to celé může trvat déle než měsíc. Mezitím nemá kdo podepsat smlouvy ani platby a&nbsp;banka může přístup k&nbsp;účtům omezit. Výplaty, nájem a&nbsp;dodavatelé ale čekat nebudou. A&nbsp;to už je průser.</p>
+        <p>Doma to není o&nbsp;moc lepší. Manželka nebo manžel se k&nbsp;penězům na vašem osobním účtu dostane naplno až po dědickém řízení. A&nbsp;běžné dispoziční právo po vaší smrti obvykle zaniká, pokud jste si v&nbsp;bance předem nenastavili, že má platit i&nbsp;potom. Ne každá banka to umožňuje.</p>
+        <p>Jeden pán mi vyprávěl, jak dva dny hledal peněženku. A&nbsp;došlo mu, že kdyby se mu něco stalo, žena by klíčenku s&nbsp;bitcoiny za dva tři miliony nejspíš vyhodila jako krám. Jeho závěr byl jednoduchý: musím sepsat, kde co mám.</p>
+
+        <h2>Kdo po vás zdědí firmu</h2>
+        <p>Váš podíl ve firmě ze zákona přechází na dědice, pokud to společenská smlouva nezakáže nebo neomezí. Ve firmě tak můžete najednou mít jako společníky manželku, dvacetiletého syna a&nbsp;jeho dvě sestry, každého s&nbsp;jiným názorem na to, co dál. A&nbsp;když smlouva dědění zakáže, rodina dostane místo podílu peníze a&nbsp;vyplatit je musí firma.</p>
+        <p>Podle <a href="https://amsp.cz/media/amsp/3839/109-pruzkum-ipsos-pro-amspzaverecna-zpravavyzkum-rodinnych-firemkveten-2024final.pdf" target="_blank" rel="noopener noreferrer">průzkumu Ipsos pro AMSP ČR</a> z&nbsp;roku 2024 má scénář pro případ, že majitel náhle vypadne, připravený i&nbsp;s&nbsp;právními dokumenty jen 27&nbsp;% rodinných firem. Dalších 32&nbsp;% ho má, ale bez dokumentů. Což je asi jako mít airbag nakreslený fixou na volantu.</p>
+
+        <h2>Co má být v&nbsp;krizovém plánu</h2>
+        <p>Nemusí to být bichle. Stačí, když na pár stránkách odpovíte na pět otázek.</p>
+        <ol>
+        <li>Co všechno máte a&nbsp;kde? Firemní a&nbsp;osobní účty, investice, nemovitosti, pojistky, kryptoměny a&nbsp;přístupy k&nbsp;nim.</li>
+        <li>Kdo podepisuje, když vy nemůžete? Druhý jednatel nebo prokurista a&nbsp;plné moci pro případ, že budete týdny mimo hru. A&nbsp;předběžné prohlášení pro případ, že byste dlouhodobě nemohli rozhodovat. To ale za firmu podepisovat nebude, jen určí, kdo se postará o&nbsp;vaše záležitosti.</li>
+        <li>Co říká vaše společenská smlouva o&nbsp;dědění podílu a&nbsp;kdo bude za váš podíl rozhodovat, než skončí dědictví? Správce pozůstalosti můžete určit předem u&nbsp;notáře.</li>
+        <li>Kdo je ve firmě klíčový a&nbsp;co se musí zaplatit v&nbsp;prvních dnech? Výplaty, nájem, úvěry, dodavatelé.</li>
+        <li>Komu má rodina zavolat jako prvnímu? Člověk, který ví, co kde je a&nbsp;jak postupovat.</li>
+        </ol>
+        <p>Předběžné prohlášení podle občanského zákoníku určí, kdo bude spravovat vaše záležitosti, když nebudete schopní rozhodovat. Plán má mít každý z&nbsp;manželů, nejen ten, kdo vede firmu. Právní kostru ať vám sepíše advokát nebo notář. Já s&nbsp;vámi dám dohromady zbytek plánu, abyste za ním přišli s&nbsp;jasným zadáním, a&nbsp;rád budu i&nbsp;tím člověkem z&nbsp;pátého bodu.</p>
+        <p>Nvidia si s&nbsp;tím poradí, má na to lidi i&nbsp;miliardy. U&nbsp;firmy se stovkou milionů obratu celou tuhle knížku často nosí v&nbsp;hlavě jeden člověk. Tak ji dostaňte z&nbsp;hlavy na papír. Dokud ta hlava funguje.</p>
+
+        <p className="cta-line">Když vám po těch pěti otázkách vyjde víc otazníků než odpovědí, <a href="/konzultace">ozvěte se mi</a>.</p>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><a href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm" target="_blank" rel="noopener noreferrer">Oznámení Nvidie pro SEC, 12. 11. 2026</a></li>
+            <li><a href="https://investor.nvidia.com/news/press-release-details/2026/Statement-from-NVIDIA-Board-of-Directors/default.aspx" target="_blank" rel="noopener noreferrer">Prohlášení správní rady Nvidie, 8. 11. 2026</a></li>
+            <li><a href="https://abc7news.com/story/nvidia-stock-falls-company-opens-probe-ceo-jensen-huang-alleged-affair-chinese-spy/20026775/" target="_blank" rel="noopener noreferrer">ABC7 k&nbsp;vyšetřování a&nbsp;propadu akcií, 9. 11. 2026</a></li>
+            <li><a href="https://finance.yahoo.com/technology/live/nvidia-live-updates-jensen-huang-resigns-cfo-colette-kress-to-serve-as-interim-ceo-140341430.html" target="_blank" rel="noopener noreferrer">Yahoo Finance k&nbsp;týdenní ztrátě hodnoty, 13. 11. 2026</a></li>
+            <li><a href="https://www.aljazeera.com/news/2026/11/12/nvidia-board-weighs-jensen-huangs-future-can-it-remove-its-founder" target="_blank" rel="noopener noreferrer">Al Jazeera a&nbsp;Reuters k&nbsp;chybějícímu nástupci, 12. 11. 2026</a></li>
+            <li><a href="https://www.zakonyprolidi.cz/cs/2012-90" target="_blank" rel="noopener noreferrer">Zákon o&nbsp;obchodních korporacích, §&nbsp;42 a&nbsp;§ 198</a></li>
+            <li><a href="https://www.zakonyprolidi.cz/cs/2012-89" target="_blank" rel="noopener noreferrer">Občanský zákoník, §&nbsp;38 a&nbsp;§ 39</a></li>
+            <li><a href="https://www.epravo.cz/top/clanky/byznys-a-paragrafy-dil-14-umrti-jednatele-a-spolecnika-jednoclenne-spolecnosti-119851.html" target="_blank" rel="noopener noreferrer">epravo.cz k&nbsp;úmrtí jednatele a&nbsp;společníka</a></li>
+            <li><a href="https://www.e15.cz/finexpert/banky-a-ucty/nebezpecny-omyl-s-penezi-v-manzelstvi-proc-vas-po-umrti-partnera-muze-banka-ze-dne-na-den-odstrihnout-od-uctu-1434699" target="_blank" rel="noopener noreferrer">E15 k&nbsp;účtům po úmrtí partnera</a></li>
+            <li><a href="https://amsp.cz/media/amsp/3839/109-pruzkum-ipsos-pro-amspzaverecna-zpravavyzkum-rodinnych-firemkveten-2024final.pdf" target="_blank" rel="noopener noreferrer">Průzkum Ipsos pro AMSP ČR o&nbsp;rodinných firmách, 2024 (PDF)</a></li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
+  if (slug === "listopad-2026-na-trzich") {
+    return (
+      <div className="article-body">
+        <p className="lead">Česká národní banka zdražila peníze, technologické akcie zažily nejhorší den od března 2020 a&nbsp;bitcoin od říjnového maxima ztratil přes pětinu. Tady je listopad v&nbsp;pěti bodech a&nbsp;u&nbsp;každého to, co z&nbsp;něj plyne pro vás.</p>
+        <h2>1. ČNB zdražila peníze</h2>
+        <p>Česká národní banka <a href="https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/CNB-zvysuje-urokove-sazby-00028/" target="_blank" rel="noopener noreferrer">5.&nbsp;listopadu zvedla</a> základní sazbu o&nbsp;čtvrt procentního bodu na 4&nbsp;%. Rozhodl jediný hlas, bankovní rada hlasovala 4:3. Centrální banka čeká, že inflace začátkem příštího roku vzroste a&nbsp;za celý rok 2027 bude kolem 3,2&nbsp;%. Další rozhodnutí přijde 17.&nbsp;prosince.</p>
+        <p className="takeaway"><strong>Pro vás:</strong> Majitelé mají často ve firmě miliony na běžném účtu. Když inflace příští rok zrychlí, budou ty peníze prohrávat ještě rychleji. Víte, kolik vám reálně vydělávají?</p>
+
+        <h2>2. Americká inflace nechce dolů</h2>
+        <p>V&nbsp;září rostly ceny v&nbsp;USA o&nbsp;3,7&nbsp;% meziročně a&nbsp;ceny výrobců v&nbsp;říjnu dokonce o&nbsp;6,5&nbsp;%. Meziroční inflaci za říjen americký statistický úřad nezveřejnil vůbec, protože mu chybí data z&nbsp;loňského října, kdy kvůli rozpočtovému sporu nefungovala vláda. Takže letos statistici nemají s&nbsp;čím srovnávat. Trhy po zveřejnění inflace sázely skoro najisto, že Fed 9.&nbsp;prosince sazby zvedne: zhruba z&nbsp;85&nbsp;% o&nbsp;čtvrt procentního bodu, zbytek o&nbsp;půl.</p>
+        <p className="takeaway"><strong>Pro vás:</strong> Dražší dolarové peníze tlačí hlavně na technologické a&nbsp;růstové firmy. Kdo má v&nbsp;portfoliu hodně Ameriky a&nbsp;technologií, ať počítá s&nbsp;tím, že nervozita jen tak nepřejde.</p>
+
+        <h2>3. AI akcie měly nejhorší den od roku 2020</h2>
+        <p>Ve čtvrtek 5.&nbsp;listopadu <a href="https://www.boston.com/news/national-news/2026/11/05/a-brutal-sell-off-for-ai-stocks-sends-wall-street-reeling-and-the-sp-500-tumbles-4-4/" target="_blank" rel="noopener noreferrer">spadl index S&amp;P 500 o&nbsp;4,4&nbsp;%</a> a&nbsp;technologický Nasdaq 100 o&nbsp;6,4&nbsp;%. Pro S&amp;P 500 to byl nejhorší den od dubna 2025, pro Nasdaq 100 dokonce od března 2020. Podle odhadu JPMorgan k&nbsp;tomu přispěly pákové ETF, které musely do konce obchodování prodat akcie za víc než 60&nbsp;miliard dolarů, z&nbsp;toho zhruba 90&nbsp;% technologických. O&nbsp;týden později přišla Nvidia ze dne na den o&nbsp;šéfa, víc o&nbsp;tom v&nbsp;<a href="/blog/nastupnictvi-ve-firme-nvidie">článku o&nbsp;nástupnictví</a>.</p>
+        <p className="takeaway"><strong>Pro vás:</strong> Pro toho, kdo má plán a&nbsp;čas, je takový den sleva. Pro toho, kdo má páku, je to likvidace. Proto páka do klidného portfolia nepatří.</p>
+
+        <h2>4. Bitcoin: digitální zlato, které padá s&nbsp;Nasdaqem</h2>
+        <p>Bitcoin 2.&nbsp;října krátce vystoupal na 87&nbsp;tisíc dolarů. V&nbsp;pátek třináctého listopadu <a href="https://www.forbes.com/sites/digital-assets/2026/11/13/bitcoin-falls-below-70000-to-reach-lowest-since-august/" target="_blank" rel="noopener noreferrer">spadl pod 70&nbsp;tisíc</a>, na chvíli až k&nbsp;67,6&nbsp;tisíce, nejníž od srpna. A&nbsp;z&nbsp;amerických bitcoinových fondů ETF letos k&nbsp;12.&nbsp;listopadu odteklo zhruba o&nbsp;1,6&nbsp;miliardy dolarů víc, než do nich přiteklo.</p>
+        <p className="takeaway"><strong>Pro vás:</strong> Kdo kupoval bitcoin jako bezpečný přístav, teď vidí, že se v&nbsp;nervózních časech chová spíš jako zesílené technologické akcie. Sám jsem krypto vždycky bral jen jako zábavu a&nbsp;klientům ho do portfolií nedávám.</p>
+
+        <h2>5. Firemní dluhopisy: trh začal rozlišovat</h2>
+        <p>Podle <a href="https://www.swissinfo.ch/eng/junk-market-splits-as-european-spreads-hit-widest-since-2009/92297769" target="_blank" rel="noopener noreferrer">agentury Bloomberg</a> byly koncem října v&nbsp;Evropě rozdíly mezi výnosy nejlepších a&nbsp;nejhorších rizikových firemních dluhopisů největší od roku 2009. V&nbsp;USA se rozdíl mezi nejslabšími a&nbsp;silnějšími emitenty od začátku roku víc než zdvojnásobil. Investoři prostě začali počítat, kdo své dluhy unese a&nbsp;kdo ne.</p>
+        <p className="takeaway"><strong>Pro vás:</strong> U&nbsp;nás se to týká hlavně dluhopisů, které vám někdo nabídne s&nbsp;osmi nebo devíti procenty. Při základní sazbě ČNB 4&nbsp;% je ten rozdíl cena za riziko, že peníze neuvidíte. Než do něčeho takového dáte peníze, zeptejte se, proč vám ta firma platí dvakrát víc, než je sazba ČNB, a&nbsp;jestli byste to přežili, kdyby ty peníze nevrátila.</p>
+
+        <h2>Co přijde</h2>
+        <p>Kolem 19.&nbsp;listopadu má jít na americkou burzu Anthropic, firma, která stojí za umělou inteligencí Claude. <a href="https://www.timeslive.co.za/news/business/2026-11-10-anthropic-lowers-ipo-valuation-target-to-102-trillion/" target="_blank" rel="noopener noreferrer">Nabízí akcie za 70 až 78&nbsp;dolarů</a>, což firmu oceňuje zhruba na bilion dolarů, po započtení opcí a&nbsp;zaměstnaneckých akcií až na 1,4&nbsp;bilionu. Přesné datum ještě není potvrzené. Pak 9.&nbsp;prosince rozhoduje Fed a&nbsp;17.&nbsp;prosince ČNB.</p>
+        <p className="takeaway"><strong>Pro vás:</strong> Kolem tak velkého vstupu na burzu bude pár dní hodně hluku. Váš plán by se kvůli tomu měnit neměl.</p>
+
+        <h2>Co s&nbsp;tím</h2>
+        <p>Máte rádi pizzu? Ta nejlepší má tři ingredience. S&nbsp;dvaceti už se nedá jíst. S&nbsp;portfoliem je to podobné: čím je složitější, tím víc míst, kde se může pokazit.</p>
+        <p>Listopad v&nbsp;tomhle nic nového nevymyslel. Kdo má široce rozložené portfolio bez páky a&nbsp;rezervu na šest měsíců výdajů, může tohle všechno sledovat jako seriál. A&nbsp;kdo investuje pravidelně, teď nakupuje levněji než v&nbsp;říjnu. Smysl to má ale jen pro toho, kdo vydrží i&nbsp;další propad a&nbsp;neprodá.</p>
+
+        <p className="cta-line">Jestli si nejste jistí, jak by vaše portfolio přežilo další takový měsíc, <a href="/konzultace">ozvěte se mi</a> a&nbsp;projdeme ho spolu.</p>
+        <p className="disclaimer-line">Tohle je můj pohled na listopad, žádné investiční doporučení. Co dává smysl vám, záleží na vaší situaci.</p>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><a href="https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/CNB-zvysuje-urokove-sazby-00028/" target="_blank" rel="noopener noreferrer">ČNB, tisková zpráva z&nbsp;5. 11. 2026</a></li>
+            <li><a href="https://www.cnb.cz/cs/menova-politika/br-zapisy-z-jednani/Rozhodnuti-bankovni-rady-CNB-1793865600000/?tab=record" target="_blank" rel="noopener noreferrer">ČNB, záznam z&nbsp;jednání bankovní rady a&nbsp;hlasování</a></li>
+            <li><a href="https://www.cnb.cz/cs/o_cnb/cnblog/CNB-zvysila-urokove-sazby-inflace-na-pocatku-pristiho-roku-vzroste-nasledne-vsak-zacne-diky-prisne-menove-politice-klesat/" target="_blank" rel="noopener noreferrer">ČNB blog k&nbsp;nové prognóze</a></li>
+            <li><a href="https://www.cnb.cz/cs/menova-politika/br-zapisy-z-jednani/" target="_blank" rel="noopener noreferrer">ČNB, kalendář jednání bankovní rady</a></li>
+            <li><a href="https://www.bls.gov/news.release/archives/cpi_11102026.htm" target="_blank" rel="noopener noreferrer">BLS, spotřebitelské ceny za říjen 2026</a></li>
+            <li><a href="https://www.bls.gov/news.release/ppi.nr0.htm" target="_blank" rel="noopener noreferrer">BLS, ceny výrobců</a></li>
+            <li><a href="https://cbsnews.com/news/october-cpi-report-elevated-inflation" target="_blank" rel="noopener noreferrer">CBS News k&nbsp;sázkám na Fed</a></li>
+            <li><a href="https://federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener noreferrer">Fed, kalendář zasedání</a></li>
+            <li><a href="https://www.boston.com/news/national-news/2026/11/05/a-brutal-sell-off-for-ai-stocks-sends-wall-street-reeling-and-the-sp-500-tumbles-4-4/" target="_blank" rel="noopener noreferrer">AP k&nbsp;výprodeji 5. 11. 2026</a></li>
+            <li><a href="https://finance.yahoo.com/markets/stocks/articles/fast-money-systematic-funds-stoked-103031992.html" target="_blank" rel="noopener noreferrer">Bloomberg k&nbsp;Nasdaqu 100 a&nbsp;odhadu JPMorgan</a></li>
+            <li><a href="https://247wallst.com/investing/2026/11/06/tech-stocks-just-had-their-worst-day-since-2020/" target="_blank" rel="noopener noreferrer">24/7 Wall St. k&nbsp;nejhoršímu dni Nasdaqu 100 od roku 2020</a></li>
+            <li><a href="https://coincentral.com/bitcoin-btc-price-hits-87k-as-weak-jobs-data-sends-yields-lower/" target="_blank" rel="noopener noreferrer">CoinCentral k&nbsp;maximu bitcoinu 2. 10. 2026</a></li>
+            <li><a href="https://www.forbes.com/sites/digital-assets/2026/11/13/bitcoin-falls-below-70000-to-reach-lowest-since-august/" target="_blank" rel="noopener noreferrer">Forbes k&nbsp;pádu bitcoinu pod 70&nbsp;tisíc</a></li>
+            <li><a href="https://www.coindesk.com/markets/2026/11/13/bitcoin-etfs-are-now-down-over-usd1-5-billion-in-net-outflows-for-the-year" target="_blank" rel="noopener noreferrer">CoinDesk k&nbsp;odlivům z&nbsp;bitcoinových ETF</a></li>
+            <li><a href="https://www.swissinfo.ch/eng/junk-market-splits-as-european-spreads-hit-widest-since-2009/92297769" target="_blank" rel="noopener noreferrer">Bloomberg k&nbsp;rizikovým dluhopisům</a></li>
+            <li><a href="https://www.timeslive.co.za/news/business/2026-11-10-anthropic-lowers-ipo-valuation-target-to-102-trillion/" target="_blank" rel="noopener noreferrer">Reuters k&nbsp;IPO Anthropicu</a></li>
+            <li><a href="https://decrypt.co/382939/anthropic-sets-ipo-price-range-at-70-to-78-valuing-company-at-up-to-1-4-trillion" target="_blank" rel="noopener noreferrer">Decrypt k&nbsp;termínu IPO</a></li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
   return null;
 }
 

@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
       { source: "/post/:slug", destination: "/blog/:slug", permanent: true },
       // Adresa bez /blog, kterou má pořád v indexu Seznam
       { source: "/jak-efektivne-spravovat-sverenske-fondy", destination: "/blog/sverensky-fond-praha", permanent: true },
+      // Články z listopadu 2026 byly připravené na adresách bez /blog
+      { source: "/nastupnictvi-ve-firme-nvidie", destination: "/blog/nastupnictvi-ve-firme-nvidie", permanent: true },
+      { source: "/listopad-2026-na-trzich", destination: "/blog/listopad-2026-na-trzich", permanent: true },
       // Obecný článek o svěřenských fondech je sloučený do podrobného
       { source: "/blog/jak-efektivne-spravovat-sverenske-fondy", destination: "/blog/sverensky-fond-praha", permanent: true },
       // Obecný starší článek nahradil konkrétnější
