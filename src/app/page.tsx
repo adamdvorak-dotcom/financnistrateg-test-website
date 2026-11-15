@@ -1389,23 +1389,29 @@ export default function Page() {
             </p>
             <div className="noha-sliders">
               {[
-                { label: t.nohaFirmaLbl, val: firma, set: setFirma, max: 150 },
-                { label: t.nohaNemLbl, val: nem, set: setNem, max: 80 },
-                { label: t.nohaInvLbl, val: inv, set: setInv, max: 50 },
-                { label: t.nohaHotLbl, val: hot, set: setHot, max: 20 },
+                { label: t.nohaFirmaLbl, val: firma, set: setFirma, max: 1000 },
+                { label: t.nohaNemLbl, val: nem, set: setNem, max: 500 },
+                { label: t.nohaInvLbl, val: inv, set: setInv, max: 500 },
+                { label: t.nohaHotLbl, val: hot, set: setHot, max: 200 },
               ].map(({ label, val, set, max }) => (
                 <div key={label}>
                   <div className="noha-slider-label">
                     <span>{label}</span>
                     <span>{nohaFmt(val)} {t.invMillSuffix}</span>
                   </div>
+                  {/* Nelineární posuvník (třetí mocnina): malé částky jdou nastavit jemně, velké stačí hrubě */}
                   <input
                     type="range"
                     min={0}
-                    max={max}
-                    step={0.5}
-                    value={val}
-                    onChange={(e) => set(+e.target.value)}
+                    max={1000}
+                    step={1}
+                    value={Math.round(1000 * Math.cbrt(Math.min(val, max) / max))}
+                    aria-valuetext={`${nohaFmt(val)} ${t.invMillSuffix}`}
+                    onChange={(e) => {
+                      const v = max * Math.pow(+e.target.value / 1000, 3)
+                      const k = v < 10 ? 0.5 : v < 100 ? 1 : v < 500 ? 5 : 10
+                      set(Math.min(max, Math.round(v / k) * k))
+                    }}
                   />
                 </div>
               ))}
