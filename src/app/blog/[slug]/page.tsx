@@ -2983,7 +2983,7 @@ export default async function ArticlePage({
                 </p>
                 <a href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 {" · "}
-                <Link href="/#about">Více o mně</Link>
+                <Link href="/o-mne">Více o mně</Link>
               </div>
             </div>
 

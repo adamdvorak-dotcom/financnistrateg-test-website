@@ -3941,3 +3941,50 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
 .rez-oblasti button{min-height:44px;padding:0;border:0;background:none;color:#7A5C35;font:500 14px/1 Inter,system-ui,sans-serif;text-decoration:underline;
   text-underline-offset:3px;cursor:pointer}
 @media(max-width:760px){.rez-tema{margin:6px 0 12px}}
+
+/* ── O mně v kostce: upoutávka na úvodní stránce ── */
+.om-teaser{display:grid;grid-template-columns:300px minmax(0,1fr);gap:56px;align-items:center}
+.om-teaser-foto{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#1B3559}
+.om-teaser-foto img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 12%}
+.om-teaser .about-text{max-width:58ch;font-size:16.5px}
+.om-teaser-st{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0}
+.om-teaser-st li{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;border:1px solid #D8CFBF;
+  font:600 12px/1 Inter,system-ui,sans-serif;letter-spacing:.04em;color:#4A433B}
+.om-teaser-dole{display:flex;align-items:center;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;margin-top:24px}
+.om-teaser-dole .sign{width:190px;margin-top:0}
+.om-vic{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 4px;color:#0C1F3A;text-decoration:none;
+  font:600 16px/1 Inter,system-ui,sans-serif;background-image:linear-gradient(#C9A260,#C9A260);background-repeat:no-repeat;
+  background-position:0 100%;background-size:100% 2px;transition:background-size .45s var(--ease-out)}
+.om-vic i{display:inline-block;font-style:normal;transition:transform .35s var(--ease-out)}
+.om-vic:hover,.om-vic:focus-visible{background-size:100% 100%}
+.om-vic:hover i,.om-vic:focus-visible i{transform:translateX(6px)}
+.om-vic:focus-visible{outline:2px solid #7A5C35;outline-offset:3px}
+@media(max-width:820px){
+  .om-teaser{grid-template-columns:1fr;gap:28px}
+  .om-teaser-foto{max-width:240px}
+}
+
+/* ── Stránka O mně ── */
+@keyframes om-in{from{opacity:0;transform:translateY(18px)}}
+.om-hero{padding:132px 0 88px}
+.om .about-wrap{align-items:start}
+.om .about-photo{position:sticky;top:96px}
+.om-in{animation:om-in .8s var(--ease-out) backwards}
+.om-in-2{animation-delay:.12s}
+.om-hero h1 em{font-style:italic;color:#7A5C35}
+.om-cta{padding:72px 0 88px}
+.om-cta-in{display:flex;align-items:center;justify-content:space-between;gap:24px 32px;flex-wrap:wrap;box-sizing:border-box;
+  padding:40px 44px;border-radius:24px;background:#FBF9F5;border:1px solid #DDD5C6}
+.om-cta h2{margin:0;font:400 clamp(28px,3.4vw,38px)/1.15 'Lora',Georgia,serif;color:#1A1511}
+.om-cta p{margin:8px 0 0;font-size:16px;color:#4A433B}
+@media(max-width:900px){
+  .om-hero{padding:104px 0 64px}
+  .om .about-photo{position:static;max-width:280px}
+  .om-cta{padding:56px 0 64px}
+  .om-cta-in{padding:28px 24px}
+}
+@media(max-width:640px){.om-zpet{display:none}}
+@media (prefers-reduced-motion: reduce){
+  .om-in{animation:none}
+  .om-vic,.om-vic i{transition:none}
+}

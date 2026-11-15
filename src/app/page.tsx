@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { articles } from "./blog/articles";
-import { TymOrbit } from "./TymOrbit";
+import { OMNE, vekTed } from "./o-mne/texty";
 import { HeroRotate } from "./HeroRotate";
 import { ZmenaPlan } from "./ZmenaPlan";
 import { NewsletterBox } from "./NewsletterBox";
@@ -64,13 +64,13 @@ const T = {
     retTotalLabel: "Celkový příjem v důchodu", retGapLabel: "Rozdíl od požadované renty", retExtraLabel: "Doporučené extra spoření / měs.",
     retYrsToRet: "let do důchodu",
     retDisclaimer: "Pouze ilustrativní výpočet. Pracujeme s průměrným důchodem dle ČSSZ (21 840 Kč), průměrným zhodnocením 6 % p.a. a čerpáním portfolia po dobu 20 let.",
-    aboutEye: "O mně",
-    aboutP1: "Je mi 27 a finance dělám osmým rokem. Mám evropskou kvalifikaci EFA a starám se o menší okruh podnikatelů a rodin, kterým už dávno nestačí jedna smlouva.",
-    aboutP2: "Většina poradenství v Česku je prodej. Někdo zavolá, něco doporučí a vy podepíšete. Tak já nepracuji.",
-    aboutP3: "Inspiraci jsem si přivezl ze Švýcarska. Jeden člověk drží celý obraz, od cashflow přes investice po krizový plán. A když je potřeba advokát nebo notář, mám je po ruce.",
-    aboutP4: "Začátek je pomalý a vztah dlouhý. Na první schůzce zjišťujeme, jestli si sedneme i lidsky. Pak analýza, plán a realizace. A pak roky, kdy plán dotahujeme podle toho, jak se mění váš život.",
-    aboutP5: "Své klienty znám jménem, jejich děti taky a někdy i jejich účetní. Když mi v neděli večer někdo napíše, že prodává firmu nebo že mu lékař přinesl zprávu, kterou nečekal, ozvu se.",
-    aboutP6: "To je celý rozdíl.",
+
+
+
+
+
+
+
     tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag4: "Investiční specialista", tag5: "Majetkové plánování", tag6: "Podnikové poradenství", tag7: "Správa majetku", tag8: "Investiční poradenství", tag9: "Finanční plánování", tag10: "Krizový management", heroCtaProcess: "Finanční preventivka",
     refEye: "Reference", refTitle: "Co říkají klienti.",
     contactSub: "První konzultace je zdarma. Napište mi nebo rovnou zavolejte.",
@@ -82,11 +82,11 @@ const T = {
     blogEye: "Blog", blogTitle: "Finanční vzdělávání.", blogSub: "Píšu o tématech, která řeším se svými klienty, srozumitelně, bez zbytečného žargonu.",
     blogReadMore: "Číst dál",
     planEye: "Co dostanete", planHead: "Tohle dostanete do ruky.",
-    tymEye: "Tým kolem vás", tymH2a: "Jeden člověk.", tymH2b: "Za ním tým.",
-    tymSub: "Mluvíte se mnou. Když je potřeba advokát, daňař nebo notář, přivedu ho k vašemu stolu a hlídám, aby si všichni rozuměli.",
-    tymLi1b: "Jedno číslo, na které voláte.", tymLi1t: "Nemusíte nikomu vysvětlovat všechno od začátku.",
-    tymLi2b: "Specialisté, když jsou potřeba.", tymLi2t: "Na smlouvu advokát, na závěť notář, na prodej firmy M&A poradce.",
-    tymLi3b: "Všichni vědí, co řeší ti druzí.", tymLi3t: "Daně, právo a investice do sebe zapadnou.",
+
+
+
+
+
     /* investment calc */
     invMillSuffix: "mil. Kč", invExact: "přesně", invRentaMonth: "měsíčně renty",
     invRentaHint: "Pravidlo palce: milion udělá zhruba 5 000 Kč měsíčně.",
@@ -188,13 +188,13 @@ const T = {
     retTotalLabel: "Total retirement income", retGapLabel: "Difference from target", retExtraLabel: "Recommended extra savings / month",
     retYrsToRet: "years to retirement",
     retDisclaimer: "Illustrative calculation only. We use the average Czech state pension per ČSSZ (CZK 21,840), average 6% p.a. return and 20-year portfolio drawdown.",
-    aboutEye: "About Me",
-    aboutP1: "Adam Dvořák, EFA. Eight years in the field, holder of the European Financial Advisor qualification. I work with a select group of entrepreneurs and families, typically where it is no longer about products, but about architecture.",
-    aboutP2: "Most financial advice in the Czech Republic works like sales. Someone calls, recommends something, you sign something, they get a commission. That is not how I work.",
-    aboutP3: "My inspiration is Swiss private banking. One person who holds the entire picture from cashflow through investment strategy to the crisis plan. No call centre, but a team of specialists.",
-    aboutP4: "For the client this means a slow start and a long relationship. At the first meeting we find out whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
-    aboutP5: "I work with people, not portfolios. I know my clients by name, their children too, sometimes their accountant as well. When someone writes to me on a Sunday evening that they are selling their company or that a doctor has delivered news they did not expect, I respond.",
-    aboutP6: "That is the whole difference.",
+
+
+
+
+
+
+
     tag1: "Certified Advisor", tag2: "CNB Registered", tag4: "Investment Specialist", tag5: "Wealth Planning", tag6: "Business Advisory", tag7: "Asset Management", tag8: "Investment Advisory", tag9: "Financial Planning", tag10: "Crisis Management", heroCtaProcess: "Financial check-up",
     refEye: "Testimonials", refTitle: "What clients say.",
     contactSub: "The first consultation is free. Write to me or call directly.",
@@ -206,11 +206,11 @@ const T = {
     blogEye: "Blog", blogTitle: "Financial education.", blogSub: "I write about topics I tackle with my clients. Clearly, without unnecessary jargon.",
     blogReadMore: "Read more",
     planEye: "What you get", planHead: "This is what you walk away with.",
-    tymEye: "Your team", tymH2a: "One person.", tymH2b: "A team behind them.",
-    tymSub: "You talk to me. When a lawyer, tax advisor, or notary is needed, I bring them to your table and make sure everyone understands each other.",
-    tymLi1b: "One number to call.", tymLi1t: "No need to explain everything from scratch.",
-    tymLi2b: "Specialists when needed.", tymLi2t: "A lawyer for contracts, a notary for wills, an M&A advisor when selling the business.",
-    tymLi3b: "Everyone knows what the others are working on.", tymLi3t: "Tax, law and investments fit together.",
+
+
+
+
+
     /* investment calc */
     invMillSuffix: "mil. CZK", invExact: "exact", invRentaMonth: "monthly income",
     invRentaHint: "Rule of thumb: a million generates roughly 5,000 CZK per month.",
@@ -422,9 +422,6 @@ export default function Page() {
   const [retMonthlySavings, setRetMonthlySavings] = useState(3000);
   const [retDesiredPension, setRetDesiredPension] = useState(40000);
 
-  /* Age */
-  const ROK_NAROZENI = 1999
-  const vek = new Date().getFullYear() - ROK_NAROZENI
 
   /* Depletion calculator */
   const [decMajetek, setDecMajetek] = useState(10_000_000)
@@ -469,6 +466,7 @@ export default function Page() {
   const [h1En2, setH1En2] = useState("The complete picture.");
 
   const t = T[lang];
+  const omne = OMNE[lang];
 
   /* Load saved lang from localStorage */
   useEffect(() => {
@@ -1066,7 +1064,7 @@ export default function Page() {
       {/* ── Mobile menu overlay ── */}
       <div className={`mobile-overlay${mobileOpen ? " is-open" : ""}`} aria-hidden={!mobileOpen}>
         {([
-          { href: "#about", label: t.navAbout },
+          { href: "/o-mne", label: t.navAbout },
           { href: "#services", label: t.navServices },
           { href: "#calculators", label: t.navCalc },
           { href: "/blog", label: t.navBlog },
@@ -1097,7 +1095,7 @@ export default function Page() {
           <ul className="nav-links" ref={navLinksRef}>
             <li className="nav-pill" aria-hidden="true" />
             {([
-              ["about", "#about", t.navAbout],
+              ["about", "/o-mne", t.navAbout],
               ["services", "#services", t.navServices],
               ["calculators", "#calculators", t.navCalc],
               ["blog", "/blog", t.navBlog],
@@ -2022,74 +2020,39 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── About ── */}
+      {/* ── O mně v kostce: celý příběh a tým jsou na stránce /o-mne ── */}
       <section id="about">
         <div className="container">
-          <div className="about-wrap">
-            <div className="about-photo reveal-scale">
-              <div className="about-photo-frame">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/adam-dvorak-about.jpg" alt="Adam Dvořák" />
-              </div>
+          <div className="om-teaser">
+            <div className="om-teaser-foto reveal-scale">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/adam-dvorak-about.jpg" alt="Adam Dvořák" loading="lazy" />
             </div>
             <div className="reveal-right" data-reveal>
               <div className="section-rule" />
-              <div className="section-eyebrow">{t.aboutEye}</div>
+              <div className="section-eyebrow">{omne.eye}</div>
               <h2 className="section-title-lg" style={{ marginBottom: 20 }}>
-                <span className="line"><span className="line-inner">{lang === "cs" ? "Proč jsem nešel" : "Why I chose"}</span></span>
-                <span className="line"><span className="line-inner">{lang === "cs" ? "do banky." : "independence."}</span></span>
+                <span className="line"><span className="line-inner">{omne.h1a}</span></span>
+                <span className="line"><span className="line-inner">{omne.h1b}</span></span>
               </h2>
-              <p className="about-text">{lang === "cs" ? `Je mi ${vek} a finance dělám osmým rokem. Mám evropskou kvalifikaci EFA a starám se o menší okruh podnikatelů a rodin, kterým už dávno nestačí jedna smlouva.` : t.aboutP1}</p>
-              <p className="about-text">{t.aboutP2}</p>
-              <p className="about-text">{t.aboutP3}</p>
-              <p className="about-text">{t.aboutP4}</p>
-              <p className="about-text">{t.aboutP5}</p>
-              <p className="about-text about-text-strong">{t.aboutP6}</p>
-              <div className="about-facts">
-                <div className="fact">
-                  <b>EFA</b>
-                  <span>{lang === "cs" ? "Evropská finanční kvalifikace" : "European Financial Advisor"}</span>
-                </div>
-                <div className="fact">
-                  <b>{lang === "cs" ? "8. rok" : "8th year"}</b>
-                  <span>{lang === "cs" ? "v oboru" : "in the field"}</span>
-                </div>
-                <div className="fact">
-                  <b>165+ mil.</b>
-                  <span>{lang === "cs" ? "Kč ve správě" : "CZK under management"}</span>
-                </div>
-              </div>
-              <a className="link-gold" href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 20 }}>
-                {lang === "cs" ? "Profil na LinkedInu →" : "LinkedIn profile →"}
-              </a>
-              {/* Skutečný podpis, který se při dojetí „napíše" zleva doprava */}
-              <span className="sign" data-reveal>
-                <span className="sign-tah">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/signature-ink.png" alt={lang === "cs" ? "Podpis: Adam Dvořák" : "Signature: Adam Dvořák"} width={348} height={67} loading="lazy" />
+              <p className="about-text">{omne.p1(vekTed())}</p>
+              <ul className="om-teaser-st">
+                {omne.stitky.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+              <div className="om-teaser-dole">
+                <a className="om-vic" href="/o-mne">{omne.vic} <i aria-hidden="true">→</i></a>
+                {/* Skutečný podpis, který se při dojetí „napíše" zleva doprava */}
+                <span className="sign" data-reveal>
+                  <span className="sign-tah">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/signature-ink.png" alt={omne.podpis} width={348} height={67} loading="lazy" />
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ── Tým ── */}
-      <section className="tym-sekce">
-        <div className="container tym-o">
-          <div>
-            <div className="section-eyebrow">{t.tymEye}</div>
-            <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 16 }}>
-              {t.tymH2a} <em>{t.tymH2b}</em>
-            </h2>
-            <p className="tym-o-sub">{t.tymSub}</p>
-            <ol className="tym-o-list">
-              <li><i>01</i><span><b>{t.tymLi1b}</b> {t.tymLi1t}</span></li>
-              <li><i>02</i><span><b>{t.tymLi2b}</b> {t.tymLi2t}</span></li>
-              <li><i>03</i><span><b>{t.tymLi3b}</b> {t.tymLi3t}</span></li>
-            </ol>
-          </div>
-          <TymOrbit lang={lang} />
         </div>
       </section>
 
