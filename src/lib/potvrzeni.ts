@@ -85,7 +85,7 @@ export function sestavPotvrzeni(p: Potvrzeni) {
 <div style="margin-top:4px;font:14px/1.5 Arial,Helvetica,sans-serif;color:#C9D1DF;">${p.delka} minut · ${esc(p.misto)}</div></td>
 </tr></table></td></tr>
 ${p.joinUrl ? `<tr><td style="padding:4px 30px 0;font:15px/1.6 Arial,Helvetica,sans-serif;color:#1A1511;">Odkaz na hovor: <a href="${esc(p.joinUrl)}" style="color:#7A5C35;">${esc(p.joinUrl)}</a></td></tr>` : ""}
-<tr><td style="padding:10px 30px 4px;font:15px/1.6 Arial,Helvetica,sans-serif;color:#4A433B;">Na první schůzce se nic nepodepisuje. Časy jsou v pražském čase.</td></tr>
+<tr><td style="padding:10px 30px 4px;font:15px/1.6 Arial,Helvetica,sans-serif;color:#4A433B;">Časy jsou v pražském čase.</td></tr>
 <tr><td style="padding:14px 30px 6px;">${tlacitko(gcal, "Přidat do kalendáře", true)}${p.rescheduleUrl ? tlacitko(p.rescheduleUrl, "Změnit termín", false) : ""}</td></tr>
 ${p.cancelUrl ? `<tr><td style="padding:0 30px;font:13px/1.6 Arial,Helvetica,sans-serif;color:#6B6359;">Nehodí se vám to? <a href="${esc(p.cancelUrl)}" style="color:#6B6359;">Zrušit schůzku</a></td></tr>` : ""}
 <tr><td style="padding:22px 30px 28px;font:17px/1.4 Georgia,'Times New Roman',serif;color:#1A1511;">Adam Dvořák, EFA<br>
@@ -100,7 +100,7 @@ ${p.cancelUrl ? `<tr><td style="padding:0 30px;font:13px/1.6 Arial,Helvetica,san
     `${p.delka} minut · ${p.misto}`,
     p.joinUrl ? `Odkaz na hovor: ${p.joinUrl}` : null,
     "",
-    "Na první schůzce se nic nepodepisuje. Časy jsou v pražském čase.",
+    "Časy jsou v pražském čase.",
     "",
     `Přidat do kalendáře: ${gcal}`,
     p.rescheduleUrl ? `Změnit termín: ${p.rescheduleUrl}` : null,

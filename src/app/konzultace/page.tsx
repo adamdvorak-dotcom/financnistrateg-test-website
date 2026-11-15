@@ -66,7 +66,7 @@ export default function KonzultacePage() {
             Zarezervujte si první schůzku.
           </h1>
           <p style={{ color: "var(--text-2)", fontSize: 16, maxWidth: 520, lineHeight: 1.65 }}>
-            30 minut, zdarma a bez závazků. Zjistíme, jestli si rozumíme, a co by
+            30 minut, zdarma. Zjistíme, jestli si rozumíme, a co by
             mohla spolupráce přinést.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 24 }}>

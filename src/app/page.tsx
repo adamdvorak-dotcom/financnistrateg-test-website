@@ -67,12 +67,12 @@ const T = {
     aboutP1: "Je mi 27 a finance dělám osmým rokem. Mám evropskou kvalifikaci EFA a starám se o menší okruh podnikatelů a rodin, kterým už dávno nestačí jedna smlouva.",
     aboutP2: "Většina poradenství v Česku je prodej. Někdo zavolá, něco doporučí a vy podepíšete. Tak já nepracuji.",
     aboutP3: "Inspiraci jsem si přivezl ze Švýcarska. Jeden člověk drží celý obraz, od cashflow přes investice po krizový plán. A když je potřeba advokát nebo notář, mám je po ruce.",
-    aboutP4: "Začátek je pomalý a vztah dlouhý. Na první schůzce se nic nepodepisuje, zjišťujeme, jestli si sedneme i lidsky. Pak analýza, plán a realizace. A pak roky, kdy plán dotahujeme podle toho, jak se mění váš život.",
+    aboutP4: "Začátek je pomalý a vztah dlouhý. Na první schůzce zjišťujeme, jestli si sedneme i lidsky. Pak analýza, plán a realizace. A pak roky, kdy plán dotahujeme podle toho, jak se mění váš život.",
     aboutP5: "Své klienty znám jménem, jejich děti taky a někdy i jejich účetní. Když mi v neděli večer někdo napíše, že prodává firmu nebo že mu lékař přinesl zprávu, kterou nečekal, ozvu se.",
     aboutP6: "To je celý rozdíl.",
     tag1: "Certifikovaný poradce", tag2: "ČNB registrace", tag4: "Investiční specialista", tag5: "Majetkové plánování", tag6: "Podnikové poradenství", tag7: "Správa majetku", tag8: "Investiční poradenství", tag9: "Finanční plánování", tag10: "Krizový management", heroCtaProcess: "Finanční preventivka",
     refEye: "Reference", refTitle: "Co říkají klienti.",
-    contactSub: "První konzultace je vždy zdarma a bez závazků. Napište mi nebo rovnou zavolejte.",
+    contactSub: "První konzultace je zdarma. Napište mi nebo rovnou zavolejte.",
     ctLocation: "Lokace", ctLocationVal: "Praha & celá ČR (online)", ctOffice: "Kancelář", ctOfficeVal: "Salvátorská 931/8, 110 00 Praha 1-Staré Město",
     fName: "Jméno", fNamePh: "Jan Novák", fPhone: "Telefon", fTopic: "Téma", fTopicPh: "Firma, rodina, nebo obojí?", fMsg: "Zpráva", fMsgPh: "Klidně neformálně, kde jste teď a co byste chtěli jinak.", fSubmit: "Odeslat zprávu",
     footerTagline: "Finanční Stratég", footerReg: "Registrován u ČNB. IČO: 08406804.", footerPrivacy: "Ochrana osobních údajů", footerTerms: "Podmínky užití",
@@ -138,7 +138,7 @@ const T = {
     situCards: [
       { veta: '„Prodávám firmu."', text: 'Nebo o tom přemýšlím. Kolik za ni dostanu, jak je to s daní a hlavně co pak s penězi.', cta: 'Probrat exit', href: '/konzultace' },
       { veta: '„Všechno mám ve firmě."', text: 'Kromě baráku je všechno ve firmě. Postavíme druhou nohu, která nespadne, když se firmě zrovna nedaří.', cta: 'Kde máte majetek', href: '#druha-noha' },
-      { veta: '„Přišly velké peníze."', text: 'Dědictví, prodej nebo velký bonus. Nejdřív klid, pak plán. Nic se nemusí podepsat tento týden.', cta: 'Probrat v klidu', href: '/konzultace' },
+      { veta: '„Přišly velké peníze."', text: 'Dědictví, prodej nebo velký bonus. Nejdřív klid, pak plán.', cta: 'Probrat v klidu', href: '/konzultace' },
       { veta: '„Chci to jednou předat dětem."', text: 'A umí vaše děti s penězi zacházet? Předání začíná pravidly, ne až dědickým řízením.', cta: 'Kdo dědí bez závěti', href: '/#dedictvi' },
       { veta: '„Někdo mi nabízí investici."', text: 'Pošlete mi ji dřív, než podepíšete. Většinu nabídek, které mi lidi pošlou, končím větou: tohle ne.', cta: 'Poslat nabídku', href: 'mailto:adamdvorak@financnistrateg.com?subject=Nab%C3%ADdka%20k%20posouzen%C3%AD' },
       { veta: '„Blíží se důchod."', text: 'Stačí to? Spočítáme, kolik dá stát, kolik vaše peníze a co chybí.', cta: 'Důchodová kalkulačka', href: '/?kalkulacka=duchod#calculators' },
@@ -191,12 +191,12 @@ const T = {
     aboutP1: "Adam Dvořák, EFA. Eight years in the field, holder of the European Financial Advisor qualification. I work with a select group of entrepreneurs and families, typically where it is no longer about products, but about architecture.",
     aboutP2: "Most financial advice in the Czech Republic works like sales. Someone calls, recommends something, you sign something, they get a commission. That is not how I work.",
     aboutP3: "My inspiration is Swiss private banking. One person who holds the entire picture from cashflow through investment strategy to the crisis plan. No call centre, but a team of specialists.",
-    aboutP4: "For the client this means a slow start and a long relationship. The first meeting is not about products, it is about whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
+    aboutP4: "For the client this means a slow start and a long relationship. At the first meeting we find out whether we understand each other. Then comes the analysis, the plan, the implementation. And then years of work, refining the plan as your life and the world around you change.",
     aboutP5: "I work with people, not portfolios. I know my clients by name, their children too, sometimes their accountant as well. When someone writes to me on a Sunday evening that they are selling their company or that a doctor has delivered news they did not expect, I respond.",
     aboutP6: "That is the whole difference.",
     tag1: "Certified Advisor", tag2: "CNB Registered", tag4: "Investment Specialist", tag5: "Wealth Planning", tag6: "Business Advisory", tag7: "Asset Management", tag8: "Investment Advisory", tag9: "Financial Planning", tag10: "Crisis Management", heroCtaProcess: "Financial check-up",
     refEye: "Testimonials", refTitle: "What clients say.",
-    contactSub: "The first consultation is always free and without obligation. Write to me or call directly.",
+    contactSub: "The first consultation is free. Write to me or call directly.",
     ctLocation: "Location", ctLocationVal: "Prague & Czech Republic (online)", ctOffice: "Office", ctOfficeVal: "Salvátorská 931/8, 110 00 Prague 1 – Old Town",
     fName: "Name", fNamePh: "John Smith", fPhone: "Phone", fTopic: "Topic", fTopicPh: "Business, family, or both?", fMsg: "Message", fMsgPh: "Keep it informal. Where are you now and what would you like to change.", fSubmit: "Send Message",
     footerTagline: "Financial Strategist", footerReg: "Registered with CNB. Company ID: 08406804.", footerPrivacy: "Privacy Policy", footerTerms: "Terms of Use",
@@ -262,7 +262,7 @@ const T = {
     situCards: [
       { veta: '"I\'m selling my business."', text: 'Or thinking about it. How much will I get, what about tax, and — most importantly — what to do with the money.', cta: 'Discuss the exit', href: '/konzultace' },
       { veta: '"Everything is tied up in the business."', text: 'Apart from the house, everything is in the company. Let\'s build a second leg that won\'t collapse if the business hits a rough patch.', cta: 'Where is your wealth', href: '#druha-noha' },
-      { veta: '"A large sum just arrived."', text: 'Inheritance, a sale, or a big bonus. First comes calm, then a plan. Nothing has to be signed this week.', cta: 'Let\'s talk it through', href: '/konzultace' },
+      { veta: '"A large sum just arrived."', text: 'Inheritance, a sale, or a big bonus. First comes calm, then a plan.', cta: 'Let\'s talk it through', href: '/konzultace' },
       { veta: '"I want to pass it on to my children."', text: 'And do your children know how to handle money? Succession starts with rules, not with probate.', cta: 'Who inherits without a will', href: '/#dedictvi' },
       { veta: '"Someone is offering me an investment."', text: 'Send it to me before you sign. Most offers that reach me end with one sentence: not this one.', cta: 'Send the offer', href: 'mailto:adamdvorak@financnistrateg.com?subject=Investment%20offer%20for%20review' },
       { veta: '"Retirement is getting close."', text: 'Is it enough? We\'ll work out how much the state provides, how much your money contributes, and what the gap is.', cta: 'Retirement calculator', href: '/?kalkulacka=duchod#calculators' },
@@ -1746,7 +1746,7 @@ export default function Page() {
                   <div className="calc-cta">
                     <div className="calc-cta-text">
                       <b>{lang === "cs" ? "Co to znamená pro vás?" : "What does this mean for you?"}</b>
-                      <span>{lang === "cs" ? "Projdeme čísla spolu za 30 minut, bez závazku." : "We'll walk through your numbers. 30 min, no strings."}</span>
+                      <span>{lang === "cs" ? "Projdeme čísla spolu za 30 minut." : "We'll walk through your numbers in 30 minutes."}</span>
                     </div>
                     <a
                       href={`/konzultace?vklad=${invMonthly}&init=${invInit}&roky=${invYears}&vynosnost=${invRate}`}
@@ -2260,7 +2260,6 @@ export default function Page() {
                   <div className="trust" style={{marginTop:14}}>
                     <span>{lang === "cs" ? "Odpovídám do 24 hodin" : "I reply within 24 hours"}</span>
                     <span>{lang === "cs" ? "Diskrétně" : "Discreetly"}</span>
-                    <span>{lang === "cs" ? "Bez závazků" : "No commitment"}</span>
                   </div>
                 )}
                 {formState === "sent" && (

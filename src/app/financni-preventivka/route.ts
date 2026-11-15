@@ -344,7 +344,7 @@ body:not(.started) .mobilebar { display: none !important; }
   <section class="cta" aria-labelledby="ctaTitle" id="ctaSection" hidden>
     <div>
       <h2 id="ctaTitle">Kdo to vyplnil poctivě, ví teď, kde začít.</h2>
-      <p>Starám se o majetek majitelů firem a jejich rodin. Řešíme spolu, jak si z firmy vybírat peníze, co postavit vedle ní a jak ji jednou prodat nebo předat. Daně řeší daňový poradce a právo advokát. Já hlídám, aby to celé dávalo smysl. Na úvodním rozhovoru se nic neprodává.</p>
+      <p>Starám se o majetek majitelů firem a jejich rodin. Řešíme spolu, jak si z firmy vybírat peníze, co postavit vedle ní a jak ji jednou prodat nebo předat. Daně řeší daňový poradce a právo advokát. Já hlídám, aby to celé dávalo smysl.</p>
     </div>
     <div>
       <a class="btn" href="/konzultace">Zahájit rozhovor →</a>

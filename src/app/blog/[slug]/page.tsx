@@ -2996,7 +2996,7 @@ export default async function ArticlePage({
                     <p>{article.cta.text}</p>
                   </>
                 ) : (
-                  <p>Chcete vědět, jak to vyjde u vás? První konzultace je bez závazků.</p>
+                  <p>Chcete vědět, jak to vyjde u vás? Probereme to spolu na konzultaci.</p>
                 )}
               </div>
               <Link href="/konzultace" className="btn-primary">

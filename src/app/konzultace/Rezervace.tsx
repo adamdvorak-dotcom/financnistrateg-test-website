@@ -221,7 +221,7 @@ export function Rezervace() {
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.500l4.500 4.500L19 7.500" /></svg>
-            Zdarma a bez závazků
+            Zdarma
           </li>
         </ul>
         <div className={`rez-vas${souhrn ? " ma" : ""}`} aria-live="polite">
@@ -380,7 +380,7 @@ export function Rezervace() {
             </svg>
             <h3 className="rez-h">Máte to v kalendáři.</h3>
             <div className="rez-hotovo-kdy">{souhrn}</div>
-            <p>Pozvánka je na cestě do vašeho e-mailu. Na první schůzce se nic nepodepisuje.</p>
+            <p>Pozvánka je na cestě do vašeho e-mailu.</p>
             <div className="rez-hotovo-btn">
               <button type="button" className="rez-dal" onClick={doKalendare}>Přidat do kalendáře</button>
               <Link className="rez-zpet-web" href="/">Zpět na web</Link>
