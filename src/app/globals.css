@@ -3830,3 +3830,63 @@ nav.mtabs{display:none}
   .cookie-banner{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 }
 @media (prefers-reduced-motion: reduce){.mtabs-ind,.mtabs svg{transition:none}}
+
+/* ── Přepínač jazyka s posuvnou pilulkou ── */
+@keyframes lang-in{from{opacity:.2}}
+.lang-sw{position:relative;flex:none;display:flex;padding:3px;border-radius:20px;border:1px solid rgba(26,21,17,.16);background:rgba(26,21,17,.04)}
+.lang-sw-pill{position:absolute;left:3px;top:3px;width:38px;height:32px;border-radius:16px;background:#0C1F3A;
+  transition:transform .45s var(--ease-out),background .3s}
+.lang-sw.en .lang-sw-pill{transform:translateX(38px)}
+.lang-sw button{position:relative;width:38px;height:32px;padding:0;border:0;border-radius:16px;background:none;cursor:pointer;
+  font:600 11px/1 Inter,system-ui,sans-serif;letter-spacing:.08em;color:#6B6359;transition:color .3s}
+.lang-sw button::after{content:"";position:absolute;inset:-6px -2px}
+.lang-sw button[aria-pressed="true"]{color:#F5F2EC}
+.lang-sw button:focus-visible{outline:2px solid #7A5C35;outline-offset:2px}
+nav.over-dark .lang-sw{border-color:rgba(245,242,236,.25);background:rgba(245,242,236,.06)}
+nav.over-dark .lang-sw-pill{background:#C9A260}
+nav.over-dark .lang-sw button{color:#C9D1DF}
+nav.over-dark .lang-sw button[aria-pressed="true"]{color:#0C1F3A}
+nav.over-dark .lang-sw button:focus-visible{outline-color:#F5F2EC}
+body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animation:lang-in .55s ease}
+@media (prefers-reduced-motion: reduce){
+  .lang-sw-pill,.lang-sw button{transition:none}
+  body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animation:none}
+}
+
+/* v otevřeném mobilním menu je pozadí světlé, přepínač jazyka se tomu přizpůsobí */
+.mobile-overlay.is-open ~ nav .lang-sw{border-color:rgba(26,21,17,.16);background:rgba(26,21,17,.04)}
+.mobile-overlay.is-open ~ nav .lang-sw-pill{background:#0C1F3A}
+.mobile-overlay.is-open ~ nav .lang-sw button{color:#6B6359}
+.mobile-overlay.is-open ~ nav .lang-sw button[aria-pressed="true"]{color:#F5F2EC}
+
+/* ── Článek: Pomohl vám? ── */
+@keyframes zv-in{from{opacity:0;transform:translateY(14px)}}
+@keyframes zv-fajfka{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+.zv{margin:48px 0 8px;padding:30px 34px;min-height:132px;box-sizing:border-box;display:flex;align-items:center;
+  border-radius:20px;background:#FBF9F5;border:1px solid #DDD5C6}
+.zv-st{width:100%;display:flex;flex-direction:column;gap:18px;animation:zv-in .45s var(--ease-out)}
+.zv-q{margin:0;font:400 26px/1.2 'Lora',Georgia,serif;color:#1A1511}
+.zv-volby{display:flex;flex-wrap:wrap;gap:12px}
+.zv-vol{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:25px;border:1px solid #C9B99A;background:none;
+  color:#1A1511;font:500 15px/1 Inter,system-ui,sans-serif;cursor:pointer;
+  transition:background .25s,border-color .25s,color .25s,transform .3s var(--ease-out)}
+.zv-vol svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.zv-vol:hover{background:#0C1F3A;border-color:#0C1F3A;color:#F5F2EC;transform:translateY(-2px)}
+.zv-vol.ano:hover svg{transform:rotate(-14deg) scale(1.15)}
+.zv-vol.ne:hover svg{transform:rotate(14deg) scale(1.15)}
+.zv-chip{min-height:46px;padding:8px 18px;border-radius:23px;border:1px solid #C9B99A;background:none;color:#1A1511;
+  font:500 14px/1.2 Inter,system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.zv-chip:hover{background:#0C1F3A;border-color:#0C1F3A;color:#F5F2EC}
+.zv-vol:focus-visible,.zv-chip:focus-visible{outline:2px solid #7A5C35;outline-offset:2px}
+.zv-dik{flex-direction:row;align-items:center;gap:16px}
+.zv-dik svg{flex:none;width:52px;height:52px}
+.zv-dik circle{fill:#0C1F3A}
+.zv-dik path{fill:none;stroke:#C9A260;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;
+  animation:zv-fajfka .4s ease .3s backwards}
+.zv-dik p{margin:4px 0 0;font-size:14px;color:#4A433B}
+@media(max-width:640px){.zv{padding:24px 20px}.zv-q{font-size:22px}}
+@media (prefers-reduced-motion: reduce){
+  .zv-st,.zv-dik path{animation:none}
+  .zv-vol,.zv-vol svg,.zv-chip{transition:none}
+}

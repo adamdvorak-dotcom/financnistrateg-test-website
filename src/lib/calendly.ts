@@ -162,3 +162,15 @@ export function slotUrl(et: EventType, startIso: string) {
   const den = iso.slice(0, 10);
   return `${et.schedulingUrl}/${iso}?month=${den.slice(0, 7)}&date=${den}`;
 }
+
+/* Odkaz na videohovor ke schůzce. Calendly ho po zápisu doplňuje s malým zpožděním,
+   takže může ještě chybět; pak se vrátí null. */
+export async function getJoinUrl(eventUri: string): Promise<string | null> {
+  try {
+    const r = await call(eventUri, { cache: "no-store" });
+    const url = r.ok ? r.data.resource?.location?.join_url : null;
+    return typeof url === "string" && url.startsWith("https://") ? url : null;
+  } catch {
+    return null;
+  }
+}

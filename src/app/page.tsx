@@ -847,11 +847,16 @@ export default function Page() {
     if (k === 'hypoteka') setCalcTab('mortgage')
   }, []);
 
-  const toggleLang = () => {
-    const next: Lang = lang === "cs" ? "en" : "cs";
+  const vyberLang = (next: Lang) => {
+    if (next === lang) return;
     setLang(next);
     localStorage.setItem("lang", next);
     window.dispatchEvent(new Event("langchange"));
+    // Krátké prolnutí obsahu, aby výměna textů neproblikla
+    document.body.classList.remove("lang-anim");
+    void document.body.offsetWidth;
+    document.body.classList.add("lang-anim");
+    window.setTimeout(() => document.body.classList.remove("lang-anim"), 600);
   };
 
   /* ── Invest calculator ── */
@@ -1105,9 +1110,11 @@ export default function Page() {
             ))}
           </ul>
           <div className="nav-right">
-            <button className="theme-btn lang-btn" onClick={toggleLang} title="Switch language">
-              {lang === "cs" ? "EN" : "CS"}
-            </button>
+            <div className={`lang-sw ${lang}`} role="group" aria-label={lang === "cs" ? "Jazyk" : "Language"}>
+              <span className="lang-sw-pill" aria-hidden="true" />
+              <button type="button" aria-pressed={lang === "cs"} onClick={() => vyberLang("cs")} title="Česky">CZ</button>
+              <button type="button" aria-pressed={lang === "en"} onClick={() => vyberLang("en")} title="English" lang="en">EN</button>
+            </div>
             <a href="/konzultace" className="btn-nav">{t.navCta}</a>
             <button className={`hamburger${mobileOpen ? " is-open" : ""}`} onClick={() => setMobileOpen(v => !v)} aria-label={lang === "cs" ? (mobileOpen ? "Zavřít menu" : "Otevřít menu") : (mobileOpen ? "Close menu" : "Open menu")} aria-expanded={mobileOpen}>
               <span /><span /><span />

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { calendlyConfigured, createBooking, getEventType, slotUrl } from "@/lib/calendly";
+import { calendlyConfigured, createBooking, getEventType, getJoinUrl, locationLabel, slotUrl } from "@/lib/calendly";
+import { posliPotvrzeni, potvrzeniZapnute } from "@/lib/potvrzeni";
 
 /* Zápis rezervace z vlastního kalendáře do Calendly. */
 
@@ -57,7 +58,35 @@ export async function POST(req: NextRequest) {
     if (!et) return NextResponse.json({ error: "Rezervace teď není dostupná." }, { status: 503 });
 
     const r = await createBooking(et, { start: kdy.toISOString(), name, email, phone, tema, misto });
-    if (r.ok) return NextResponse.json({ ok: true });
+    if (r.ok) {
+      // Vlastní české potvrzení (jen když je nastavená ověřená odesílací adresa).
+      // Rezervace je v tu chvíli už zapsaná, takže případná chyba e-mailu ji neshodí.
+      if (potvrzeniZapnute()) {
+        const inv = r.data?.resource ?? {};
+        const loc = et.locations.find((l) => l.kind === misto) ?? et.locations[0];
+        const mistoText = !loc
+          ? "Online"
+          : loc.kind === "google_conference"
+            ? "Online přes Google Meet"
+            : loc.kind === "zoom_conference"
+              ? "Online přes Zoom"
+              : loc.kind === "microsoft_teams_conference"
+                ? "Online přes Microsoft Teams"
+                : loc.kind === "physical"
+                  ? `Osobně${loc.location ? `, ${loc.location}` : " v kanceláři"}`
+                  : locationLabel(loc);
+        await posliPotvrzeni({
+          to: email,
+          start: kdy.toISOString(),
+          delka: et.duration,
+          misto: mistoText,
+          joinUrl: typeof inv.event === "string" ? await getJoinUrl(inv.event) : null,
+          rescheduleUrl: typeof inv.reschedule_url === "string" ? inv.reschedule_url : null,
+          cancelUrl: typeof inv.cancel_url === "string" ? inv.cancel_url : null,
+        });
+      }
+      return NextResponse.json({ ok: true });
+    }
 
     console.error("Calendly booking error:", r.status, JSON.stringify(r.data).slice(0, 600));
     const zprava = JSON.stringify(r.data).toLowerCase();

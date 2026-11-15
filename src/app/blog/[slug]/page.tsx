@@ -8,6 +8,7 @@ import { CategoryChips } from "../CategoryChips";
 import { FaqAccordion } from "../FaqAccordion";
 import { ArticleToc } from "../ArticleToc";
 import { ArticleHints } from "../ArticleHints";
+import { ArticleFeedback } from "../ArticleFeedback";
 import { PullQuote } from "../PullQuote";
 import { DipKalk } from "../DipKalk";
 import { PenzijkoKalk } from "../PenzijkoKalk";
@@ -2969,6 +2970,8 @@ export default async function ArticlePage({
                 <FaqAccordion items={faqLd.mainEntity.map((q) => ({ q: q.name, a: q.acceptedAnswer.text }))} />
               </div>
             )}
+
+            <ArticleFeedback key={`zv-${slug}`} slug={slug} title={article.title} />
 
             <div className="author-box">
               <Image src="/adam-dvorak-about.jpg" alt="Adam Dvořák, EFA" width={64} height={64} className="author-box-photo" />
