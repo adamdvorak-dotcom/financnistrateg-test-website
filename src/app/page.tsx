@@ -465,7 +465,8 @@ export default function Page() {
   /* Apply lang to html element */
   useEffect(() => {
     const html = document.documentElement;
-    html.className = "light";
+    // Třída „fx" zapíná animace při posunu stránky (karty situací, maketa plánu), proto ji tu nemažeme
+    html.className = html.classList.contains("fx") ? "light fx" : "light";
     html.lang = lang;
   }, [lang]);
 
@@ -581,6 +582,8 @@ export default function Page() {
       revEls.forEach(el => el.classList.add('is-in'));
       return () => obs.disconnect();
     }
+    // Od této chvíle smí styly schovat výchozí stav animací: sledování je připravené a prvek se určitě ukáže
+    document.documentElement.classList.add('fx');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
     }, { threshold: 0.35, rootMargin: '0px 0px -10% 0px' });
@@ -589,7 +592,7 @@ export default function Page() {
       if (r.top < window.innerHeight * 0.9 && r.bottom > 0) el.classList.add('is-in');
       else io.observe(el);
     });
-    return () => { obs.disconnect(); io.disconnect(); };
+    return () => { obs.disconnect(); io.disconnect(); document.documentElement.classList.remove('fx'); };
   }, []);
 
 
@@ -1067,7 +1070,7 @@ export default function Page() {
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
             <div className="hero-actions">
-              <a href="/konzultace" className="btn-primary">
+              <a href="/konzultace" className="btn-primary btn-shine">
                 <span>{t.heroCta}</span>
                 <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
               </a>
@@ -1183,12 +1186,13 @@ export default function Page() {
           <h2 className="section-title-lg" style={{ marginTop: 8, marginBottom: 40 }}>
             {t.situH2a} <em>{t.situH2b}</em>
           </h2>
-          <div className="situace">
-            {t.situCards.map((s) => (
-              <a key={s.veta} href={s.href} className="situace-karta">
+          <div className="situace" data-reveal>
+            {t.situCards.map((s, i) => (
+              <a key={s.veta} href={s.href} className="situace-karta" style={{ "--i": i } as React.CSSProperties}>
+                <span className="situace-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                 <p className="situace-veta">{s.veta}</p>
                 <p className="situace-text">{s.text}</p>
-                <span className="situace-cta">{s.cta} →</span>
+                <span className="situace-cta">{s.cta} <span className="situace-sipka" aria-hidden="true">→</span></span>
               </a>
             ))}
           </div>
@@ -1255,7 +1259,7 @@ export default function Page() {
                 ))}
               </ol>
             </div>
-            <div className="stack">
+            <div className="stack" data-reveal>
               {/* p1: cover — gradient style matching real FP document */}
               <div className="page p1" style={{background:"linear-gradient(125deg,#9E93CA 0%,#E8E3D5 50%,#C5B870 100%)",color:"#fff"}}>
                 <div style={{fontSize:9,letterSpacing:2.5,textTransform:"uppercase",color:"rgba(255,255,255,.6)",marginBottom:16}}>Finanční plán</div>
@@ -1270,11 +1274,11 @@ export default function Page() {
                 <div style={{fontSize:9,letterSpacing:2,textTransform:"uppercase",color:"#C9A260",marginBottom:8}}>Kapitola 02</div>
                 <div style={{fontFamily:"Lora,serif",fontSize:15,fontWeight:500,marginBottom:14,color:"#1A1511"}}>Investiční strategie</div>
                 <svg width={138} height={44} style={{display:"block",marginBottom:12,overflow:"visible"}}>
-                  <polygon points="0,38 23,30 46,34 69,16 92,22 115,10 138,14 138,44 0,44" fill="rgba(201,162,96,.12)"/>
-                  <polyline points="0,38 23,30 46,34 69,16 92,22 115,10 138,14" fill="none" stroke="rgba(201,162,96,.7)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <polygon className="plan-plocha" points="0,38 23,30 46,34 69,16 92,22 115,10 138,14 138,44 0,44" fill="rgba(201,162,96,.12)"/>
+                  <polyline className="plan-krivka" pathLength={1} points="0,38 23,30 46,34 69,16 92,22 115,10 138,14" fill="none" stroke="rgba(201,162,96,.7)" strokeWidth="1.5" strokeLinejoin="round"/>
                 </svg>
                 {[1,.88,1,.72,.9,.6].map((w,i) => (
-                  <div key={i} style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`}}/>
+                  <div key={i} className="plan-radek" style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`,transitionDelay:`${500+i*70}ms`}}/>
                 ))}
               </div>
               {/* p3: chapter with text */}
@@ -1282,7 +1286,7 @@ export default function Page() {
                 <div style={{fontSize:9,letterSpacing:2,textTransform:"uppercase",color:"#C9A260",marginBottom:8}}>Kapitola 04</div>
                 <div style={{fontFamily:"Lora,serif",fontSize:15,fontWeight:500,marginBottom:14,color:"#1A1511"}}>Daňová optimalizace</div>
                 {[1,.9,.95,.7,1,.85,.65,.8].map((w,i) => (
-                  <div key={i} style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`}}/>
+                  <div key={i} className="plan-radek" style={{height:5,borderRadius:3,background:"rgba(26,21,17,.1)",marginBottom:6,width:`${w*100}%`,transitionDelay:`${500+i*70}ms`}}/>
                 ))}
               </div>
             </div>
@@ -2239,7 +2243,7 @@ export default function Page() {
                   : "I'll show you how I work. Mostly I want to hear you: what you're dealing with, what isn't working. We just need to click."}
               </p>
               <button
-                className="btn-primary bk-btn"
+                className="btn-primary bk-btn btn-shine"
                 onClick={() => {
                   // Calendly se načítá až po kliknutí, ať nebrzdí první vykreslení stránky
                   const open = () => {

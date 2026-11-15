@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { articles, getArticle } from "../articles";
 import { categories, getCategory } from "../categories";
 import { CategoryChips } from "../CategoryChips";
+import { FaqAccordion } from "../FaqAccordion";
 import { DipKalk } from "../DipKalk";
 import { PenzijkoKalk } from "../PenzijkoKalk";
 import { SverenskyFond } from "../SverenskyFond";
@@ -2975,12 +2976,7 @@ export default async function ArticlePage({
             {faqLd && (
               <div className="article-body">
                 <h2>Časté otázky</h2>
-                {faqLd.mainEntity.map((q) => (
-                  <div key={q.name}>
-                    <h3>{q.name}</h3>
-                    <p>{q.acceptedAnswer.text}</p>
-                  </div>
-                ))}
+                <FaqAccordion items={faqLd.mainEntity.map((q) => ({ q: q.name, a: q.acceptedAnswer.text }))} />
               </div>
             )}
 

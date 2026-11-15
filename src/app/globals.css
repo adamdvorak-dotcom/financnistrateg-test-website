@@ -2715,6 +2715,32 @@ nav.scrolled .nav-logo{font-size:15px}
 @media(max-width:799px){.stack{--s:.48}}
 @media(max-width:700px){.plan{grid-template-columns:minmax(0,1fr);overflow:hidden}
   .stack{width:640px;transform:scale(.52);transform-origin:left top;margin-bottom:-235px}}
+/* Maketa se rozevře, když se objeví na obrazovce: listy začínají složené na sobě a rozjedou se
+   do výchozí polohy, graf se dokreslí a řádky textu dorostou. Koncová poloha je stejná jako dřív,
+   takže se šířka makety nemění. */
+.page{transition:transform 1s var(--ease-out),box-shadow .6s var(--ease-out)}
+.page.p2{transition-delay:.08s}
+.page.p3{transition-delay:.16s}
+html.fx .stack[data-reveal]:not(.is-in) .page.p1{transform:translate(150px,-24px) rotateY(-13deg) rotateX(4deg) rotateZ(0deg)}
+html.fx .stack[data-reveal]:not(.is-in) .page.p2{transform:translate(0,4px) rotateY(-12deg) rotateX(4deg) rotateZ(1deg)}
+html.fx .stack[data-reveal]:not(.is-in) .page.p3{transform:translate(-150px,32px) rotateY(-11deg) rotateX(4deg) rotateZ(2deg)}
+.plan-krivka{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.4s var(--ease-out) .5s}
+.plan-plocha{transition:opacity .8s ease 1.2s}
+.plan-radek{transform-origin:left;transition:transform .7s var(--ease-out)}
+html.fx .stack[data-reveal]:not(.is-in) .plan-krivka{stroke-dashoffset:1}
+html.fx .stack[data-reveal]:not(.is-in) .plan-plocha{opacity:0}
+html.fx .stack[data-reveal]:not(.is-in) .plan-radek{transform:scaleX(0)}
+/* Při najetí myší se listy ještě trochu rozestoupí. Doprava se neposouvá nic, aby maketa nepřetekla. */
+@media(hover:hover){
+  .stack.is-in:hover .page{transition-delay:0s;transition-duration:.6s}
+  .stack.is-in:hover .page.p1{transform:translate(-26px,10px) rotateY(-16deg) rotateX(4deg) rotateZ(-4deg)}
+  .stack.is-in:hover .page.p2{transform:translate(-8px,-20px) rotateY(-12deg) rotateX(4deg) rotateZ(1deg);
+    box-shadow:0 44px 80px rgba(26,21,17,.24),0 2px 8px rgba(26,21,17,.08)}
+  .stack.is-in:hover .page.p3{transform:translate(0,-8px) rotateY(-10deg) rotateX(4deg) rotateZ(3.5deg)}
+}
+@media (prefers-reduced-motion: reduce){
+  .page,.plan-krivka,.plan-plocha,.plan-radek{transition:none}
+}
 
 /* ── Updated badge ── */
 .updated{display:inline-flex;align-items:center;gap:7px;padding:3px 11px 3px 9px;
@@ -2887,6 +2913,30 @@ nav.scrolled .nav-logo{font-size:15px}
   text-transform:uppercase;color:#C9A260}
 .situace-karta:hover .situace-cta{color:#C9A260}
 @media(max-width:900px){.situace{grid-template-columns:1fr}}
+/* Karta reaguje na najetí i na klávesnici: nahoře se dokreslí zlatá linka a šipka popojede */
+.situace-karta{position:relative;overflow:hidden}
+.situace-karta::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:#C9A260;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.situace-karta:hover::before,.situace-karta:focus-visible::before{transform:scaleX(1)}
+.situace-karta:focus-visible{background:#0C1F3A;transform:translateY(-4px);box-shadow:0 20px 40px -16px rgba(12,31,58,.4);outline:2px solid #C9A260;outline-offset:3px}
+.situace-karta:focus-visible .situace-veta{color:#F5F2EC}
+.situace-karta:focus-visible .situace-text{color:rgba(245,242,236,.7)}
+.situace-num{display:block;margin-bottom:14px;font:400 12px/1 'DM Mono',monospace;letter-spacing:.14em;color:#7A5C35;transition:color .25s}
+.situace-karta:hover .situace-num,.situace-karta:focus-visible .situace-num{color:#C9A260}
+.situace-sipka{display:inline-block;transition:transform .3s var(--ease-out)}
+.situace-karta:hover .situace-sipka,.situace-karta:focus-visible .situace-sipka{transform:translateX(6px)}
+/* Karty přijedou postupně, když se sekce objeví. Jen na širší obrazovce: na mobilu je sloupec karet
+   vyšší než obrazovka a čekání na jeho zobrazení by mohlo nechat karty skryté. */
+@keyframes situace-prijezd{from{opacity:0;transform:translateY(24px)}}
+@media(min-width:901px){
+  html.fx .situace[data-reveal]:not(.is-in) .situace-karta{opacity:0}
+  html.fx .situace[data-reveal].is-in .situace-karta{animation:situace-prijezd .7s var(--ease-out) backwards;
+    animation-delay:calc(var(--i,0) * 90ms)}
+}
+@media (prefers-reduced-motion: reduce){
+  .situace-karta::before,.situace-sipka{transition:none}
+  html.fx .situace[data-reveal].is-in .situace-karta{animation:none}
+}
 
 /* ── Investment monthly renta hint ── */
 .inv-renta{margin-top:16px;padding-top:14px;border-top:1px solid rgba(245,242,236,.1)}
@@ -3132,3 +3182,59 @@ nav.scrolled .nav-logo{font-size:15px}
 .article-body .sources ol{list-style:none;padding-left:0;margin:0}
 .article-body .sources li{margin:0;font:400 13.5px/1.5 Inter,sans-serif}
 .article-body .sources li::marker{content:none}
+
+/* ── Drobné interakce ── */
+/* Hlavní tlačítko: lesk přejede sám jednou za čas, při stisku se tlačítko lehce zmáčkne */
+@keyframes btn-lesk{0%,72%{transform:translateX(-180%) skewX(-15deg)}100%{transform:translateX(420%) skewX(-15deg)}}
+.btn-shine::after{content:'';position:absolute;top:0;left:0;width:36%;height:100%;pointer-events:none;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.34) 50%,transparent);
+  transform:translateX(-180%) skewX(-15deg);animation:btn-lesk 6s ease-in-out 2.5s infinite}
+.btn-shine:hover::after{animation-play-state:paused;opacity:0}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+
+/* Odkazy v článcích: slabá linka zůstává, při najetí se přes ni zleva dokreslí plná */
+.article-body p a:not(.fn),.article-body li a{text-decoration:none;padding-bottom:2px;
+  background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(201,162,96,.5),rgba(201,162,96,.5));
+  background-repeat:no-repeat;background-position:0 100%;background-size:0 1px,100% 1px;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  transition:background-size .45s var(--ease-out)}
+.article-body p a:not(.fn):hover,.article-body li a:hover,
+.article-body p a:not(.fn):focus-visible,.article-body li a:focus-visible{background-size:100% 1px,100% 1px}
+.step-cta{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
+  background-position:0 100%;background-size:0 1px;padding-bottom:3px;
+  transition:background-size .45s var(--ease-out),opacity .15s}
+.step-cta:hover,.step-cta:focus-visible{background-size:100% 1px;opacity:1}
+
+/* Filtr článků: tmavý podklad přejede z původního štítku na nový */
+.chips{position:relative;z-index:0}
+.chips-pill{position:absolute;left:0;top:0;width:0;height:0;border-radius:999px;background:#0C1F3A;z-index:1;
+  opacity:0;pointer-events:none;transition:transform .45s var(--ease-out),width .45s var(--ease-out),height .45s var(--ease-out)}
+.chips-text{position:relative;z-index:2}
+.chips.chips-ready .chips-pill{opacity:1}
+.chips.chips-ready a.on{background:#FCFBF8;border-color:transparent}
+@keyframes chips-barva{from{color:var(--text-2)}}
+.chips.chips-anim a.on{animation:chips-barva .4s ease backwards}
+
+/* Časté otázky pod článkem: rozbalovací seznam */
+.article-body .faq-acc{margin-top:18px;border-top:1px solid rgba(26,21,17,.12)}
+.article-body .faq-item{border-bottom:1px solid rgba(26,21,17,.12)}
+.article-body .faq-item h3{margin:0}
+.article-body .faq-item button{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;
+  min-height:56px;padding:12px 0;border:0;background:none;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.article-body .faq-plus{flex:none;display:flex;align-items:center;justify-content:center;width:28px;height:28px;
+  border-radius:50%;border:1px solid rgba(26,21,17,.22);font:400 18px/1 Inter,sans-serif;color:#7A5C35;
+  transition:transform .4s var(--ease-out),background .3s,color .3s,border-color .3s}
+.article-body .faq-item button:hover .faq-plus{border-color:#7A5C35}
+.article-body .faq-item.open .faq-plus{transform:rotate(45deg);background:#0C1F3A;border-color:#0C1F3A;color:#F5F2EC}
+.article-body .faq-a{display:grid;grid-template-rows:0fr;visibility:hidden;
+  transition:grid-template-rows .45s var(--ease-out),visibility 0s linear .45s}
+.article-body .faq-item.open .faq-a{grid-template-rows:1fr;visibility:visible;
+  transition:grid-template-rows .45s var(--ease-out),visibility 0s}
+.article-body .faq-a>div{overflow:hidden}
+.article-body .faq-a p{margin:0;padding:0 48px 18px 0}
+
+@media (prefers-reduced-motion: reduce){
+  .btn-shine::after{animation:none}
+  .article-body p a:not(.fn),.article-body li a,.step-cta,.chips-pill,.faq-plus,.article-body .faq-a{transition:none}
+  .chips.chips-anim a.on{animation:none}
+}
