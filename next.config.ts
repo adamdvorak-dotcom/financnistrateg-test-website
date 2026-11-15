@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 // Staré články z Wixu měly v adrese diakritiku. Prohlížeč je posílá zakódované (%C4%9B…),
 // proto se zdrojová adresa kóduje stejně.
 const wixPosts: [string, string][] = [
-  ["jak-efektivně-spravovat-svěřenské-fondy", "jak-efektivne-spravovat-sverenske-fondy"],
+  ["jak-efektivně-spravovat-svěřenské-fondy", "sverensky-fond-praha"],
   ["nejnovější-trendy-v-wealth-managementu-pro-podnikatele", "financni-plan-pro-podnikatele"],
   ["5-tipů-pro-daňovou-optimalizaci-vaší-firmy", "danove-optimalizace-pro-osvc-a-jednatele"],
 ];
@@ -19,11 +19,9 @@ const nextConfig: NextConfig = {
       })),
       { source: "/post/:slug", destination: "/blog/:slug", permanent: true },
       // Adresa bez /blog, kterou má pořád v indexu Seznam
-      {
-        source: "/jak-efektivne-spravovat-sverenske-fondy",
-        destination: "/blog/jak-efektivne-spravovat-sverenske-fondy",
-        permanent: true,
-      },
+      { source: "/jak-efektivne-spravovat-sverenske-fondy", destination: "/blog/sverensky-fond-praha", permanent: true },
+      // Obecný článek o svěřenských fondech je sloučený do podrobného
+      { source: "/blog/jak-efektivne-spravovat-sverenske-fondy", destination: "/blog/sverensky-fond-praha", permanent: true },
       // Obecný starší článek nahradil konkrétnější
       { source: "/blog/nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele", destination: "/blog/financni-plan-pro-podnikatele", permanent: true },
       // Starší článek o propadech je sloučený do nového

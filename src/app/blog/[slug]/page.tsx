@@ -97,57 +97,6 @@ export async function generateMetadata({
 }
 
 function ArticleContent({ slug }: { slug: string }) {
-  if (slug === "jak-efektivne-spravovat-sverenske-fondy") {
-    return (
-      <div className="article-body">
-        <p>
-          Svěřenský fond je právní nástroj, který umožňuje převedení majetku do fondu
-          a jeho oddělení od ostatního osobního majetku. Takový fond se může využívat
-          pro ochranu aktiv v případě dědictví, rozvodů nebo dlužních problémů.
-        </p>
-        <SverenskyFond />
-        <h2>1. Důkladné plánování</h2>
-        <p>
-          Prvním krokem je důkladné plánování s jasnou představou o správě majetku
-          a výběru správce. Je nezbytné zvážit dlouhodobé cíle a zvolit vhodný právní
-          rámec odpovídající vaší situaci a záměrům. Bez kvalitního plánu se svěřenský
-          fond snadno stane administrativní zátěží místo nástrojem ochrany.
-        </p>
-        <h2>2. Výběr správce fondu</h2>
-        <p>
-          Druhým klíčovým aspektem je výběr správce fondu, který by měl mít dostatečné
-          odborné znalosti v oblasti práva i financí. Důvěra a otevřená komunikace
-          s manažerem jsou zásadní pro dlouhodobý úspěch celého uspořádání. Správce by
-          měl být schopen reagovat na změny v legislativě i na vaše životní situace.
-        </p>
-        <h2>3. Pravidelné monitorování</h2>
-        <p>
-          Třetím prvkem je pravidelné monitorování vývoje fondu a přizpůsobování
-          strategií aktuálním podmínkám. Průběžné revize plánu pomáhají maximalizovat
-          výnosy a minimalizovat rizika spojená s vývojem trhu i legislativy. Doporučuji
-          minimálně roční přezkum s vaším správcem a právním poradcem.
-        </p>
-        <h2>4. Vymezení obmyšlených</h2>
-        <p>
-          Čtvrtým důležitým prvkem je jasné vymezení obmyšlených, tedy osob, které
-          budou mít prospěch z fondu. Přesná definice příjemců minimalizuje případné
-          spory mezi dědici a zajišťuje, že majetek bude využit přesně tak, jak jste
-          zamýšleli. Neurčitá formulace může vést k nákladným soudním sporům.
-        </p>
-        <h2>Závěr</h2>
-        <p>
-          Svěřenské fondy jsou mocným nástrojem pro správu a ochranu majetku.
-          S pečlivým plánováním, správným výběrem správce a pravidelným monitorováním
-          lze dosáhnout finanční stability a zabezpečení pro budoucí generace.
-        </p>
-        <p>
-          Máte otázky ke svěřenským fondům nebo chcete probrat, zda je tento nástroj
-          vhodný pro vaši situaci? Neváhejte mě kontaktovat . První konzultace je vždy
-          zdarma.
-        </p>
-      </div>
-    );
-  }
 
 
   if (slug === "fixace-hypoteky-jak-se-rozhodnout") {
@@ -566,69 +515,125 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          „Mějte tří měsíční rezervu." Tuto radu slýcháte všude, ale málokdo dodá,
-          kde přesně ji mít. Přitom na tom záleží. Peníze na běžném účtu s nulovým
-          úrokem při inflaci 3 % reálně každý rok ztrácejí hodnotu. Zároveň mít
-          vše v investicích bez likvidní rezervy je recept na prodávání akcií ve
-          špatnou chvíli.
+          „Mějte tříměsíční rezervu.“ Tuhle radu slýcháte všude, ale málokdo dodá, kde přesně ji
+          mít a jak velká má být právě u vás. Přitom na tom záleží. Peníze na běžném účtu bez
+          úroku reálně každý rok ztrácejí hodnotu. A mít všechno v investicích bez rezervy je
+          recept na prodávání akcií v té nejhorší chvíli.
         </p>
 
-        <h2>Třívrstvý systém: každá vrstva slouží jinému účelu</h2>
+        <h2>Proč rezerva není jedno číslo</h2>
         <p>
-          <strong>Vrstva 1: Okamžitá likvidita (1 měsíc výdajů):</strong> Běžný účet,
-          dostupný okamžitě. Slouží na nečekané faktury, krátkodobé výpadky příjmu
-          nebo drobné opravy. Zde nehledáte výnos, hledáte dostupnost.
+          Rezerva má tři úkoly: zaplatit nečekanou fakturu ještě dnes, přežít výpadek příjmu
+          a zabránit tomu, abyste museli sáhnout na investice, když zrovna padají. Každý z nich
+          potřebuje jiné místo. Proto ji stavím ve třech vrstvách.
+        </p>
+
+        <h2>Třívrstvý systém</h2>
+        <p>
+          <strong>Vrstva 1: okamžitá likvidita, zhruba 1 měsíc výdajů.</strong> Běžný účet,
+          peníze k dispozici hned. Na nečekané faktury, opravy a krátké výpadky. Tady nehledáte
+          výnos, hledáte dostupnost.
         </p>
         <p>
-          <strong>Vrstva 2: Krátkodobá rezerva (2–3 měsíce výdajů):</strong> Spořicí
-          účet nebo spořicí stavební spoření s výnosem 3,5–4,3 % p.a. V roce 2026 takové
-          sazby nabízí Fio banka, Air Bank, MONETA a další. Peníze jsou dostupné
-          do 7 dnů. Tato vrstva pokryje ztrátu zaměstnání, větší opravu auta nebo
-          zdravotní výdaje.
+          <strong>Vrstva 2: krátkodobá rezerva, 2 až 3 měsíce výdajů.</strong> Spořicí účet bez
+          podmínek, peníze dostupné do pár dní. Pokryje ztrátu zaměstnání, výpadek zakázek, větší
+          opravu auta nebo zdravotní výdaje. Sazby spořicích účtů se mění s úrokovými sazbami ČNB,
+          takže je jednou za čas porovnejte. To, co bylo nejlepší loni, nemusí platit dnes.
         </p>
         <p>
-          <strong>Vrstva 3: Střednědobá rezerva (volitelná, 1–3 měsíce navíc):</strong>
-          Peněžní fond nebo krátký dluhopisový ETF. Výnos okolo 4–4,5 % p.a., dostupné
-          do 2–3 týdnů. Vhodné pro OSVČ, podnikatele s nepravidelnými příjmy nebo
-          jednorodičovské domácnosti, kde výpadek jednoho příjmu zasáhne celý provoz.
+          <strong>Vrstva 3: střednědobá rezerva, volitelně 1 až 3 měsíce navíc.</strong> Fond
+          peněžního trhu nebo krátkodobé dluhopisy. Peníze tu bývají obvykle do týdne, podle statutu
+          fondu ale i později.
+          Hodí se pro podnikatele a OSVČ s nepravidelnými příjmy nebo pro domácnost, kde výpadek
+          jednoho příjmu zasáhne celý rozpočet.
         </p>
+
+        <div className="nums">
+          <div className="num">
+            <span>Vrstva 1</span>
+            <b>1 měsíc</b>
+            <p>běžný účet, peníze hned.</p>
+          </div>
+          <div className="num">
+            <span>Vrstva 2</span>
+            <b>2 až 3 měsíce</b>
+            <p>spořicí účet, peníze do pár dní.</p>
+          </div>
+          <div className="num navy">
+            <span>Vrstva 3</span>
+            <b>1 až 3 měsíce</b>
+            <p>fond peněžního trhu, pro nepravidelné příjmy.</p>
+          </div>
+        </div>
 
         <h2>Jak velká má být vaše rezerva</h2>
         <p>
-          Počítejte výdaje, ne příjmy. Kolik skutečně potřebujete měsíčně na bydlení,
-          jídlo, splátky, energie a základní provoz?
+          Počítejte výdaje, ne příjmy. Kolik doopravdy potřebujete měsíčně na bydlení, jídlo,
+          splátky, energie a základní provoz domácnosti?
         </p>
         <ul>
-          <li>Zaměstnanec na stabilní pozici: <strong>3 měsíce</strong> výdajů</li>
-          <li>Zaměstnanec ve zkušební době nebo s variabilní složkou: <strong>4–5 měsíců</strong></li>
-          <li>OSVČ, podnikatelé, jednorodičovské domácnosti: <strong>6 měsíců</strong></li>
-          <li>Domácnost s hypotékou a jedním příjmem: <strong>6 měsíců</strong> minimum</li>
+          <li>Zaměstnanec na stabilní pozici: <strong>3 měsíce</strong> výdajů.</li>
+          <li>Zaměstnanec ve zkušební době nebo s velkou variabilní složkou: <strong>4 až 5 měsíců</strong>.</li>
+          <li>Podnikatelé, OSVČ a domácnosti s jedním příjmem: <strong>6 měsíců</strong>.</li>
+          <li>Domácnost s hypotékou a jedním příjmem: <strong>6 měsíců</strong> jako minimum.</li>
+        </ul>
+        <p>
+          Příklad: domácnost podnikatele utratí 60&nbsp;000&nbsp;Kč měsíčně. Na běžném účtu drží
+          60&nbsp;000, na spořicím účtu 180&nbsp;000 a ve fondu peněžního trhu dalších
+          120&nbsp;000&nbsp;Kč. Dohromady 360&nbsp;000&nbsp;Kč, šest měsíců výdajů. Co je
+          navíc, může pracovat jinde. Kam přesně, záleží na tom, na co a na jak dlouho ty peníze máte.
+        </p>
+
+        <h2>Majitel firmy: rezerva doma, ne ve firmě</h2>
+        <p>
+          U majitelů firem slyším často: „Rezervu mám, na firemním účtu.“ To ale není vaše rezerva.
+          Peníze firmy patří firmě, a když se jí přestane dařit, budou chybět přesně v tu chvíli,
+          kdy je budete potřebovat i doma. Firma potřebuje vlastní provozní rezervu a vy svou
+          osobní. Proč na tom záleží, rozebírám v článku{" "}
+          <Link href="/blog/firma-a-osobni-majetek">Firma roste. Váš osobní majetek ne.</Link>
+        </p>
+
+        <h2>Dvě chyby, které stojí nejvíc</h2>
+        <p>
+          <strong>Příliš malá rezerva.</strong> Bez polštáře budete nuceni prodávat investice
+          v nejhorší chvíli, při poklesu trhu. Medvědí trh začíná propadem o 20&nbsp;%. V roce 2008 spadl americký index S&amp;P 500 skoro o 57&nbsp;%.
+          Kdo tehdy prodá, nepřijde jen o peníze v tu chvíli, ale i o návrat trhu, který historicky přišel potom.
+          Jak takový propad přečkat, popisuji v článku{" "}
+          <Link href="/blog/propady-trhu-co-delat">Akcie padají: co dělat při propadu trhu</Link>.
+        </p>
+        <p>
+          <strong>Příliš velká rezerva.</strong> Dvanáct měsíčních výdajů na spořicím účtu je
+          zbytečně moc. Řekněme, že máte o 300&nbsp;000&nbsp;Kč víc, než potřebujete. Na spořicím
+          účtu při 3&nbsp;% ročně z nich za 20 let bude zhruba 540&nbsp;000&nbsp;Kč. Investované při
+          7&nbsp;% by narostly na 1&nbsp;160&nbsp;000&nbsp;Kč. Rozdíl přes 600&nbsp;000&nbsp;Kč,
+          jen proto, že peníze ležely na špatném místě. Výnos investic zaručený není, ale na
+          dvaceti letech byl ten rozdíl v minulosti znát.
+        </p>
+
+        <h2>Kde rezervu nedržet</h2>
+        <ul>
+          <li><strong>Ve stavebním spoření.</strong> Peníze jsou vázané šest let. Když smlouvu
+          vypovíte dřív, přijdete o státní podporu (pokud peníze nejdou s úvěrem ze stavebka na
+          bydlení) a čekáte ještě tři měsíce výpovědní lhůty. Na nouzové peníze se nehodí.</li>
+          <li><strong>V akciích nebo akciových fondech.</strong> Ve chvíli, kdy rezervu potřebujete,
+          můžou být o třetinu dole.</li>
+          <li><strong>V jedné bance nad limit pojištění vkladů.</strong> Pojištění kryje
+          100&nbsp;000&nbsp;eur na jednoho člověka u jedné banky. Pozor, dvě značky můžou patřit
+          jedné bance s jedním limitem. Větší částky rozložte.</li>
         </ul>
 
-        <h2>Dvě chyby, které lidi nejvíce stojí</h2>
+        <h2>Co dál</h2>
         <p>
-          <strong>Příliš málo rezervy:</strong> Bez polštáře budete nuceni prodávat investice
-          v nejhorší možnou chvíli, při poklesu trhu. Průměrný medvědí trh znamená pokles
-          o 30–50 %. Prodat tehdy neznamená jen ztrátu v danou chvíli, přijdete o celé
-          budoucí zhodnocení těch peněz.
-        </p>
-        <p>
-          <strong>Příliš mnoho rezervy:</strong> 12 měsíčních výdajů na spořicím účtu
-          je zbytečné. Rozdíl mezi 3 a 9 měsíci rezervy (řekněme 300 000 Kč navíc)
-          investovaných po dobu 20 let při 7 % p.a. představuje více než 1 160 000 Kč
-          rozdíl ve výsledném portfoliu.
+          Jakmile máte rezervu hotovou, můžete začít investovat bez strachu, že budete muset
+          prodávat ve špatnou chvíli. Jak na první kroky, popisuji v článku{" "}
+          <Link href="/blog/etf-pro-zacatecniky">ETF pro začátečníky</Link>, a co z pravidelné
+          investice vyjde, si spočítáte v{" "}
+          <Link href="/blog/etf-spocitejte-si">ETF kalkulačce</Link>.
         </p>
 
-        <h2>Kde konkrétně rezervu uložit (2026)</h2>
-        <p>
-          Pro vrstvu 2 hledejte spořicí účty s výnosem nad 3,5 % bez povinných podmínek.
-          Srovnávejte na bankovních srovnávačích nebo přímo na webech bank . Sazby se
-          mění a to, co bylo nejlepší loni, nemusí platit dnes.
-        </p>
-        <p>
-          Pro vrstvu 3 jsou vhodné peněžní fondy (Conseq, ČS Fondy, Raiffeisen) nebo
-          krátké dluhopisové ETF. Vyhněte se stavebnímu spoření jako rezervě, šestileté
-          výpovědní lhůty jsou pro nouzový fond nevhodné.
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Výpočty jsou orientační. Výnosy z minulosti nejsou zárukou budoucích výnosů. Článek je
+          vzdělávací a nepředstavuje investiční doporučení.
         </p>
       </div>
     );
@@ -2709,9 +2714,7 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
-  // Starší obecné texty pod články nenabízíme
-  const notRecommended = ["jak-efektivne-spravovat-sverenske-fondy"];
-  const candidates = articles.filter(a => a.slug !== slug && !notRecommended.includes(a.slug)).reverse();
+  const candidates = articles.filter(a => a.slug !== slug).reverse();
   const related = candidates
     .filter(a => a.category === article.category)
     .concat(candidates.filter(a => a.category !== article.category))

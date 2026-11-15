@@ -26,24 +26,6 @@ export type Article = {
 
 export const articles: Article[] = [
   {
-    slug: "jak-efektivne-spravovat-sverenske-fondy",
-    category: "rodinny-majetek",
-    tag: "Správa majetku",
-    tagEn: "Wealth Management",
-    title: "Jak efektivně spravovat svěřenské fondy",
-    titleEn: "How to effectively manage trust funds",
-    desc: "Svěřenský fond je právní nástroj, který umožňuje převedení majetku do fondu a jeho oddělení od osobního majetku. Klíčem k úspěchu je pečlivé plánování a výběr kvalifikovaného správce.",
-    seoDesc: "Svěřenský fond odděluje majetek od osobního vlastnictví. Rozhoduje pečlivé plánování a výběr kvalifikovaného správce.",
-    descEn: "A trust fund is a legal instrument allowing assets to be transferred and separated from personal property. The key to success is careful planning and choosing a qualified trustee.",
-    date: "31. března 2025",
-    dateEn: "March 31, 2025",
-    updated: "8. května 2025",
-    updatedEn: "May 8, 2025",
-    author: "Adam Dvořák, EFA",
-    readTime: 4,
-    tldr: ["Svěřenský fond odděluje majetek od osobního vlastnictví majitele.", "Klíčová rozhodnutí: výběr správce a vymezení beneficientů.", "Správně nastavený fond chrání majetek i před věřiteli."],
-  },
-  {
     slug: "fixace-hypoteky-jak-se-rozhodnout",
     category: "financovani",
     tag: "Hypotéky",
@@ -137,8 +119,8 @@ export const articles: Article[] = [
     date: "13. května 2026",
     dateEn: "May 13, 2026",
     author: "Adam Dvořák, EFA",
-    readTime: 4,
-    tldr: ["Peníze na běžném účtu reálně ztrácejí hodnotu vůči inflaci.", "Třívrstvý systém: okamžitá rezerva, střednědobá, dlouhodobá.", "Každá vrstva má jiný nástroj a jiný horizont likvidace."],
+    readTime: 6,
+    tldr: ["Rezerva patří do tří vrstev: běžný účet, spořicí účet a pro nepravidelné příjmy i fond peněžního trhu.", "Zaměstnanci stačí 3 měsíce výdajů, podnikatelům a domácnostem s jedním příjmem 6 měsíců.", "Majitel firmy potřebuje osobní rezervu doma, ne na účtu firmy."],
   },
   {
     slug: "danove-optimalizace-pro-osvc-a-jednatele",
