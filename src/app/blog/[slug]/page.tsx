@@ -936,61 +936,101 @@ function ArticleContent({ slug }: { slug: string }) {
           Kolik na tom spořáku? &quot;Tak dvakrát moje výplata.&quot;
         </p>
         <p>
-          Tohle není výjimka. Je to pravidlo.
-        </p>
-        <p>
-          Majitelé firem jsou na papíře nejbohatší vrstva v Česku. Ale devět z deseti má skoro vše
-          zamčené v té firmě. Auto na firmu, nemovitost přes s.r.o., přebytky nechávají v bilanci.
-          &quot;Bude se to hodit.&quot; Osobně? Prázdno.
+          Tohle není výjimka. U majitelů firem, se kterými mluvím, je to spíš pravidlo. Na papíře
+          jsou bohatí, ale skoro všechno mají zamčené ve firmě. Auto na
+          firmu, nemovitost přes s.r.o., přebytky nechávají v bilanci. &quot;Bude se to hodit.&quot;
+          Osobně? Prázdno.
         </p>
 
         <h2>Proč to dělají</h2>
         <p>
-          Logika je jasná. Ve firmě jsou výdaje daňovým nákladem. Osobní majetek se buduje z čistého.
-          Účetní řekne: nechte to ve firmě, to se vyplatí. A krátkodobě má pravdu.
+          Logika je jasná. Ve firmě jsou výdaje daňovým nákladem, osobní majetek se buduje
+          z peněz po zdanění. Výplata dividendy stojí 15&nbsp;% srážkové daně a účetní řekne:
+          nechte to ve firmě, vyplatí se to. Krátkodobě má pravdu.
         </p>
         <p>
-          Problém nastane, když se ptám: co se stane, když ten business zítra zpomalí?
+          Problém nastane, když se zeptám: co se stane, když firma zítra zpomalí? Žádná
+          katastrofa, jen obyčejné průšvihy. Přijdete o klíčového zákazníka, trh se otočí,
+          selže zdraví. Firma najednou přestane platit, a vy doma nemáte nic, na co sáhnout.
         </p>
+
+        <h2>Peníze ve firmě nejsou vaše</h2>
         <p>
-          Ne katastrofa, jen obyčejná průšvihy. Přijdete o klíčového zákazníka, trh se otočí,
-          zdraví selže. Najednou ta firma přestane platit. A vy doma nemáte nic, na co sáhnout.
+          Dokud jsou peníze na účtu firmy, patří firmě. Když se jí přestane dařit, sáhnou na ně
+          jako první věřitelé, banka a finanční úřad. A když s firmou něco uděláte, třeba ji
+          prodáte nebo rozdělíte, řeší se, co s hotovostí v ní. Peníze, které jste si vyplatili
+          a investovali osobně, tohle riziko nenesou.
         </p>
 
         <h2>Firma není penzijní plán</h2>
         <p>
-          Tenhle mýtus přežívá překvapivě dlouho. &quot;Prodám firmu a mám na důchod.&quot; Ale firma se prodá
-          za tolik, za kolik ji někdo koupí. Ne za tolik, za kolik ji oceňujete vy. A kupce, který
-          zaplatí dobrou cenu, hledáte minimálně tři roky, pokud vůbec přijde.
+          Tenhle mýtus přežívá překvapivě dlouho. &quot;Prodám firmu a mám na důchod.&quot; Firma se
+          ale prodá za tolik, za kolik ji někdo koupí, ne za tolik, za kolik ji oceňujete vy.
+          A najít kupce, který zaplatí dobrou cenu, často trvá roky, pokud vůbec přijde.
         </p>
         <p>
-          Stavět důchod na exitu je jak stavět golfovou sezonu na hole in one. Občas to přijde.
+          Stavět důchod na exitu je jako stavět golfovou sezonu na hole in one. Občas to přijde.
           Naplánovat se to nedá.
         </p>
 
-        <h2>Jak nastavit systém</h2>
+        <h2>Co dělá systém za patnáct let</h2>
         <p>
-          Nejde o to vzít peníze z firmy a propálit je. Jde o to mít systém, který buduje osobní
-          majetek souběžně s tím, jak roste firma.
+          Nejde o to vzít peníze z firmy a propálit je. Jde o systém, který buduje osobní majetek
+          souběžně s firmou. Příklad: firma pošle 50&nbsp;000&nbsp;Kč ročně na váš DIP a vy si
+          každý rok vyplatíte a investujete dalších 250&nbsp;000&nbsp;Kč z dividendy.
         </p>
+        <div className="nums">
+          <div className="num">
+            <span>Ročně mimo firmu</span>
+            <b>300&nbsp;000&nbsp;Kč</b>
+            <p>50&nbsp;000 na DIP od firmy a 250&nbsp;000 z dividendy.</p>
+          </div>
+          <div className="num">
+            <span>Za 15 let při 4&nbsp;%</span>
+            <b>6,0 mil.</b>
+            <p>z toho 4,5 milionu vložených peněz.</p>
+          </div>
+          <div className="num navy">
+            <span>Za 15 let při 6&nbsp;%</span>
+            <b>7,0 mil.</b>
+            <p>majetek, který nezávisí na tom, jak se daří firmě.</p>
+          </div>
+        </div>
         <p>
-          Kombinace, která funguje: přiměřená mzda (ne symbolická), maximální příspěvek firmy na DIP
-          a část přebytků každý rok vytáhnout dividendami nebo přes holding do osobního investičního
-          portfolia.
+          Výnos zaručený není a investice cestou kolísají. Ale v patnáctém roce máte majetek, ze
+          kterého se dá žít, i když firma zrovna nevydělává nebo ji nikdo nekoupí. Jen počítejte
+          s tím, že peníze na DIP jsou vázané do šedesáti let, takže na dřívější potřebu slouží
+          hlavně volné portfolio.
         </p>
+
+        <h2>Jak to nastavit</h2>
         <p>
-          DIP sám o sobě umožňuje firmě přispívat jednateli až 50 000 Kč ročně bez jakýchkoliv odvodů.
-          To jsou prachy, které jinak zaplatíte na daních. A přitom rostou.
+          Kombinace, která u majitelů firem vychází nejčastěji: přiměřená mzda (ne symbolická),
+          maximální příspěvek firmy na DIP a část přebytků každý rok vyplatit dividendou nebo
+          přes holding převést do investičního portfolia. Příspěvek firmy na DIP,
+          penzijko a životko je dohromady do 50&nbsp;000&nbsp;Kč ročně bez daně i odvodů, pokud
+          máte od firmy mzdu nebo odměnu jednatele. Jak to nastavit u vás, potvrdí účetní nebo
+          daňový poradce. Čísla jednotlivých variant najdete v článku{" "}
+          <Link href="/blog/vyber-penez-ze-sro-mzda-dividendy">Výběr peněz ze s.r.o.</Link>, a jestli
+          dává smysl holding, rozebírám v článku{" "}
+          <Link href="/blog/holding-sro-osobni-majetek">Holding s.r.o.</Link>
         </p>
 
         <h2>Kdy začít</h2>
         <p>
-          Teď. Ne po dalším roce. Ne až se firma stabilizuje. Každý rok bez systému je rok, kdy
-          firmě rostou bilance a vám osobně ne.
+          Teď. Ne po dalším roce a ne až se firma stabilizuje. Každý rok bez systému je rok, kdy
+          firmě roste bilance a vám osobně ne.
         </p>
         <p>
-          První krok je jednoduchý: spočítat, kolik si dnes reálně vyplácíte versus kolik generujete.
-          A pak rozhodnout, co změnit.
+          První krok je jednoduchý: spočítat, kolik si dnes reálně vyplácíte a kolik firma
+          vydělává. A pak rozhodnout, co změnit. Kde máte největší mezeru, ukáže za pět minut{" "}
+          <Link href="/financni-preventivka">Finanční preventivka</Link>.
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Výpočty jsou orientační a nezahrnují poplatky ani daně z výnosů. Výnosy z minulosti nejsou
+          zárukou budoucích výnosů. Článek je vzdělávací a nepředstavuje investiční ani daňové
+          doporučení.
         </p>
       </div>
     );
@@ -1096,57 +1136,104 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          &quot;Pronájem mi pokryje splátku&quot; slyším jednou za čtrnáct dní. Pak si sednem a počítáme
+          &quot;Pronájem mi pokryje splátku&quot; slyším jednou za čtrnáct dní. Pak si sedneme a počítáme
           doopravdy. Výsledek je vždycky trochu jiný, než člověk čekal.
         </p>
 
         <h2>Hrubý výnos vs. čistý výnos</h2>
         <p>
-          Byt za čtyři miliony, pronájem 18 000 Kč měsíčně. Hrubý výnos je 5,4 %. Zní to dobře.
+          Byt za 4&nbsp;000&nbsp;000&nbsp;Kč, nájem 18&nbsp;000&nbsp;Kč měsíčně. Hrubý výnos je
+          5,4&nbsp;% ročně. Zní to dobře. Teď od toho odečteme, co skutečně odejde:
+        </p>
+        <ul>
+          <li><strong>Jeden měsíc prázdno za rok</strong> při střídání nájemníků:
+          místo 216&nbsp;000 vyberete 198&nbsp;000&nbsp;Kč.</li>
+          <li><strong>Správa bytu</strong>, pokud ji neděláte sami, bývá kolem 7&nbsp;% z nájmu:
+          asi 14&nbsp;000&nbsp;Kč.</li>
+          <li><strong>Opravy a údržba</strong>: počítejte zhruba 1&nbsp;% hodnoty bytu ročně, tedy
+          40&nbsp;000&nbsp;Kč. Jeden rok nic, pak nová kuchyň.</li>
+          <li><strong>Pojištění a daň z nemovitosti</strong>: dohromady kolem 6&nbsp;000&nbsp;Kč.</li>
+          <li><strong>Daň z příjmů z nájmu</strong>: s paušálními výdaji 30&nbsp;% a 15% sazbou
+          asi 21&nbsp;000&nbsp;Kč.</li>
+        </ul>
+
+        <div className="nums">
+          <div className="num">
+            <span>Hrubý výnos</span>
+            <b>5,4&nbsp;%</b>
+            <p>216&nbsp;000&nbsp;Kč ročně z bytu za 4 miliony.</p>
+          </div>
+          <div className="num">
+            <span>Čistý výnos</span>
+            <b>2,9&nbsp;%</b>
+            <p>asi 117&nbsp;000&nbsp;Kč ročně po všech nákladech a dani.</p>
+          </div>
+          <div className="num navy">
+            <span>S hypotékou 70&nbsp;%</span>
+            <b>−2&nbsp;700&nbsp;Kč</b>
+            <p>měsíčně doplácíte z vlastního, než se započte daň.</p>
+          </div>
+        </div>
+
+        <h2>A s hypotékou?</h2>
+        <p>
+          Na investiční byt vám banka od dubna 2026 obvykle půjčí nejvýš 70&nbsp;% odhadní hodnoty.
+          Tak to ČNB doporučila u hypoték na byt určený k pronájmu nebo na třetí a další
+          nemovitost, a každá banka si to vykládá trochu po svém. Hypotéka 2&nbsp;800&nbsp;000&nbsp;Kč na 30 let při 4,5&nbsp;% znamená
+          splátku 14&nbsp;187&nbsp;Kč měsíčně, přes 170&nbsp;000&nbsp;Kč ročně. Z nájmu vám po
+          nákladech zbude asi 138&nbsp;000&nbsp;Kč. Rozdíl, zhruba 2&nbsp;700&nbsp;Kč měsíčně,
+          platíte z vlastní kapsy. A 1,2 milionu vlastních peněz k tomu.
         </p>
         <p>
-          Teď od toho odečteme: správu bytu (6 až 8 % z nájmu, pokud to neděláte sami), opravy
-          a údržbu (odhadem 1 až 1,5 % z hodnoty bytu ročně), pojištění, daň z příjmu
-          z nájemného a průměrně jeden měsíc prázdno za rok.
-        </p>
-        <p>
-          Po všem tomhle jde čistý výnos na zhruba 3 až 3,5 %. U hypotéky za 4,5 % to je záporný
-          cashflow. Každý měsíc platíte z vlastní kapsy.
+          Daň z nájmu vám s hypotékou obvykle klesne, protože místo paušálu můžete uplatnit
+          skutečné výdaje včetně úroků a odpisů. V prvním roce zaplatíte na úrocích asi
+          125&nbsp;000&nbsp;Kč. Kolik to u vás dělá, spočítá daňový poradce nebo účetní. Na tom, že byt musíte
+          dotovat, to ale většinou nic nezmění.
         </p>
 
         <h2>Ale majetek přece roste, ne?</h2>
         <p>
-          Ano, nemovitosti v Česku historicky rostou. Průměrně kolem čtyř až pěti procent ročně,
-          v Praze více. Takže celkový výnos, renta plus apreciace, dává smysl.
+          Ano, ceny bytů v Česku dlouhodobě rostly, v Praze rychleji než jinde. Jenže nerovnoměrně:
+          po letech prudkého růstu přišel v letech 2022 a 2023 pokles a návrat trval. Celkový výnos,
+          tedy nájem plus růst ceny, tak může dávat smysl. Jen se na něj nedá spolehnout v roce,
+          kdy peníze potřebujete.
         </p>
         <p>
-          Problém je likvidita. Nemovitost neprodáte za hodinu. Neprodáte ji za cenu, kterou
-          chcete. A v mezidobí platíte hypotéku, opravy a daně.
+          Druhý problém je likvidita. Byt neprodáte za hodinu a neprodáte ho za cenu, kterou chcete
+          právě vy. Mezitím platíte hypotéku, opravy a daně.
         </p>
         <p>
-          Porovnejte to s diverzifikovaným ETF portfoliem, které historicky vynáší sedm až osm
-          procent ročně, je likvidní a správa zabere pár minut měsíčně.
+          Pro srovnání: globálně rozložené akciové ETF historicky vynášely zhruba 6 až 8&nbsp;%
+          ročně. Pozor, to je výnos včetně růstu ceny, takže ho srovnávejte s celkovým výnosem
+          bytu, ne jen s nájmem. ETF jsou likvidní a správa zabere pár minut měsíčně. Kolísají ale víc a v některých letech padají
+          o desítky procent. Co z pravidelné investice vyjde, si spočítáte v{" "}
+          <Link href="/blog/etf-spocitejte-si">ETF kalkulačce</Link>.
         </p>
 
         <h2>Kdy investiční byt smysl dává</h2>
+        <ul>
+          <li>Máte vlastní kapitál aspoň na třetinu ceny a rezervu na opravy a prázdné měsíce.</li>
+          <li>Kupujete v lokalitě se silnou a trvalou poptávkou po nájmu.</li>
+          <li>Byt je jedna z vrstev majetku, ne celý plán.</li>
+          <li>Máte čas a chuť řešit nájemníky, nebo počítáte s náklady na správu.</li>
+        </ul>
         <p>
-          Dává smysl, když máte dost vlastního kapitálu (alespoň třicet procent), kupujete v lokalitě
-          se silnou a trvalou poptávkou po nájmu a nepovažujete to za náhradu diverzifikovaného
-          portfolia, ale za jednu z vrstev.
-        </p>
-        <p>
-          Nemá smysl, když to kupujete proto, že &quot;nemovitosti jsou jistota&quot;, přitom nemáte žádné
-          jiné úspory. Nebo když celý váš plán na důchod zní: jednou prodám barák.
+          Nemá smysl, když ho kupujete proto, že &quot;nemovitosti jsou jistota&quot;, a přitom nemáte
+          žádné jiné úspory. Nebo když celý váš plán na důchod zní: jednou prodám byt.
         </p>
 
         <h2>Co se vždy vyplatí</h2>
         <p>
-          Nechat si celé číslo napočítat. Víc, než si myslíte, záleží na načasování nákupu,
-          výši vlastních zdrojů, sazbě hypotéky a lokalitě.
+          Nechat si celé číslo napočítat dřív, než podepíšete rezervační smlouvu. Rozhoduje cena,
+          výše vlastních zdrojů, sazba hypotéky, lokalita a vaše daňová situace. Přineste mi čísla
+          konkrétního bytu a spočítám vám celý scénář včetně srovnání s alternativním portfoliem.
         </p>
-        <p>
-          Přinesete mi čísla, já vám napočítám celý scénář, včetně srovnání s alternativním
-          investičním portfoliem.
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Výpočty jsou orientační a zjednodušené, náklady se u konkrétního bytu liší. Zdroje: zákon
+          č. 586/1992 Sb., o daních z příjmů, § 9 (příjmy z nájmu); doporučení ČNB k investičním
+          hypotékám platné od 1. 4. 2026. Článek je vzdělávací
+          a nepředstavuje investiční doporučení. Výnosy z minulosti nejsou zárukou budoucích výnosů.
         </p>
       </div>
     );
@@ -1286,40 +1373,63 @@ function ArticleContent({ slug }: { slug: string }) {
           strukturované produkty. Kamarád má tip. Tchán chce půjčku.
         </p>
         <p>
-          Peníze dejte na spořicí účet nebo do peněžního fondu. Výnos okolo čtyř procent,
-          dostupné do týdne. Za tu dobu nic nezkazíte a získáte čas na rozvahu.
+          Peníze dejte na spořicí účet nebo do fondu peněžního trhu. Výnos je skromný, zato jsou
+          peníze dostupné do pár dní. Za tu dobu nic nezkazíte a získáte čas na rozvahu.
+          U velké částky ji rozložte mezi víc bank: pojištění vkladů kryje u jedné banky jen
+          100&nbsp;000&nbsp;eur.
         </p>
 
-        <h2>Daň: od roku 2026 je to jinak</h2>
+        <h2>Daň z prodeje: od roku 2026 zase bez stropu</h2>
         <p>
-          Pokud jste obchodní podíl drželi déle než pět let, příjem z prodeje je od roku 2026
-          osvobozen od daně z příjmů bez ohledu na výši. Dříve platil limit pět milionů korun,
-          teď neexistuje.
+          Když fyzická osoba prodá obchodní podíl v s.r.o., který držela déle než pět let, je příjem
+          osvobozený od daně z příjmů. V roce 2025 platil strop 40 milionů korun, od roku 2026 je
+          znovu zrušený. U akcií je časový test tři roky.
         </p>
         <p>
-          Pokud jste prodali dříve nebo podíl drželi kratší dobu, situace je jiná. To je práce
-          pro daňového poradce, ne pro obecnou radu.
+          Dvě věci, na které se zapomíná:
+        </p>
+        <ul>
+          <li><strong>Oznámení finančnímu úřadu.</strong> Každý jednotlivý osvobozený příjem nad
+          5 milionů korun musíte oznámit do termínu pro daňové přiznání. Kdo zapomene, platí
+          pokutu od 0,1 do 15&nbsp;% z neoznámené částky podle toho, jestli to dožene sám, nebo
+          až po výzvě úřadu.</li>
+          <li><strong>Prodej podílu není prodej majetku firmy.</strong> Pokud firma prodá svůj
+          majetek a peníze si pak vyplácíte dividendou, osvobození se netýká. Zaplatíte daň
+          firmy 21&nbsp;% a k tomu 15&nbsp;% z dividendy.</li>
+        </ul>
+        <p>
+          Kratší držba, prodej přes holding, splátky kupní ceny nebo prodej části podílu jsou
+          případy pro daňového poradce. Řešte je ideálně ještě před podpisem smlouvy, ne po něm.
         </p>
 
         <h2>Nesázejte vše na jednu kartu</h2>
         <p>
           Každý druhý klient přijde s nápadem koupit investiční byt. Chápu to. Byt je hmatatelný,
-          vidíte ho, víte, jak funguje. Ale šest sedm milionů v jedné nemovitosti v jednom
-          městě je extrémní koncentrace rizika.
+          vidíte ho, víte, jak funguje. Ale šest sedm milionů v jedné nemovitosti v jednom městě
+          je extrémní koncentrace rizika. A čistý výnos z nájmu po všech nákladech bývá kolem
+          3&nbsp;%, jak ukazuji v článku{" "}
+          <Link href="/blog/investicni-byt-napocitam-to">Investiční byt na hypotéku</Link>.
         </p>
         <p>
-          Diverzifikace neznamená složitost. Znamená, že když jedna věc selže, nepřijdete o vše.
+          Diverzifikace neznamená složitost. Znamená, že když jedna věc selže, nepřijdete o všechno.
         </p>
 
         <h2>Jak nastavit systém</h2>
         <p>
-          S klienty po exitu stavíme většinou toto: část jako krátkodobá rezerva na spořicím účtu,
-          část do ETF portfolia s horizontem deset a více let a pokud chcete dál investovat
-          do firem nebo nemovitostí, holding s.r.o. jako šuplík navíc.
+          Po exitu většinou pracujeme se třemi vrstvami:
         </p>
+        <ul>
+          <li><strong>Rezerva</strong> na spořicím účtu nebo ve fondu peněžního trhu: výdaje na rok
+          až dva a peníze na plánované věci, třeba bydlení.</li>
+          <li><strong>Dlouhodobé portfolio</strong> s horizontem deset a více let, rozložené do
+          akcií a dluhopisů podle toho, kolik kolísání unesete.</li>
+          <li><strong>Holding s.r.o.</strong>, pokud chcete dál investovat do firem nebo
+          nemovitostí. Funguje jako šuplík navíc, podrobně v článku{" "}
+          <Link href="/blog/holding-sro-osobni-majetek">Holding s.r.o.</Link></li>
+        </ul>
         <p>
-          Nejde o to mít vše optimalizované od prvního dne. Jde o systém, který funguje
-          bez každodenního rozhodování.
+          Nejde o to mít všechno optimalizované od prvního dne. Jde o systém, který funguje bez
+          každodenního rozhodování.
         </p>
         <p>
           Jestli z takového majetku vyjde renta, jakou chcete, a co s plánem udělá propad trhu
@@ -1329,12 +1439,18 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Proč banka nestačí</h2>
         <p>
           Banka vám nabídne produkty, které má. Nezávislý poradce začíná vaší situací,
-          ne produktovým portfoliem. Rozdíl je zásadní, zvláště tehdy, když máte najednou
+          ne produktovým portfoliem. Rozdíl je zásadní, zvlášť když máte najednou
           velkou sumu a žádný spěch.
         </p>
         <p>
-          Čas máte. Ale ten čas také ubíhá. Každý měsíc peněz, které nepracují správně,
-          je ztracená příležitost.
+          Čas máte, jen z něj nesmí být roky. Šest měsíců na rozvahu je plán. Dva roky na spořáku
+          z nerozhodnosti už plán nejsou.
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Zdroje: zákon č. 586/1992 Sb., o daních z příjmů, § 4 odst. 1 písm. q) a u) (osvobození
+          příjmu z převodu podílu a cenných papírů), § 38v (oznámení osvobozených příjmů), § 38w
+          (pokuta). Článek je vzdělávací a nepředstavuje investiční ani daňové doporučení.
         </p>
       </div>
     );
@@ -1570,61 +1686,94 @@ function ArticleContent({ slug }: { slug: string }) {
           Je to odpověď na jednu otázku: co chcete mít za dvacet let a co pro to děláte dnes?
         </p>
         <p>
-          Podnikatelé tohle zpravidla neřeší. Jsou zaneprázdněni firmou. A pak jednou přijdou
+          Podnikatelé tohle zpravidla neřeší. Jsou zaneprázdnění firmou. A pak jednou přijdou
           a říkají: &quot;Mám padesát, firma funguje. Ale osobně? Žádný plán.&quot;
+        </p>
+        <p>
+          Plán pro majitele firmy má šest kroků. Na pořadí záleží: každý další stojí na tom předchozím.
         </p>
 
         <h2>Krok 1: rezerva mimo firmu</h2>
         <p>
-          Nejdřív bezpečnost. Osobní likvidní rezerva, která nesouvisí s firmou. Šest měsíců
-          výdajů na spořicím účtu nebo v peněžním fondu. Dostupná do týdne bez dopadu na firmu.
+          Nejdřív bezpečnost. Osobní rezerva, která nesouvisí s firmou: šest měsíců rodinných
+          výdajů na spořicím účtu nebo ve fondu peněžního trhu, dostupná do týdne. Když doma
+          utratíte 80&nbsp;000&nbsp;Kč měsíčně, je to 480&nbsp;000&nbsp;Kč.
         </p>
         <p>
-          Toto chybí devíti z deseti podnikatelů. Firma slouží jako záchranná síť a spořicí
-          účet zároveň. Ale firma není ani jedno.
-        </p>
-
-        <h2>Krok 2: nastavte výplatu správně</h2>
-        <p>
-          Přiměřená mzda z firmy, ne symbolická. Maximální příspěvek firmy na váš DIP, to je
-          až padesát tisíc ročně bez odvodů. Přebytky dividendami, ne v bilanci.
-        </p>
-        <p>
-          Systém musí existovat. Bez systému si vyplácíte podle pocitu a platíte víc,
-          než musíte.
+          U většiny majitelů, se kterými mluvím, tahle rezerva chybí. Firma slouží jako záchranná
+          síť i spořicí účet zároveň. Jenže když firma zrovna nemá na výplatu, nemá ani na vás.
+          Jak rezervu rozdělit do vrstev, popisuji v článku{" "}
+          <Link href="/blog/financni-poduska-jak-ji-spravne-nastavit">Finanční polštář</Link>.
         </p>
 
-        <h2>Krok 3: investujte osobně</h2>
+        <h2>Krok 2: nastavte výplatu z firmy</h2>
         <p>
-          Dividendy, které neutratíte na bydlení a provoz, jdou do investičního portfolia.
-          ETF globálního indexu jako základ, pravidelně, bez přerušení při každém poklesu trhů.
-          Tohle se nastaví jednou a pak pracuje samo.
+          Přiměřená mzda kvůli nemocenské a důchodu, příspěvek firmy na DIP, penzijko a životko
+          dohromady až 50&nbsp;000&nbsp;Kč ročně bez daně a odvodů, přebytky dividendou. Bez systému si
+          vyplácíte podle pocitu a platíte víc, než musíte. Na zisku 2 milionů je rozdíl mezi
+          nejhorší a rozumnou variantou přes 180&nbsp;000&nbsp;Kč ročně, konkrétní čísla jsou
+          v článku{" "}
+          <Link href="/blog/vyber-penez-ze-sro-mzda-dividendy">Výběr peněz ze s.r.o.: mzda, nebo dividendy?</Link>
         </p>
 
-        <h2>Krok 4: oddělte majetek</h2>
+        <h2>Krok 3: investujte osobně a pravidelně</h2>
         <p>
-          Osobní majetek nesmí záviset na osudu firmy. Co má smysl mít osobně, nechte osobně.
-          Firma není vaše penzijní pojistka. Je to nástroj, který může selhat.
+          Co z vyplacených peněz neutratíte, jde do osobního investičního portfolia. Jako základ
+          globálně rozložené akciové ETF, pravidelně a bez přerušení při každém poklesu trhů.
+          Nastaví se jednou a pak pracuje samo.
+        </p>
+        <p>
+          Kolik to dělá? Kdo bude 20 let posílat 25&nbsp;000&nbsp;Kč měsíčně a vydělá v průměru
+          6&nbsp;% ročně, bude mít přes 11 milionů. Při 4&nbsp;% kolem 9 milionů. Zaručené to
+          není, ale bez pravidelného investování nevznikne nic.
         </p>
 
-        <h2>Krok 5: ochrana</h2>
+        <h2>Krok 4: oddělte majetek od firmy</h2>
         <p>
-          Pojistka na příjmy. <Link href="/blog/den-kdy-se-nevratite-domu">Závěť</Link>. Plná moc pro případ neschopnosti. Věci, které lidé
-          neřeší, dokud je nepotřebují. A pak je pozdě.
+          Osobní majetek nesmí záviset na osudu firmy. Bydlení, rezerva a investice patří vám,
+          ne firmě. Firma je nástroj, který může selhat. A když selže, věřitelé sáhnou na všechno,
+          co v ní je. Pokud jste bance ručil osobně, sáhnou i na to, co máte doma. Pokud chcete peníze z firmy dál
+          investovat podnikatelsky, může pomoct{" "}
+          <Link href="/blog/holding-sro-osobni-majetek">holding</Link>.
         </p>
 
-        <h2>Krok 6: co bude po vás</h2>
+        <h2>Krok 5: ochrana pro případ, že vypadnete</h2>
+        <ul>
+          <li><strong>Pojištění příjmu</strong> pro případ invalidity a dlouhé nemoci. U majitele
+          firmy je to často nejdůležitější pojistka, protože bez něj přestane téct i firma.</li>
+          <li><strong>Závěť</strong>, aby o majetku nerozhodl jen zákon. Co se stane bez ní, popisuji
+          v článku <Link href="/blog/den-kdy-se-nevratite-domu">Kdybyste zítra nebyl</Link>.</li>
+          <li><strong>Předběžné prohlášení</strong>, nejlépe u notáře: kdo za vás bude rozhodovat,
+          když to sami nezvládnete. Bez něj o tom rozhoduje soud bez vašeho slova.</li>
+          <li><strong>Druhý podpis ve firmě</strong>: kdo podepíše výplaty a zaplatí dodavatele,
+          když budete v nemocnici.</li>
+        </ul>
+
+        <h2>Krok 6: co bude s firmou po vás</h2>
         <p>
-          Komu firma připadne. Jak ji ocenit. Jak ji předat dětem nebo prodat cizímu.
-          Je to práce pro advokáta, notáře a poradce dohromady. Ale začíná tím, že si to
-          začnete klást jako otázku dnes.
+          Komu firma připadne, kolik je skutečně za ni, jestli ji převezmou děti, nebo ji prodáte
+          cizímu. Je to práce pro advokáta, notáře, daňového poradce a finančního poradce dohromady.
+          Začíná ale tím, že si tu otázku položíte dnes, ne rok před odchodem. Co dělat
+          s penězi po prodeji, rozebírám v článku{" "}
+          <Link href="/blog/prodej-firmy-co-s-penezi">Prodal jste firmu. Co teď s penězi?</Link>
         </p>
 
         <h2>Proč to většina odkládá</h2>
         <p>
-          Protože je to abstraktní. Firma je konkrétní, každodenní, urgentní. Plán na dvacet
-          let se zdá daleko. Ale čas ubíhá a složený úrok pracuje jen tehdy, když investujete.
-          Každý rok odkladu je rok, o který přicházíte.
+          Protože je to abstraktní. Firma je konkrétní, každodenní a urgentní. Plán na dvacet let
+          vypadá daleko. Jenže složené úročení pracuje jen tehdy, když investujete. Kdo začne
+          o pět let později, musí na stejných 11 milionů posílat skoro 40&nbsp;000&nbsp;Kč měsíčně
+          místo 25&nbsp;000.
+        </p>
+        <p>
+          Kde jste na tom dnes, si můžete ověřit za pět minut ve{" "}
+          <Link href="/financni-preventivka">Finanční preventivce</Link>. Dvacet otázek, pět oblastí
+          a hned uvidíte, kde máte největší mezeru.
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Výpočty jsou orientační. Výnosy z minulosti nejsou zárukou budoucích výnosů. Článek je
+          vzdělávací a nepředstavuje investiční ani daňové doporučení.
         </p>
       </div>
     );
