@@ -2699,6 +2699,20 @@ nav.scrolled .nav-logo{font-size:15px}
 .page.p1{left:0;top:60px;padding:34px 30px;transform:rotateY(-16deg) rotateX(4deg) rotateZ(-2deg)}
 .page.p2{left:170px;top:30px;transform:rotateY(-12deg) rotateX(4deg) rotateZ(1deg)}
 .page.p3{left:340px;top:0;transform:rotateY(-10deg) rotateX(4deg) rotateZ(3.5deg)}
+/* Tři listy jsou dohromady široké 656 px a pod 1366 px přesahovaly okraj stránky, takže se web
+   posouval do strany. Maketa se proto po krocích zmenšuje podle místa, které má vpravo k dispozici.
+   Záporný okraj dole ubírá prázdné místo, které po zmenšení zbude (výška makety je 500 px). */
+@media(max-width:1365px){
+  .stack{--s:.92;transform:scale(var(--s));transform-origin:left top;margin-bottom:calc(-500px * (1 - var(--s)))}
+}
+/* Zmenšená maketa už není vyšší než text vlevo, a ten by se jinak dotýkal další sekce */
+@media(min-width:701px) and (max-width:1365px){.plan{padding-bottom:40px}}
+@media(max-width:1279px){.stack{--s:.86}}
+@media(max-width:1199px){.stack{--s:.78}}
+@media(max-width:1099px){.stack{--s:.72}}
+@media(max-width:1023px){.stack{--s:.62}}
+@media(max-width:899px){.stack{--s:.55}}
+@media(max-width:799px){.stack{--s:.48}}
 @media(max-width:700px){.plan{grid-template-columns:minmax(0,1fr);overflow:hidden}
   .stack{width:640px;transform:scale(.52);transform-origin:left top;margin-bottom:-235px}}
 
