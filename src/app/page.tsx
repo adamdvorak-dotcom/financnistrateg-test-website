@@ -761,6 +761,7 @@ export default function Page() {
     const k = p.get('kalkulacka')
     if (k === 'duchod') setCalcTab('retirement')
     if (k === 'jak-dlouho') setCalcTab('depletion')
+    if (k === 'hypoteka') setCalcTab('mortgage')
   }, []);
 
   const toggleLang = () => {

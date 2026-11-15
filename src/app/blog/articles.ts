@@ -56,8 +56,8 @@ export const articles: Article[] = [
     date: "2. března 2026",
     dateEn: "March 2, 2026",
     author: "Adam Dvořák, EFA",
-    readTime: 4,
-    tldr: ["Kratší fixace = nižší sazba, ale riziko růstu při refixaci.", "Delší fixace chrání cashflow, ale omezuje flexibilitu.", "Správná volba závisí na vašich plánech a toleranci rizika."],
+    readTime: 6,
+    tldr: ["Rozhoduje, jestli unesete splátku po refixaci, ne dnešní nejnižší sazba.", "U hypotéky 4 miliony může vyšší sazba po fixaci přidat přes 4 000 Kč měsíčně.", "Na konci fixace jde bez poplatku přejít k jiné bance nebo splatit libovolnou částku."],
   },
   {
     slug: "jak-se-pocita-duchod-v-cr",
@@ -89,8 +89,8 @@ export const articles: Article[] = [
     date: "18. února 2026",
     dateEn: "February 18, 2026",
     author: "Adam Dvořák, EFA",
-    readTime: 4,
-    tldr: ["Třetí pilíř dává státní příspěvky a daňový odpočet.", "Vlastní investiční portfolio nabízí vyšší flexibilitu a výnos.", "Optimum je kombinace: třetí pilíř + investice nad rámec."],
+    readTime: 6,
+    tldr: ["Na penzijko 1 700 Kč měsíčně: stát přidá 340 Kč, to žádná investice nepřekoná.", "Pro daňový odpočet je výhodnější DIP, odečtete z něj celý vklad až do 48 000 Kč ročně.", "Peníze, které chcete mít k dispozici před šedesátkou, patří na vlastní investiční účet."],
   },
   {
     slug: "jak-investovat-do-etf",
@@ -312,8 +312,8 @@ export const articles: Article[] = [
     date: "31. října 2026",
     dateEn: "October 31, 2026",
     author: "Adam Dvořák, EFA",
-    readTime: 4,
-    tldr: ["Dividendy mají nižší celkovou daňovou zátěž než mzda nad určitou hranici.", "DIP od firmy je nulové zdanění na až 50 000 Kč ročně.", "Přesný výpočet záleží na výši zisku a konkrétní situaci jednatele."],
+    readTime: 7,
+    tldr: ["Ze zisku 2 milionů zůstane při výplatě mzdou asi 1,13 milionu, dividendou 1,34 milionu.", "Kombinace mzdy, DIP od firmy a dividendy vyjde po započtení zdravotního pojištění stejně dobře jako dividenda, a k tomu máte nemocenskou a důchod.", "Příspěvek firmy na DIP do 50 000 Kč ročně je jediná koruna bez daně i odvodů."],
   },
   {
     slug: "etf-spocitejte-si",

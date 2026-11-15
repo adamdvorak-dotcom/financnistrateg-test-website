@@ -154,51 +154,101 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          Jedním z prvních rozhodnutí při sjednávání hypotéky je délka fixace úrokové
-          sazby. Jde o období, po které banka garantuje neměnnost vaší sazby, a tedy
-          i výše měsíční splátky. Správná volba může za dobu splácení ušetřit statisíce
-          korun.
+          Jedním z prvních rozhodnutí u hypotéky je délka fixace. Po tu dobu banka garantuje
+          sazbu, a tedy i výši splátky. Nejde přitom jen o to, která sazba je dnes nejnižší.
+          Rozhoduje, co s vámi udělá sazba, kterou dostanete, až fixace skončí.
         </p>
-        <h2>Krátká fixace (3 roky)</h2>
+
+        <h2>Co se stane na konci fixace</h2>
         <p>
-          Tříletá fixace bývá nejlevnější z hlediska aktuální úrokové sazby. Je vhodná
-          tehdy, když očekáváte, že sazby v budoucnu klesnou, nebo když plánujete
-          nemovitost prodat či hypotéku předčasně splatit. Nevýhodou je nejistota:
-          po třech letech se sazba přenastaví na tržní podmínky, které mohou být
-          výrazně horší.
+          Vezměme hypotéku 4&nbsp;000&nbsp;000&nbsp;Kč na 30 let se sazbou 4,5&nbsp;%. Splátka je
+          20&nbsp;267&nbsp;Kč měsíčně. Po pěti letech dlužíte ještě asi 3&nbsp;646&nbsp;000&nbsp;Kč
+          a banka vám nabídne novou sazbu na zbývajících 25 let:
         </p>
+        <div className="nums">
+          <div className="num">
+            <span>Nová sazba 3,5&nbsp;%</span>
+            <b>18&nbsp;254&nbsp;Kč</b>
+            <p>měsíčně. O 2&nbsp;000&nbsp;Kč méně než dnes.</p>
+          </div>
+          <div className="num">
+            <span>Nová sazba 5,5&nbsp;%</span>
+            <b>22&nbsp;392&nbsp;Kč</b>
+            <p>měsíčně. O 2&nbsp;100&nbsp;Kč víc než dnes.</p>
+          </div>
+          <div className="num navy">
+            <span>Nová sazba 6,5&nbsp;%</span>
+            <b>24&nbsp;620&nbsp;Kč</b>
+            <p>měsíčně. O 4&nbsp;350&nbsp;Kč víc, přes 52&nbsp;000&nbsp;Kč ročně.</p>
+          </div>
+        </div>
+        <p>
+          Otázka tedy nezní „jakou fixaci chci“, ale „unesu splátku o čtyři tisíce vyšší?“.
+          Pokud ano, můžete si dovolit kratší fixaci a víc flexibility. Pokud ne, kupujete si
+          delší fixací klid.
+        </p>
+
+        <h2>Krátká fixace (1 až 3 roky)</h2>
+        <p>
+          Hodí se, když plánujete nemovitost prodat nebo hypotéku brzy výrazně splatit a zároveň
+          unesete vyšší splátku, kdyby sazby šly nahoru. Konec fixace je totiž chvíle, kdy můžete splatit
+          libovolnou částku bez poplatku. Nevýhoda je nejistota: za rok nebo za tři roky se sazba
+          nastaví podle trhu a ten může být výrazně horší.
+        </p>
+
         <h2>Střední fixace (5 let)</h2>
         <p>
-          Pětiletá fixace je v Česku historicky nejoblíbenější a pro většinu klientů
-          představuje rozumný kompromis. Nabízí dostatečnou stabilitu pro rodinný
-          rozpočet a zároveň nezamkne vaši hypotéku na příliš dlouhou dobu. Po pěti
-          letech máte možnost refinancovat nebo upravit podmínky podle aktuální situace.
+          Dlouho nejoblíbenější volba, dnes u nových hypoték převažují tříleté fixace. Pro většinu
+          lidí je to pořád rozumný kompromis. Pět let stability
+          pro rodinný rozpočet, a přitom hypotéku nezamknete na příliš dlouho. Za pět let se
+          změní příjmy, rodina i plány a vy můžete podmínky přizpůsobit.
         </p>
-        <h2>Dlouhá fixace (10 let)</h2>
+
+        <h2>Dlouhá fixace (7 až 10 let)</h2>
         <p>
-          Desetiletá fixace poskytuje maximální jistotu, splátka zůstane stejná bez
-          ohledu na vývoj trhu. To oceníte především ve výkyvných obdobích. Banky ji
-          ale zpravidla nabízejí za vyšší sazbu a výrazně omezují možnost předčasného
-          splacení bez sankcí. Hodí se pro konzervativní klienty s dlouhodobou stabilitou
-          příjmů a bez plánů na změnu nemovitosti.
+          Maximální jistota, splátka se nezmění bez ohledu na vývoj trhu. Platíte za to
+          flexibilitou: mimo konec fixace splatíte bez poplatku jen v případech, které určuje
+          zákon. Typicky jednou ročně do 25&nbsp;% původní výše úvěru v měsíci před výročím
+          smlouvy. U smluv a fixací sjednaných od září 2024 navíc při prodeji nemovitosti nebo
+          při vypořádání společného jmění po rozvodu, pokud od podpisu smlouvy uplynuly aspoň
+          dva roky. Bez poplatku je i splacení kvůli úmrtí, dlouhodobé nemoci nebo invaliditě. Hodí se pro lidi se
+          stabilním příjmem, kteří s nemovitostí nic neplánují a chtějí mít splátku jistou.
         </p>
-        <h2>Jak se rozhodnout?</h2>
+
+        <h2>Čtyři otázky před podpisem</h2>
+        <ul>
+          <li><strong>Unesu splátku při sazbě vyšší o 2 až 3 procentní body?</strong> Spočítejte si ji
+          v <Link href="/?kalkulacka=hypoteka#calculators">hypoteční kalkulačce</Link>. Pokud by vás
+          vyšší splátka dostala do potíží, volte delší fixaci.</li>
+          <li><strong>Co plánuji v příštích letech?</strong> Prodej, stěhování, větší splátku
+          z bonusu nebo z prodeje firmy? Pak fixaci nastavte tak, aby končila kolem té doby.</li>
+          <li><strong>Mám rezervu?</strong> Kdo má stranou šest měsíčních výdajů, přežije
+          i nepříjemnou refixaci bez paniky.</li>
+          <li><strong>Jaký je rozdíl v sazbách?</strong> Když je delší fixace dražší jen
+          o pár desetin procentního bodu, jistota se obvykle vyplatí.</li>
+        </ul>
+
+        <h2>Na konci fixace nepodepisujte automaticky</h2>
         <p>
-          Při výběru délky fixace berte v úvahu čtyři klíčové faktory: aktuální výši
-          sazeb a jejich očekávaný vývoj, vaše životní plány v horizontu 5–10 let,
-          toleranci vůči finančnímu riziku a potřebu flexibility (stěhování, refinancování,
-          předčasné splacení).
+          Banka vám nejpozději tři měsíce před koncem fixace pošle novou nabídku. Většina lidí ji
+          jen podepíše. Přitom je to chvíle, kdy můžete bez poplatku přejít k jiné bance, splatit
+          část dluhu nebo vyjednat lepší sazbu. Srovnejte nabídky aspoň dvou dalších bank. Kdy
+          a za kolik jde splácet mimořádně, rozebírám v článku{" "}
+          <Link href="/blog/mimoradna-splatka-hypoteky">Mimořádná splátka hypotéky: kdy se vyplatí a kdy ne</Link>.
         </p>
-        <p>
-          Obecně platí: čím více jistoty potřebujete, tím delší fixace dává smysl.
-          Čím více flexibility chcete zachovat, tím kratší fixace je vhodnější.
-        </p>
+
         <h2>Závěr</h2>
         <p>
-          Neexistuje univerzálně správná odpověď, záleží na vaší konkrétní situaci.
-          Před podpisem smlouvy vždy doporučuji srovnat nabídky více bank a projít
-          si scénáře, co by se stalo, kdyby sazby po skončení fixace vzrostly o 2–3 %.
-          Pokud si nejste jisti, rád vám s výběrem pomohu.
+          Univerzálně správná délka fixace neexistuje. Kratší fixace vám nechává volnost, delší
+          chrání rozpočet. Rozhodujte podle toho, co unesete, ne podle toho, co si myslíte
+          o budoucích sazbách. Ty nezná nikdo. Pokud si nejste jistí, rád to s vámi projdu.
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Splátky jsou orientační a počítají s anuitním splácením. Zdroj: zákon č. 257/2016 Sb.,
+          o spotřebitelském úvěru, § 102 odst. 3 (nabídka před koncem fixace) a § 117 (předčasné
+          splacení). Článek je vzdělávací
+          a nepředstavuje úvěrové doporučení.
         </p>
       </div>
     );
@@ -725,8 +775,8 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>
           Mimo tyto situace smí banka chtít náhradu nákladů, které jí předčasným splacením
           vznikly, a zákon její výši omezuje. Pozor na starší hypotéky: pokud vám pořád běží
-          fixace sjednaná před zářím 2024, nová pravidla včetně 25&nbsp;% k výročí pro vás
-          začnou platit až od další fixace. Do té doby rozhoduje vaše smlouva. Než pošlete
+          fixace sjednaná před zářím 2024, novější pravidla (výpočet náhrady, prodej nemovitosti
+          a vypořádání společného jmění) pro vás začnou platit až od další fixace. Do té doby rozhoduje vaše smlouva. Než pošlete
           velkou částku, zeptejte se banky na konkrétní číslo.
         </p>
 
@@ -771,47 +821,105 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          Otázka „spoření nebo investice na důchod?" patří k nejčastějším, které se mě
-          klienti ptají. Obě cesty mají svá specifika a nejlepší řešení závisí na vaší
-          situaci, věku a finančních cílech.
+          Otázka „penzijko, nebo investice?“ patří k nejčastějším, které slyším. Správná odpověď
+          většinou zní: obojí, jen každé na něco jiného. Rozhoduje, kolik měsíčně odkládáte a jestli
+          platíte daň z příjmů.
         </p>
         <PenzijkoKalk />
-        <h2>Třetí pilíř: penzijní spoření</h2>
+
+        <h2>Penzijko: co vám dá stát</h2>
         <p>
-          Účastnické fondy (dříve penzijní připojištění) fungují díky kombinaci vašich
-          příspěvků, státní podpory a případného příspěvku zaměstnavatele. Stát přispívá
-          až 340 Kč měsíčně při vkladu 1 700 Kč. Navíc si od daňového základu lze odečíst
-          příspěvky přesahující 1 700 Kč měsíčně, až 48 000 Kč ročně.
+          Doplňkové penzijní spoření má dvě státní výhody. První je <strong>státní příspěvek</strong>:
+          stát přidá 20&nbsp;% z vašeho vkladu od 500&nbsp;Kč měsíčně, nejvýš 340&nbsp;Kč při vkladu
+          1&nbsp;700&nbsp;Kč. To je až 4&nbsp;080&nbsp;Kč ročně. Stát příspěvek připisuje jednou
+          za čtvrtletí se zpožděním, ale jistých 20&nbsp;% k vkladu vám nedá žádná investice.
         </p>
         <p>
-          Nevýhodou je omezená likvidita: peníze jsou dostupné zpravidla až v 60 letech
-          a výnosy konzervativních fondů bývají nízké, často nepřekonají ani inflaci.
-        </p>
-        <h2>Vlastní investiční portfolio</h2>
-        <p>
-          Alternativou je pravidelné investování do ETF fondů nebo podílových fondů
-          na vlastní účet. Historické výnosy globálně diverzifikovaných ETF se pohybují
-          kolem 7–10 % ročně (před inflací). Peníze jsou kdykoliv dostupné a portfolio
-          si přizpůsobíte přesně svým potřebám.
+          Druhá je <strong>daňový odpočet</strong>. Co pošlete nad 1&nbsp;700&nbsp;Kč měsíčně, si
+          můžete odečíst od základu daně. Pozor: odpočet má jeden společný roční limit
+          48&nbsp;000&nbsp;Kč pro penzijko, DIP, životní pojištění a pojištění dlouhodobé péče.
+          Při 15% dani je to nejvýš 7&nbsp;200&nbsp;Kč zpátky na daních.
         </p>
         <p>
-          Na druhé straně neprofitujete ze státní podpory a musíte být připraveni
-          překonat psychicky těžší období poklesů, bez institucionálního „jistícího
-          mechanismu."
+          Pozor na chystanou změnu. Vláda v srpnu 2026 schválila novelu, podle které by lidé do
+          30 let dostávali od státu 40&nbsp;% místo 20&nbsp;%, tedy až 680&nbsp;Kč měsíčně. Účinnost
+          je navržená od ledna 2027, zákon ale ještě projednává Sněmovna.
         </p>
-        <h2>Kombinace jako nejlepší přístup</h2>
+
+        <div className="nums">
+          <div className="num">
+            <span>Státní příspěvek</span>
+            <b>340&nbsp;Kč</b>
+            <p>měsíčně při vkladu 1&nbsp;700&nbsp;Kč. Ročně 4&nbsp;080&nbsp;Kč.</p>
+          </div>
+          <div className="num">
+            <span>Daňový odpočet</span>
+            <b>48&nbsp;000&nbsp;Kč</b>
+            <p>ročně, společný limit pro penzijko, DIP a životní pojištění.</p>
+          </div>
+          <div className="num navy">
+            <span>Úspora na dani</span>
+            <b>7&nbsp;200&nbsp;Kč</b>
+            <p>ročně při plném odpočtu a 15% dani.</p>
+          </div>
+        </div>
+
+        <h2>Kde je háček</h2>
         <p>
-          Pro většinu klientů doporučuji kombinaci obou přístupů. Třetí pilíř využijte
-          alespoň do výše příspěvku 1 700 Kč měsíčně, státní podpora je zaručený
-          výnos, který žádná investice nenahradí. Zbytek volných prostředků pak
-          investujte do diverzifikovaného portfolia s vyšším výnosovým potenciálem.
+          Peníze jsou zamčené. Penzi z penzijka dostanete nejdřív v 60 letech a u smluv uzavřených
+          od roku 2024 navíc až po 10 letech spoření. Kdo chce peníze dřív, přijde o státní
+          příspěvky a uplatněné odpočty musí dodanit.
         </p>
+        <p>
+          Druhý háček je výnos. Konzervativní fondy, které si lidé vybírají nejčastěji, často
+          nepřekonají ani inflaci. Pokud máte do 60 let deset a více let, může dávat smysl
+          dynamičtější fond s větším podílem akcií. Kolísá víc, ale na dlouhém horizontu historicky vydělává
+          víc. Zaručené to není.
+        </p>
+
+        <h2>Vlastní investice: volnost za cenu disciplíny</h2>
+        <p>
+          Pravidelná investice do ETF na vlastním účtu nemá žádné státní příspěvky, zato je
+          k penězům přístup kdykoli a vybíráte si, do čeho přesně investujete. Globálně rozložené
+          akciové ETF historicky vynášely kolem 7 až 10&nbsp;% ročně před inflací, s roky, kdy
+          portfolio padá o desítky procent. Bez plánu, který vás v takových letech udrží, se
+          z této výhody snadno stane nevýhoda.
+        </p>
+
+        <h2>Jak to poskládat</h2>
+        <p>
+          U lidí, kteří platí daň, často dává smysl tohle pořadí. Jestli platí i pro vás, záleží
+          na věku, rezervě a cílech:
+        </p>
+        <ul>
+          <li><strong>1&nbsp;700&nbsp;Kč měsíčně na penzijko.</strong> Kvůli státnímu příspěvku,
+          který nic nepřekoná.</li>
+          <li><strong>Do 4&nbsp;000&nbsp;Kč měsíčně na DIP.</strong> Kvůli odpočtu 48&nbsp;000&nbsp;Kč
+          ročně. Na penzijku by se odečítalo jen to, co je nad 1&nbsp;700&nbsp;Kč, takže pro plný
+          odpočet byste tam museli posílat 5&nbsp;700&nbsp;Kč. DIP dá stejný odpočet s menším vkladem
+          a větší volbou, do čeho investujete. Peníze jsou ale zamčené stejně jako v penzijku:
+          výplata od 60 let a po 10 letech, jinak odpočty dodaníte.</li>
+          <li><strong>Zbytek na vlastní investiční účet.</strong> Peníze, ke kterým se chcete dostat
+          i před šedesátkou.</li>
+        </ul>
+        <p>
+          Pokud přispívá zaměstnavatel nebo vaše vlastní firma, je to ještě lepší: do
+          50&nbsp;000&nbsp;Kč ročně je jeho příspěvek bez daně i odvodů. Jak to funguje u DIP,
+          rozebírám v článku{" "}
+          <Link href="/blog/dip-dlouhodoby-investicni-produkt">DIP: jak z investic ušetřit 7&nbsp;200&nbsp;Kč na daních</Link>.
+        </p>
+
         <h2>Závěr</h2>
         <p>
-          Čím dříve začnete, tím lépe. Složený úrok pracuje nejlépe v dlouhém horizontu
-          a i malé měsíční částky mohou po 20–30 letech tvořit zásadní rozdíl. Pokud
-          nevíte, kde začít, nebo chcete nastavit strategii na míru, ozvěte se. Rád
-          vám pomohu sestavit konkrétní plán.
+          Malé měsíční částky po 20 až 30 letech dělají zásadní rozdíl. Kolik vám k důchodu bude chybět, si spočítáte v{" "}
+          <Link href="/?kalkulacka=duchod#calculators">důchodové kalkulačce</Link>, a pokud to chcete
+          projít na svých číslech, ozvěte se.
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Zdroje: zákon č. 427/2011 Sb., o doplňkovém penzijním spoření (státní příspěvek, výplata
+          dávek); zákon č. 586/1992 Sb., o daních z příjmů (§ 15a, § 6 odst. 9). Článek je vzdělávací
+          a nepředstavuje investiční doporučení. Výnosy z minulosti nejsou zárukou budoucích výnosů.
         </p>
       </div>
     );
@@ -1526,68 +1634,133 @@ function ArticleContent({ slug }: { slug: string }) {
     return (
       <div className="article-body">
         <p>
-          Dva klienti. Podobná firma, podobný zisk. Jeden zaplatí ročně o více než sto padesát
-          tisíc víc. Rozdíl není v žádné kreativitě. Je v tom, jak si nastavili výplatu.
+          Kolik si z firmy se ziskem dvou milionů ročně odnesete? Podle toho, jak si nastavíte
+          výplatu, se výsledek liší o víc než dvě stě tisíc. Bez jakékoli kreativity, jen podle
+          zákona.
         </p>
 
         <h2>Základní logika</h2>
         <p>
-          Mzda ze s.r.o. je daňový náklad firmy, snižuje základ daně z příjmů právnických
-          osob. Platíte z ní odvody: firma přidá třicet tři a půl procenta ke hrubé mzdě
-          navíc, vy zaplatíte dalších jedenáct a půl procenta. Budujete si sociální nárok
+          Mzda ze s.r.o. je pro firmu daňový náklad, snižuje její zisk. Platí se z ní ale odvody:
+          firma přidá 33,8&nbsp;% ke hrubé mzdě navíc a vám se z hrubé mzdy strhne dalších
+          11,6&nbsp;% na sociální a zdravotní pojištění. Za to si budujete nárok na nemocenskou
           a důchod.
         </p>
         <p>
-          Dividendy se platí ze zisku po dani z příjmu právnických osob. Zdanění je
-          patnáct procent srážkovou daní, bez jakýchkoliv odvodů. Nevýhoda: jednou ročně
-          po schválení účetní závěrky.
+          Dividenda se platí ze zisku, který už zdanila firma. Daň z příjmů právnických osob je
+          21&nbsp;% a z vyplacené dividendy se pak strhne ještě 15&nbsp;% srážkové daně. Žádné
+          odvody, žádné přiznání. Nevýhoda: dividenda se zpravidla vyplácí jednou ročně, až po
+          schválení účetní závěrky.
         </p>
 
         <div className="nums">
           <div className="num">
             <span>Mzda</span>
             <b>+33,8&nbsp;%</b>
-            <p>přidá firma ke hrubé mzdě navíc. Vy zaplatíte dalších 11,6&nbsp;%.</p>
+            <p>přidá firma ke hrubé mzdě navíc. Vám se strhne dalších 11,6&nbsp;%.</p>
           </div>
           <div className="num">
             <span>Dividenda</span>
-            <b>15&nbsp;%</b>
-            <p>srážková daň a hotovo. Bez odvodů, bez ohledu na výši.</p>
+            <b>21 + 15&nbsp;%</b>
+            <p>daň firmy a pak srážková daň. Dohromady 32,85&nbsp;% ze zisku.</p>
           </div>
           <div className="num navy">
             <span>DIP od firmy</span>
             <b>50&nbsp;000&nbsp;Kč</b>
-            <p>ročně může firma poslat na váš DIP bez daně a bez odvodů.</p>
+            <p>ročně může firma poslat na váš DIP bez daně a bez odvodů, pokud od ní máte mzdu nebo odměnu jednatele.</p>
           </div>
         </div>
 
-        <h2>Kdy se mzda vyplatí</h2>
+        <h2>Konkrétní čísla: 2 miliony zisku</h2>
         <p>
-          Pokud je s.r.o. váš primární příjem a chcete neschopenku, nemocenskou a důchodový
-          nárok, mzda dává smysl. Zhruba do hrubé mzdy sto čtyřicet tisíc měsíčně jsou
-          odvody ještě snesitelné.
+          Firma má před výplatou majitele zisk 2&nbsp;000&nbsp;000&nbsp;Kč a vy si chcete vzít
+          všechno. Počítám s pravidly pro rok 2026, slevou na poplatníka a bez dalších příjmů.
+        </p>
+        <h3>Varianta 1: všechno jako mzda</h3>
+        <p>
+          Aby firma utratila 2 miliony, může vám dát hrubou mzdu zhruba 1&nbsp;495&nbsp;000&nbsp;Kč.
+          Po odvodech a dani vám zůstane přibližně <strong>1&nbsp;128&nbsp;000&nbsp;Kč</strong>.
+          Na odvodech a daních odejde skoro 872&nbsp;000&nbsp;Kč.
+        </p>
+        <h3>Varianta 2: všechno jako dividenda</h3>
+        <p>
+          Firma zaplatí 21&nbsp;% daně, z dividendy se strhne 15&nbsp;%. Vám zůstane
+          <strong> 1&nbsp;343&nbsp;000&nbsp;Kč</strong>. To je o 215&nbsp;000&nbsp;Kč víc než
+          u mzdy. Jenže nemáte nemocenskou, důchodový nárok neroste a pokud nejste pojištěný
+          jinde, platíte si zdravotní pojištění sám jako osoba bez zdanitelných příjmů. V roce 2026
+          je to nejméně 3&nbsp;024&nbsp;Kč měsíčně, přes 36&nbsp;000&nbsp;Kč ročně. Po jeho
+          zaplacení vám zůstane zhruba 1&nbsp;307&nbsp;000&nbsp;Kč.
+        </p>
+        <h3>Varianta 3: kombinace, kterou u majitelů firem vídám nejčastěji</h3>
+        <p>
+          Hrubá mzda 40&nbsp;000&nbsp;Kč měsíčně, firma vám pošle 50&nbsp;000&nbsp;Kč ročně na DIP
+          a zbytek si vyplatíte jako dividendu. Na mzdě dostanete čistého zhruba
+          383&nbsp;000&nbsp;Kč, dividenda vám přinese přibližně 878&nbsp;000&nbsp;Kč a na DIP
+          přibude 50&nbsp;000&nbsp;Kč. Dohromady <strong>asi 1&nbsp;311&nbsp;000&nbsp;Kč</strong>.
         </p>
         <p>
-          Nad tímto prahem platíte čím dál větší podíl bez toho, aby se vám důchodový nárok
-          dál zvyšoval. Systém má strop.
+          Proti čisté dividendě je to o 32&nbsp;000&nbsp;Kč méně. Když ale u dividendy odečtete
+          zdravotní pojištění, vyjde kombinace zhruba o 5&nbsp;000&nbsp;Kč lépe. A navíc máte nárok
+          na nemocenskou, každý rok si přidáváte do důchodu a 50&nbsp;000&nbsp;Kč ročně se
+          investuje mimo firmu. Proti čisté mzdě jste o 183&nbsp;000&nbsp;Kč dál.
+        </p>
+
+        <h2>Kdy se mzda vyplatí</h2>
+        <p>
+          Když je s.r.o. váš hlavní příjem a chcete mít nemocenskou a důchodový nárok. Nemusí to
+          ale být vysoká mzda. Výpočet důchodu je nastavený tak, že každá další koruna mzdy přidá
+          do budoucího důchodu čím dál méně. A z části mzdy nad 2&nbsp;350&nbsp;416&nbsp;Kč ročně se
+          sociální pojištění už neplatí, zdravotní ano.
+        </p>
+        <p>
+          Pozor i na daň: kdo má základ daně nad 1&nbsp;762&nbsp;812&nbsp;Kč ročně, platí
+          z části nad touto hranicí 23&nbsp;% místo 15&nbsp;%.
         </p>
 
         <h2>Kdy se vyplatí dividendy</h2>
         <p>
-          Pokud máte jiné příjmy, kde odvody platíte odjinud: zaměstnání, jiné s.r.o.,
-          příjmy z pronájmu. Patnáct procent z dividendy a hotovo. Platí to bez ohledu
-          na výši: sto tisíc nebo deset milionů, sazba je stejná.
+          Když odvody platíte odjinud: máte zaměstnání, jiné s.r.o. nebo jste už v důchodu. Pak
+          je dividenda skoro vždycky levnější cesta. Sazba je stejná, ať si vyplatíte sto tisíc
+          nebo deset milionů.
+        </p>
+        <p>
+          Dividendu ale nejde vyplatit kdykoli a v jakékoli výši. Musí na ni být zisk ve schválené
+          účetní závěrce a firma se výplatou nesmí dostat do úpadku. To je takzvaný test
+          insolvence podle § 40 zákona o obchodních korporacích. U s.r.o. k tomu patří ještě
+          kapitálový test podle § 161, takže výplata nesmí snížit vlastní kapitál pod zákonnou
+          hranici.
+        </p>
+
+        <h2>DIP od firmy: nejlevnější koruna</h2>
+        <p>
+          Příspěvek firmy na DIP, penzijní spoření nebo životní pojištění je do 50&nbsp;000&nbsp;Kč
+          ročně osvobozený od daně i od odvodů a pro firmu je to daňový náklad. Z těch tří cest
+          výplaty je to jediná koruna, ze které stát nevezme nic. Platí to pro zaměstnance a pro
+          jednatele, kterým firma vyplácí odměnu jako příjem ze závislé činnosti a mají příspěvek
+          sjednaný ve smlouvě o výkonu funkce. Limit 50&nbsp;000&nbsp;Kč je společný pro DIP,
+          penzijko, životní pojištění a pojištění dlouhodobé péče. Jak to nastavit
+          ve vašem případě, je potřeba ověřit s účetní nebo daňovým poradcem.
         </p>
 
         <h2>Jak to kombinovat</h2>
         <p>
-          Recept, který používám nejčastěji: přiměřená mzda pro zachování odvodů a sociálního
-          nároku, maximální příspěvek firmy na DIP, přebytky dividendami jednou ročně.
+          Kombinace, která u majitelů firem vychází nejčastěji: přiměřená mzda kvůli nemocenské a důchodu, maximální
+          příspěvek firmy na DIP a přebytky dividendou jednou ročně. Kolik je „přiměřená mzda“,
+          záleží na tom, jestli máte jiné příjmy, kolik vám do důchodu chybí a kolik potřebujete
+          měsíčně na život. Podrobný rozhodovací rámec najdete v článku{" "}
+          <Link href="/blog/kolik-si-vyplacet-ze-sro">Kolik si vyplácet ze s.r.o.</Link>
         </p>
         <p>
-          Přesná čísla záleží na výši zisku a konkrétní situaci. Ale tohle jsou tři páky,
-          které se dají nastavit rychle a ušetřit statisíce ročně. A zároveň budovat osobní
-          majetek mimo firmu.
+          Peníze vyplacené z firmy jsou ale teprve začátek. Rozhoduje, co s nimi uděláte potom.
+          Tím, že je necháte ležet na účtu, o rozdíl z této tabulky zase přijdete.
+        </p>
+
+        <p style={{ marginTop: 24, fontSize: 13.5, color: "var(--text-2)", lineHeight: 1.65 }}>
+          Výpočty jsou zjednodušené a orientační: počítají s pravidly pro rok 2026, slevou na
+          poplatníka a bez dalších příjmů a odpočtů. Zdroje: zákon č. 586/1992 Sb., o daních
+          z příjmů (§ 6, § 16, § 21, § 36); zákon č. 589/1992 Sb. a č. 592/1992 Sb. (pojistné);
+          zákon č. 90/2012 Sb., o obchodních korporacích (§ 40, § 161). Článek není daňové poradenství,
+          konkrétní nastavení proberte s účetní nebo daňovým poradcem.
         </p>
       </div>
     );
