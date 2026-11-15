@@ -6,6 +6,7 @@ import { TymOrbit } from "./TymOrbit";
 import { HeroRotate } from "./HeroRotate";
 import { ZmenaPlan } from "./ZmenaPlan";
 import { NewsletterBox } from "./NewsletterBox";
+import { FazeFirmy } from "./FazeFirmy";
 import { PrevRing } from "./PrevRing";
 import { SiteFooter } from "./SiteFooter";
 
@@ -1260,6 +1261,13 @@ export default function Page() {
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Kde právě jste ── */}
+      <section className="faze-sekce">
+        <div className="container">
+          <FazeFirmy lang={lang} />
         </div>
       </section>
 

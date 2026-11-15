@@ -134,6 +134,13 @@ body:not(.started) .mobilebar { display: none !important; }
 .score .big { font-family: var(--font-display); font-size: 28px; font-weight: 600; line-height: 1; color: var(--ink); }
 .score .of { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .result-cta { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(26,21,17,.12); }
+.rc-pokryto { font: 600 17px/1.3 var(--font-display); color: var(--ink); margin: 0 0 12px; }
+.rc-otevrene { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--ink); }
+.rc-otevrene:empty { display: none; }
+.rc-otevrene li { display: flex; align-items: center; gap: 10px; }
+.rc-otevrene li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; border: 2px solid #C9A260; }
+.rc-otevrene small { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rc-pozn { font-size: 12px; line-height: 1.5; color: var(--muted); margin: 12px 0 0; }
 .answered { font-size: 13px; color: var(--muted); margin: 2px 0 14px; font-variant-numeric: tabular-nums; }
 .band { border-radius: var(--radius); padding: 10px 12px; margin-bottom: 18px; border-left: 3px solid var(--muted); background: var(--paper); }
 .band strong { display: block; font-size: 15px; }
@@ -334,8 +341,10 @@ body:not(.started) .mobilebar { display: none !important; }
           <p class="empty" id="prioEmpty" hidden>Zatím nic. Jakmile odpovíte „ne" nebo „částečně", objeví se tu, čím začít.</p>
         </div>
         <div class="result-cta" id="resultCta" hidden>
-          <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Chcete promluvit o výsledku osobně?</p>
-          <a href="/konzultace" class="btn solid">Zahájit rozhovor →</a>
+          <p class="rc-pokryto" id="rcPokryto"></p>
+          <ul class="rc-otevrene" id="rcOtevrene"></ul>
+          <a href="/konzultace#rezervace" class="btn solid" id="rcBtn">Probrat výsledek →</a>
+          <p class="rc-pozn">Za pokrytou beru oblast, která má aspoň 6 bodů z 8. Vybrané oblasti se přenesou k rezervaci jako téma schůzky.</p>
         </div>
       </div>
     </aside>
@@ -456,7 +465,7 @@ body:not(.started) .mobilebar { display: none !important; }
   });
   function render() {
     var locked = !state.unlocked;
-    var total = 0, count = 0, cands = [];
+    var total = 0, count = 0, cands = [], areaSubs = [];
     var meters = document.getElementById("meters");
     meters.innerHTML = "";
     AREAS.forEach(function (a) {
@@ -465,6 +474,7 @@ body:not(.started) .mobilebar { display: none !important; }
         var v = state.answers[it.id];
         if (typeof v === "number") { sub += v; total += v; count += 1; if (v < 2) { cands.push({ it: it, v: v, area: a.name }); } }
       });
+      areaSubs.push({ id: a.id, name: a.name, sub: sub });
       document.getElementById("pts-" + a.id).textContent = locked ? "" : sub + " / 8 bodů";
       var row = document.createElement("div");
       row.className = "meter-row";
@@ -503,7 +513,33 @@ body:not(.started) .mobilebar { display: none !important; }
     pe.hidden = top3.length > 0;
     if (!top3.length) { pe.textContent = count === 20 ? "Nic zásadního vám nechybí. Projděte test znovu za rok nebo ve chvíli, kdy se ve firmě či v rodině něco změní." : 'Zatím nic. Jakmile odpovíte „ne" nebo „částečně", objeví se tu, čím začít.'; }
     var rc = document.getElementById("resultCta");
-    if (rc) rc.hidden = !state.unlocked;
+    if (rc) {
+      rc.hidden = !state.unlocked;
+      // Další krok: kolik oblastí je pokrytých a které (nejvýš tři nejslabší) probrat na schůzce.
+      // Jejich čísla jdou v adrese k rezervaci, kde se z nich stane téma schůzky.
+      var open = areaSubs.filter(function (x) { return x.sub < 6; }).sort(function (x, y) { return x.sub - y.sub; });
+      var covered = AREAS.length - open.length;
+      var top = open.slice(0, 3);
+      document.getElementById("rcPokryto").textContent =
+        covered === AREAS.length ? "Všech pět oblastí máte pokrytých."
+        : covered === 0 ? "Žádnou z pěti oblastí zatím nemáte pokrytou."
+        : covered === 1 ? "Jednu oblast z pěti máte pokrytou."
+        : covered + " oblasti z pěti máte pokryté.";
+      var ul = document.getElementById("rcOtevrene");
+      ul.innerHTML = "";
+      top.forEach(function (x) {
+        var li = document.createElement("li");
+        li.innerHTML = "<span>" + x.name + "</span><small>" + x.sub + " / 8</small>";
+        ul.appendChild(li);
+      });
+      var texty = ["Probrat výsledek →", "Probrat tuhle oblast →", "Probrat ty dvě oblasti →", "Probrat ty tři oblasti →"];
+      var href = top.length ? "/konzultace?oblasti=" + top.map(function (x) { return x.id; }).join(",") + "#rezervace" : "/konzultace#rezervace";
+      var rcBtn = document.getElementById("rcBtn");
+      rcBtn.textContent = texty[top.length];
+      rcBtn.href = href;
+      var big = document.querySelector("#ctaSection a.btn");
+      if (big) big.href = href;
+    }
   }
   function renderLock(count) {
     document.getElementById("lockCount").textContent = "Odpovězeno " + count + " z 20";

@@ -3890,3 +3890,54 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
   .zv-st,.zv-dik path{animation:none}
   .zv-vol,.zv-vol svg,.zv-chip{transition:none}
 }
+
+/* ── Kde právě jste: cesty podle fáze firmy ── */
+@keyframes faze-in{from{opacity:0;transform:translateY(16px)}}
+.faze-sekce{background:#0C1F3A;color:#F5F2EC;padding:72px 0 80px}
+.faze .section-eyebrow{color:#C9A260}
+.faze-seg{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px;margin-top:16px;padding:4px;
+  border-radius:28px;border:1px solid rgba(245,242,236,.22);background:rgba(245,242,236,.05)}
+.faze-pill{position:absolute;left:4px;top:4px;bottom:4px;width:calc((100% - 8px) / 3);border-radius:24px;background:#C9A260;
+  transform:translateX(calc(var(--i) * 100%));transition:transform .5s var(--ease-out)}
+.faze-seg button{position:relative;min-height:48px;padding:6px 10px;border:0;border-radius:24px;background:none;color:#C9D1DF;
+  font:500 14px/1.2 Inter,system-ui,sans-serif;cursor:pointer;transition:color .3s}
+.faze-seg button.on{color:#0C1F3A;font-weight:600}
+.faze-seg button:focus-visible{outline:2px solid #F5F2EC;outline-offset:2px}
+.faze-pan{margin-top:34px;animation:faze-in .55s var(--ease-out)}
+.faze-h{margin:0 0 24px;font:400 clamp(28px,3.6vw,40px)/1.15 'Lora',Georgia,serif;color:#F5F2EC}
+.faze-clanky{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:860px}
+.faze-clanky a{display:flex;flex-direction:column;gap:8px;min-height:132px;box-sizing:border-box;padding:20px 22px;border-radius:14px;
+  border:1px solid rgba(245,242,236,.18);color:#F5F2EC;text-decoration:none;
+  transition:background .3s,border-color .3s,transform .4s var(--ease-out)}
+.faze-clanky a:hover,.faze-clanky a:focus-visible{background:rgba(201,162,96,.12);border-color:#C9A260;transform:translateY(-3px)}
+.faze-clanky a:focus-visible{outline:2px solid #F5F2EC;outline-offset:2px}
+.faze-clanky small{font:400 11px/1.4 'DM Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;color:#C9A260}
+.faze-clanky b{font:400 19px/1.3 'Lora',Georgia,serif}
+.faze-clanky span{margin-top:auto;font-size:13px;font-weight:600;color:#C9D1DF}
+.faze-clanky i{display:inline-block;font-style:normal;transition:transform .3s var(--ease-out)}
+.faze-clanky a:hover i{transform:translateX(4px)}
+@media(max-width:700px){
+  .faze-sekce{padding:56px 0 60px}
+  /* tři dlouhé popisky se vedle sebe nevejdou, na telefonu jdou pod sebe */
+  .faze-seg{grid-template-columns:1fr;border-radius:20px}
+  .faze-pill{width:auto;right:4px;bottom:auto;height:calc((100% - 8px) / 3);border-radius:16px;transform:translateY(calc(var(--i) * 100%))}
+  .faze-seg button{border-radius:16px}
+  .faze-clanky{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  .faze-pill,.faze-seg button,.faze-clanky a,.faze-clanky i{transition:none}
+  .faze-pan{animation:none}
+}
+
+/* ── Rezervace: téma přenesené z Finanční preventivky ── */
+.rez-tema{margin-top:18px;padding:14px 18px;border-radius:14px;background:rgba(245,242,236,.06);border:1px solid rgba(245,242,236,.16)}
+.rez-tema small{display:block;margin-bottom:6px;font:400 11px/1.4 'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:#C9A260}
+.rez-tema div{font-size:15px;line-height:1.45;color:#F5F2EC}
+.rez-tema+.rez-vas{margin-top:12px}
+.rez-oblasti{padding:14px 16px;border-radius:12px;background:rgba(201,162,96,.14);border:1px solid rgba(201,162,96,.45)}
+.rez-oblasti small{display:block;margin-bottom:8px;font:400 11px/1.4 'DM Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;color:#7A5C35}
+.rez-oblasti ul{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.rez-oblasti li{padding:8px 14px;border-radius:18px;background:#0C1F3A;color:#F5F2EC;font:500 14px/1.2 Inter,system-ui,sans-serif}
+.rez-oblasti button{min-height:44px;padding:0;border:0;background:none;color:#7A5C35;font:500 14px/1 Inter,system-ui,sans-serif;text-decoration:underline;
+  text-underline-offset:3px;cursor:pointer}
+@media(max-width:760px){.rez-tema{margin:6px 0 12px}}

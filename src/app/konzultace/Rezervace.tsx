@@ -17,6 +17,20 @@ const MESICE_2 = ["ledna", "února", "března", "dubna", "května", "června", "
 const DNY = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
 const DNY_KR = ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"];
 const TEMATA = ["Firma", "Rodina a majetek", "Obojí"];
+// Oblasti Finanční preventivky; jejich čísla může přinést adresa (?oblasti=2,5)
+const OBLASTI: Record<number, string> = {
+  1: "Firma bez majitele",
+  2: "Peníze mimo firmu",
+  3: "Rodina a dokumenty",
+  4: "Daně a struktura",
+  5: "Plán odchodu",
+};
+const oblastiZAdresy = (): number[] => {
+  if (typeof window === "undefined") return [];
+  const raw = new URLSearchParams(window.location.search).get("oblasti") ?? "";
+  const cisla = raw.split(",").map(Number).filter((n) => OBLASTI[n]);
+  return Array.from(new Set(cisla)).slice(0, 3);
+};
 const CALENDLY_URL = "https://calendly.com/dvorak-beplan/30min?hide_gdpr_banner=1";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -45,6 +59,8 @@ export function Rezervace() {
   const [den, setDen] = useState<string | null>(null); // "2026-11-19"
   const [slot, setSlot] = useState<string | null>(null); // ISO v UTC
   const [tema, setTema] = useState(2);
+  // Téma přenesené z výsledku preventivky; návštěvník ho může zrušit a vybrat si obecné
+  const [oblasti, setOblasti] = useState<number[]>(oblastiZAdresy);
   const [misto, setMisto] = useState<string | null>(null);
   const [stav, setStav] = useState<"" | "odesilam">("");
   const [chyba, setChyba] = useState<{ text: string; nahradni?: string } | null>(null);
@@ -158,7 +174,7 @@ export function Rezervace() {
           name: fd.get("name"),
           email: fd.get("email"),
           phone: fd.get("phone"),
-          tema: TEMATA[tema],
+          tema: oblasti.length ? `Z preventivky: ${oblasti.map((n) => OBLASTI[n]).join(", ")}` : TEMATA[tema],
           misto: aktMisto,
           web: fd.get("web"),
           ukazka: ukazka.current,
@@ -224,6 +240,12 @@ export function Rezervace() {
             Zdarma
           </li>
         </ul>
+        {oblasti.length > 0 && (
+          <div className="rez-tema">
+            <small>Téma z preventivky</small>
+            <div>{oblasti.map((n) => OBLASTI[n]).join(", ")}</div>
+          </div>
+        )}
         <div className={`rez-vas${souhrn ? " ma" : ""}`} aria-live="polite">
           <small>Váš termín</small>
           <div>{souhrn ?? "Vyberte den a čas"}</div>
@@ -351,11 +373,23 @@ export function Rezervace() {
               </>
             )}
             <div className="rez-stitek">O čem chcete mluvit?</div>
-            <div className="rez-volby" role="group" aria-label="Téma schůzky">
-              {TEMATA.map((t, i) => (
-                <button key={t} type="button" className={i === tema ? "on" : ""} aria-pressed={i === tema} onClick={() => setTema(i)}>{t}</button>
-              ))}
-            </div>
+            {oblasti.length ? (
+              <div className="rez-oblasti">
+                <small>Z vaší Finanční preventivky</small>
+                <ul>
+                  {oblasti.map((n) => (
+                    <li key={n}>{OBLASTI[n]}</li>
+                  ))}
+                </ul>
+                <button type="button" onClick={() => setOblasti([])}>Vybrat jiné téma</button>
+              </div>
+            ) : (
+              <div className="rez-volby" role="group" aria-label="Téma schůzky">
+                {TEMATA.map((t, i) => (
+                  <button key={t} type="button" className={i === tema ? "on" : ""} aria-pressed={i === tema} onClick={() => setTema(i)}>{t}</button>
+                ))}
+              </div>
+            )}
             {chyba && (
               <p className="rez-chyba" role="alert">
                 {chyba.text}{" "}

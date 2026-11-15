@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { calendlyConfigured, createBooking, getEventType, getJoinUrl, locationLabel, slotUrl } from "@/lib/calendly";
-import { posliPotvrzeni, potvrzeniZapnute } from "@/lib/potvrzeni";
+import { posliOznameni, posliPotvrzeni, potvrzeniZapnute } from "@/lib/potvrzeni";
 
 /* Zápis rezervace z vlastního kalendáře do Calendly. */
 
@@ -59,6 +59,8 @@ export async function POST(req: NextRequest) {
 
     const r = await createBooking(et, { start: kdy.toISOString(), name, email, phone, tema, misto });
     if (r.ok) {
+      // Zpráva pro Adama s telefonem a tématem, které se do Calendly nedostanou
+      await posliOznameni({ start: kdy.toISOString(), name, email, phone, tema, misto: et.locations.length ? locationLabel(et.locations.find((l) => l.kind === misto) ?? et.locations[0]) : undefined });
       // Vlastní české potvrzení (jen když je nastavená ověřená odesílací adresa).
       // Rezervace je v tu chvíli už zapsaná, takže případná chyba e-mailu ji neshodí.
       if (potvrzeniZapnute()) {

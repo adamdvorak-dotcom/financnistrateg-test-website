@@ -138,3 +138,39 @@ export async function posliPotvrzeni(p: Potvrzeni): Promise<boolean> {
     return false;
   }
 }
+
+/* Zpráva pro Adama o nové rezervaci z webu. Calendly pošle svoje oznámení taky, ale neví nic
+   o telefonu ani o tématu (třeba oblastech přenesených z Finanční preventivky). Jde na vlastní
+   adresu, takže funguje i se zkušebním odesílatelem Resendu. */
+export async function posliOznameni(r: { start: string; name: string; email: string; phone?: string; tema?: string; misto?: string }): Promise<boolean> {
+  if (!process.env.RESEND_API_KEY) return false;
+  try {
+    const c = casti(r.start);
+    const kdy = `${c.denVTydnu} ${c.den}. ${c.mesic}. ${predlozka(c.hodina)} ${c.cas}`;
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "Web formulář <onboarding@resend.dev>",
+        to: [ODPOVED_NA],
+        reply_to: r.email,
+        subject: `Nová rezervace: ${kdy} | ${r.name}`,
+        text: [
+          `Termín: ${kdy} (pražský čas)`,
+          `Jméno: ${r.name}`,
+          `E-mail: ${r.email}`,
+          r.phone ? `Telefon: ${r.phone}` : null,
+          r.tema ? `Téma: ${r.tema}` : null,
+          r.misto ? `Místo: ${r.misto}` : null,
+          "",
+          "Rezervace je zapsaná v Calendly.",
+        ].filter((x) => x !== null).join("\n"),
+      }),
+    });
+    if (!res.ok) console.error("Oznameni: Resend odmítl e-mail:", res.status, (await res.text()).slice(0, 300));
+    return res.ok;
+  } catch (err) {
+    console.error("Oznameni error:", err);
+    return false;
+  }
+}
