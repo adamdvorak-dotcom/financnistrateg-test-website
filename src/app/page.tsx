@@ -2064,7 +2064,13 @@ export default function Page() {
               <a className="link-gold" href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 20 }}>
                 {lang === "cs" ? "Profil na LinkedInu →" : "LinkedIn profile →"}
               </a>
-              <span className="sign" data-reveal>Adam Dvořák</span>
+              {/* Skutečný podpis, který se při dojetí „napíše" zleva doprava */}
+              <span className="sign" data-reveal>
+                <span className="sign-tah">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/signature-ink.png" alt={lang === "cs" ? "Podpis: Adam Dvořák" : "Signature: Adam Dvořák"} width={348} height={67} loading="lazy" />
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -2201,9 +2207,10 @@ export default function Page() {
                 </div>
               </div>
               {/* Office map */}
-              <div className="office-map">
+              <div className="office-map" data-reveal>
                 <img src="/map-salvatorska.png" alt="Mapa okolí kanceláře" />
                 <div className="pin" />
+                <a className="osm" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
                 <div className="lbl">{lang === "cs" ? "Kancelář · Salvátorská 931/8" : "Office · Salvátorská 931/8"}</div>
               </div>
               <div style={{display:"flex",gap:14,marginTop:12,flexWrap:"wrap"}}>

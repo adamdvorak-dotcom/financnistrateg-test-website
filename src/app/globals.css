@@ -735,13 +735,14 @@ input[type="range"]::-moz-range-thumb {
   font: 500 11px/1.3 'Inter', sans-serif;
   letter-spacing: .1em; text-transform: uppercase; color: var(--text-3);
 }
-.sign {
-  font: italic 28px/1.2 'Lora', Georgia, serif; color: var(--accent);
-  margin-top: 20px; display: inline-block;
-  clip-path: inset(0 101% 0 0);
-  transition: clip-path 1.3s cubic-bezier(.22,1,.36,1) 0.15s;
-}
-.sign.is-in { clip-path: inset(0 0% 0 0); }
+/* Podpis se odkrývá zleva doprava, jako by se právě psal (obrázek má průhledné pozadí).
+   Ořez je na vnitřním prvku: prvek, který je sám celý oříznutý, prohlížeč nepovažuje za viditelný
+   a odkrytí by se nikdy nespustilo. Bez JavaScriptu je podpis vidět rovnou. */
+.sign { display: block; width: 280px; max-width: 100%; margin-top: 20px; }
+.sign-tah { display: block; transition: clip-path 2.2s cubic-bezier(.45,0,.35,1) 0.25s; }
+html.fx .sign[data-reveal]:not(.is-in) .sign-tah { clip-path: inset(0 101% 0 0); }
+html.fx .sign[data-reveal].is-in .sign-tah { clip-path: inset(0 0% 0 0); }
+.sign img { display: block; width: 100%; height: auto; }
 .about-text { font-size: 15px; color: var(--text-2); line-height: 1.75; margin-bottom: 14px; }
 .about-text-strong { color: var(--text-1); font-weight: 600; font-style: italic; }
 
@@ -3301,4 +3302,27 @@ nav.over-dark .nav-pill{background:rgba(245,242,236,.18)}
 @media (prefers-reduced-motion: reduce){
   .prev-seg,.nav-pill,.toc,.toc a{transition:none}
   html.fx .prev-ring.in .prev-seg,.prev-ring-nazev,.prev-ring-tvrzeni{animation:none}
+}
+
+/* ── Mapa kanceláře: při dojetí se přiblíží, špendlík dopadne a zapulzuje ── */
+.office-map img{transition:transform 2.2s var(--ease-out)}
+.office-map .pin::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #C9A260;opacity:0}
+@keyframes mapa-dopad{0%{opacity:0;transform:translateY(-90px)}60%{opacity:1;transform:translateY(0)}78%{transform:translateY(-10px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes mapa-vlna{0%{transform:scale(.8);opacity:.8}100%{transform:scale(3.4);opacity:0}}
+@keyframes mapa-stitek{from{opacity:0;transform:translateX(-8px)}}
+html.fx .office-map[data-reveal]:not(.is-in) img{transform:scale(1.3)}
+html.fx .office-map[data-reveal]:not(.is-in) .pin,html.fx .office-map[data-reveal]:not(.is-in) .lbl{opacity:0}
+html.fx .office-map[data-reveal].is-in .pin{animation:mapa-dopad .9s cubic-bezier(.3,.7,.4,1) .7s backwards}
+html.fx .office-map[data-reveal].is-in .pin::after{animation:mapa-vlna 2.2s ease-out 1.7s infinite}
+html.fx .office-map[data-reveal].is-in .lbl{animation:mapa-stitek .5s var(--ease-out) 1.5s backwards}
+/* Mapový podklad je z OpenStreetMap, licence vyžaduje uvést zdroj */
+.office-map .osm{position:absolute;right:6px;bottom:5px;z-index:2;padding:3px 6px;border-radius:4px;
+  background:rgba(252,251,248,.88);font:400 10px/1 Inter,sans-serif;color:#1A1511;text-decoration:none}
+.office-map .osm:hover{text-decoration:underline}
+/* Na úzké mapě se štítek vedle špendlíku nevešel a ořízl se, proto jde pod něj na střed */
+@media(max-width:560px){.office-map .lbl{left:50%;top:calc(50% + 24px);translate:-50% 0}}
+@media (prefers-reduced-motion: reduce){
+  .office-map img,.sign-tah{transition:none}
+  html.fx .office-map[data-reveal].is-in .pin,html.fx .office-map[data-reveal].is-in .pin::after,
+  html.fx .office-map[data-reveal].is-in .lbl{animation:none}
 }
