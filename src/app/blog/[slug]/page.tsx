@@ -149,55 +149,6 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
-  if (slug === "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele") {
-    return (
-      <div className="article-body">
-        <p>
-          Podnikatelé dnes čelí stále složitějšímu finančnímu prostředí. Nestačí jen
-          vydělávat, klíčové je také efektivně spravovat vydělané bohatství a investice.
-          Moderní wealth management přináší přístupy, které ještě před deseti lety nebyly
-          dostupné. Co jsou aktuální trendy a proč byste je měli sledovat?
-        </p>
-        <h2>Personalizovaný přístup</h2>
-        <p>
-          Doba, kdy správce majetku nabízel všem stejné portfolio, je pryč. Dnes vedoucí
-          firmy i nezávislí poradci staví strategie přímo na míru, s ohledem na odvětví
-          podnikání, fázi životního cyklu firmy, rodinnou situaci i osobní hodnoty klienta.
-          Individuální přístup neznamená jen jiné rozložení aktiv, ale i odlišný způsob
-          komunikace, reportingu a plánování.
-        </p>
-        <h2>Udržitelné investice (ESG)</h2>
-        <p>
-          Rostoucí počet podnikatelů hledá investice, které kombinují finanční výnosy
-          s pozitivním dopadem na společnost a životní prostředí. ESG fondy (Environmental,
-          Social, Governance) již nejsou jen módní vlnou, studie opakovaně ukazují, že
-          dobře sestavené ESG portfolio nemusí zaostávat za tradičními přístupy a zároveň
-          snižuje některá regulatorní a reputační rizika.
-        </p>
-        <h2>Digitální transformace správy portfolia</h2>
-        <p>
-          Online platformy a automatizované systémy umožňují podnikatelům sledovat
-          a spravovat portfolio v reálném čase, odkudkoliv. Pokročilé nástroje nabízejí
-          okamžitý přehled o výkonnosti, riziku a alokaci aktiv. To zkracuje reakční dobu
-          na tržní změny a zvyšuje transparentnost celé správy.
-        </p>
-        <h2>Vzdělávání a finanční gramotnost</h2>
-        <p>
-          Kvalitní wealth management neznamená jen správu peněz za klienta, zahrnuje
-          i jeho vzdělávání. Poradci, kteří investují čas do vysvětlování strategií,
-          rizik a příležitostí, budují silnější a důvěryhodnější vztah. Informovaný klient
-          dělá lepší rozhodnutí a méně podléhá panice při výkyvech trhu.
-        </p>
-        <h2>Závěr</h2>
-        <p>
-          Wealth management pro podnikatele se rychle vyvíjí. Personalizace, udržitelnost,
-          digitalizace a vzdělávání . To jsou čtyři pilíře, které definují moderní přístup
-          ke správě majetku. Pokud chcete zjistit, jak tyto trendy aplikovat ve vaší
-          konkrétní situaci, rád se s vámi setkám na nezávazné konzultaci.
-        </p>
-      </div>
-    );
-  }
 
   if (slug === "fixace-hypoteky-jak-se-rozhodnout") {
     return (
@@ -2437,7 +2388,7 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   // Starší obecné texty pod články nenabízíme
-  const notRecommended = ["jak-efektivne-spravovat-sverenske-fondy", "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele"];
+  const notRecommended = ["jak-efektivne-spravovat-sverenske-fondy"];
   const candidates = articles.filter(a => a.slug !== slug && !notRecommended.includes(a.slug)).reverse();
   const related = candidates
     .filter(a => a.category === article.category)

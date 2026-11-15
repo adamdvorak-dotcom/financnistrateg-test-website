@@ -164,6 +164,11 @@ body:not(.started) .mobilebar { display: none !important; }
 .lock { display: grid; gap: 12px; }
 .lock p { margin: 0; font-size: 14px; color: var(--muted); }
 .lock .answered { margin: 0; }
+.lock-preview { display: grid; gap: 4px; padding: 14px 16px; border: 1px solid rgba(201,162,96,0.35); border-radius: 12px; background: var(--gold-soft); }
+.lock-preview .lp-score { font-size: 30px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.lock-preview .lp-of { font-size: 15px; font-weight: 500; color: var(--muted); }
+.lock-preview strong { color: var(--ink); }
+.lock .lock-preview p { color: var(--ink); }
 .progress { display: grid; grid-template-columns: repeat(20,minmax(0,1fr)); gap: 2px; }
 .progress i { height: 6px; border-radius: 1px; background: var(--seg-off); display: block; }
 .progress i.on { background: var(--gold); }
@@ -219,7 +224,7 @@ body:not(.started) .mobilebar { display: none !important; }
     <div>
       <p class="eyebrow">— Pro majitele firem · 5 minut</p>
       <h1>Finanční preventivka.<em>Nic vás nebolí.<br>A právě proto.</em></h1>
-      <p class="gate-hint">Dvacet tvrzení v pěti oblastech. Odpovídáte Ano, Částečně nebo Ne, upřímně a sami za sebe. Na konci uvidíte, kde máte největší mezery, a tři kroky, kterými začít.</p>
+      <p class="gate-hint">Dvacet tvrzení v pěti oblastech. Odpovídáte Ano, Částečně nebo Ne, upřímně a sami za sebe. Na konci hned uvidíte celkové skóre a oblast, kde máte největší mezery. Podrobný rozbor po oblastech a tři kroky, kterými začít, vám ukážu po zadání e-mailu.</p>
       <div class="ex">
         <div class="ex-head">
           <span class="eyebrow">První tvrzení</span>
@@ -287,17 +292,22 @@ body:not(.started) .mobilebar { display: none !important; }
       <div class="lock" id="lockBox" hidden>
         <p class="answered" id="lockCount" aria-live="polite">Odpovězeno 0 z 20</p>
         <div class="progress" id="lockBar" aria-hidden="true"></div>
-        <p id="lockText">Výsledek a tři kroky, kterými začít, se ukážou, až odpovíte na všech dvacet tvrzení.</p>
+        <p id="lockText">Celkové skóre a nejslabší oblast se ukážou, až odpovíte na všech dvacet tvrzení.</p>
+        <div class="lock-preview" id="lockPreview" hidden>
+          <div class="lp-score"><span id="lpScore">0</span><span class="lp-of"> / 40</span></div>
+          <strong id="lpBand"></strong>
+          <p id="lpWeak"></p>
+        </div>
         <p class="missing" id="lockMissing" hidden></p>
         <form class="lead-form" id="leadForm" novalidate hidden>
-          <strong class="lead-title">Hotovo, výsledek je připravený.</strong>
-          <p>Napište mi jméno a e-mail a hned se vám ukáže. Do pár dnů vám k němu napíšu pár vět osobně.</p>
+          <strong class="lead-title">Podrobný rozbor a tři kroky</strong>
+          <p>Napište mi jméno a e-mail a hned vám ukážu skóre ve všech pěti oblastech a tři kroky, kterými začít. Do pár dnů vám k tomu napíšu pár vět osobně.</p>
           <div class="ff"><input type="text" id="leadName" name="jmeno" autocomplete="name" required placeholder=" "><label for="leadName">Jméno</label></div>
           <div class="ff"><input type="email" id="leadEmail" name="email" autocomplete="email" inputmode="email" required placeholder=" "><label for="leadEmail">E-mail</label></div>
           <label class="hp" aria-hidden="true">Web<input type="text" id="leadHp" name="web" tabindex="-1" autocomplete="off"></label>
           <label class="check" for="leadNews"><input type="checkbox" id="leadNews" name="newsletter"><span>Občas mi pošlete i něco dalšího pro majitele firem.</span></label>
           <p class="err" id="leadErr" role="alert" hidden></p>
-          <button class="btn solid" type="submit" id="leadBtn">Ukázat výsledek</button>
+          <button class="btn solid" type="submit" id="leadBtn">Ukázat podrobný rozbor</button>
           <p class="privacy">Jméno, e-mail a odpovědi mi přijdou e-mailem. Napíšu vám k výsledku, a pokud zaškrtnete políčko, občas i něco dalšího. Odhlásit se jde kdykoli. <a href="https://www.financnistrateg.com/privacy">Ochrana osobních údajů</a></p>
         </form>
       </div>
@@ -470,7 +480,7 @@ body:not(.started) .mobilebar { display: none !important; }
     var pill = document.getElementById("progressPill"), pillCount = document.getElementById("pillCount");
     if (pill) pill.hidden = count === 0;
     if (pillCount) pillCount.textContent = count;
-    document.getElementById("mbScore").textContent = locked ? "Odpovězeno " + count + " z 20" : "Skóre " + total + " / 40 · " + count + " z 20";
+    document.getElementById("mbScore").textContent = locked && count < 20 ? "Odpovězeno " + count + " z 20" : "Skóre " + total + " / 40 · " + count + " z 20";
     document.getElementById("resultBody").hidden = locked;
     document.getElementById("lockBox").hidden = !locked;
     if (locked) { renderLock(count); }
@@ -502,6 +512,23 @@ body:not(.started) .mobilebar { display: none !important; }
     bar.innerHTML = segs;
     var done = count === 20;
     document.getElementById("lockText").hidden = done;
+    // Celkové skóre a nejslabší oblast ukážeme hned, e-mail chceme až za podrobný rozbor
+    var lp = document.getElementById("lockPreview");
+    lp.hidden = !done;
+    if (done) {
+      var total = 0, weakest = null;
+      AREAS.forEach(function (a) {
+        var sub = 0;
+        a.items.forEach(function (it) { sub += state.answers[it.id]; });
+        total += sub;
+        if (!weakest || sub < weakest.sub) { weakest = { name: a.name, sub: sub }; }
+      });
+      document.getElementById("lpScore").textContent = total;
+      document.getElementById("lpBand").textContent = total <= 15 ? "Je co dohánět" : total <= 29 ? "Příprava je rozjetá" : "Připravenost je vysoká";
+      document.getElementById("lpWeak").textContent = weakest.sub < 8
+        ? "Nejslabší oblast: " + weakest.name + " (" + weakest.sub + " z 8 bodů)."
+        : "Ve všech oblastech máte plný počet bodů.";
+    }
     document.getElementById("leadForm").hidden = !done;
     var miss = [];
     AREAS.forEach(function (a) { a.items.forEach(function (it) { if (typeof state.answers[it.id] !== "number") { miss.push(it.id); } }); });

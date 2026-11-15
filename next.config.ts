@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 // proto se zdrojová adresa kóduje stejně.
 const wixPosts: [string, string][] = [
   ["jak-efektivně-spravovat-svěřenské-fondy", "jak-efektivne-spravovat-sverenske-fondy"],
-  ["nejnovější-trendy-v-wealth-managementu-pro-podnikatele", "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele"],
+  ["nejnovější-trendy-v-wealth-managementu-pro-podnikatele", "financni-plan-pro-podnikatele"],
   ["5-tipů-pro-daňovou-optimalizaci-vaší-firmy", "danove-optimalizace-pro-osvc-a-jednatele"],
 ];
 
@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
         destination: "/blog/jak-efektivne-spravovat-sverenske-fondy",
         permanent: true,
       },
+      // Obecný starší článek nahradil konkrétnější
+      { source: "/blog/nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele", destination: "/blog/financni-plan-pro-podnikatele", permanent: true },
       // Starší článek o propadech je sloučený do nového
       { source: "/blog/trhy-padaji-co-ted", destination: "/blog/propady-trhu-co-delat", permanent: true },
       // Kalkulačka renty žije na /renta (viz rewrites), .html verze je jen duplicita

@@ -20,7 +20,7 @@ const FEATURED = "firma-a-osobni-majetek";
 const OWNER_3 = [
   "kolik-si-vyplacet-ze-sro",
   "danove-optimalizace-pro-osvc-a-jednatele",
-  "nejnovejsi-trendy-v-wealth-managementu-pro-podnikatele",
+  "vyber-penez-ze-sro-mzda-dividendy",
 ];
 
 // Kategorie mají vlastní adresy /blog/<kategorie>, proto stránka nečte parametry z adresy
