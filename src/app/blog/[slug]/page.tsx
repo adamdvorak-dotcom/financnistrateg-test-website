@@ -6,6 +6,7 @@ import { articles, getArticle } from "../articles";
 import { categories, getCategory } from "../categories";
 import { CategoryChips } from "../CategoryChips";
 import { FaqAccordion } from "../FaqAccordion";
+import { ArticleToc } from "../ArticleToc";
 import { DipKalk } from "../DipKalk";
 import { PenzijkoKalk } from "../PenzijkoKalk";
 import { SverenskyFond } from "../SverenskyFond";
@@ -2970,6 +2971,7 @@ export default async function ArticlePage({
                 </ol>
               </div>
             )}
+            <ArticleToc />
             <ArticleContent slug={slug} />
 
             {/* Otázky ze strukturovaných dat musí být vidět i na stránce, jinak je Google bere jako skrytý obsah */}

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { articles } from "./blog/articles";
 import { TymDiag } from "./TymDiag";
+import { PrevRing } from "./PrevRing";
 
 /* ── Quote band aphorisms ── */
 const APHORISMS: Record<string, string[]> = {
@@ -380,6 +381,9 @@ export default function Page() {
   const [curtainPhase, setCurtainPhase] = useState<"hidden" | "visible" | "exiting">("hidden");
   const [calcTab, setCalcTab] = useState<"invest" | "mortgage" | "retirement" | "depletion">("invest");
   const [refDot, setRefDot] = useState(0);
+  /* Navigace: sekce, ve které návštěvník právě je (podle ní se v menu posouvá tmavý podklad) */
+  const navLinksRef = useRef<HTMLUListElement>(null);
+  const [navActive, setNavActive] = useState<string | null>(null);
   /* Maketa plánu: rozevřený vějíř, jestli zařízení umí najetí myší a jestli na ní myš právě je */
   const planRef = useRef<HTMLDivElement>(null);
   const [planOpen, setPlanOpen] = useState(false);
@@ -587,6 +591,52 @@ export default function Page() {
     io.observe(el);
     return () => { io.disconnect(); window.clearTimeout(t); };
   }, []);
+
+  /* Navigace ví, kde návštěvník je: aktivní je sekce, jejíž začátek naposledy přešel přes horní třetinu
+     obrazovky. V úvodu není aktivní žádná. Sekce nejsou na stránce ve stejném pořadí jako v menu. */
+  useEffect(() => {
+    const ids = ["services", "calculators", "about", "blog", "contact"];
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const line = window.innerHeight * 0.35;
+      let cur: string | null = null;
+      let best = -Infinity;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top <= line && top > best) { best = top; cur = id; }
+      }
+      setNavActive(cur);
+    };
+    const onScroll = () => { if (!raf) raf = window.requestAnimationFrame(update); };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  /* Tmavý podklad v menu se přesune pod aktivní položku. Polohu předává stylům přes proměnné,
+     při změně jazyka nebo šířky okna se přeměří. */
+  useEffect(() => {
+    const ul = navLinksRef.current;
+    if (!ul) return;
+    const place = () => {
+      const a = navActive ? ul.querySelector<HTMLElement>(`a[data-nav="${navActive}"]`) : null;
+      ul.classList.toggle("has-active", !!a);
+      if (!a) return;
+      ul.style.setProperty("--nav-x", `${a.offsetLeft}px`);
+      ul.style.setProperty("--nav-w", `${a.offsetWidth}px`);
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [navActive, lang]);
 
   /* Scroll reveal */
   useEffect(() => {
@@ -1068,12 +1118,21 @@ export default function Page() {
           <a href="/" className="nav-logo">
             <span className="nav-logo-name">Adam Dvořák</span><span className="nav-logo-efa">, EFA</span>
           </a>
-          <ul className="nav-links">
-            <li><a href="#about">{t.navAbout}</a></li>
-            <li><a href="#services">{t.navServices}</a></li>
-            <li><a href="#calculators">{t.navCalc}</a></li>
-            <li><a href="/blog">{t.navBlog}</a></li>
-            <li><a href="#contact">{t.navContact}</a></li>
+          <ul className="nav-links" ref={navLinksRef}>
+            <li className="nav-pill" aria-hidden="true" />
+            {([
+              ["about", "#about", t.navAbout],
+              ["services", "#services", t.navServices],
+              ["calculators", "#calculators", t.navCalc],
+              ["blog", "/blog", t.navBlog],
+              ["contact", "#contact", t.navContact],
+            ] as const).map(([id, href, label]) => (
+              <li key={id}>
+                <a href={href} data-nav={id} className={navActive === id ? "is-active" : undefined} aria-current={navActive === id ? "true" : undefined}>
+                  <span>{label}</span>
+                </a>
+              </li>
+            ))}
           </ul>
           <div className="nav-right">
             <button className="theme-btn lang-btn" onClick={toggleLang} title="Switch language">
@@ -1335,24 +1394,7 @@ export default function Page() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
             </div>
-            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-              {/* r=96, circ=603.19, arc=112.64, gap=490.55, step=120.64 */}
-              <svg viewBox="0 0 220 220" width="220" height="220" aria-hidden="true" style={{display:"block",maxWidth:"100%"}}>
-                <circle cx="110" cy="110" r="96" fill="none" stroke="rgba(201,162,96,.1)" strokeWidth="12" />
-                <g transform="rotate(-90 110 110)">
-                  {[0,1,2,3,4].map(i => (
-                    <circle key={i} cx="110" cy="110" r="96" fill="none"
-                      stroke="rgba(201,162,96,1)"
-                      strokeOpacity={+(1 - i * 0.15).toFixed(2)}
-                      strokeWidth="12"
-                      strokeDasharray="112.64 490.55"
-                      strokeDashoffset={-(i * 120.637)}
-                      strokeLinecap="round"
-                    />
-                  ))}
-                </g>
-              </svg>
-            </div>
+            <PrevRing lang={lang} />
           </div>
         </div>
       </section>
