@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               <div className="article-meta">
                 <span>Adam Dvořák, EFA</span>
                 <span className="article-meta-dot">·</span>
-                <span>Aktualizováno 15. listopadu 2026</span>
+                <span>Aktualizováno 16. listopadu 2026</span>
               </div>
             </header>
 
@@ -91,6 +91,16 @@ export default function PrivacyPage() {
                 (čl. 6 odst. 1 písm. f) GDPR). Kontaktní formulář navíc krátkodobě eviduje počet
                 zpráv z jedné IP adresy, aby se dal omezit spam.
               </p>
+              <p>
+                <strong>Měření návštěvnosti bez cookies</strong>: web používá Vercel Web Analytics.
+                Zaznamenává, které stránky se zobrazují a na které hlavní odkazy a tlačítka se kliká,
+                odkud návštěva přišla, přibližnou polohu (zemi a město), typ zařízení, operační systém
+                a prohlížeč. Neukládá do vašeho
+                prohlížeče cookies ani nic jiného. Návštěvy rozlišuje jen podle otisku požadavku, který
+                se po 24 hodinách zahodí, takže z dat nejde poznat, kdo web navštívil. Vidím jen souhrnná
+                čísla. Právním základem je oprávněný zájem na tom, aby web fungoval a byl srozumitelný
+                (čl. 6 odst. 1 písm. f) GDPR).
+              </p>
 
               <h2>3. Cookies a podobné technologie</h2>
               <p>
@@ -101,7 +111,8 @@ export default function PrivacyPage() {
               <p>
                 <strong>Analytické</strong>: jen pokud kliknete na „Přijmout vše“, načte se nástroj
                 Leady, který měří návštěvnost a ukazuje, které firmy web navštívily. Právním základem
-                je váš souhlas. Když zvolíte „Pouze nezbytné“, Leady se nenačte.
+                je váš souhlas. Když zvolíte „Pouze nezbytné“, Leady se nenačte. Měření návštěvnosti
+                přes Vercel (viz výše) cookies nepoužívá, proto běží i bez souhlasu.
               </p>
               <p>
                 Souhlas můžete kdykoli změnit: <CookieReset />
@@ -113,7 +124,7 @@ export default function PrivacyPage() {
                 služby, které pro mě zajišťují provoz, a to v rozsahu nutném pro danou činnost:
               </p>
               <ul>
-                <li><strong>Vercel</strong>: hosting webu (USA)</li>
+                <li><strong>Vercel</strong>: hosting webu a měření návštěvnosti bez cookies (USA)</li>
                 <li><strong>Resend</strong>: doručení zpráv z formulářů a preventivky do mé schránky (USA)</li>
                 <li><strong>Google Workspace</strong>: firemní e-mail (Google, EU a USA)</li>
                 <li><strong>Google Fonts</strong>: písma webu, při načtení stránky se Googlu předá IP adresa</li>
