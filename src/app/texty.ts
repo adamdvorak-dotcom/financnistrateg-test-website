@@ -118,7 +118,7 @@ export const T = {
       { veta: '„Přišly velké peníze."', text: 'Dědictví, prodej nebo velký bonus. Nejdřív klid, pak plán.', cta: 'Probrat v klidu', href: '/konzultace' },
       { veta: '„Chci to jednou předat dětem."', text: 'A umí vaše děti s penězi zacházet? Předání začíná pravidly, ne až dědickým řízením.', cta: 'Kdo dědí bez závěti', href: '#dedictvi' },
       { veta: '„Někdo mi nabízí investici."', text: 'Pošlete mi ji dřív, než podepíšete. Většinu nabídek, které mi lidi pošlou, končím větou: tohle ne.', cta: 'Poslat nabídku', href: 'mailto:adamdvorak@financnistrateg.com?subject=Nab%C3%ADdka%20k%20posouzen%C3%AD' },
-      { veta: '„Blíží se důchod."', text: 'Stačí to? Spočítáme, kolik dá stát, kolik vaše peníze a co chybí.', cta: 'Důchodová kalkulačka', href: '/?kalkulacka=duchod#calculators' },
+      { veta: '„Blíží se důchod."', text: 'Stačí to? Spočítáme, kolik dá stát, kolik vaše peníze a co chybí.', cta: 'Důchodová kalkulačka', href: '/kalkulacky?kalkulacka=duchod' },
     ] as { veta: string; text: string; cta: string; href: string }[],
     /* references */
     refs: [
@@ -242,7 +242,7 @@ export const T = {
       { veta: '"A large sum just arrived."', text: 'Inheritance, a sale, or a big bonus. First comes calm, then a plan.', cta: 'Let\'s talk it through', href: '/konzultace' },
       { veta: '"I want to pass it on to my children."', text: 'And do your children know how to handle money? Succession starts with rules, not with probate.', cta: 'Who inherits without a will', href: '#dedictvi' },
       { veta: '"Someone is offering me an investment."', text: 'Send it to me before you sign. Most offers that reach me end with one sentence: not this one.', cta: 'Send the offer', href: 'mailto:adamdvorak@financnistrateg.com?subject=Investment%20offer%20for%20review' },
-      { veta: '"Retirement is getting close."', text: 'Is it enough? We\'ll work out how much the state provides, how much your money contributes, and what the gap is.', cta: 'Retirement calculator', href: '/?kalkulacka=duchod#calculators' },
+      { veta: '"Retirement is getting close."', text: 'Is it enough? We\'ll work out how much the state provides, how much your money contributes, and what the gap is.', cta: 'Retirement calculator', href: '/kalkulacky?kalkulacka=duchod' },
     ] as { veta: string; text: string; cta: string; href: string }[],
     /* references */
     refs: [

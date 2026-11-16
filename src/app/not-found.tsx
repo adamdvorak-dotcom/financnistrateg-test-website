@@ -19,7 +19,7 @@ export default function NotFound() {
           <div className="nf4-btns">
             <Link href="/" className="nf4-btn h">Zpět na úvod →</Link>
             <Link href="/blog" className="nf4-btn">Blog</Link>
-            <Link href="/#calculators" className="nf4-btn">Kalkulačky</Link>
+            <Link href="/kalkulacky" className="nf4-btn">Kalkulačky</Link>
             <Link href="/konzultace" className="nf4-btn">Konzultace</Link>
           </div>
         </div>

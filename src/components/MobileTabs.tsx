@@ -13,7 +13,6 @@ const T = {
 export function MobileTabs() {
   const pathname = usePathname();
   const [lang, setLang] = useState<"cs" | "en">("cs");
-  const [uKalkulacek, setUKalkulacek] = useState(false);
 
   // Jazyk přepíná úvodní stránka na prvku <html>; lišta ho jen sleduje
   useEffect(() => {
@@ -25,27 +24,14 @@ export function MobileTabs() {
     return () => mo.disconnect();
   }, []);
 
-  // Na úvodní stránce se záložka přepne na Kalkulačky, když je jejich sekce uprostřed obrazovky
-  useEffect(() => {
-    if (pathname !== "/") return;
-    const el = document.getElementById("calculators");
-    if (!el || !("IntersectionObserver" in window)) return;
-    const io = new IntersectionObserver(([e]) => setUKalkulacek(e.isIntersecting), { rootMargin: "-45% 0px -45% 0px" });
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      setUKalkulacek(false);
-    };
-  }, [pathname]);
-
   const t = T[lang];
   const aktivni =
-    pathname === "/" ? (uKalkulacek ? 1 : 0) : pathname.startsWith("/blog") ? 2 : pathname.startsWith("/konzultace") ? 3 : -1;
+    pathname === "/" ? 0 : pathname.startsWith("/kalkulacky") ? 1 : pathname.startsWith("/blog") ? 2 : pathname.startsWith("/konzultace") ? 3 : -1;
 
   const zalozky = [
     { href: "/", label: t.uvod, ikona: <path d="M4 11l8-7 8 7v9H4z" /> },
     {
-      href: "/#calculators",
+      href: "/kalkulacky",
       label: t.kalk,
       ikona: (
         <>

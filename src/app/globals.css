@@ -4024,3 +4024,9 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
   .sl-kap-pas{padding-right:20px}
 }
 @media (prefers-reduced-motion: reduce){.sl-karta,.sl-kap a{transition:none}}
+
+/* ── Stránka Kalkulačky ── */
+.kl #calculators{padding-top:124px}
+.kl-dalsi{padding:24px 0 16px}
+.kl-dalsi .sl-teaser{margin-top:0}
+@media(max-width:900px){.kl #calculators{padding-top:96px}}

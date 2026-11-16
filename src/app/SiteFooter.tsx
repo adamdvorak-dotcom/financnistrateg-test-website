@@ -60,7 +60,7 @@ export function SiteFooter({ lang = "cs" }: { lang?: "cs" | "en" }) {
           <div className="pata-sl">
             <b>{t.web}</b>
             <Link href="/sluzby">{t.services}</Link>
-            <Link href="/#calculators">{t.calcs}</Link>
+            <Link href="/kalkulacky">{t.calcs}</Link>
             <Link href="/o-mne">{t.about}</Link>
             <Link href="/blog">{t.blog}</Link>
           </div>

@@ -173,7 +173,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Čtyři otázky před podpisem</h2>
         <ul>
           <li><strong>Unesu splátku při sazbě vyšší o 2 až 3 procentní body?</strong> Spočítejte si ji
-          v <Link href="/?kalkulacka=hypoteka#calculators">hypoteční kalkulačce</Link>. Pokud by vás
+          v <Link href="/kalkulacky?kalkulacka=hypoteka">hypoteční kalkulačce</Link>. Pokud by vás
           vyšší splátka dostala do potíží, volte delší fixaci.</li>
           <li><strong>Co plánuji v příštích letech?</strong> Prodej, stěhování, větší splátku
           z bonusu nebo z prodeje firmy? Pak fixaci nastavte tak, aby končila kolem té doby.</li>
@@ -921,7 +921,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Závěr</h2>
         <p>
           Malé měsíční částky po 20 až 30 letech dělají zásadní rozdíl. Kolik vám k důchodu bude chybět, si spočítáte v{" "}
-          <Link href="/?kalkulacka=duchod#calculators">důchodové kalkulačce</Link>, a pokud to chcete
+          <Link href="/kalkulacky?kalkulacka=duchod">důchodové kalkulačce</Link>, a pokud to chcete
           projít na svých číslech, ozvěte se.
         </p>
 
