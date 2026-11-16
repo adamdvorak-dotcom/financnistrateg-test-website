@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 /* Spodní lišta na telefonu: čtyři záložky se zlatým ukazatelem, který přejíždí na tu aktivní.
    Na širších obrazovkách se neukazuje. Nahrazuje dřívější pevnou lištu s tlačítkem „Sjednat termín". */
 const T = {
-  cs: { nav: "Hlavní navigace", uvod: "Úvod", kalk: "Kalkulačky", blog: "Blog", termin: "Termín" },
-  en: { nav: "Main navigation", uvod: "Home", kalk: "Calculators", blog: "Blog", termin: "Book" },
+  cs: { nav: "Hlavní navigace", uvod: "Úvod", sluzby: "Služby", kalk: "Kalkulačky", blog: "Blog", termin: "Termín" },
+  en: { nav: "Main navigation", uvod: "Home", sluzby: "Services", kalk: "Calculators", blog: "Blog", termin: "Book" },
 };
 
 export function MobileTabs() {
@@ -26,10 +26,22 @@ export function MobileTabs() {
 
   const t = T[lang];
   const aktivni =
-    pathname === "/" ? 0 : pathname.startsWith("/kalkulacky") ? 1 : pathname.startsWith("/blog") ? 2 : pathname.startsWith("/konzultace") ? 3 : -1;
+    pathname === "/" ? 0 : pathname.startsWith("/sluzby") ? 1 : pathname.startsWith("/kalkulacky") ? 2 : pathname.startsWith("/blog") ? 3 : pathname.startsWith("/konzultace") ? 4 : -1;
 
   const zalozky = [
     { href: "/", label: t.uvod, ikona: <path d="M4 11l8-7 8 7v9H4z" /> },
+    {
+      href: "/sluzby",
+      label: t.sluzby,
+      ikona: (
+        <>
+          <rect x="4" y="4" width="7" height="7" rx="1.5" />
+          <rect x="13" y="4" width="7" height="7" rx="1.5" />
+          <rect x="4" y="13" width="7" height="7" rx="1.5" />
+          <rect x="13" y="13" width="7" height="7" rx="1.5" />
+        </>
+      ),
+    },
     {
       href: "/kalkulacky",
       label: t.kalk,
@@ -66,7 +78,7 @@ export function MobileTabs() {
     <nav className={`mtabs${aktivni < 0 ? " bez" : ""}`} aria-label={t.nav} style={{ "--i": Math.max(aktivni, 0) } as React.CSSProperties}>
       <span className="mtabs-ind" aria-hidden="true" />
       {zalozky.map((z, i) => (
-        <Link key={z.href} href={z.href} className={i === aktivni ? "on" : undefined} aria-current={i === aktivni ? "page" : undefined}>
+        <Link key={z.href} href={z.href} data-mer={`lista-${z.href}`} className={i === aktivni ? "on" : undefined} aria-current={i === aktivni ? "page" : undefined}>
           <svg viewBox="0 0 24 24" aria-hidden="true">{z.ikona}</svg>
           {z.label}
         </Link>

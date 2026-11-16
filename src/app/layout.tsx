@@ -3,6 +3,7 @@ import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import { MobileTabs } from "@/components/MobileTabs";
 import TrackingScripts from "@/components/TrackingScripts";
+import { Mereni } from "@/components/Mereni";
 
 const BASE = "https://www.financnistrateg.com";
 
@@ -202,6 +203,7 @@ export default function RootLayout({
         <MobileTabs />
         <CookieBanner />
         <TrackingScripts />
+        <Mereni />
       </body>
     </html>
   );

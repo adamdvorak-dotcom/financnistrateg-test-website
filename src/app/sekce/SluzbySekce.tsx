@@ -1,10 +1,20 @@
 "use client";
+import { useEffect } from "react";
 import { T, type Lang } from "../texty";
 
 /* Mřížka služeb. Na stránce Služby nese hlavní nadpis stránky (hlavni). */
 export function SluzbySekce({ lang, hlavni = false }: { lang: Lang; hlavni?: boolean }) {
   const t = T[lang];
   const Nadpis = hlavni ? "h1" : "h2";
+
+  // Odkaz z úvodní stránky na konkrétní službu (#sluzba-2) ji rovnou rozbalí
+  useEffect(() => {
+    const m = window.location.hash.match(/^#sluzba-[1-4]$/);
+    const karta = m ? document.getElementById(m[0].slice(1)) : null;
+    if (!karta) return;
+    karta.classList.add("is-open");
+    karta.querySelector(".acc-head")?.setAttribute("aria-expanded", "true");
+  }, []);
   return (
     <>
       {/* ── Services card grid ── */}
@@ -37,6 +47,7 @@ export function SluzbySekce({ lang, hlavni = false }: { lang: Lang; hlavni?: boo
             ] as { icon: React.ReactNode; title: string; desc: string; items: string[] }[]).map((svc, i) => (
               <div
                 key={i}
+                id={`sluzba-${i + 1}`}
                 className={`svc-card reveal${i > 0 ? ` delay-${i}` : ""}`}
                 onPointerMove={(e) => {
                   const r = e.currentTarget.getBoundingClientRect();

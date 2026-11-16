@@ -3813,7 +3813,7 @@ nav.mtabs{display:none}
   nav.mtabs{position:fixed;top:auto;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:250;
     display:flex;max-width:440px;height:68px;margin:0 auto;border:0;border-radius:24px;background:#0C1F3A;
     -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 18px 40px -8px rgba(12,31,58,.5)}
-  .mtabs-ind{position:absolute;left:calc(var(--i) * 25% + 12.5% - 28px);top:8px;width:56px;height:32px;border-radius:16px;background:#C9A260;
+  .mtabs-ind{position:absolute;left:calc(var(--i) * 20% + 10% - 26px);top:8px;width:52px;height:32px;border-radius:16px;background:#C9A260;
     transition:left .5s cubic-bezier(.3,1.3,.5,1),opacity .3s}
   .mtabs.bez .mtabs-ind{opacity:0}
   .mtabs a{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:12px;
@@ -4039,3 +4039,88 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
 @media(max-width:900px){.kt #contact{padding-top:96px}.blog-nl{padding-top:56px}}
 /* Otevřené menu na telefonu: tlačítko a e-mail musí zůstat nad spodní lištou */
 @media(max-width:899px){.mobile-overlay{padding-bottom:calc(108px + env(safe-area-inset-bottom,0px))}}
+
+/* ── Mini kalkulačka na úvodní stránce ── */
+.mk{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border-radius:24px;overflow:hidden;
+  background:#FBF9F5;border:1px solid #DDD5C6;box-shadow:0 18px 44px rgba(12,31,58,.08)}
+.mk-vstup{padding:36px 40px;display:flex;flex-direction:column}
+.mk-vysledek{padding:36px 40px;background:#0C1F3A;color:#F5F2EC;display:flex;flex-direction:column}
+.mk-lbl{font:400 12px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#7A5C35}
+.mk-vysledek .mk-lbl{color:#C9A260}
+.mk-castka{margin-top:10px;font:500 clamp(34px,4.4vw,48px)/1.05 'Lora',Georgia,serif;color:#1A1511;font-variant-numeric:tabular-nums}
+.mk-castka span,.mk-cislo span{font-size:.5em;font-family:Inter,system-ui,sans-serif;font-weight:500;color:#4A433B}
+.mk-cislo span{color:#C9D1DF}
+.mk-cislo{margin-top:10px;font:500 clamp(36px,4.8vw,54px)/1.05 'Lora',Georgia,serif;color:#F5F2EC;font-variant-numeric:tabular-nums}
+.mk-range{-webkit-appearance:none;appearance:none;width:100%;height:44px;margin:14px 0 0;background:transparent;cursor:pointer}
+.mk-range::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,#C9A260 var(--pct),#DDD5C6 var(--pct))}
+.mk-range::-moz-range-track{height:6px;border-radius:3px;background:#DDD5C6}
+.mk-range::-moz-range-progress{height:6px;border-radius:3px;background:#C9A260}
+.mk-range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:#0C1F3A;border:3px solid #FBF9F5;
+  box-shadow:0 4px 12px rgba(12,31,58,.3)}
+.mk-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#0C1F3A;border:3px solid #FBF9F5;box-shadow:0 4px 12px rgba(12,31,58,.3)}
+.mk-range:focus-visible{outline:2px solid #7A5C35;outline-offset:4px;border-radius:8px}
+.mk-meze{display:flex;justify-content:space-between;font-size:12px;color:#4A433B}
+.mk-dalsi{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto;padding-top:28px}
+.mk-dalsi span{width:100%;font-size:13px;color:#4A433B}
+.mk-dalsi a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:22px;border:1px solid #D8CFBF;font-size:14px;font-weight:500;
+  color:#0C1F3A;text-decoration:none;transition:background-color .25s,border-color .25s}
+.mk-dalsi a:hover,.mk-dalsi a:focus-visible{background:#EEE9DF;border-color:#7A5C35}
+.mk-radky{margin-top:22px;border-top:1px solid rgba(245,242,236,.16)}
+.mk-radky div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(245,242,236,.16);font-size:14px;color:#C9D1DF}
+.mk-radky b{color:#F5F2EC;font-weight:600;font-variant-numeric:tabular-nums}
+.mk-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:24px;align-self:flex-start}
+.mk-pozn{margin:14px 0 0;font-size:12px;line-height:1.5;color:rgba(245,242,236,.55)}
+#calculators{padding-top:8px}
+@media(max-width:800px){
+  .mk{grid-template-columns:1fr;border-radius:20px}
+  .mk-vstup,.mk-vysledek{padding:24px 20px}
+  .mk-dalsi{padding-top:20px}
+  .mk-btn{align-self:stretch}
+}
+
+/* ── Rychlé odkazy pod tlačítky v hero ── */
+.hero-zkratky{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero-zkratky a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:22px;border:1px solid rgba(245,242,236,.22);
+  font-size:14px;font-weight:500;color:#C9D1DF;text-decoration:none;transition:background-color .25s,color .25s,border-color .25s}
+.hero-zkratky a::after{content:"→";margin-left:8px;color:#C9A260;transition:transform .3s var(--ease-out)}
+.hero-zkratky a:hover,.hero-zkratky a:focus-visible{background:rgba(245,242,236,.1);color:#F5F2EC;border-color:rgba(245,242,236,.4)}
+.hero-zkratky a:hover::after{transform:translateX(3px)}
+@media(max-width:768px){.hero-zkratky{justify-content:center}}
+
+/* ── Služby v kostce na telefonu: řada na přejetí prstem ── */
+@media(max-width:560px){
+  .sl-swipe{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:8px -20px 0;padding:4px 20px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .sl-swipe::-webkit-scrollbar{display:none}
+  .sl-swipe .sl-karta{flex:0 0 78%;scroll-snap-align:center}
+  .sl-swipe .sl-karta.reveal{opacity:1;transform:none}
+}
+.svc-card[id]{scroll-margin-top:124px}
+
+/* ── Kroky spolupráce: na telefonu sbalené, rozbalí se klepnutím ── */
+.step-btn{display:block;width:100%;padding:0;border:0;background:none;text-align:left;color:inherit;cursor:default;font-family:inherit}
+@media(max-width:640px){
+  .step-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;cursor:pointer}
+  .step-btn::after{content:"+";flex:none;font:400 22px/1 Inter,system-ui,sans-serif;color:#7A5C35;transition:transform .3s var(--ease-out)}
+  .process-step.open .step-btn::after{transform:rotate(45deg)}
+  .process-step:not(.open) .step-btn + .step-desc{display:none}
+  .process-step:has(.step-btn){padding-bottom:10px}
+  .step-btn:focus-visible{outline:2px solid #7A5C35;outline-offset:2px;border-radius:6px}
+}
+
+/* ── Stránka Kalkulačky na telefonu: záložky v jedné řadě a přilepený výsledek ── */
+.kalk-lip{display:none}
+@media(max-width:640px){
+  .calc-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  .calc-tabs::-webkit-scrollbar{display:none}
+  .calc-tab{flex:0 0 auto;min-height:44px;padding:0 16px;font-size:13px;display:inline-flex;align-items:center;scroll-snap-align:start}
+  .kalk-lip{position:fixed;left:12px;right:12px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:240;display:flex;align-items:center;gap:12px;
+    max-width:440px;margin:0 auto;min-height:52px;padding:8px 16px;border:1px solid rgba(201,162,96,.5);border-radius:16px;background:#FBF9F5;color:#1A1511;
+    font-family:inherit;text-align:left;box-shadow:0 12px 30px -6px rgba(12,31,58,.35);cursor:pointer;
+    opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .25s,transform .35s var(--ease-out)}
+  .kalk-lip.show{opacity:1;transform:none;pointer-events:auto}
+  .kalk-lip span{flex:1;min-width:0;font-size:12px;line-height:1.3;color:#4A433B}
+  .kalk-lip b{flex:none;font:600 18px/1.1 'Lora',Georgia,serif;font-variant-numeric:tabular-nums;color:#0C1F3A}
+  .kalk-lip i{flex:none;font-style:normal;color:#7A5C35}
+  .hamburger{width:44px;height:44px}
+}
+@media (prefers-reduced-motion: reduce){.kalk-lip,.hero-zkratky a,.hero-zkratky a::after,.step-btn::after{transition:none}}

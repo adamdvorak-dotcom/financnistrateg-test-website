@@ -5,25 +5,28 @@ import Link from "next/link";
 import { T, type Lang } from "./texty";
 import { OMNE, vekTed } from "./o-mne/texty";
 import { HeroRotate } from "./HeroRotate";
+import { MiniKalk } from "./MiniKalk";
 import { FazeFirmy } from "./FazeFirmy";
 import { PrevRing } from "./PrevRing";
 import { SiteFooter } from "./SiteFooter";
 
-/* ── Karty kalkulaček v upoutávce na úvodní stránce ── */
-const KALK_KARTY: Record<Lang, [string, string, string][]> = {
-  cs: [
-    ["/kalkulacky", "Investice", "Kolik vám za dvacet let udělá pravidelná částka."],
-    ["/kalkulacky?kalkulacka=duchod", "Důchod", "Kolik dá stát, kolik vaše peníze a co chybí."],
-    ["/kalkulacky?kalkulacka=jak-dlouho", "Na jak dlouho", "Na kolik let vystačí majetek, když z něj začnete žít."],
-    ["/kalkulacky?kalkulacka=hypoteka", "Hypotéka", "Měsíční splátka a kolik celkem zaplatíte na úrocích."],
-  ],
-  en: [
-    ["/kalkulacky", "Investing", "What a regular amount turns into over twenty years."],
-    ["/kalkulacky?kalkulacka=duchod", "Retirement", "What the state pays, what your money adds, and the gap."],
-    ["/kalkulacky?kalkulacka=jak-dlouho", "How long it lasts", "How many years your wealth lasts once you start living off it."],
-    ["/kalkulacky?kalkulacka=hypoteka", "Mortgage", "The monthly payment and the total interest you pay."],
-  ],
-};
+/* Krok spolupráce: na telefonu je popis sbalený a rozbalí se klepnutím na název, na počítači je vidět vždy */
+function Krok({ trida, num, title, desc }: { trida: string; num: string; title: string; desc: string }) {
+  return (
+    <div className={trida}>
+      <span className="step-num">{num}</span>
+      <button type="button" className="step-title step-btn" aria-expanded="false"
+        onClick={(e) => {
+          const krok = e.currentTarget.parentElement;
+          if (!krok) return;
+          e.currentTarget.setAttribute("aria-expanded", String(krok.classList.toggle("open")));
+        }}>
+        {title}
+      </button>
+      <div className="step-desc">{desc}</div>
+    </div>
+  );
+}
 
 export default function Page() {
   const [lang, setLang] = useState<Lang>("cs");
@@ -489,14 +492,19 @@ export default function Page() {
             </h1>
             <p className="hero-sub">{t.heroSub}</p>
             <div className="hero-actions">
-              <a href="/konzultace" className="btn-primary btn-shine">
+              <a href="/konzultace" className="btn-primary btn-shine" data-mer="hero-rozhovor">
                 <span>{t.heroCta}</span>
                 <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
               </a>
-              <a href="/financni-preventivka" className="btn-ghost">
+              <a href="/financni-preventivka" className="btn-ghost" data-mer="hero-preventivka">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 <span>{t.heroCtaProcess}</span>
               </a>
+            </div>
+            <div className="hero-zkratky">
+              <Link href="/sluzby" data-mer="hero-sluzby">{t.navServices}</Link>
+              <Link href="/kalkulacky" data-mer="hero-kalkulacky">{t.navCalc}</Link>
+              <Link href="/o-mne" data-mer="hero-o-mne">{t.navAbout}</Link>
             </div>
           </div>
           <div className="hero-photo-wrap">
@@ -517,16 +525,28 @@ export default function Page() {
             <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.servicesTitle}</span></span></h2>
             <p className="section-sub">{t.servicesSub}</p>
           </div>
-          <div className="sl-teaser">
+          <div className="sl-teaser sl-swipe">
             {([[t.s1Title, t.s1Desc], [t.s2Title, t.s2Desc], [t.s3Title, t.s3Desc], [t.s4Title, t.s4Desc]] as [string, string][]).map(([title, desc], i) => (
-              <Link key={title} href="/sluzby" className={`sl-karta reveal${i > 0 ? ` delay-${i}` : ""}`}>
+              <Link key={title} href={`/sluzby#sluzba-${i + 1}`} data-mer={`uvod-sluzba-${i + 1}`} className={`sl-karta reveal${i > 0 ? ` delay-${i}` : ""}`}>
                 <span className="sl-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                 <b>{title}</b>
                 <p>{desc}</p>
               </Link>
             ))}
           </div>
-          <Link className="om-vic sl-vse" href="/sluzby">{lang === "cs" ? "Všechny služby" : "All services"} <i aria-hidden="true">→</i></Link>
+          <Link className="om-vic sl-vse" href="/sluzby" data-mer="uvod-vsechny-sluzby">{lang === "cs" ? "Všechny služby" : "All services"} <i aria-hidden="true">→</i></Link>
+        </div>
+      </section>
+
+      {/* ── Kalkulačka v kostce: jeden posuvník, plné kalkulačky jsou na stránce /kalkulacky ── */}
+      <section id="calculators">
+        <div className="container">
+          <div className="section-header reveal-bold" data-reveal>
+            <div className="section-rule" />
+            <div className="section-eyebrow">{t.navCalc}</div>
+            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.calcTitle}</span></span></h2>
+          </div>
+          <MiniKalk lang={lang} />
         </div>
       </section>
 
@@ -556,26 +576,10 @@ export default function Page() {
                 {lang === "cs" ? "Sjednat termín →" : "Book a call →"}
               </a>
             </div>
-            <div className="process-step reveal delay-1">
-              <span className="step-num">{t.step2Num}</span>
-              <div className="step-title">{t.step2Title}</div>
-              <div className="step-desc">{t.step2Desc}</div>
-            </div>
-            <div className="process-step reveal delay-2">
-              <span className="step-num">{t.step3Num}</span>
-              <div className="step-title">{t.step3Title}</div>
-              <div className="step-desc">{t.step3Desc}</div>
-            </div>
-            <div className="process-step reveal delay-3">
-              <span className="step-num">{t.step4Num}</span>
-              <div className="step-title">{t.step4Title}</div>
-              <div className="step-desc">{t.step4Desc}</div>
-            </div>
-            <div className="process-step reveal delay-4">
-              <span className="step-num">{t.step5Num}</span>
-              <div className="step-title">{t.step5Title}</div>
-              <div className="step-desc">{t.step5Desc}</div>
-            </div>
+            <Krok trida="process-step reveal delay-1" num={t.step2Num} title={t.step2Title} desc={t.step2Desc} />
+            <Krok trida="process-step reveal delay-2" num={t.step3Num} title={t.step3Title} desc={t.step3Desc} />
+            <Krok trida="process-step reveal delay-3" num={t.step4Num} title={t.step4Title} desc={t.step4Desc} />
+            <Krok trida="process-step reveal delay-4" num={t.step5Num} title={t.step5Title} desc={t.step5Desc} />
           </div>
         </div>
       </section>
@@ -595,27 +599,6 @@ export default function Page() {
             </div>
             <PrevRing lang={lang} />
           </div>
-        </div>
-      </section>
-
-      {/* ── Kalkulačky v kostce: samotné kalkulačky jsou na stránce /kalkulacky ── */}
-      <section id="calculators">
-        <div className="container">
-          <div className="section-header reveal-bold" data-reveal>
-            <div className="section-rule" />
-            <div className="section-eyebrow">{t.navCalc}</div>
-            <h2 className="section-title-lg"><span className="line"><span className="line-inner">{t.calcTitle}</span></span></h2>
-          </div>
-          <div className="sl-teaser">
-            {KALK_KARTY[lang].map(([href, title, desc], i) => (
-              <Link key={href} href={href} className={`sl-karta reveal${i > 0 ? ` delay-${i}` : ""}`}>
-                <span className="sl-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                <b>{title}</b>
-                <p>{desc}</p>
-              </Link>
-            ))}
-          </div>
-          <Link className="om-vic sl-vse" href="/kalkulacky">{lang === "cs" ? "Všechny kalkulačky" : "All calculators"} <i aria-hidden="true">→</i></Link>
         </div>
       </section>
 
@@ -705,7 +688,7 @@ export default function Page() {
                   : "I'll show you how I work. Mostly I want to hear you: what you're dealing with, what isn't working. We just need to click."}
               </p>
               {/* Termín se vybírá ve vlastním kalendáři na stránce Konzultace */}
-              <a href="/konzultace#rezervace" className="btn-primary bk-btn btn-shine">
+              <a href="/konzultace#rezervace" className="btn-primary bk-btn btn-shine" data-mer="uvod-vybrat-termin">
                 <span>{lang === "cs" ? "Vybrat termín" : "Pick a slot"}</span>
                 <span className="btn-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
               </a>

@@ -112,6 +112,15 @@ export function KalkulackySekce({ lang, hlavni = false }: { lang: Lang; hlavni?:
   const calcTouchX = useRef<number>(0);
   const calcTouchY = useRef<number>(0);
   const calcTabOrder = ['invest', 'retirement', 'depletion', 'mortgage'] as const;
+  /* Pruh s výsledkem na telefonu: ukáže se, když je velké číslo mimo obrazovku */
+  const [lipVidet, setLipVidet] = useState(false);
+  useEffect(() => {
+    const el = document.querySelector('.calc-panel.active .calc-result');
+    if (!el || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(([e]) => setLipVidet(!e.isIntersecting), { rootMargin: '-60px 0px -110px 0px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [calcTab]);
 
   /* Invest calc */
   const [invMonthly, setInvMonthly] = useState(5000);
@@ -684,6 +693,23 @@ export function KalkulackySekce({ lang, hlavni = false }: { lang: Lang; hlavni?:
           </div>
         </div>
       </section>
+
+      {/* Přilepený výsledek (jen telefon): hlavní číslo aktivní kalkulačky, klepnutí sjede k celému výsledku */}
+      <button type="button" className={`kalk-lip${lipVidet ? ' show' : ''}`} tabIndex={lipVidet ? 0 : -1} data-mer="kalk-pruh"
+        onClick={() => document.querySelector('.calc-panel.active .calc-result')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
+        <span>
+          {calcTab === 'invest' ? t.invResultLabel : calcTab === 'mortgage' ? t.mtgResultLabel : calcTab === 'retirement' ? t.retResultLabel : t.decResultLabel}
+        </span>
+        <b>
+          {calcTab === 'invest' && <>{fmt(iFv, lang)} {t.currency}</>}
+          {calcTab === 'mortgage' && <>{fmt(mMo, lang)} {t.currency}</>}
+          {calcTab === 'retirement' && pKc(pStat + pPort)}
+          {calcTab === 'depletion' && (isFinite(decMesice)
+            ? <>{decRoky} {lang === 'cs' ? tvar(decRoky, ['rok', 'roky', 'let']) : decRoky === 1 ? 'year' : 'years'}</>
+            : t.decForeverBig)}
+        </b>
+        <i aria-hidden="true">↓</i>
+      </button>
     </>
   );
 }
