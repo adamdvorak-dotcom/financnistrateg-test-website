@@ -67,7 +67,7 @@ export function SiteFooter({ lang = "cs" }: { lang?: "cs" | "en" }) {
           <div className="pata-sl">
             <b>{t.contact}</b>
             <a href="tel:+420731147911">+420 731 147 911</a>
-            <Link href="/#contact">{t.address}</Link>
+            <Link href="/kontakt">{t.address}</Link>
             <Link href="/konzultace">{t.book}</Link>
             <a href="https://www.linkedin.com/in/adam-dvo%C5%99%C3%A1k-efa-721479210/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>

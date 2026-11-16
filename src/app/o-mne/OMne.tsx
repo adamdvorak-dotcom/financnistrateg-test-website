@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useLang } from "../blog/useLang";
 import { TymOrbit } from "../TymOrbit";
+import { Citaty } from "../Citaty";
+import { SiteNav } from "../SiteNav";
 import { SiteFooter } from "../SiteFooter";
 import { OMNE, vekTed } from "./texty";
 
@@ -45,26 +47,7 @@ export function OMne() {
 
   return (
     <div className="om">
-      <nav>
-        <div className="container nav-inner">
-          <Link href="/" className="nav-logo">
-            <span className="nav-logo-name">Adam Dvořák</span>
-            <span className="nav-logo-efa">, EFA</span>
-          </Link>
-          <div className="nav-right">
-            <div className={`lang-sw ${lang}`} role="group" aria-label={t.jazyk}>
-              <span className="lang-sw-pill" aria-hidden="true" />
-              <button type="button" aria-pressed={lang === "cs"} onClick={() => lang !== "cs" && prepni()} title="Česky">CZ</button>
-              <button type="button" aria-pressed={lang === "en"} onClick={() => lang !== "en" && prepni()} title="English" lang="en">EN</button>
-            </div>
-            <Link href="/" className="btn-ghost om-zpet">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
-              <span>{t.zpet}</span>
-            </Link>
-            <Link href="/konzultace" className="btn-nav">{t.klient}</Link>
-          </div>
-        </div>
-      </nav>
+      <SiteNav lang={lang} prepni={prepni} aktivni="about" />
 
       <main>
         <section className="om-hero">
@@ -109,6 +92,8 @@ export function OMne() {
             </div>
           </div>
         </section>
+
+        <Citaty lang={lang} />
 
         <section className="tym-sekce">
           <div className="container tym-o">

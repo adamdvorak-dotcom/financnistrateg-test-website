@@ -4030,3 +4030,12 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
 .kl-dalsi{padding:24px 0 16px}
 .kl-dalsi .sl-teaser{margin-top:0}
 @media(max-width:900px){.kl #calculators{padding-top:96px}}
+
+/* ── Společné menu podstránek, stránka Kontakt, newsletter na blogu ── */
+.mobile-overlay.is-open ~ .sl-kap{display:none}
+.kt #contact{padding-top:124px}
+.blog-nl{padding:72px 0 0}
+.om .quote-band{margin:0}
+@media(max-width:900px){.kt #contact{padding-top:96px}.blog-nl{padding-top:56px}}
+/* Otevřené menu na telefonu: tlačítko a e-mail musí zůstat nad spodní lištou */
+@media(max-width:899px){.mobile-overlay{padding-bottom:calc(108px + env(safe-area-inset-bottom,0px))}}

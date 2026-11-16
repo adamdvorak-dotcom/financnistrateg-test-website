@@ -6,6 +6,7 @@ import { LangButton } from "./LangButton";
 import { CategoryChips } from "./CategoryChips";
 import { FeaturedCard, OwnerCards, BlogListing, BlogSectionLabel } from "./BlogCards";
 import { SiteFooter } from "../SiteFooter";
+import { BlogNewsletter } from "./BlogNewsletter";
 
 export const metadata: Metadata = {
   title: "Blog: Investice, DIP, Důchod, Hypotéky, Majetek",
@@ -89,6 +90,9 @@ export default function BlogPage() {
           <BlogListing articles={listArticles} activeCat={false} />
 
         </div>
+
+        {/* ── Newsletter ── */}
+        <BlogNewsletter />
       </main>
 
       {/* ── Footer ── */}
