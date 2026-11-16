@@ -3988,3 +3988,39 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
   .om-in{animation:none}
   .om-vic,.om-vic i{transition:none}
 }
+
+/* ── Služby v kostce na úvodní stránce ── */
+.sl-teaser{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:8px}
+.sl-karta{display:flex;flex-direction:column;gap:10px;box-sizing:border-box;padding:24px 22px 26px;border-radius:16px;background:#FBF9F5;
+  border:1px solid #DDD5C6;color:#1A1511;text-decoration:none;
+  transition:opacity .5s ease,transform .5s var(--ease-out),border-color .3s,box-shadow .35s}
+.sl-karta .sl-num{font:400 12px 'DM Mono',monospace;letter-spacing:.14em;color:#7A5C35}
+.sl-karta b{font:500 21px/1.2 'Lora',Georgia,serif;letter-spacing:-.01em}
+.sl-karta p{margin:0;font-size:15px;line-height:1.55;color:#4A433B}
+.sl-karta.vis:hover,.sl-karta.vis:focus-visible{transform:translateY(-4px);border-color:#7A5C35;box-shadow:0 16px 34px rgba(12,31,58,.12)}
+.sl-karta:focus-visible{outline:2px solid #7A5C35;outline-offset:3px}
+.sl-vse{position:relative;z-index:1;margin-top:28px}
+@media(max-width:1000px){.sl-teaser{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.sl-teaser{grid-template-columns:1fr;gap:12px}.sl-karta{padding:20px 18px 22px}}
+
+/* ── Stránka Služby ── */
+.sl #services{padding-top:156px}
+.sl section[id]{scroll-margin-top:104px}
+.sl-kap{position:fixed;top:61px;left:0;right:0;z-index:290;border-bottom:1px solid var(--border);
+  background:color-mix(in oklab,var(--bg) 94%,transparent);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5)}
+.sl-kap-in{display:flex;align-items:center;gap:20px;height:48px}
+.sl-kap-lbl{flex:none;font:400 11px 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#7A5C35}
+.sl-kap-pas{display:flex;align-items:center;gap:4px;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sl-kap-pas::-webkit-scrollbar{display:none}
+.sl-kap a{flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:18px;font-size:14px;font-weight:500;
+  color:#4A433B;text-decoration:none;white-space:nowrap;transition:background-color .3s,color .3s}
+.sl-kap a:hover{color:#0C1F3A}
+.sl-kap a.je{background:#0C1F3A;color:#F5F2EC}
+.sl-kap a:focus-visible{outline:2px solid #7A5C35;outline-offset:-2px}
+@media(max-width:900px){
+  .sl #services{padding-top:136px}
+  .sl-kap-lbl{display:none}
+  .sl-kap .container{padding-right:0}
+  .sl-kap-pas{padding-right:20px}
+}
+@media (prefers-reduced-motion: reduce){.sl-karta,.sl-kap a{transition:none}}

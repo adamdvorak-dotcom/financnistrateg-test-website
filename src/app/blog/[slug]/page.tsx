@@ -2463,7 +2463,7 @@ function ArticleContent({ slug }: { slug: string }) {
         </p>
         <p>
           Kolik by u vás dostal kdo, si naklikáte v simulátoru{" "}
-          <Link href="/#dedictvi">Kdo dědí bez závěti</Link>. Je to minuta práce a výsledek často
+          <Link href="/sluzby#dedictvi">Kdo dědí bez závěti</Link>. Je to minuta práce a výsledek často
           překvapí.
         </p>
         <p>
@@ -2506,7 +2506,7 @@ function ArticleContent({ slug }: { slug: string }) {
           Z čeho rodina v prvních měsících zaplatí hypotéku, školu a pohřeb?
         </p>
         <p>
-          V kalkulačce <Link href="/#druha-noha">Kde máte majetek</Link>{" "}má ukázkový majitel na papíře
+          V kalkulačce <Link href="/sluzby#druha-noha">Kde máte majetek</Link>{" "}má ukázkový majitel na papíře
           přes 55&nbsp;milionů: firmu za 40, barák za 12, investice za 2 a hotovost za 1,5&nbsp;milionu.
           Bez prodeje firmy nebo baráku má k dispozici tři a půl. Zbytek je zamčený ve firmě
           a v baráku.
@@ -2536,7 +2536,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>
           Inspiraci jsem si přivezl ze Švýcarska. Jeden člověk drží celý obraz, od investic
           po krizový plán. Na webu to mám rozepsané{" "}
-          <Link href="/#services">od cashflow po den, kdy se nevrátíte domů</Link>.
+          <Link href="/sluzby">od cashflow po den, kdy se nevrátíte domů</Link>.
         </p>
         <p>
           Sám to všechno nedělám. Za mnou stojí tým: advokát, notář, daňař, účetní. Vy ale voláte
