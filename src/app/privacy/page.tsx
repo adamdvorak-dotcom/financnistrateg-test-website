@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               <div className="article-meta">
                 <span>Adam Dvořák, EFA</span>
                 <span className="article-meta-dot">·</span>
-                <span>Aktualizováno 16. listopadu 2026</span>
+                <span>Aktualizováno 17. listopadu 2026</span>
               </div>
             </header>
 
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
 
               <h2>2. Jaké údaje zpracovávám a proč</h2>
               <p>
-                <strong>Kontaktní formulář</strong> (na úvodní stránce a na stránce Konzultace):
+                <strong>Kontaktní formulář</strong> (na stránkách Kontakt a Konzultace):
                 jméno, e-mail, případně telefon, téma a text zprávy. Použiji je, abych vám odpověděl
                 a případně domluvil schůzku. Právním základem je jednání o smlouvě na vaši žádost
                 (čl. 6 odst. 1 písm. b) GDPR) a můj oprávněný zájem odpovědět na dotaz
@@ -82,7 +82,9 @@ export default function PrivacyPage() {
               <p>
                 <strong>Rezervace schůzky</strong>: když si vyberete termín, jméno, e-mail a případně
                 telefon a téma schůzky předávám službě Calendly, která rezervaci eviduje a pošle vám
-                pozvánku. Použiji je k domluvě a konání schůzky.
+                pozvánku. Přes službu Resend vám může přijít i potvrzení a mně oznámení o nové
+                rezervaci. Použiji je k domluvě a konání schůzky. Právním základem je jednání
+                o smlouvě na vaši žádost (čl. 6 odst. 1 písm. b) GDPR).
               </p>
               <p>
                 <strong>Technický provoz webu</strong>: při každé návštěvě zpracovává hosting
@@ -109,19 +111,46 @@ export default function PrivacyPage() {
                 „lang“). Bez nich web nefunguje tak, jak má, souhlas k nim není potřeba.
               </p>
               <p>
-                <strong>Analytické</strong>: jen pokud kliknete na „Přijmout vše“, načte se nástroj
-                Leady, který měří návštěvnost a ukazuje, které firmy web navštívily. Právním základem
-                je váš souhlas. Když zvolíte „Pouze nezbytné“, Leady se nenačte. Měření návštěvnosti
-                přes Vercel (viz výše) cookies nepoužívá, proto běží i bez souhlasu.
+                V liště cookies si vyberete, které kategorie povolíte. Na stránkách Finanční
+                preventivka a Renta je lišta zjednodušená: „Přijmout vše“ povolí analytické
+                i marketingové cookies, „Pouze nezbytné“ jen ty nezbytné. Dokud nic nepovolíte,
+                analytické ani marketingové nástroje se nenačtou.
               </p>
               <p>
-                Souhlas můžete kdykoli změnit: <CookieReset />
+                <strong>Nezbytné</strong>: ukládám vaši volbu v liště cookies (cookie a místní úložiště
+                prohlížeče „cookie_consent“, platnost cookie 1 rok; v místním úložišti navíc
+                „cookie_analytics“ a „cookie_marketing“ s volbou pro jednotlivé kategorie) a zvolený
+                jazyk webu (místní úložiště „lang“). Bez nich web nefunguje tak, jak má, souhlas
+                k nim není potřeba.
+              </p>
+              <p>
+                <strong>Analytické</strong>: jen pokud je povolíte, načte se nástroj Leady, který měří
+                návštěvnost a ukazuje, které firmy web navštívily. Právním základem je váš souhlas
+                (čl. 6 odst. 1 písm. a) GDPR). Měření návštěvnosti přes Vercel (viz výše) cookies
+                nepoužívá, proto běží i bez souhlasu.
+              </p>
+              <p>
+                <strong>Marketingové</strong>: jen pokud je povolíte, načte se značka Googlu (měření
+                reklamy Google Ads, případně Google Analytics) a Meta Pixel (měření reklamy na
+                Facebooku a Instagramu). Slouží k tomu, abych věděl, jestli reklama přivádí lidi,
+                které web zajímá, a mohl ji ukazovat vhodnějšímu publiku. Zaznamenávají zobrazené
+                stránky a několik událostí, například dokončení Finanční preventivky nebo použití
+                kalkulačky renty. Vaše jméno, e-mail ani odpovědi z preventivky jim neposílám.
+                Ukládají cookies třetích stran, typicky „_gcl_au“ (Google, 90 dní), „_ga“ a „_ga_*“
+                (Google Analytics, až 2 roky) a „_fbp“ (Meta, 90 dní). Google a Meta mohou údaje
+                propojit s vaším účtem u nich a používají je i pro své vlastní účely podle svých
+                zásad. Právním základem je váš souhlas (čl. 6 odst. 1 písm. a) GDPR). Bez souhlasu
+                se tyto nástroje vůbec nenačtou.
+              </p>
+              <p>
+                Souhlas můžete kdykoli změnit nebo odvolat: <CookieReset />. Stejný odkaz
+                „Nastavení cookies“ najdete v patičce každé stránky.
               </p>
 
               <h2>4. Komu údaje předávám</h2>
               <p>
-                Údaje neprodávám a nepředávám nikomu pro jeho vlastní marketing. Pracují s nimi jen
-                služby, které pro mě zajišťují provoz, a to v rozsahu nutném pro danou činnost:
+                Údaje neprodávám. Pracují s nimi služby, které pro mě zajišťují provoz, a to
+                v rozsahu nutném pro danou činnost:
               </p>
               <ul>
                 <li><strong>Vercel</strong>: hosting webu a měření návštěvnosti bez cookies (USA)</li>
@@ -131,7 +160,21 @@ export default function PrivacyPage() {
                 <li><strong>SmartEmailing</strong>: rozesílání newsletteru (Česko)</li>
                 <li><strong>Calendly</strong>: rezervace schůzek (USA)</li>
                 <li><strong>Leady</strong>: analýza návštěvnosti, jen se souhlasem (Česko)</li>
+                <li><strong>Google Ireland Ltd.</strong>: měření reklamy (Google Ads, případně Google
+                  Analytics), jen se souhlasem (Irsko, údaje mohou směřovat do USA)</li>
+                <li><strong>Meta Platforms Ireland Ltd.</strong>: měření reklamy na Facebooku
+                  a Instagramu (Meta Pixel), jen se souhlasem (Irsko, údaje mohou směřovat do USA)</li>
               </ul>
+              <p>
+                U marketingových cookies jsou Google a Meta zčásti samostatnými správci: údaje
+                z měření používají i pro vlastní účely, například ke zlepšování svých reklamních
+                služeb. Za to, že se údaje z webu vůbec shromáždí a předají Metě, odpovídám
+                s Metou společně podle jejích podmínek pro společné správce; za další zpracování
+                odpovídá Meta. Podrobnosti najdete v zásadách{" "}
+                <a href="https://policies.google.com/privacy?hl=cs" target="_blank" rel="noopener noreferrer">Googlu</a>{" "}
+                a{" "}
+                <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">Mety</a>.
+              </p>
               <p>
                 Některé z těchto služeb sídlí v USA. Předání tam probíhá na základě rámce EU-USA
                 pro ochranu osobních údajů (Data Privacy Framework) nebo standardních smluvních
