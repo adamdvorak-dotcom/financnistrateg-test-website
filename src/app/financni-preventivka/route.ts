@@ -213,6 +213,7 @@ body:not(.started) .mobilebar { display: none !important; }
 @media (max-width: 640px) { .masthead { grid-template-columns: minmax(0,1fr); padding-top: 28px; } .docmeta { display: none; } .item { grid-template-columns: 36px minmax(0,1fr); } .opts { grid-column: 1/-1; } .opt-card { flex: 1; } .cta { grid-template-columns: minmax(0,1fr); } }
 @media (prefers-reduced-motion: no-preference) { .segs i { transition: background-color 0.25s ease; } }
 </style>
+<script src="/znacky.js" data-lista defer></script>
 </head>
 <body>
 <div id="topBar" aria-hidden="true"></div>
@@ -616,6 +617,7 @@ body:not(.started) .mobilebar { display: none !important; }
     btn.classList.add('is-sending');
     btn.textContent = "Odesílám…";
     sendLead(buildPayload(name, email, document.getElementById("leadNews").checked)).then(function () {
+      try { if (window.fsZnacky) { window.fsZnacky.lead(); } } catch (e) {}
       btn.classList.remove('is-sending');
       btn.classList.add('is-sent');
       btn.innerHTML = '<svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5l3.5 3.5L12 1" stroke-dasharray="17" stroke-dashoffset="17" style="animation:draw-chk .4s ease-out both"/></svg>';

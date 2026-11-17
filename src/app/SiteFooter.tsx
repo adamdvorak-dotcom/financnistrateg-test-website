@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieOdkaz } from "@/components/CookieOdkaz";
 
 /* Společná patička všech stránek: velké jméno, tři sloupce odkazů, tlačítko nahoru
    a na pozadí pomalu jedoucí obrysový nápis. */
@@ -17,6 +18,7 @@ const T = {
     legal: "Právní",
     privacy: "Ochrana osobních údajů",
     terms: "Podmínky užití",
+    cookies: "Nastavení cookies",
     reg: "Registrován u ČNB. IČO: 08406804.",
     mark: "Finanční Stratég",
   },
@@ -34,6 +36,7 @@ const T = {
     legal: "Legal",
     privacy: "Privacy policy",
     terms: "Terms of use",
+    cookies: "Cookie settings",
     reg: "Registered with the Czech National Bank. Company ID: 08406804.",
     mark: "Finanční Stratég",
   },
@@ -75,6 +78,7 @@ export function SiteFooter({ lang = "cs" }: { lang?: "cs" | "en" }) {
             <b>{t.legal}</b>
             <Link href="/privacy">{t.privacy}</Link>
             <Link href="/terms">{t.terms}</Link>
+            <CookieOdkaz label={t.cookies} />
           </div>
         </div>
         <div className="pata-dole">

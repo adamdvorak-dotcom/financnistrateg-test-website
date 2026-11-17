@@ -173,6 +173,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
   @media print{.top,.zpet,.btn{display:none}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}.ctl input{display:none}main{margin-top:0}}
 </style>
+<script src="/znacky.js" data-lista defer></script>
 </head>
 <body>
 <div class="top">
@@ -253,7 +254,7 @@
   <section class="card cta" aria-labelledby="c5">
     <h2 id="c5">Chcete to na svých skutečných číslech?</h2>
     <p class="lead">Kalkulačka neví nic o vaší firmě, daních, nemovitostech ani státním důchodu. Půl hodiny stačí, abychom zjistili, jestli si sedneme.</p>
-    <div class="ctarow"><a class="btn" href="https://www.financnistrateg.com/konzultace">Domluvit půl hodiny</a><button class="link" id="shareBtn" type="button">Zkopírovat odkaz na tento scénář</button><span id="shareNote" class="assump" aria-live="polite"></span></div>
+    <div class="ctarow"><a class="btn" href="https://www.financnistrateg.com/konzultace" onclick="try{window.fsZnacky&&window.fsZnacky.udalost('renta_konzultace')}catch(e){}">Domluvit půl hodiny</a><button class="link" id="shareBtn" type="button">Zkopírovat odkaz na tento scénář</button><span id="shareNote" class="assump" aria-live="polite"></span></div>
   </section>
 
   <section class="card">
@@ -272,7 +273,7 @@
     </div>
   </div>
 </main>
-<footer><div class="wrap"><div class="jmeno">Adam Dvořák<span>, EFA</span></div><p>Adam Dvořák, EFA · IČO 08406804 · vázaný zástupce společnosti BEplan finanční plánování s.r.o., IČO 05779944, registrované u ČNB · <a href="https://www.financnistrateg.com">financnistrateg.com</a> · Obecná ilustrace pro vzdělávací účely, nikoli investiční doporučení ani nabídka. Nástroj neukládá žádné údaje a nepoužívá cookies.</p></div></footer>
+<footer><div class="wrap"><div class="jmeno">Adam Dvořák<span>, EFA</span></div><p>Adam Dvořák, EFA · IČO 08406804 · vázaný zástupce společnosti BEplan finanční plánování s.r.o., IČO 05779944, registrované u ČNB · <a href="https://www.financnistrateg.com">financnistrateg.com</a> · Obecná ilustrace pro vzdělávací účely, nikoli investiční doporučení ani nabídka. Čísla, která zadáte, se nikam neodesílají ani neukládají. Marketingové cookies (Google, Meta) se použijí jen s vaším souhlasem, podrobnosti jsou v <a href="/privacy">zásadách ochrany údajů</a>.</p></div></footer>
 
 <script>
 (function(){
@@ -412,6 +413,8 @@
   function writeHash(){const q=IDS.map(id=>id.slice(2).toLowerCase()+'='+$(id).value).join('&');history.replaceState(null,'','#'+q);}
   function readHash(){if(!location.hash)return;const q=new URLSearchParams(location.hash.slice(1));IDS.forEach(id=>{const k=id.slice(2).toLowerCase();if(q.has(k)){const el=$(id);const v=+q.get(k);if(!isNaN(v))el.value=Math.min(+el.max,Math.max(+el.min,v));}});}
   readHash(); window.addEventListener('hashchange',()=>{readHash();recompute();});
+  /* První pohyb posuvníkem se (jen se souhlasem s marketingovými cookies) zapíše jako použití kalkulačky */
+  document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{try{if(window.fsZnacky)window.fsZnacky.udalost('renta_pouzita');}catch(e){}},{once:true}));
   let raf=null; document.querySelectorAll('input[type=range]').forEach(i=>i.addEventListener('input',()=>{if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{recompute();writeHash();})}));
   $('shareBtn').addEventListener('click',async()=>{writeHash();try{await navigator.clipboard.writeText(location.href);$('shareNote').textContent='Odkaz zkopírován.';}catch(e){$('shareNote').textContent=location.href;}});
   recompute();
