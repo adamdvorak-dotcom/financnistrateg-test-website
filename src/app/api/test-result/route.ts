@@ -5,7 +5,8 @@ import { emailNavstevnikovi } from "@/lib/preventivkaEmail";
 
 const TO = "adamdvorak@financnistrateg.com";
 
-/* E-mail s výsledkem pro návštěvníka. Zapne se, až Adam schválí text. */
+/* E-mail s výsledkem pro návštěvníka. Text je schválený; zapne se, až Adam potvrdí zkušební cestu
+   a schválení z BEplanu. */
 const EMAIL_NAVSTEVNIKOVI = false;
 
 interface Area { name: string; score: number; }
@@ -90,8 +91,7 @@ export async function POST(req: NextRequest) {
         for (const d of Array.isArray(details) ? details : []) {
           if (typeof d?.id === "string" && [0, 1, 2].includes(d.value)) odpovedi[d.id] = d.value;
         }
-        const krestni = String(name).replace(/[^\p{L}\s.'-]/gu, "").trim().split(/\s+/)[0]?.slice(0, 40) ?? "";
-        const m = emailNavstevnikovi(krestni, odpovedi);
+        const m = emailNavstevnikovi(odpovedi);
         const r2 = await posliPostu({ from: odesilatel("Adam Dvořák"), to: [adresa], reply_to: TO, ...m }, { zaloha: false });
         if (!r2.ok) console.error("Resend (návštěvník):", r2.status, await r2.text().catch(() => ""));
       } catch (e) {
