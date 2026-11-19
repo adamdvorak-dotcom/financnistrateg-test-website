@@ -13,8 +13,8 @@ export const dynamic = "force-static";
    prázdný řetězec znamená, že se pro tu událost konverze neposílá. Bez hodnoty a měny. */
 const KONVERZE_UDALOSTI: Record<string, string> = {
   preventivka_odeslana: process.env.NEXT_PUBLIC_GOOGLE_CONVERSION ?? "AW-18581076586/ggKmCJCV8LodEOr0kpxF",
-  rezervace_dokoncena: "",
-  formular_odeslan: "",
+  rezervace_dokoncena: "AW-18581076586/zboNCOOJzrsdEOr0kpxF",
+  formular_odeslan: "AW-18581076586/nR7HCJ-ix7sdEOr0kpxF",
 };
 
 const SKRIPT = `(function () {
@@ -72,10 +72,10 @@ const SKRIPT = `(function () {
       window.fbq("track", "PageView");
     }
   }
-  /* Dokončený test: konverze do Googlu a událost Lead do Pixelu, jednou za návštěvu a jen se souhlasem */
+  /* Odeslaná preventivka: konverze do Googlu a událost Lead do Pixelu. Volá se jednou po každém úspěšném
+     odeslání (nikdy při načtení stránky) a jen se souhlasem. */
   function lead() {
     if (!souhlas()) return;
-    try { if (sessionStorage.getItem("fs_lead")) return; sessionStorage.setItem("fs_lead", "1"); } catch (e) {}
     load();
     if (GTM) window.dataLayer.push({ event: "preventivka_odeslana" });
     /* Konverze Google Ads „odeslaná preventivka“: jde přímo přes značku Googlu (gtag), bez hodnoty a měny */

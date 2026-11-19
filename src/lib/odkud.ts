@@ -33,6 +33,7 @@ export function odkudRadky(o: Odkud): string[] {
 /* Událost pro Tag Manager; odešle se jen se souhlasem s marketingovými cookies (řeší /znacky.js) */
 export function udalost(nazev: string) {
   try {
-    (window as unknown as { fsZnacky?: { udalost?: (n: string) => void } }).fsZnacky?.udalost?.(nazev);
+    // true = neomezovat na jednou za návštěvu: volá se jen po úspěšné akci, takže jedna akce je jedna událost
+    (window as unknown as { fsZnacky?: { udalost?: (n: string, opakovat?: boolean) => void } }).fsZnacky?.udalost?.(nazev, true);
   } catch {}
 }
