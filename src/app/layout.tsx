@@ -179,6 +179,8 @@ export default function RootLayout({
     <html lang="cs" className="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Značky (Google Tag Manager): skript je hned v hlavičce, kontejner načte až po souhlasu s marketingovými cookies */}
+        <script src="/znacky.js" async />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import Script from "next/script";
 
 /* Skripty třetích stran, každý jen se svým souhlasem:
    – Leady (analytické cookies), načítá se tady,
-   – značka Googlu a Meta Pixel (marketingové cookies), ty řídí /znacky.js. */
+   – Google Tag Manager a jeho značky (marketingové cookies), ty řídí /znacky.js vložený v hlavičce layoutu. */
 export default function TrackingScripts() {
   useEffect(() => {
     const load = () => {
@@ -35,5 +34,5 @@ export default function TrackingScripts() {
     };
   }, []);
 
-  return <Script src="/znacky.js" strategy="afterInteractive" />;
+  return null;
 }

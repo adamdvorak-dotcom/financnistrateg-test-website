@@ -1,6 +1,8 @@
 /* Reklamní značky (Google a Meta Pixel) pro celý web, včetně stránek mimo společný layout (Finanční preventivka).
    Skript nic nenačte, dokud návštěvník nedá souhlas s marketingovými cookies (localStorage cookie_marketing = "1").
-   Kódy se berou z proměnných prostředí; dokud nejsou nastavené, skript nedělá nic.
+   Hlavní cesta je kontejner Google Tag Manageru (GTM): skript ho po souhlasu načte a události mu předává
+   přes dataLayer; jednotlivé značky (Google Ads, Pixel…) se pak nastavují v GTM. Přímé značky níž jsou záloha.
+     NEXT_PUBLIC_GTM_ID             kontejner GTM, výchozí GTM-WZTKXK85 (veřejný údaj, není tajný)
      NEXT_PUBLIC_GOOGLE_TAG_ID      značka Googlu, např. AW-123456789 nebo G-XXXXXXX (víc značek oddělit čárkou)
      NEXT_PUBLIC_GOOGLE_CONVERSION  konverze „dokončený test“ v Google Ads, např. AW-123456789/AbCdEfGh
      NEXT_PUBLIC_META_PIXEL_ID      číslo Meta Pixelu
@@ -8,15 +10,23 @@
 export const dynamic = "force-static";
 
 const SKRIPT = `(function () {
-  var G = __G__, KONVERZE = __K__, PIXEL = __P__;
-  if (!G.length && !PIXEL) { window.fsZnacky = { load: function () {}, lead: function () {}, udalost: function () {} }; }
+  var GTM = __GTM__, G = __G__, KONVERZE = __K__, PIXEL = __P__;
+  if (!GTM && !G.length && !PIXEL) { window.fsZnacky = { load: function () {}, lead: function () {}, udalost: function () {} }; }
   var nacteno = false;
   function souhlas() { try { return localStorage.getItem("cookie_marketing") === "1"; } catch (e) { return false; } }
   function rozhodnuto() { try { return localStorage.getItem("cookie_marketing") !== null; } catch (e) { return true; } }
   function skript(src) { var s = document.createElement("script"); s.async = true; s.src = src; document.head.appendChild(s); }
   function load() {
-    if (nacteno || !souhlas() || (!G.length && !PIXEL)) return;
+    if (nacteno || !souhlas() || (!GTM && !G.length && !PIXEL)) return;
     nacteno = true;
+    if (GTM) {
+      window.dataLayer = window.dataLayer || [];
+      var gt = function () { window.dataLayer.push(arguments); };
+      gt("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied" });
+      gt("consent", "update", { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted", analytics_storage: "granted" });
+      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      skript("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM));
+    }
     if (G.length) {
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
@@ -42,6 +52,7 @@ const SKRIPT = `(function () {
     if (!souhlas()) return;
     try { if (sessionStorage.getItem("fs_lead")) return; sessionStorage.setItem("fs_lead", "1"); } catch (e) {}
     load();
+    if (GTM) window.dataLayer.push({ event: "preventivka_odeslana" });
     if (window.gtag && G.length) {
       if (KONVERZE) window.gtag("event", "conversion", { send_to: KONVERZE });
       window.gtag("event", "generate_lead", { event_category: "test", event_label: "dokonceny_test" });
@@ -53,6 +64,7 @@ const SKRIPT = `(function () {
     if (!souhlas() || !/^[a-z0-9_]{1,40}$/.test(nazev)) return;
     try { if (sessionStorage.getItem("fs_u_" + nazev)) return; sessionStorage.setItem("fs_u_" + nazev, "1"); } catch (e) {}
     load();
+    if (GTM) window.dataLayer.push({ event: nazev });
     if (window.gtag && G.length) window.gtag("event", nazev);
     if (window.fbq && PIXEL) window.fbq("trackCustom", nazev);
   }
@@ -95,7 +107,9 @@ export function GET() {
   const g = (process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? "").split(",").map((s) => s.trim()).filter((s) => /^[A-Z]{1,3}-[A-Za-z0-9-]+$/.test(s));
   const k = (process.env.NEXT_PUBLIC_GOOGLE_CONVERSION ?? "").trim();
   const p = (process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "").trim();
+  const gtm = (process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-WZTKXK85").trim();
   const js = SKRIPT
+    .replace("__GTM__", JSON.stringify(/^GTM-[A-Z0-9]+$/.test(gtm) ? gtm : ""))
     .replace("__G__", JSON.stringify(g))
     .replace("__K__", JSON.stringify(/^AW-[A-Za-z0-9-]+\/[A-Za-z0-9_-]+$/.test(k) ? k : ""))
     .replace("__P__", JSON.stringify(/^\d{5,20}$/.test(p) ? p : ""));

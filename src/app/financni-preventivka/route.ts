@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 const html = `<!DOCTYPE html>
 <html lang="cs">
 <head>
+<script src="/znacky.js" data-lista defer></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finanční preventivka pro majitele firem · Adam Dvořák</title>
@@ -213,7 +214,6 @@ body:not(.started) .mobilebar { display: none !important; }
 @media (max-width: 640px) { .masthead { grid-template-columns: minmax(0,1fr); padding-top: 28px; } .docmeta { display: none; } .item { grid-template-columns: 36px minmax(0,1fr); } .opts { grid-column: 1/-1; } .opt-card { flex: 1; } .cta { grid-template-columns: minmax(0,1fr); } }
 @media (prefers-reduced-motion: no-preference) { .segs i { transition: background-color 0.25s ease; } }
 </style>
-<script src="/znacky.js" data-lista defer></script>
 </head>
 <body>
 <div id="topBar" aria-hidden="true"></div>
