@@ -4,7 +4,7 @@
    přes dataLayer; jednotlivé značky (Google Ads, Pixel…) se pak nastavují v GTM. Přímé značky níž jsou záloha.
      NEXT_PUBLIC_GTM_ID             kontejner GTM, výchozí GTM-WZTKXK85 (veřejný údaj, není tajný)
      NEXT_PUBLIC_GOOGLE_TAG_ID      značka Googlu, např. AW-123456789 nebo G-XXXXXXX (víc značek oddělit čárkou)
-     NEXT_PUBLIC_GOOGLE_CONVERSION  konverze „dokončený test“ v Google Ads, např. AW-123456789/AbCdEfGh
+     NEXT_PUBLIC_GOOGLE_CONVERSION  konverze „odeslaná preventivka“ v Google Ads, výchozí AW-18581076586/ggKmCJCV8LodEOr0kpxF
      NEXT_PUBLIC_META_PIXEL_ID      číslo Meta Pixelu
    Události se posílají bez jména a e-mailu. */
 export const dynamic = "force-static";
@@ -70,10 +70,9 @@ const SKRIPT = `(function () {
     try { if (sessionStorage.getItem("fs_lead")) return; sessionStorage.setItem("fs_lead", "1"); } catch (e) {}
     load();
     if (GTM) window.dataLayer.push({ event: "preventivka_odeslana" });
-    if (window.gtag && G.length) {
-      if (KONVERZE) window.gtag("event", "conversion", { send_to: KONVERZE });
-      window.gtag("event", "generate_lead", { event_category: "test", event_label: "dokonceny_test" });
-    }
+    /* Konverze Google Ads „odeslaná preventivka“: jde přímo přes značku Googlu (gtag), bez hodnoty a měny */
+    if (KONVERZE && window.gtag) window.gtag("event", "conversion", { send_to: KONVERZE });
+    if (window.gtag && G.length) window.gtag("event", "generate_lead", { event_category: "test", event_label: "dokonceny_test" });
     if (window.fbq && PIXEL) window.fbq("track", "Lead", { content_name: "Financni preventivka" });
   }
   /* Vlastní událost (např. použití kalkulačky renty): jednou za návštěvu a jen se souhlasem */
@@ -133,7 +132,7 @@ const SKRIPT = `(function () {
 
 export function GET() {
   const g = (process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? "").split(",").map((s) => s.trim()).filter((s) => /^[A-Z]{1,3}-[A-Za-z0-9-]+$/.test(s));
-  const k = (process.env.NEXT_PUBLIC_GOOGLE_CONVERSION ?? "").trim();
+  const k = (process.env.NEXT_PUBLIC_GOOGLE_CONVERSION ?? "AW-18581076586/ggKmCJCV8LodEOr0kpxF").trim();
   const p = (process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "").trim();
   const gtm = (process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-WZTKXK85").trim();
   const js = SKRIPT
