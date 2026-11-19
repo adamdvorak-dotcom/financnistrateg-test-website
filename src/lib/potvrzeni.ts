@@ -1,4 +1,5 @@
 import { odkudRadky, type Odkud } from "@/lib/odkud";
+import { odesilatel, posliPostu } from "@/lib/posta";
 /* Vlastní české potvrzení rezervace. Posílá se přes Resend hned po zápisu schůzky do Calendly.
 
    Funguje jen s ověřenou odesílací doménou: v proměnné prostředí RESEND_FROM_EMAIL musí být
@@ -148,11 +149,8 @@ export async function posliOznameni(r: { start: string; name: string; email: str
   try {
     const c = casti(r.start);
     const kdy = `${c.denVTydnu} ${c.den}. ${c.mesic}. ${predlozka(c.hodina)} ${c.cas}`;
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from: "Web formulář <onboarding@resend.dev>",
+    const res = await posliPostu({
+        from: odesilatel("Web financnistrateg.com"),
         to: [ODPOVED_NA],
         reply_to: r.email,
         subject: `Nová rezervace: ${kdy} | ${r.name}`,
@@ -167,8 +165,7 @@ export async function posliOznameni(r: { start: string; name: string; email: str
           "Rezervace je zapsaná v Calendly.",
           ...odkudRadky(r.odkud ?? {}),
         ].filter((x) => x !== null).join("\n"),
-      }),
-    });
+      });
     if (!res.ok) console.error("Oznameni: Resend odmítl e-mail:", res.status, (await res.text()).slice(0, 300));
     return res.ok;
   } catch (err) {

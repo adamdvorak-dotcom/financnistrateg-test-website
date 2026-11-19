@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { odesilatel, posliPostu } from "@/lib/posta";
 
 /* Anonymní zpětná vazba k článku („Pomohl vám tenhle článek?"). Odpověď přijde e-mailem. */
 const TO = "adamdvorak@financnistrateg.com";
@@ -32,14 +33,8 @@ export async function POST(req: NextRequest) {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
     if (tooMany(ip)) return NextResponse.json({ ok: true });
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Web formulář <onboarding@resend.dev>",
+    const res = await posliPostu({
+        from: odesilatel("Web financnistrateg.com"),
         to: [TO],
         subject: `[Zpětná vazba] ${odpoved === "ano" ? "Pomohl" : "Nepomohl"}: ${title || slug}`,
         text: [
@@ -50,8 +45,7 @@ export async function POST(req: NextRequest) {
         ]
           .filter(Boolean)
           .join("\n"),
-      }),
-    });
+      });
     if (!res.ok) {
       console.error("Resend error:", await res.text());
       return NextResponse.json({ error: "Odeslání se nepovedlo." }, { status: 500 });

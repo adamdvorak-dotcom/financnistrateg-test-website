@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { odesilatel, posliPostu } from "@/lib/posta";
 
 const TO = "adamdvorak@financnistrateg.com";
 
@@ -10,20 +11,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Neplatná e-mailová adresa." }, { status: 400 });
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Web formulář <onboarding@resend.dev>",
+    const res = await posliPostu({
+        from: odesilatel("Web financnistrateg.com"),
         to: [TO],
         reply_to: email,
         subject: `Nový odběratel newsletteru: ${email}`,
         text: `Nový odběratel se přihlásil k newsletteru:\n\n${email}`,
-      }),
-    });
+      });
 
     const data = await res.json();
 
