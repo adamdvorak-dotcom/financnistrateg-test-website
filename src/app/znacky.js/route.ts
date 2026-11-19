@@ -9,8 +9,16 @@
    Události se posílají bez jména a e-mailu. */
 export const dynamic = "force-static";
 
+/* Konverze Google Ads podle události. Štítek se doplní sem, ve tvaru "AW-18581076586/štítek";
+   prázdný řetězec znamená, že se pro tu událost konverze neposílá. Bez hodnoty a měny. */
+const KONVERZE_UDALOSTI: Record<string, string> = {
+  preventivka_odeslana: process.env.NEXT_PUBLIC_GOOGLE_CONVERSION ?? "AW-18581076586/ggKmCJCV8LodEOr0kpxF",
+  rezervace_dokoncena: "",
+  formular_odeslan: "",
+};
+
 const SKRIPT = `(function () {
-  var GTM = __GTM__, G = __G__, KONVERZE = __K__, PIXEL = __P__;
+  var GTM = __GTM__, G = __G__, KONVERZE = __K__, KONVERZE_UDALOSTI = __KU__, PIXEL = __P__;
   if (!GTM && !G.length && !PIXEL) { window.fsZnacky = { load: function () {}, lead: function () {}, udalost: function () {}, utm: function () { return null; } }; }
   var nacteno = false;
   /* Odkud návštěvník přišel: UTM parametry a gclid z adresy se uloží jen na dobu návštěvy (sessionStorage).
@@ -81,6 +89,8 @@ const SKRIPT = `(function () {
     if (!opakovat) { try { if (sessionStorage.getItem("fs_u_" + nazev)) return; sessionStorage.setItem("fs_u_" + nazev, "1"); } catch (e) {} }
     load();
     if (GTM) window.dataLayer.push({ event: nazev });
+    /* Konverze Google Ads k této události, pokud má vyplněný štítek */
+    if (KONVERZE_UDALOSTI[nazev] && window.gtag) window.gtag("event", "conversion", { send_to: KONVERZE_UDALOSTI[nazev] });
     if (window.gtag && G.length) window.gtag("event", nazev);
     if (window.fbq && PIXEL) window.fbq("trackCustom", nazev);
   }
@@ -132,13 +142,17 @@ const SKRIPT = `(function () {
 
 export function GET() {
   const g = (process.env.NEXT_PUBLIC_GOOGLE_TAG_ID ?? "").split(",").map((s) => s.trim()).filter((s) => /^[A-Z]{1,3}-[A-Za-z0-9-]+$/.test(s));
-  const k = (process.env.NEXT_PUBLIC_GOOGLE_CONVERSION ?? "AW-18581076586/ggKmCJCV8LodEOr0kpxF").trim();
+  const platna = (x: string) => /^AW-[A-Za-z0-9-]+\/[A-Za-z0-9_-]+$/.test(x);
+  const k = (KONVERZE_UDALOSTI.preventivka_odeslana ?? "").trim();
+  // Preventivka se posílá zvlášť ve funkci lead(); ostatní události jdou přes udalost()
+  const ostatni = Object.fromEntries(Object.entries(KONVERZE_UDALOSTI).filter(([n, v]) => n !== "preventivka_odeslana" && platna(v.trim())).map(([n, v]) => [n, v.trim()]));
   const p = (process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "").trim();
   const gtm = (process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-WZTKXK85").trim();
   const js = SKRIPT
     .replace("__GTM__", JSON.stringify(/^GTM-[A-Z0-9]+$/.test(gtm) ? gtm : ""))
     .replace("__G__", JSON.stringify(g))
-    .replace("__K__", JSON.stringify(/^AW-[A-Za-z0-9-]+\/[A-Za-z0-9_-]+$/.test(k) ? k : ""))
+    .replace("__K__", JSON.stringify(platna(k) ? k : ""))
+    .replace("__KU__", JSON.stringify(ostatni))
     .replace("__P__", JSON.stringify(/^\d{5,20}$/.test(p) ? p : ""));
   return new Response(js, { headers: { "Content-Type": "application/javascript; charset=utf-8", "Cache-Control": "public, max-age=300" } });
 }
