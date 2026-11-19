@@ -21,9 +21,11 @@ const SKRIPT = `(function () {
     nacteno = true;
     if (GTM) {
       window.dataLayer = window.dataLayer || [];
-      var gt = function () { window.dataLayer.push(arguments); };
+      // Stejné kroky jako v kódu od Googlu (dataLayer, gtag, gtag('js')), jen až po souhlasu
+      var gt = window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       gt("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied" });
       gt("consent", "update", { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted", analytics_storage: "granted" });
+      gt("js", new Date());
       window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
       skript("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM));
     }
