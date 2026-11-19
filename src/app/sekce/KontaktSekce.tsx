@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ctiOdkud, udalost } from "@/lib/odkud";
 import { T, type Lang } from "../texty";
 
 /* Kontakt: údaje, mapa kanceláře a formulář. Přenesené z úvodní stránky beze změny. */
@@ -27,10 +28,12 @@ export function KontaktSekce({ lang, hlavni = false }: { lang: Lang; hlavni?: bo
           topic: fd.get("topic"),
           message: fd.get("message"),
           web: fd.get("web"),
+          utm: ctiOdkud(),
         }),
       });
       const data = await res.json();
       if (res.ok) {
+        udalost("formular_odeslan");
         setFormState("sent");
         form.reset();
         setTimeout(() => setFormState("idle"), 4000);

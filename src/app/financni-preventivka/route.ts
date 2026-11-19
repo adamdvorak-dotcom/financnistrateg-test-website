@@ -442,6 +442,7 @@ body:not(.started) .mobilebar { display: none !important; }
     var id = t.name.slice(1).replace("-", ".");
     state.answers[id] = Number(t.value);
     render();
+    if (Object.keys(state.answers).length >= 20) { try { if (window.fsZnacky) { window.fsZnacky.udalost("preventivka_dokoncena"); } } catch (err) {} }
   });
   function showQuiz() {
     document.getElementById("gate").hidden = true;
@@ -586,7 +587,7 @@ body:not(.started) .mobilebar { display: none !important; }
       areas.push({ name: a.name, score: sub });
     });
     weak.sort(function (x, y) { return (x.v - y.v) || (y.it.w - x.it.w); });
-    return { name: name, email: mail, score: total, band: document.getElementById("bandTitle").textContent, answered: Object.keys(state.answers).length, areas: areas, details: details };
+    return { name: name, email: mail, score: total, band: document.getElementById("bandTitle").textContent, answered: Object.keys(state.answers).length, areas: areas, details: details, utm: (window.fsZnacky && window.fsZnacky.utm ? window.fsZnacky.utm() : null) };
   }
   function sendLead(payload) {
     return fetch(LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).then(function (r) { if (!r.ok) { throw new Error("HTTP " + r.status); } return r; });

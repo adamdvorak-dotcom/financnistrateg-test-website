@@ -1,3 +1,4 @@
+import { odkudRadky, type Odkud } from "@/lib/odkud";
 /* Vlastní české potvrzení rezervace. Posílá se přes Resend hned po zápisu schůzky do Calendly.
 
    Funguje jen s ověřenou odesílací doménou: v proměnné prostředí RESEND_FROM_EMAIL musí být
@@ -142,7 +143,7 @@ export async function posliPotvrzeni(p: Potvrzeni): Promise<boolean> {
 /* Zpráva pro Adama o nové rezervaci z webu. Calendly pošle svoje oznámení taky, ale neví nic
    o telefonu ani o tématu (třeba oblastech přenesených z Finanční preventivky). Jde na vlastní
    adresu, takže funguje i se zkušebním odesílatelem Resendu. */
-export async function posliOznameni(r: { start: string; name: string; email: string; phone?: string; tema?: string; misto?: string }): Promise<boolean> {
+export async function posliOznameni(r: { start: string; name: string; email: string; phone?: string; tema?: string; misto?: string; odkud?: Odkud }): Promise<boolean> {
   if (!process.env.RESEND_API_KEY) return false;
   try {
     const c = casti(r.start);
@@ -164,6 +165,7 @@ export async function posliOznameni(r: { start: string; name: string; email: str
           r.misto ? `Místo: ${r.misto}` : null,
           "",
           "Rezervace je zapsaná v Calendly.",
+          ...odkudRadky(r.odkud ?? {}),
         ].filter((x) => x !== null).join("\n"),
       }),
     });

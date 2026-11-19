@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cistyOdkud, odkudRadky } from "@/lib/odkud";
 
 const TO = "adamdvorak@financnistrateg.com";
 
@@ -17,7 +18,7 @@ function tooMany(ip: string) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, phone, email, topic, message, web } = await req.json();
+    const { name, phone, email, topic, message, web, utm: odkud } = await req.json();
 
     // Skryté pole vyplňují jen roboti: tváříme se, že vše prošlo
     if (web) return NextResponse.json({ ok: true });
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
       message || "(bez zprávy)",
     ]
       .filter(Boolean)
+      .concat(odkudRadky(cistyOdkud(odkud)))
       .join("\n");
 
     const res = await fetch("https://api.resend.com/emails", {

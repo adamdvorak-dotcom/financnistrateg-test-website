@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ctiOdkud, udalost } from "@/lib/odkud";
 import Script from "next/script";
 import Link from "next/link";
 
@@ -178,10 +179,12 @@ export function Rezervace() {
           misto: aktMisto,
           web: fd.get("web"),
           ukazka: ukazka.current,
+          utm: ctiOdkud(),
         }),
       });
       const out = await res.json().catch(() => ({}));
       if (res.ok) {
+        if (!ukazka.current) udalost("rezervace_dokoncena");
         jdiNa(2);
       } else if (out.obsazeno) {
         setChyba({ text: out.error });

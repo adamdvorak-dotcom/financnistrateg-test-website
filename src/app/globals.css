@@ -4137,3 +4137,16 @@ body.lang-anim>section,body.lang-anim>.quote-band,body.lang-anim>footer{animatio
 .cookie-nast b{display:block;color:#1A1511;font-weight:600}
 .pata-btn{display:flex;align-items:center;min-height:36px;padding:0;border:0;background:none;color:#E3E7EE;font:inherit;font-size:15px;text-align:left;cursor:pointer;transition:color .25s,padding .3s var(--ease-out)}
 .pata-btn:hover,.pata-btn:focus-visible{color:#fff;padding-left:22px}
+
+/* ── Rámeček Finanční preventivky v článcích ── */
+.prev-box{display:flex;align-items:center;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;box-sizing:border-box;margin:40px 0;padding:26px 28px;
+  border-radius:18px;background:#0C1F3A;color:#F5F2EC;border-left:4px solid #C9A260}
+.prev-box-text{flex:1 1 280px;min-width:0}
+.prev-box b{display:block;font:500 22px/1.25 'Lora',Georgia,serif;color:#F5F2EC}
+.prev-box p{margin:8px 0 0;font-size:16px;line-height:1.55;color:#C9D1DF}
+.prev-box-btn{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:12px;background:#C9A260;color:#0C1F3A;
+  font:600 15px Inter,system-ui,sans-serif;text-decoration:none;transition:transform .3s var(--ease-out),box-shadow .3s}
+.prev-box-btn:hover,.prev-box-btn:focus-visible{transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(201,162,96,.6)}
+.prev-box-btn:focus-visible{outline:2px solid #F5F2EC;outline-offset:3px}
+@media(max-width:560px){.prev-box{padding:22px 20px;margin:32px 0}.prev-box-btn{width:100%;justify-content:center}}
+@media (prefers-reduced-motion: reduce){.prev-box-btn{transition:none}}

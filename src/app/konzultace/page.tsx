@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ctiOdkud, udalost } from "@/lib/odkud";
 import Link from "next/link";
 import { Rezervace } from "./Rezervace";
 import { SiteFooter } from "../SiteFooter";
@@ -30,8 +31,10 @@ export default function KonzultacePage() {
           topic:   fd.get("topic"),
           message: fd.get("message"),
           web: fd.get("web"),
+          utm: ctiOdkud(),
         }),
       });
+      if (res.ok) udalost("formular_odeslan");
       setFormState(res.ok ? "sent" : "error");
     } catch {
       setFormState("error");

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cistyOdkud, odkudRadky } from "@/lib/odkud";
 
 const TO = "adamdvorak@financnistrateg.com";
 
@@ -9,7 +10,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as {
       name: string; email: string; score: number; band: string;
-      answered: number; areas: Area[]; details: Detail[];
+      answered: number; areas: Area[]; details: Detail[]; utm?: unknown;
     };
     const { name, email, score, band, answered, areas, details } = body;
 
@@ -43,6 +44,7 @@ export async function POST(req: NextRequest) {
       "JEDNOTLIVÉ ODPOVĚDI",
       "───────────────────",
       detailRows,
+      ...odkudRadky(cistyOdkud(body.utm)),
     ].join("\n");
 
     const res = await fetch("https://api.resend.com/emails", {

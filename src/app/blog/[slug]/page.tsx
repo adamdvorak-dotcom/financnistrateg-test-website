@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PreventivkaBox } from "../PreventivkaBox";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -39,6 +40,9 @@ function czechDateToISO(d: string): string {
   const parts = d.replace(".", "").trim().split(/\s+/);
   return `${parts[2]}-${CZECH_MONTHS[parts[1]] ?? "01"}-${parts[0].padStart(2, "0")}`;
 }
+
+/* Články pro majitele firem, kde je v polovině textu a nad závěrečnou výzvou rámeček s Finanční preventivkou */
+const PREVENTIVKA_V_CLANKU = ["prodej-firmy-co-s-penezi", "nastupnictvi-ve-firme-nvidie", "vyber-penez-ze-sro-mzda-dividendy", "sverensky-fond-praha", "holding-sro-osobni-majetek"];
 
 export async function generateMetadata({
   params,
@@ -1406,6 +1410,7 @@ function ArticleContent({ slug }: { slug: string }) {
           případy pro daňového poradce. Řešte je ideálně ještě před podpisem smlouvy, ne po něm.
         </p>
 
+        <PreventivkaBox misto="pulka" />
         <h2>Nesázejte vše na jednu kartu</h2>
         <p>
           Každý druhý klient přijde s nápadem koupit investiční byt. Chápu to. Byt je hmatatelný,
@@ -1547,6 +1552,7 @@ function ArticleContent({ slug }: { slug: string }) {
           v fondu pro další generace.
         </p>
 
+        <PreventivkaBox misto="pulka" />
         <h2>Vzory, které fungují a které ne</h2>
         <p>
           Rockefellerové. John D. Rockefeller st. zřídil první family trust v roce 1934, druhý
@@ -1640,6 +1646,7 @@ function ArticleContent({ slug }: { slug: string }) {
           Daň platíte až tehdy, když si peníze vezmete osobně.
         </p>
 
+        <PreventivkaBox misto="pulka" />
         <h2>Kdy holding dává smysl</h2>
         <p>
           Generujete přebytky, které nechcete okamžitě vybrat. Chcete je reinvestovat
@@ -1856,6 +1863,7 @@ function ArticleContent({ slug }: { slug: string }) {
           investuje mimo firmu. Proti čisté mzdě jste o 183&nbsp;000&nbsp;Kč dál.
         </p>
 
+        <PreventivkaBox misto="pulka" />
         <h2>Kdy se mzda vyplatí</h2>
         <p>
           Když je s.r.o. váš hlavní příjem a chcete mít nemocenskou a důchodový nárok. Nemusí to
@@ -2627,6 +2635,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>Váš podíl ve firmě ze zákona přechází na dědice, pokud to společenská smlouva nezakáže nebo neomezí. Ve firmě tak můžete najednou mít jako společníky manželku, dvacetiletého syna a&nbsp;jeho dvě sestry, každého s&nbsp;jiným názorem na to, co dál. A&nbsp;když smlouva dědění zakáže, rodina dostane místo podílu peníze a&nbsp;vyplatit je musí firma.</p>
         <p>Podle <a href="https://amsp.cz/media/amsp/3839/109-pruzkum-ipsos-pro-amspzaverecna-zpravavyzkum-rodinnych-firemkveten-2024final.pdf" target="_blank" rel="noopener noreferrer">průzkumu Ipsos pro AMSP ČR</a> z&nbsp;roku 2024 má scénář pro případ, že majitel náhle vypadne, připravený i&nbsp;s&nbsp;právními dokumenty jen 27&nbsp;% rodinných firem. Dalších 32&nbsp;% ho má, ale bez dokumentů. Což je asi jako mít airbag nakreslený fixou na volantu.</p>
 
+        <PreventivkaBox misto="pulka" />
         <h2>Co má být v&nbsp;krizovém plánu</h2>
         <p>Nemusí to být bichle. Stačí, když na pár stránkách odpovíte na pět otázek.</p>
         <ol>
@@ -2987,6 +2996,7 @@ export default async function ArticlePage({
               </div>
             </div>
 
+            {PREVENTIVKA_V_CLANKU.includes(article.slug) && <PreventivkaBox misto="konec" />}
             <div className="article-cta">
               <div className="article-cta-text">
                 <div className="section-eyebrow" style={{ marginBottom: 8 }}>Osobní rozhovor</div>

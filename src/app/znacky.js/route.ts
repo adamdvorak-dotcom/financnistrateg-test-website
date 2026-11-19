@@ -11,8 +11,23 @@ export const dynamic = "force-static";
 
 const SKRIPT = `(function () {
   var GTM = __GTM__, G = __G__, KONVERZE = __K__, PIXEL = __P__;
-  if (!GTM && !G.length && !PIXEL) { window.fsZnacky = { load: function () {}, lead: function () {}, udalost: function () {} }; }
+  if (!GTM && !G.length && !PIXEL) { window.fsZnacky = { load: function () {}, lead: function () {}, udalost: function () {}, utm: function () { return null; } }; }
   var nacteno = false;
+  /* Odkud návštěvník přišel: UTM parametry a gclid z adresy se uloží jen na dobu návštěvy (sessionStorage).
+     Nejde o cookie ani o marketing; hodnoty se připíšou do e-mailu, který po odeslání formuláře dostane Adam. */
+  var KLICE = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"];
+  try {
+    var q = new URLSearchParams(window.location.search), o = {}, je = false;
+    KLICE.forEach(function (k) { var v = q.get(k); if (v) { o[k] = String(v).slice(0, 200); je = true; } });
+    if (je) sessionStorage.setItem("fs_utm", JSON.stringify(o));
+  } catch (e) {}
+  function utm() { try { return JSON.parse(sessionStorage.getItem("fs_utm") || "null"); } catch (e) { return null; } }
+  /* Stav souhlasu pro Google Consent Mode v2: reklamní úložiště podle marketingových cookies, analytické podle analytických */
+  function stavSouhlasu() {
+    var m = souhlas(), a = false;
+    try { a = localStorage.getItem("cookie_analytics") === "1"; } catch (e) {}
+    return { ad_storage: m ? "granted" : "denied", ad_user_data: m ? "granted" : "denied", ad_personalization: m ? "granted" : "denied", analytics_storage: a ? "granted" : "denied" };
+  }
   function souhlas() { try { return localStorage.getItem("cookie_marketing") === "1"; } catch (e) { return false; } }
   function rozhodnuto() { try { return localStorage.getItem("cookie_marketing") !== null; } catch (e) { return true; } }
   function skript(src) { var s = document.createElement("script"); s.async = true; s.src = src; document.head.appendChild(s); }
@@ -24,7 +39,7 @@ const SKRIPT = `(function () {
       // Stejné kroky jako v kódu od Googlu (dataLayer, gtag, gtag('js')), jen až po souhlasu
       var gt = window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       gt("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied" });
-      gt("consent", "update", { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted", analytics_storage: "granted" });
+      gt("consent", "update", stavSouhlasu());
       gt("js", new Date());
       window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
       skript("https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM));
@@ -62,18 +77,29 @@ const SKRIPT = `(function () {
     if (window.fbq && PIXEL) window.fbq("track", "Lead", { content_name: "Financni preventivka" });
   }
   /* Vlastní událost (např. použití kalkulačky renty): jednou za návštěvu a jen se souhlasem */
-  function udalost(nazev) {
+  function udalost(nazev, opakovat) {
     if (!souhlas() || !/^[a-z0-9_]{1,40}$/.test(nazev)) return;
-    try { if (sessionStorage.getItem("fs_u_" + nazev)) return; sessionStorage.setItem("fs_u_" + nazev, "1"); } catch (e) {}
+    if (!opakovat) { try { if (sessionStorage.getItem("fs_u_" + nazev)) return; sessionStorage.setItem("fs_u_" + nazev, "1"); } catch (e) {} }
     load();
     if (GTM) window.dataLayer.push({ event: nazev });
     if (window.gtag && G.length) window.gtag("event", nazev);
     if (window.fbq && PIXEL) window.fbq("trackCustom", nazev);
   }
-  if (!window.fsZnacky) window.fsZnacky = { load: load, lead: lead, udalost: udalost };
+  if (!window.fsZnacky) window.fsZnacky = { load: load, lead: lead, udalost: udalost, utm: utm };
+  window.fsZnacky.utm = utm;
+  /* Klik na telefon nebo e-mail kdekoli na webu */
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"],a[href^="mailto:"]') : null;
+    if (a) udalost(a.getAttribute("href").indexOf("tel:") === 0 ? "klik_telefon" : "klik_email", true);
+  }, true);
+  /* Změna souhlasu u už načteného kontejneru (odvolání nebo rozšíření) se Googlu ohlásí hned */
+  function zmena() {
+    if (nacteno && GTM && window.gtag) window.gtag("consent", "update", stavSouhlasu());
+    load();
+  }
   load();
-  window.addEventListener("cookie-souhlas", load);
-  window.addEventListener("storage", function (e) { if (e.key === "cookie_marketing") load(); });
+  window.addEventListener("cookie-souhlas", zmena);
+  window.addEventListener("storage", function (e) { if (e.key === "cookie_marketing" || e.key === "cookie_analytics") zmena(); });
 
   /* Lišta se souhlasem pro stránky mimo společný layout (značka <script data-lista>) */
   var ja = document.currentScript;

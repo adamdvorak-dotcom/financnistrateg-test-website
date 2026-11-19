@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cistyOdkud } from "@/lib/odkud";
 import { calendlyConfigured, createBooking, getEventType, getJoinUrl, locationLabel, slotUrl } from "@/lib/calendly";
 import { posliOznameni, posliPotvrzeni, potvrzeniZapnute } from "@/lib/potvrzeni";
 
@@ -57,10 +58,13 @@ export async function POST(req: NextRequest) {
     const et = await getEventType();
     if (!et) return NextResponse.json({ error: "Rezervace teď není dostupná." }, { status: 503 });
 
-    const r = await createBooking(et, { start: kdy.toISOString(), name, email, phone, tema, misto });
+    const odkud = cistyOdkud(body.utm);
+    const { gclid: _gclid, ...tracking } = odkud;
+    void _gclid;
+    const r = await createBooking(et, { start: kdy.toISOString(), name, email, phone, tema, misto, tracking });
     if (r.ok) {
       // Zpráva pro Adama s telefonem a tématem, které se do Calendly nedostanou
-      await posliOznameni({ start: kdy.toISOString(), name, email, phone, tema, misto: et.locations.length ? locationLabel(et.locations.find((l) => l.kind === misto) ?? et.locations[0]) : undefined });
+      await posliOznameni({ odkud, start: kdy.toISOString(), name, email, phone, tema, misto: et.locations.length ? locationLabel(et.locations.find((l) => l.kind === misto) ?? et.locations[0]) : undefined });
       // Vlastní české potvrzení (jen když je nastavená ověřená odesílací adresa).
       // Rezervace je v tu chvíli už zapsaná, takže případná chyba e-mailu ji neshodí.
       if (potvrzeniZapnute()) {

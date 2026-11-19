@@ -119,6 +119,8 @@ export type BookingInput = {
   phone?: string;
   tema?: string;
   misto?: string;
+  // UTM parametry návštěvy; Calendly je ukáže u rezervace (gclid nepřijímá)
+  tracking?: Record<string, string>;
 };
 
 export async function createBooking(et: EventType, b: BookingInput) {
@@ -142,17 +144,25 @@ export async function createBooking(et: EventType, b: BookingInput) {
     })
     .filter(Boolean);
 
-  return call("/invitees", {
-    method: "POST",
-    cache: "no-store",
-    body: JSON.stringify({
-      event_type: et.uri,
-      start_time: b.start,
-      invitee: { name: b.name, email: b.email, timezone: TZ },
-      ...(location ? { location } : {}),
-      ...(qa.length ? { questions_and_answers: qa } : {}),
-    }),
-  });
+  const posli = (tracking?: Record<string, string>) =>
+    call("/invitees", {
+      method: "POST",
+      cache: "no-store",
+      body: JSON.stringify({
+        event_type: et.uri,
+        start_time: b.start,
+        invitee: { name: b.name, email: b.email, timezone: TZ },
+        ...(location ? { location } : {}),
+        ...(qa.length ? { questions_and_answers: qa } : {}),
+        ...(tracking && Object.keys(tracking).length ? { tracking } : {}),
+      }),
+    });
+
+  const maTracking = !!b.tracking && Object.keys(b.tracking).length > 0;
+  const r = await posli(b.tracking);
+  // Kdyby Calendly údaje o zdroji odmítlo, rezervace se zapíše bez nich (obsazený termín se neopakuje)
+  if (!r.ok && maTracking && r.status === 400) return posli();
+  return r;
 }
 
 /* Odkaz na stejný čas přímo na Calendly, kdyby zápis přes rozhraní neprošel */
