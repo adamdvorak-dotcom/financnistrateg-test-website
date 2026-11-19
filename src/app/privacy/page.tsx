@@ -87,6 +87,16 @@ export default function PrivacyPage() {
                 o smlouvě na vaši žádost (čl. 6 odst. 1 písm. b) GDPR).
               </p>
               <p>
+                <strong>Odkud jste přišli</strong>: když na web přijdete z reklamy nebo z odkazu
+                s označením kampaně, web si do konce návštěvy zapamatuje parametry z adresy
+                (utm_source, utm_medium, utm_campaign, utm_content, utm_term a gclid). Pokud pak
+                odešlete kontaktní formulář, Finanční preventivku nebo si zarezervujete schůzku,
+                připojí se tyto údaje k oznámení, které mi přijde e-mailem. U rezervace se
+                parametry utm předají také službě Calendly jako součást rezervace. Díky tomu vím,
+                která kampaň přivádí lidi, kterým můžu pomoct. Právním základem je oprávněný zájem
+                (čl. 6 odst. 1 písm. f) GDPR). Reklamním platformám tyto údaje sám neposílám.
+              </p>
+              <p>
                 <strong>Technický provoz webu</strong>: při každé návštěvě zpracovává hosting
                 technické údaje, jako je IP adresa, typ prohlížeče a čas požadavku. Jsou potřeba
                 k doručení stránky a k ochraně před zneužitím, právním základem je oprávněný zájem
@@ -106,11 +116,6 @@ export default function PrivacyPage() {
 
               <h2>3. Cookies a podobné technologie</h2>
               <p>
-                <strong>Nezbytné</strong>: ukládám vaši volbu v liště cookies (cookie a místní úložiště
-                prohlížeče „cookie_consent“, platnost 1 rok) a zvolený jazyk webu (místní úložiště
-                „lang“). Bez nich web nefunguje tak, jak má, souhlas k nim není potřeba.
-              </p>
-              <p>
                 V liště cookies si vyberete, které kategorie povolíte. Na stránkách Finanční
                 preventivka a Renta je lišta zjednodušená: „Přijmout vše“ povolí analytické
                 i marketingové cookies, „Pouze nezbytné“ jen ty nezbytné. Dokud nic nepovolíte,
@@ -120,8 +125,11 @@ export default function PrivacyPage() {
                 <strong>Nezbytné</strong>: ukládám vaši volbu v liště cookies (cookie a místní úložiště
                 prohlížeče „cookie_consent“, platnost cookie 1 rok; v místním úložišti navíc
                 „cookie_analytics“ a „cookie_marketing“ s volbou pro jednotlivé kategorie) a zvolený
-                jazyk webu (místní úložiště „lang“). Bez nich web nefunguje tak, jak má, souhlas
-                k nim není potřeba.
+                jazyk webu (místní úložiště „lang“). Po dobu návštěvy si web v úložišti relace
+                prohlížeče pamatuje i to, odkud jste přišli („fs_utm“, viz výše), a značky „fs_lead“
+                a „fs_u_…“, aby se jedna událost nezapočítala dvakrát. Úložiště relace se smaže
+                zavřením karty. Bez těchto údajů web nefunguje tak, jak má, souhlas k nim není
+                potřeba.
               </p>
               <p>
                 <strong>Analytické</strong>: jen pokud je povolíte, načte se nástroj Leady, který měří
@@ -135,8 +143,8 @@ export default function PrivacyPage() {
                 případně Google Analytics, a Meta Pixel (měření reklamy na Facebooku a Instagramu).
                 Slouží k tomu, abych věděl, jestli reklama přivádí lidi,
                 které web zajímá, a mohl ji ukazovat vhodnějšímu publiku. Zaznamenávají zobrazené
-                stránky a několik událostí, například dokončení Finanční preventivky nebo použití
-                kalkulačky renty. Vaše jméno, e-mail ani odpovědi z preventivky jim neposílám.
+                stránky a několik událostí: dokončení Finanční preventivky, rezervaci schůzky,
+                odeslání formuláře, kliknutí na telefon nebo e-mail a použití kalkulačky renty. Vaše jméno, e-mail ani odpovědi z preventivky jim neposílám.
                 Ukládají cookies třetích stran, typicky „_gcl_au“ (Google, 90 dní), „_ga“ a „_ga_*“
                 (Google Analytics, až 2 roky) a „_fbp“ (Meta, 90 dní). Google a Meta mohou údaje
                 propojit s vaším účtem u nich a používají je i pro své vlastní účely podle svých

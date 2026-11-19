@@ -8,6 +8,7 @@ import { categories, getCategory } from "../categories";
 import { CategoryChips } from "../CategoryChips";
 import { FaqAccordion } from "../FaqAccordion";
 import { ArticleToc } from "../ArticleToc";
+import { ArticleScripts } from "../ArticleScripts";
 import { ArticleHints } from "../ArticleHints";
 import { ArticleFeedback } from "../ArticleFeedback";
 import { PullQuote } from "../PullQuote";
@@ -104,6 +105,11 @@ export async function generateMetadata({
       description,
     },
   };
+}
+
+// Zbývající čas čtení se správným tvarem (stejná pravidla používá skript, který ho při čtení přepisuje)
+function zbyva(n: number) {
+  return n === 1 ? "Zbývá 1 minuta čtení" : n < 5 ? `Zbývají ${n} minuty čtení` : `Zbývá ${n} minut čtení`;
 }
 
 function ArticleContent({ slug }: { slug: string }) {
@@ -2912,7 +2918,7 @@ export default async function ArticlePage({
         <div className="read-chip" id="readChip">
           <span>{article.title.length > 44 ? article.title.slice(0, 41) + '…' : article.title}</span>
           <span style={{opacity:.4}}>·</span>
-          <span id="chipTime" data-total={article.readTime}>{article.readTime} min čtení</span>
+          <span id="chipTime" data-total={article.readTime} suppressHydrationWarning>{`${article.readTime} min čtení`}</span>
         </div>
       )}
       {/* ── Nav ── */}
@@ -3032,8 +3038,8 @@ export default async function ArticlePage({
           </div>
           <nav className="toc" id="toc" aria-label="Obsah článku">
             {article.readTime && (
-              <div id="tocTime" data-total={article.readTime} style={{fontSize:12,color:"var(--text-2)",marginBottom:16,fontWeight:500}}>
-                Zbývá {article.readTime} {article.readTime === 1 ? "minuta" : "minut"} čtení
+              <div id="tocTime" data-total={article.readTime} style={{fontSize:12,color:"var(--text-2)",marginBottom:16,fontWeight:500}} suppressHydrationWarning>
+                {zbyva(article.readTime)}
               </div>
             )}
           </nav>
@@ -3058,104 +3064,8 @@ export default async function ArticlePage({
         <Link href="/konzultace" className="cta-bar-btn">Zahájit rozhovor →</Link>
       </div>
 
-      {/* ── Client scripts: progress, anchors, CTA bar ── */}
-      <script dangerouslySetInnerHTML={{ __html: `
-        // TOC: build from h2s, highlight active with IntersectionObserver
-        (function() {
-          var toc = document.getElementById('toc');
-          if (!toc) return;
-          var h2s = Array.from(document.querySelectorAll('.article-body h2'));
-          if (!h2s.length) { toc.style.display = 'none'; return; }
-          h2s.forEach(function(h, i) {
-            if (!h.id) h.id = 'h-' + i;
-            var a = document.createElement('a');
-            a.href = '#' + h.id;
-            a.textContent = h.textContent;
-            toc.appendChild(a);
-          });
-          var links = toc.querySelectorAll('a');
-          var io = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-              if (e.isIntersecting) {
-                links.forEach(function(l) { l.classList.remove('on'); });
-                var active = toc.querySelector('a[href="#' + e.target.id + '"]');
-                if (active) active.classList.add('on');
-              }
-            });
-          }, { rootMargin: '-20% 0px -70% 0px' });
-          h2s.forEach(function(h) { io.observe(h); });
-          // Reading time countdown
-          var countdown = document.getElementById('tocTime');
-          if (countdown) {
-            window.addEventListener('scroll', function() {
-              var total = document.documentElement.scrollHeight - window.innerHeight;
-              var pct = total > 0 ? window.scrollY / total : 0;
-              var readTime = parseInt(countdown.dataset.total || '5', 10);
-              var remaining = Math.max(1, Math.round(readTime * (1 - pct)));
-              countdown.textContent = (remaining === 1 ? 'Zbývá 1 minuta' : 'Zbývají ' + remaining + ' minuty');
-            }, { passive: true });
-          }
-        })();
-        (function() {
-          // Page progress bar + nav.scrolled + read-bar + read-chip
-          var prog = document.querySelector('.progress');
-          var nav = document.querySelector('nav');
-          var readBar = document.getElementById('readBar');
-          var readChip = document.getElementById('readChip');
-          var chipTime = document.getElementById('chipTime');
-          function updateProgress() {
-            var total = document.documentElement.scrollHeight - window.innerHeight;
-            var p = total > 0 ? window.scrollY / total : 0;
-            var pct = p * 100;
-            if (prog) prog.style.setProperty('--p', pct + '%');
-            if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
-            if (readBar) readBar.style.setProperty('--read-p', p);
-            if (readChip) readChip.classList.toggle('show', window.scrollY > 180);
-            if (chipTime) {
-              var rt = parseInt(chipTime.dataset.total || '5', 10);
-              var rem = Math.max(1, Math.round(rt * (1 - p)));
-              chipTime.textContent = rem + (rem === 1 ? ' minuta čtení' : ' min čtení');
-            }
-          }
-          window.addEventListener('scroll', updateProgress, { passive: true });
-          updateProgress();
-
-          // Anchor copy links on h2
-          document.querySelectorAll('.article-body h2').forEach(function(h2) {
-            var txt = h2.textContent || '';
-            var id = txt.toLowerCase()
-              .replace(/[^a-z0-9\\u00C0-\\u024F\\s-]/g, '')
-              .replace(/\\s+/g, '-')
-              .replace(/-+/g, '-')
-              .slice(0, 60);
-            h2.id = id;
-            var a = document.createElement('a');
-            a.href = '#' + id;
-            a.className = 'anchor-link';
-            a.title = 'Kopírovat odkaz';
-            a.innerHTML = '#';
-            a.addEventListener('click', function(e) {
-              e.preventDefault();
-              var url = location.href.split('#')[0] + '#' + id;
-              navigator.clipboard && navigator.clipboard.writeText(url);
-              history.pushState(null, '', '#' + id);
-            });
-            h2.insertBefore(a, h2.firstChild);
-          });
-
-          // CTA bar: show after first scroll, hide near footer
-          var ctaBar = document.getElementById('ctaBar');
-          var footer = document.querySelector('footer');
-          function updateCtaBar() {
-            if (!ctaBar) return;
-            var scrolled = window.scrollY > 200;
-            var nearFooter = footer && footer.getBoundingClientRect().top < window.innerHeight + 60;
-            ctaBar.classList.toggle('show', scrolled && !nearFooter);
-          }
-          window.addEventListener('scroll', updateCtaBar, { passive: true });
-          updateCtaBar();
-        })();
-      ` }} />
+      {/* ── Postup čtení, kotvy u nadpisů, spodní lišta (spouští se až po hydrataci) ── */}
+      <ArticleScripts />
     </>
   );
 }
