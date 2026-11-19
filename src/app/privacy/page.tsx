@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               <div className="article-meta">
                 <span>Adam Dvořák, EFA</span>
                 <span className="article-meta-dot">·</span>
-                <span>Aktualizováno 17. listopadu 2026</span>
+                <span>Aktualizováno 19. listopadu 2026</span>
               </div>
             </header>
 
@@ -130,9 +130,10 @@ export default function PrivacyPage() {
                 nepoužívá, proto běží i bez souhlasu.
               </p>
               <p>
-                <strong>Marketingové</strong>: jen pokud je povolíte, načte se značka Googlu (měření
-                reklamy Google Ads, případně Google Analytics) a Meta Pixel (měření reklamy na
-                Facebooku a Instagramu). Slouží k tomu, abych věděl, jestli reklama přivádí lidi,
+                <strong>Marketingové</strong>: jen pokud je povolíte, načte se Google Tag Manager.
+                Je to nástroj Googlu, přes který se spouštějí měřicí značky reklamy: Google Ads,
+                případně Google Analytics, a Meta Pixel (měření reklamy na Facebooku a Instagramu).
+                Slouží k tomu, abych věděl, jestli reklama přivádí lidi,
                 které web zajímá, a mohl ji ukazovat vhodnějšímu publiku. Zaznamenávají zobrazené
                 stránky a několik událostí, například dokončení Finanční preventivky nebo použití
                 kalkulačky renty. Vaše jméno, e-mail ani odpovědi z preventivky jim neposílám.
@@ -160,8 +161,8 @@ export default function PrivacyPage() {
                 <li><strong>SmartEmailing</strong>: rozesílání newsletteru (Česko)</li>
                 <li><strong>Calendly</strong>: rezervace schůzek (USA)</li>
                 <li><strong>Leady</strong>: analýza návštěvnosti, jen se souhlasem (Česko)</li>
-                <li><strong>Google Ireland Ltd.</strong>: měření reklamy (Google Ads, případně Google
-                  Analytics), jen se souhlasem (Irsko, údaje mohou směřovat do USA)</li>
+                <li><strong>Google Ireland Ltd.</strong>: Google Tag Manager a měření reklamy (Google Ads,
+                  případně Google Analytics), jen se souhlasem (Irsko, údaje mohou směřovat do USA)</li>
                 <li><strong>Meta Platforms Ireland Ltd.</strong>: měření reklamy na Facebooku
                   a Instagramu (Meta Pixel), jen se souhlasem (Irsko, údaje mohou směřovat do USA)</li>
               </ul>
