@@ -2258,6 +2258,10 @@ function ArticleContent({ slug }: { slug: string }) {
           S&amp;P 500 to byl nejhorší den od dubna 2025. Jestli vám teď v hlavě běží otázka „mám to
           prodat?“, odpověď je skoro vždycky ne. Ale ne vždycky, a o tom je tenhle článek.
         </p>
+        <p>
+          Aktuální komentář k listopadovému propadu najdete v článku{" "}
+          <Link href="/blog/trhy-padaji-co-delat-a-co-ne">Listopadový propad: 4&nbsp;věci, které teď nedělat, a&nbsp;4, které udělat</Link>.
+        </p>
 
         <h2>Co se na trzích právě děje</h2>
         <p>
@@ -2799,7 +2803,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <h2>Co z&nbsp;toho plyne</h2>
         <p>Propad o&nbsp;8 až 15&nbsp;% zní dramaticky. Na akciových trzích je to ale běžný provoz. I&nbsp;po tomhle výprodeji je S&amp;P 500 letos v&nbsp;dolarech pořád téměř 5&nbsp;% v&nbsp;plusu. V&nbsp;korunách bez zajištění dokonce zhruba 13&nbsp;%, protože dolar od začátku roku posílil z&nbsp;20,63 na 22,22&nbsp;Kč.</p>
         <p>Důležitější než jakýkoli index je otázka, kterou si teď položte: věděli jste před měsícem, co uděláte, když přijde mínus 15&nbsp;%?</p>
-        <p>Pokud ano, máte hotovo. Pokud ne, sepsal jsem, jak v&nbsp;takové chvíli postupovat a&nbsp;čeho se vyvarovat. Najdete to v&nbsp;článku <Link href="/blog/trhy-padaji-co-delat-a-co-ne">Trhy padají. Co teď dělat s&nbsp;penězi a&nbsp;co rozhodně ne</Link>.</p>
+        <p>Pokud ano, máte hotovo. Pokud ne, sepsal jsem, jak v&nbsp;takové chvíli postupovat a&nbsp;čeho se vyvarovat. Najdete to v&nbsp;článku <Link href="/blog/trhy-padaji-co-delat-a-co-ne">Listopadový propad: 4&nbsp;věci, které teď nedělat, a&nbsp;4, které udělat</Link>.</p>
 
         <p className="disclaimer-line">Data k&nbsp;zavíracím cenám 19.&nbsp;11.&nbsp;2026, kurzy dolaru podle ČNB. MSCI World měřen cenou ETF, které index kopíruje. Hodnoty v&nbsp;korunách ukazují změnu od data dolarového vrcholu. Článek je vzdělávací a&nbsp;není investičním doporučením.</p>
 
@@ -2893,7 +2897,7 @@ function ArticleContent({ slug }: { slug: string }) {
         <p>Pokud máte peníze rozložené do tisíců firem po celém světě, je hodně těžké přijít o&nbsp;všechno. Aby zmizelo celých sto procent, musela by přijít třetí světová. A&nbsp;to už nebudete řešit portfolio, ale jestli se dožijete zítřka.</p>
         <p>Kdy se trhy uklidní, nikdo neví. Ani já. Křišťálovou kouli nemáme. Pomůže vám plán, který jste si udělali v&nbsp;klidu, a&nbsp;člověk, který vám ho připomene, když klid zrovna není. Právě proto jsem tady já, abych v&nbsp;takových týdnech emoce kontroloval a&nbsp;řídil.</p>
         <p>Kolik z&nbsp;toho propadu vidíte v&nbsp;korunách, počítám v&nbsp;článku <Link href="/blog/propad-akcii-v-korunach">Nasdaq-100 je 15&nbsp;% pod vrcholem. Kolik je to v&nbsp;korunách?</Link></p>
-        <p>A&nbsp;kdy je propad naopak důvod něco změnit, rozebírám podrobněji v&nbsp;článku <Link href="/blog/propady-trhu-co-delat">Akcie padají. Co teď dělat s&nbsp;penězi a&nbsp;co raději ne</Link>.</p>
+        <p>Obecný návod, jak se v&nbsp;propadu chovat, najdete v&nbsp;článku <Link href="/blog/propady-trhu-co-delat">Akcie padají. Co teď dělat s&nbsp;penězi a&nbsp;co raději ne</Link>.</p>
 
         <p className="disclaimer-line">Údaje o&nbsp;trzích k&nbsp;zavíracím cenám 19.&nbsp;11.&nbsp;2026. Článek je vzdělávací a&nbsp;nenahrazuje individuální poradenství. Minulé výsledky trhů nezaručují budoucí výnosy.</p>
 
