@@ -2736,6 +2736,180 @@ function ArticleContent({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "propad-akcii-v-korunach") {
+    return (
+      <div className="article-body">
+        <p className="lead">Akcie padají už několik dní v&nbsp;řadě a&nbsp;titulky jsou rudé. Jenže čísla ze zpráv jsou v&nbsp;dolarech. Vy jste investovali koruny a&nbsp;na vašem výpisu to vypadá jinak. Překvapivě líp.</p>
+
+        <h2>Kde jsou trhy teď</h2>
+        <p>Ke čtvrteční zavírací ceně 19.&nbsp;listopadu je americký index S&amp;P 500 o&nbsp;8,2&nbsp;% pod rekordem ze 6.&nbsp;října. Technologický Nasdaq-100 je pod říjnovým vrcholem zhruba o&nbsp;15&nbsp;%. Celosvětový MSCI World je o&nbsp;8&nbsp;% níž než v&nbsp;polovině srpna. Jen ve čtvrtek S&amp;P 500 ztratil 2&nbsp;% a&nbsp;padal už šestý den v&nbsp;řadě.</p>
+        <p>Sešlo se toho víc najednou. Investoři pochybují, jestli se obří sázky na umělou inteligenci vůbec vrátí, šéf Nvidie Jensen Huang odstoupil a&nbsp;trh počítá s&nbsp;tím, že americký Fed v&nbsp;prosinci zase zvedne sazby. Výnos desetiletého amerického dluhopisu se drží kolem 5&nbsp;%.</p>
+
+        <h2>Proč je to v&nbsp;korunách menší</h2>
+        <p>Zatímco akcie padaly, dolar posiloval. V&nbsp;den říjnového rekordu S&amp;P 500 stál dolar podle ČNB 21,65&nbsp;Kč, ve čtvrtek už 22,22&nbsp;Kč. Když v&nbsp;srpnu vrcholil MSCI World, byl dolar dokonce za 21,01&nbsp;Kč.</p>
+        <p>Když držíte americké akcie bez měnového zajištění, každé posílení dolaru se vám připíše. A&nbsp;najednou z&nbsp;mínus osmi procent není mínus osm, ale mínus šest.</p>
+
+        <div className="article-table-wrap">
+          <table className="article-table">
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Vrchol v&nbsp;USD</th>
+                <th>Pod vrcholem v&nbsp;USD</th>
+                <th>Dolar tehdy / teď</th>
+                <th>Změna v&nbsp;Kč od téhož dne</th>
+                <th>Z&nbsp;1&nbsp;mil. Kč zbývá</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>S&amp;P 500</td>
+                <td>6.&nbsp;10.</td>
+                <td>−8&nbsp;%</td>
+                <td>21,65 / 22,22&nbsp;Kč</td>
+                <td>−6&nbsp;%</td>
+                <td>942&nbsp;000&nbsp;Kč</td>
+              </tr>
+              <tr>
+                <td>Nasdaq-100</td>
+                <td>5.&nbsp;10.</td>
+                <td>−15&nbsp;%</td>
+                <td>21,83 / 22,22&nbsp;Kč</td>
+                <td>−13&nbsp;%</td>
+                <td>868&nbsp;000&nbsp;Kč</td>
+              </tr>
+              <tr>
+                <td>MSCI World</td>
+                <td>13.&nbsp;8.</td>
+                <td>−8&nbsp;%</td>
+                <td>21,01 / 22,22&nbsp;Kč</td>
+                <td>−3&nbsp;%</td>
+                <td>970&nbsp;000&nbsp;Kč</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Když to řeknu úplně blbě: kdo by na říjnovém vrcholu vložil milion korun do S&amp;P 500, má dnes zhruba 942&nbsp;tisíc. Bez posílení dolaru by měl 918&nbsp;tisíc. U&nbsp;MSCI World je rozdíl ještě větší: z&nbsp;milionu je zhruba 970&nbsp;tisíc místo 917.</p>
+
+        <h2>Dvě věci, než začnete slavit</h2>
+        <p>Kurz se točí oběma směry. Dolar vám teď kus ztráty umazal, ale stejně snadno ji jindy prohloubí, když oslabí zrovna ve chvíli, kdy padají akcie. Berte to jako bonus. Stavět se na něm nedá.</p>
+        <p>A&nbsp;pokud máte fond zajištěný do korun, dolar vám nepomohl vůbec. Vidíte zhruba tu dolarovou ztrátu. Přesně takhle zajištění funguje: chrání vás před kurzem v&nbsp;obou směrech.</p>
+
+        <h2>Co z&nbsp;toho plyne</h2>
+        <p>Propad o&nbsp;8 až 15&nbsp;% zní dramaticky. Na akciových trzích je to ale běžný provoz. I&nbsp;po tomhle výprodeji je S&amp;P 500 letos v&nbsp;dolarech pořád téměř 5&nbsp;% v&nbsp;plusu. V&nbsp;korunách bez zajištění dokonce zhruba 13&nbsp;%, protože dolar od začátku roku posílil z&nbsp;20,63 na 22,22&nbsp;Kč.</p>
+        <p>Důležitější než jakýkoli index je otázka, kterou si teď položte: věděli jste před měsícem, co uděláte, když přijde mínus 15&nbsp;%?</p>
+        <p>Pokud ano, máte hotovo. Pokud ne, sepsal jsem, jak v&nbsp;takové chvíli postupovat a&nbsp;čeho se vyvarovat. Najdete to v&nbsp;článku <Link href="/blog/trhy-padaji-co-delat-a-co-ne">Trhy padají. Co teď dělat s&nbsp;penězi a&nbsp;co rozhodně ne</Link>.</p>
+
+        <p className="disclaimer-line">Data k&nbsp;zavíracím cenám 19.&nbsp;11.&nbsp;2026, kurzy dolaru podle ČNB. MSCI World měřen cenou ETF, které index kopíruje. Hodnoty v&nbsp;korunách ukazují změnu od data dolarového vrcholu. Článek je vzdělávací a&nbsp;není investičním doporučením.</p>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><a href="https://mymotherlode.com/news/national/11324998/how-major-us-stock-indexes-fared-thursday-11-19-2026.html" target="_blank" rel="noopener noreferrer">AP, 19.&nbsp;11.&nbsp;2026</a>: zavírací hodnoty amerických indexů</li>
+            <li><a href="https://247wallst.com/investing/2026/11/20/the-sp-500-just-had-its-biggest-reversal-since-march-2020/" target="_blank" rel="noopener noreferrer">24/7 Wall St., 20.&nbsp;11.&nbsp;2026</a>: S&amp;P 500, výnos desetiletého dluhopisu</li>
+            <li><a href="https://marketspeaker.com/sp500-six-day-losing-streak-nasdaq100-15-percent-peak-november-19-2026/" target="_blank" rel="noopener noreferrer">Marketspeaker, 19.&nbsp;11.&nbsp;2026</a>: šest ztrátových dní, Nasdaq-100 pod vrcholem</li>
+            <li><a href="https://wayofthetrader.com/news/nasdaq-record-high-nq-october-2026" target="_blank" rel="noopener noreferrer">Way of the Trader</a>: říjnový rekord Nasdaqu-100</li>
+            <li><a href="https://chartrow.com/msci-world/drawdown" target="_blank" rel="noopener noreferrer">Chartrow</a>: MSCI World, pokles od maxima</li>
+            <li><a href="https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/" target="_blank" rel="noopener noreferrer">ČNB, kurzy devizového trhu</a>: kurz dolaru</li>
+            <li><a href="https://www.xtb.com/int/market-analysis/news-and-research/market-wrap-global-stocks-post-7th-consecutive-session-of-losses-anthropic-failed-to-reassure-the-market-20-11-2026" target="_blank" rel="noopener noreferrer">XTB, 20.&nbsp;11.&nbsp;2026</a>: očekávané zvýšení sazeb Fedu</li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
+  if (slug === "ipo-horky-debut-neni-dobra-investice") {
+    return (
+      <div className="article-body">
+        <p className="lead">Rok 2026 je pro burzovní debuty rekordní, aspoň v&nbsp;Americe. Pro lidi, kteří na nich nakupovali, je to zatím hlavně drahá kocovina. A&nbsp;jeden z&nbsp;nejbolestivějších příkladů máme doma.</p>
+
+        <h2>Český příběh za 25&nbsp;eur</h2>
+        <p>V&nbsp;lednu šla na burzu v&nbsp;Amsterdamu CSG, česká zbrojařská skupina. Upisovala se za 25&nbsp;eur za akcii a&nbsp;krátce po startu vyletěla na 35,50&nbsp;eura. Kdo tehdy nakoupil, mohl si připadat jako génius.</p>
+        <p>Sedmnáctého listopadu se akcie během dne <a href="https://www.echo24.cz/a/Hbn6x/zpravy-ekonomika-akcie-csg-na-historickem-minimu" target="_blank" rel="noopener noreferrer">propadla až na 8,92&nbsp;eura</a>. Proti upisovací ceně je to zhruba o&nbsp;64&nbsp;% níž a&nbsp;od maxima zmizely skoro tři čtvrtiny hodnoty.</p>
+        <p>Přitom tržby za prvních devět měsíců roku vzrostly o&nbsp;6&nbsp;% a&nbsp;zakázky má firma za 18&nbsp;miliard eur, o&nbsp;tři miliardy víc než na konci loňska.</p>
+        <p>Tak proč? Protože v&nbsp;lednu se kupoval hlavně příběh, že zbrojení poroste donekonečna a&nbsp;tahle firma na tom vydělá nejvíc. Cena počítala s&nbsp;dokonalostí a&nbsp;ta se nekonala. V&nbsp;listopadu navíc přišlo třetí čtvrtletí horší, než trh čekal: tržby za samotné čtvrtletí meziročně klesly o&nbsp;12&nbsp;%, firma snížila výhled ziskovosti a&nbsp;čistý dluh vyrostl na 4,3&nbsp;miliardy eur.</p>
+
+        <h2>Není to jen česká specialita</h2>
+        <p>Americké burzy mají letos rekordní rok. Do 16.&nbsp;listopadu, tedy ještě bez Anthropicu, se tam v&nbsp;úpisech prodaly akcie za 149&nbsp;miliard dolarů, víc než za celý dosud rekordní rok 2021. Jenže deset největších letošních debutů bylo podle Financial Times v&nbsp;polovině listopadu v&nbsp;průměru o&nbsp;20,5&nbsp;% pod cenou, za kterou se upisovaly.</p>
+        <p>Do listopadu byl největším debutem v&nbsp;historii SpaceX. První den přidal 19&nbsp;%, třetí den byl už 57&nbsp;% nad emisní cenou. Pak spadl skoro o&nbsp;polovinu od maxima a&nbsp;v&nbsp;polovině listopadu se držel jen pár procent nad cenou, za kterou se upisoval.</p>
+        <p>Analytici z&nbsp;Renaissance Capital z&nbsp;toho pár dní před dalším rekordním debutem <a href="https://www.renaissancecapital.com/IPO-Center/News/122713/how-the-largest-us-ipos-performed-after-listing-and-what-it-means" target="_blank" rel="noopener noreferrer">vyvodili střízlivý závěr</a>: rekordní úpis a&nbsp;silný první den ještě neznamenají, že se akcii bude dařit i&nbsp;dál.</p>
+        <p>A&nbsp;pak přišel nový rekordman. Akcie Anthropicu 19.&nbsp;listopadu otevřely o&nbsp;34&nbsp;% výš než upisovací cena a&nbsp;zavřely už jen o&nbsp;17&nbsp;% výš. Kdo nakupoval na otevření, byl večer zhruba 13&nbsp;% v&nbsp;mínusu.</p>
+
+        <h2>Proč to tak dopadá</h2>
+        <p>Na burzu jdou firmy typicky ve chvíli, kdy je nálada dobrá a&nbsp;cena vysoká. Nic nekalého, každý majitel chce prodat co nejdráž a&nbsp;já bych mu radil totéž. Na druhé straně stojí drobný investor, který o&nbsp;firmě ví z&nbsp;titulků a&nbsp;přichází jako poslední.</p>
+        <p>Nadšení pak vyprchá, přijdou první čtvrtletní čísla a&nbsp;cena se vrací k&nbsp;realitě.</p>
+
+        <h2>Co si z&nbsp;toho vzít</h2>
+        <p>Klienti mi kolikrát přepošlou nabídku, kterou někde dostali, s&nbsp;otázkou, jestli do toho jít. Zhruba v&nbsp;devíti případech z&nbsp;deseti jim říkám, že ne.</p>
+        <p>U&nbsp;horkých novinek na burze je to podobné. Než koupíte akcii jen proto, že o&nbsp;ní všichni mluví, zkuste si poctivě odpovědět: koupil bych tu firmu i&nbsp;za tuhle cenu, kdyby o&nbsp;ní nikdo nepsal?</p>
+        <p>Skvělá firma ještě není skvělá investice. O&nbsp;výsledku rozhoduje i&nbsp;cena, za kterou nakoupíte, a&nbsp;na debutu bývá nafouknutá nadšením. To nadšení pak obvykle zaplatí ten, kdo přišel poslední.</p>
+
+        <p className="disclaimer-line">Článek je vzdělávací a&nbsp;nehodnotí uvedené akcie jako vhodné k&nbsp;nákupu ani k&nbsp;prodeji. Nejde o&nbsp;investiční doporučení. Údaje z&nbsp;veřejných zdrojů k&nbsp;13. až 19.&nbsp;11.&nbsp;2026, u&nbsp;CSG denní minimum ze 17.&nbsp;11.</p>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><a href="https://www.echo24.cz/a/Hbn6x/zpravy-ekonomika-akcie-csg-na-historickem-minimu" target="_blank" rel="noopener noreferrer">Echo24</a>: akcie CSG na historickém minimu</li>
+            <li><a href="https://forbes.cz/akcie-csg-jsou-pod-deseti-eury-investory-znervoznuji-vysledky-i-sektorova-dan/" target="_blank" rel="noopener noreferrer">Forbes Česko</a>: akcie CSG pod deseti eury, výsledky</li>
+            <li><a href="https://finex.cz/akcie-csg-se-zritily-o-70-procent-proc-ani-zakazky-za-18-miliard-eur-nestaci/" target="_blank" rel="noopener noreferrer">Finex</a>: tržby, zakázky, dluh a&nbsp;výhled CSG</li>
+            <li><a href="https://fourweekmba.com/ai-us-ipos-hit-a-record-149b-anthropics-deal-would-add-41/" target="_blank" rel="noopener noreferrer">FourWeekMBA</a>: objem amerických úpisů v&nbsp;roce 2026</li>
+            <li><a href="https://aiweekly.co/alerts/wall-streets-10-biggest-2026-ipos-including-spacex-sk-and-cerebras-trade-205" target="_blank" rel="noopener noreferrer">AI Weekly podle Financial Times</a>: deset největších debutů pod emisní cenou</li>
+            <li><a href="https://www.renaissancecapital.com/IPO-Center/News/122713/how-the-largest-us-ipos-performed-after-listing-and-what-it-means" target="_blank" rel="noopener noreferrer">Renaissance Capital</a>: jak si vedly největší americké debuty, SpaceX</li>
+            <li><a href="https://247wallst.com/investing/2026/11/20/the-sp-500-just-had-its-biggest-reversal-since-march-2020/" target="_blank" rel="noopener noreferrer">24/7 Wall St., 20.&nbsp;11.&nbsp;2026</a>: první den Anthropicu na burze</li>
+            <li><a href="https://www.fondshop.cz/anthropic-prepsal-historii-wall-street-rekordni-ipo-za-107-miliard-dolaru-vystridala-studena-sprcha" target="_blank" rel="noopener noreferrer">Fondshop</a>: úpis Anthropicu</li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
+  if (slug === "trhy-padaji-co-delat-a-co-ne") {
+    return (
+      <div className="article-body">
+        <p className="lead">Nasdaq-100 je zhruba 15&nbsp;% pod říjnovým vrcholem, S&amp;P 500 asi 8&nbsp;%. V&nbsp;takových týdnech má skoro každý chuť něco udělat. A&nbsp;většinou je to přesně ta chyba.</p>
+
+        <h2>Nejdřív trocha klidu z&nbsp;historie</h2>
+        <p>J.P.&nbsp;Morgan spočítal, že americký S&amp;P 500 mezi lety 1980 a&nbsp;2025 během roku v&nbsp;průměru spadl o&nbsp;14,2&nbsp;% od svého maxima. A&nbsp;přesto skončil v&nbsp;plusu ve 35 ze 46&nbsp;let. Propad o&nbsp;8 až 15&nbsp;% je tedy u&nbsp;akcií normální rok.</p>
+        <p>Mám kamaráda z&nbsp;golfu, Slováka, kterému říkám Kebyman. Po každé ráně: keby som to zahral takto. Na burze je teď Kebymanů plno. Keby som predal v&nbsp;októbri. Jenže nikdo neví, kdy prodat, a&nbsp;už vůbec ne, kdy zase nakoupit.</p>
+
+        <h2>Co teď nedělat</h2>
+        <ol>
+          <li><strong>Neprodávejte v&nbsp;panice.</strong> Prodejem si ztrátu na papíře uzamknete natrvalo a&nbsp;pak řešíte, kdy se vrátit. Podle J.P.&nbsp;Morgan stačilo za posledních dvacet let propásnout deset nejlepších dní na trhu a&nbsp;portfolio bylo zhruba poloviční. Háček je v&nbsp;tom, že nejlepší dny chodí ruku v&nbsp;ruce s&nbsp;nejhoršími. Podle dat banky Chase přišlo za posledních dvacet let sedm z&nbsp;deseti nejlepších dní S&amp;P 500 do 15&nbsp;dnů od některého z&nbsp;deseti nejhorších.</li>
+          <li><strong>Nekoukejte do aplikace každou hodinu.</strong> Červená čísla v&nbsp;mobilu jsou nejdražší zábava, jakou znám. Kdo kouká denně, vidí hlavně šum a&nbsp;dřív nebo později podle něj začne jednat.</li>
+          <li><strong>Nesahejte na rezervu a&nbsp;nekupujte na dluh.</strong> Kdo dokupuje za peníze, které bude za půl roku potřebovat, sází na to, že se trh do té doby vrátí. Takovou záruku vám nikdo nedá.</li>
+          <li><strong>Nenechte se nalákat na „jistotu“.</strong> V&nbsp;propadu se rády vyrojí nabídky s&nbsp;vysokým výnosem a&nbsp;údajně nulovým rizikem, typicky firemní dluhopisy, které „nemůžou padnout“. Kolikrát to končí jako dluhopisové letadlo. Vysoký výnos bez rizika neexistuje.</li>
+        </ol>
+
+        <h2>Co teď dělat</h2>
+        <ol>
+          <li><strong>Zkontrolujte rezervu.</strong> Na účtu by měly ležet aspoň <Link href="/blog/financni-poduska-jak-ji-spravne-nastavit">výdaje na šest měsíců</Link>. Právě rezerva vám dovolí v&nbsp;propadu nic neprodávat.</li>
+          <li><strong>Vraťte se ke svému plánu.</strong> Proč investujete a&nbsp;kdy budete peníze potřebovat? Pokud je potřebujete do dvou tří let, neměly být v&nbsp;akciích ani před propadem. Jestli tam přesto jsou, proberte to v&nbsp;klidu s&nbsp;někým, kdo vidí celé vaše finance, ještě než cokoli prodáte. Pokud za patnáct let, řešíte úplně jinou otázku než trh tento týden.</li>
+          <li><strong>Pokud pravidelně investujete do portfolia rozloženého po celém světě, nepřestávejte.</strong> Stejná částka teď koupí víc. Já tomu říkám nakupovat ve výprodeji. Kdo by v&nbsp;obchodě utíkal od slevy jen proto, že je cena nižší?</li>
+          <li><strong>Srovnejte portfolio s&nbsp;plánem.</strong> Když akcie spadnou, jejich podíl klesne pod to, co jste si nastavili. Vrátit ho zpět znamená prodat kousek toho, co drželo, a&nbsp;dokoupit akcie levněji. Tomu se říká rebalancování a&nbsp;přesně kvůli takovým týdnům se dělá.</li>
+        </ol>
+
+        <h2>A&nbsp;ještě jedna věc pro klid</h2>
+        <p>Pokud máte peníze rozložené do tisíců firem po celém světě, je hodně těžké přijít o&nbsp;všechno. Aby zmizelo celých sto procent, musela by přijít třetí světová. A&nbsp;to už nebudete řešit portfolio, ale jestli se dožijete zítřka.</p>
+        <p>Kdy se trhy uklidní, nikdo neví. Ani já. Křišťálovou kouli nemáme. Pomůže vám plán, který jste si udělali v&nbsp;klidu, a&nbsp;člověk, který vám ho připomene, když klid zrovna není. Právě proto jsem tady já, abych v&nbsp;takových týdnech emoce kontroloval a&nbsp;řídil.</p>
+        <p>Kolik z&nbsp;toho propadu vidíte v&nbsp;korunách, počítám v&nbsp;článku <Link href="/blog/propad-akcii-v-korunach">Nasdaq-100 je 15&nbsp;% pod vrcholem. Kolik je to v&nbsp;korunách?</Link></p>
+        <p>A&nbsp;kdy je propad naopak důvod něco změnit, rozebírám podrobněji v&nbsp;článku <Link href="/blog/propady-trhu-co-delat">Akcie padají. Co teď dělat s&nbsp;penězi a&nbsp;co raději ne</Link>.</p>
+
+        <p className="disclaimer-line">Údaje o&nbsp;trzích k&nbsp;zavíracím cenám 19.&nbsp;11.&nbsp;2026. Článek je vzdělávací a&nbsp;nenahrazuje individuální poradenství. Minulé výsledky trhů nezaručují budoucí výnosy.</p>
+
+        <div className="sources" id="zdroje">
+          <div className="section-eyebrow" style={{ marginBottom: 6 }}>Zdroje</div>
+          <ol>
+            <li><a href="https://am.jpmorgan.com/content/dam/jpm-am-aem/global/en/insights/market-insights/guide-to-the-markets/mi-guide-to-the-markets-us.pdf" target="_blank" rel="noopener noreferrer">J.P.&nbsp;Morgan, Guide to the Markets</a>: průměrný propad během roku, 1980 až 2025</li>
+            <li><a href="https://am.jpmorgan.com/us/en/asset-management/adv/insights/retirement-insights/navigating-market-volatility-retirement-guide/" target="_blank" rel="noopener noreferrer">J.P.&nbsp;Morgan Asset Management</a>: zmeškání deseti nejlepších dní</li>
+            <li><a href="https://www.chase.com/personal/investments/learning-and-insights/article/what-happens-after-stock-market-hits-record-highs" target="_blank" rel="noopener noreferrer">Chase</a>: nejlepší dny blízko nejhorších</li>
+            <li><a href="https://marketspeaker.com/sp500-six-day-losing-streak-nasdaq100-15-percent-peak-november-19-2026/" target="_blank" rel="noopener noreferrer">Marketspeaker, 19.&nbsp;11.&nbsp;2026</a>: stav indexů</li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
   return null;
 }
 
